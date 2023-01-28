@@ -1,8 +1,8 @@
-# lomap_0
+# LoMap ES6B
 
-[![Actions Status](https://github.com/arquisoft/lomap_0/workflows/CI%20for%20LOMAP_0/badge.svg)](https://github.com/arquisoft/lomap_0/actions)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_lomap_0&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arquisoft_lomap_0)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_lomap_0&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Arquisoft_lomap_0)
+[![Actions Status](https://github.com/arquisoft/lomap_es6b/workflows/CI%20for%20LOMAP_0/badge.svg)](https://github.com/arquisoft/lomap_es6b/actions)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_lomap_es6b&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arquisoft_lomap_es6b)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_lomap_es6b&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Arquisoft_lomap_es6b)
 
 <p float="left">
 <img src="https://blog.wildix.com/wp-content/uploads/2020/06/react-logo.jpg" height="100">
@@ -47,6 +47,6 @@ Deberías ser capaz de acceder a la aplicación en [http://localhost:3000](http:
 
 ## Mas información
 Encontrarás más información sobre el repositorio en los otros archivos README:
-- Documentación: https://github.com/arquisoft/lomap_0/tree/master/docs
-- Webapp: https://github.com/arquisoft/lomap_0/tree/master/webapp
-- Restapi: https://github.com/arquisoft/lomap_0/tree/master/restapi
+- Documentación: https://github.com/arquisoft/lomap_es6b/tree/master/docs
+- Webapp: https://github.com/arquisoft/lomap_es6b/tree/master/webapp
+- Restapi: https://github.com/arquisoft/lomap_es6b/tree/master/restapi
