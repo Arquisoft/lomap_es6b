@@ -70,6 +70,6 @@ Table with role names, person names, and their expectations with respect to the 
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+| _Council of Brussels_ | _https://www.brussels.be/contact-0_ | _The entity tha hire us to deliver the LoMap site_
+| _Teachers_ | _https://arquisoft.github.io/course2223.html_ | _<Expectation-2>_
 |===
