@@ -14,20 +14,9 @@ Describes the relevant requirements and the driving forces that software archite
 
 [role="arc42help"]
 ****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
+The application runs online and it’s deployed on **RELLENAR**. It also makes use of Solid Pods. In this way, it decentralizes most of the user’s data. Users will be shown a map where they can add locations, review scores, comments, etc. Each user will also be able to fully manage the information they provide to the application.
 
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
-
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
-
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
+The full list of requirements of the application can be found in https://arquisoft.github.io/course2223/labAssignmentDescription.html[the assignment page].
 ****
 
 === Quality Goals
