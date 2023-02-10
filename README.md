@@ -1,7 +1,17 @@
 # LoMap ES6B
 
-Manuel López Zürcher
-Adriana Arias Coya
+-Daniel Uría Edroso
+
+-Manuel López Zürcher
+
+-Adriana Arias Coya
+
+-Alberto Fernández Azcoaga
+
+-Alicia Fernández Pushkina
+
+-Jaime Sánchez Lorenzo
+
 
 
 [![CI for LOMAP_ES6B](https://github.com/Arquisoft/lomap_es6b/actions/workflows/lomap_es6b.yml/badge.svg)](https://github.com/Arquisoft/lomap_es6b/actions/workflows/lomap_es6b.yml)
