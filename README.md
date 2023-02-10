@@ -1,4 +1,5 @@
 # LoMap ES6B
+Daniel Uría Edroso
 
 Manuel López Zürcher
 Adriana Arias Coya
