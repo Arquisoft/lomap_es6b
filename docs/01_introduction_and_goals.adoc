@@ -34,7 +34,6 @@ Keep these excerpts as short as possible. Balance readability of this document w
 
 [role="arc42help"]
 ****
-.Contents
 The quality goals are we following are:
 
 .Availability
