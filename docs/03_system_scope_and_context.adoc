@@ -14,10 +14,6 @@
 
 |Solid PODS
 |Solid PODS have information about user’s addresses. We must store the shared information in a personal Pod according to the SOLID principles. The data is stored in a decentralized way.
-
-|Continuous integration system
-|The application has to be accessible and deployed using a continuous integration system. 
-
 |===
 
 === Business Context
