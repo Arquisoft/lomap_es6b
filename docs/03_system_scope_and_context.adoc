@@ -1,14 +1,24 @@
 [[section-system-scope-and-context]]
 == System Scope and Context
-
+=== Business Context
 
 [role="arc42help"]
 ****
-.Contents
-The user interacts with system by viewing and selecting places in the map. users have an account in the system that allows them to view their favorite sites.
-Solid PODS have information about user’s addresses. 
-If necessary, differentiate the business context (domain specific inputs and outputs) from the technical context (channels, protocols, hardware).
+[%header, cols=2]
+|===
+|Constraint
+|Explanation
 
+|User
+|Users interact with system by viewing and selecting places in the map. Users also have an account in the system that allows them to view their favorite sites.
+
+|Solid PODS
+|Solid PODS have information about user’s addresses. We must store the shared information in a personal Pod according to the SOLID principles. The data is stored in a decentralized way.
+
+|Continuous integration system
+|The application has to be accessible and deployed using a continuous integration system. 
+
+|===
 
 === Business Context
 
