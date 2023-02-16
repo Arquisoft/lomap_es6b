@@ -32,23 +32,21 @@ Keep these excerpts as short as possible. Balance readability of this document w
 
 === Quality Goals
 
-[role="arc42help"]
-****
 The quality goals are we following are:
 
-.Availability
+==== Availability:
 The system must have the capacity so the access to the data is totally reliable and consistent for users in order to make their operations with the system.
 
-.Decentralization
+==== Decentralization:
 All the information used by the system must be provided by the users or had given the system the permissions in order to obtain that information.
 
-.Testability
+==== Testability:
 The system must be testable in order to make a robust, secure and bug free system.
 
-.Secure
+==== Secure:
 The system will carry out checks on potentially dangerous decisions for the user, such as to provide personal data to the system to make more personal the interaction with the system
 
-.Accessibility/Usability
+==== Accessibility/Usability:
 The system must be easy to use for beginners or people without previous technical knowledge. Likewise, the system should provide the necessary help to the user to be able to navigate through the program without any doubt, in addition to having to be accessible to all people. 
 ****
 
