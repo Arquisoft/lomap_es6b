@@ -26,6 +26,6 @@ Potentially more columns in case you need translations.
 [options="header"]
 |===
 | Term         | Definition
-| <Term-1>     | <definition-1>
+| <SOLID>     | <SOLID is a web decentralization project that stores securely users data in private data stores called Pods  >
 | <Term-2>     | <definition-2>
 |===
