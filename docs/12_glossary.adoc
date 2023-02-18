@@ -1,31 +1,15 @@
 [[section-glossary]]
 == Glossary
 
-
-
-[role="arc42help"]
-****
-.Contents
-The most important domain and technical terms that your stakeholders use when discussing the system.
-
-You can also see the glossary as source for translations if you work in multi-language teams.
-
-.Motivation
-You should clearly define your terms, so that all stakeholders
-
-* have an identical understanding of these terms
-* do not use synonyms and homonyms
-
-.Form
-A table with columns <Term> and <Definition>.
-
-Potentially more columns in case you need translations.
-
 ****
 
 [options="header"]
 |===
 | Term         | Definition
-| <Term-1>     | <definition-1>
-| <Term-2>     | <definition-2>
+| SOLID     | SOLID is a web decentralization project that securely stores users data in private data stores called Pods.
+| SOLID Pod     | It's a data store where users can keep their information. Only selected users will be able to access to that information.
+| JavaScript     | JavaScript is a high level programming lenguage very used int the World Wide Web, especially in the client side.
+| React     | It's an open source JavaScript library that helps building efficient interfaces.
+| API     | Software that helps two or more computer programs to comunicate to each other.
+| Google Maps API     | It's an API by Google that allows you to use the power of Google Maps and put it directly on your own site.
 |===
