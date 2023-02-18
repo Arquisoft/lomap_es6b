@@ -36,29 +36,12 @@ A table with quality goals and concrete scenarios, ordered by priorities
 
 === Stakeholders
 
-[role="arc42help"]
-****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
-
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
-
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
-
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
-****
-
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+| _Council of Brussels_ | _https://www.brussels.be/contact-0_ | _The entity that hire us to deliver the LoMap site. They should help to find the main requirements._
+| _Teachers_ | _https://arquisoft.github.io/course2223.html_ | _The teachers of the subject, who will control the process of this project and help us when we need._
+| _Developers_ | _https://github.com/Arquisoft/lomap_es6b_ | _The students of this team that are going to develope the project. They also will manage all the architecture_
+| _Final users_ |  | _The future users of the site when it's published. They can help to find some important requirements._
+| _Solid community_ | _https://forum.solidproject.org/_ | _Users and developers related with the Solid Project. Since this project will use Solid, the community could be interested and also could help us in the process._
 |===
