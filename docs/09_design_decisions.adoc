@@ -2,27 +2,23 @@
 == Design Decisions
 
 
-[options="header",cols="1,2,2,2"]
+[options="header",cols="1,2,2"]
 |===
 |Technology
 |Pros
 |Cons
-|ADR link
 
 | *React*
 | It has a big community full of documentation and solutions to our posible problems.
 | Due to its minimalist style, it leans to have lot of packages and external dependencies
-| 
 
 | *Node.js*
 | One of the most used network app with lots of code. The Node packaged modules, npm, have already become huge and still growing.
 | APIs used in NodeJs are unstable as they change frequently. It´s a bit difficult to deal with relational databases.
-| 
 
 | *MariaDb*
 | Easy to install, clear configuration files and works well with SQL standard.
 | For technical support, users have to depend on the knowledge base and fórum. Is no longer completely compatible with MySQL, which makes migration a tedious process.
-| 
 |===
 
 == AD-01: Front-End technology
