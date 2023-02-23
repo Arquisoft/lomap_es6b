@@ -9,6 +9,7 @@
 | SOLID     | SOLID is a web decentralization project that securely stores users data in private data stores called Pods.
 | SOLID Pod     | It's a data store where users can keep their information. Only selected users will be able to access to that information.
 | JavaScript     | JavaScript is a high level programming lenguage very used int the World Wide Web, especially in the client side.
+| Node.js    | Node is an open source back-end enviroment that lets developers use JavaScript for server side scripting.
 | React     | It's an open source JavaScript library that helps building efficient interfaces.
 | API     | Software that helps two or more computer programs to comunicate to each other.
 | Google Maps API     | It's an API by Google that allows you to use the power of Google Maps and put it directly on your own site.
