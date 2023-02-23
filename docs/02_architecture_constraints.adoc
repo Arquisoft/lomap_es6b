@@ -2,18 +2,56 @@
 == Architecture Constraints
 
 
-[role="arc42help"]
-****
-.Contents
-Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
+=== Technical constraints
 
-.Motivation
-Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.
+[%header, cols=2]
+|===
+|Constraint
+|Explanation
 
-.Form
-Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
-****
+|Solid
+|We must store the shared information in a personal Pod according to the SOLID principles. The data is stored in a decentralized way. 
+
+|GitHub
+|We must track the code and share it in a public repository of GitHub.
+
+|Continuous integration system
+|The application has to be accessible and deployed using a continuous integration system. 
+
+|===
+
+=== Organizational constraints
+
+[%header, cols=2]
+|===
+|Constraint
+|Explanation
+
+|The team 
+|We are a group of six and  we should get along with each other, to not hinder the work. 
+
+|Due dates 
+|We will try to finish our own issues with one or two margin days, to be able to solve the problems that can come out. 
+
+|Meetings
+|As a big group, we must have frequently meetings to know the updates of everyone. At least to weekly, one in our laboratory session. 
+
+|===
+
+=== Political constraints 
+
+[%header, cols=2]
+|===
+|Constraint
+|Explanation
+
+|Documentation
+|We will follow the arc42 template 
+
+|Language 
+|The project will be done in English to reach more public and find more information. 
+
+|Design  
+|The application will have a simple aesthetic and its interface should be intuitive. 
+
+|===
