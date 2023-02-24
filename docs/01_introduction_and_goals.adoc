@@ -37,7 +37,7 @@ The system will carry out checks on potentially dangerous decisions for the user
 
 ==== Accessibility/Usability:
 The system must be easy to use for beginners or people without previous technical knowledge. Likewise, the system should provide the necessary help to the user to be able to navigate through the program without any doubt, in addition to having to be accessible to all people. 
-****
+
 
 === Stakeholders
 
