@@ -1,9 +1,10 @@
 [[section-solution-strategy]]
-[role="arc42help"]
-****
+
 == Solution Strategy
 
 === Technology decisions
+[role="arc42help"]
+****
 We have made the following technology decisions:
 
 * *Database*: MariaDB
