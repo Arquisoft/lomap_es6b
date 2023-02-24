@@ -461,13 +461,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_business_context">3.1. Business Context</a></li>
 </ul>
 </li>
-<li><a href="#section-technical-risks">4. Risks and Technical Debts</a>
+<li><a href="#section-concepts">4. Cross-cutting Concepts</a>
 <ul class="sectlevel2">
-<li><a href="#_risks">4.1. Risks</a></li>
-<li><a href="#_technical_debts">4.2. Technical debts</a></li>
+<li><a href="#_domain_model">4.1. Domain model</a></li>
+<li><a href="#_domain_concepts">4.2. Domain concepts</a></li>
+<li><a href="#_secutity">4.3. Secutity</a></li>
+<li><a href="#_user_expierence">4.4. User expierence</a></li>
 </ul>
 </li>
-<li><a href="#section-glossary">5. Glossary</a></li>
+<li><a href="#section-design-decisions">5. Design Decisions</a></li>
+<li><a href="#_ad_01_front_end_technology">6. AD-01: Front-End technology</a></li>
+<li><a href="#_ad_02_back_end_technology">7. AD-02: Back-End technology</a></li>
+<li><a href="#_ad_03_database_server">8. AD-03: Database server</a></li>
+<li><a href="#section-quality-scenarios">9. Quality Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_quality_tree">9.1. Quality Tree</a></li>
+<li><a href="#_quality_scenarios">9.2. Quality Scenarios</a></li>
+</ul>
+</li>
+<li><a href="#section-technical-risks">10. Risks and Technical Debts</a>
+<ul class="sectlevel2">
+<li><a href="#_risks">10.1. Risks</a></li>
+<li><a href="#_technical_debts">10.2. Technical debts</a></li>
+</ul>
+</li>
+<li><a href="#section-glossary">11. Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -1303,149 +1321,21 @@ building block instances depicted in this diagram.&gt;</em></p>
 </div>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Content</div>
-<p>The deployment view describes:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>the technical infrastructure used to execute your system, with infrastructure elements like geographical locations, environments, computers, processors, channels and net topologies as well as other infrastructure elements and</p>
-</li>
-<li>
-<p>the mapping of (software) building blocks to that infrastructure elements.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Often systems are executed in different environments, e.g. development environment, test environment, production environment. In such cases you should document all relevant environments.</p>
-</div>
-<div class="paragraph">
-<p>Especially document the deployment view when your software is executed as distributed system with more then one computer, processor, server or container or when you design and construct your own hardware processors and chips.</p>
-</div>
-<div class="paragraph">
-<p>From a software perspective it is sufficient to capture those elements of the infrastructure that are needed to show the deployment of your building blocks. Hardware architects can go beyond that and describe the infrastructure to any level of detail they need to capture.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Software does not run without hardware.
-This underlying infrastructure can and will influence your system and/or some
-cross-cutting concepts. Therefore, you need to know the infrastructure.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Maybe the highest level deployment diagram is already contained in section 3.2. as
-technical context with your own infrastructure as ONE black box. In this section you will
-zoom into this black box using additional deployment diagrams:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>UML offers deployment diagrams to express that view. Use it, probably with nested diagrams,
-when your infrastructure is more complex.</p>
-</li>
-<li>
-<p>When your (hardware) stakeholders prefer other kinds of diagrams rather than the deployment diagram, let them use any kind that is able to show nodes and channels of the infrastructure.</p>
-</li>
-</ul>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p>=== Infrastructure Level 1</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Describe (usually in a combination of diagrams, tables, and text):</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>the distribution of your system to multiple locations, environments, computers, processors, .. as well as the physical connections between them</p>
-</li>
-<li>
-<p>important justification or motivation for this deployment structure</p>
-</li>
-<li>
-<p>Quality and/or performance features of the infrastructure</p>
-</li>
-<li>
-<p>the mapping of software artifacts to elements of the infrastructure</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For multiple environments or alternative deployments please copy that section of arc42 for all relevant environments.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p><em><strong>&lt;Overview Diagram&gt;</strong></em></p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Motivation</dt>
-<dd>
-<p><em>&lt;explanation in text form&gt;</em></p>
-</dd>
-<dt class="hdlist1">Quality and/or Performance Features</dt>
-<dd>
-<p><em>&lt;explanation in text form&gt;</em></p>
-</dd>
-<dt class="hdlist1">Mapping of Building Blocks to Infrastructure</dt>
-<dd>
-<p><em>&lt;description of the mapping&gt;</em></p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>=== Infrastructure Level 2</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Here you can include the internal structure of (some) infrastructure elements from level 1.</p>
-</div>
-<div class="paragraph">
-<p>Please copy the structure from level 1 for each selected element.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p>==== <em>&lt;Infrastructure Element 1&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;diagram + explanation&gt;</em></p>
-</div>
-<div class="paragraph">
-<p>==== <em>&lt;Infrastructure Element 2&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;diagram + explanation&gt;</em></p>
-</div>
-<div class="paragraph">
-<p>&#8230;&#8203;</p>
-</div>
-<div class="paragraph">
-<p>==== <em>&lt;Infrastructure Element n&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;diagram + explanation&gt;</em></p>
-</div>
 <div style="page-break-after: always;"></div>
-<div id="section-concepts" class="paragraph">
-<p>== Cross-cutting Concepts</p>
 </div>
-<div class="paragraph">
-<p>=== Domain model</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="section-concepts">4. Cross-cutting Concepts</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_domain_model">4.1. Domain model</h3>
 <div class="paragraph">
 <p><span class="image"><img src="./images/UmlDiagram.png" alt="Example UML Diagram"></span></p>
 </div>
-<div class="paragraph">
-<p>=== Domain concepts</p>
 </div>
+<div class="sect2">
+<h3 id="_domain_concepts">4.2. Domain concepts</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1480,22 +1370,25 @@ when your infrastructure is more complex.</p>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>=== Secutity</p>
 </div>
+<div class="sect2">
+<h3 id="_secutity">4.3. Secutity</h3>
 <div class="paragraph">
 <p>In this subject, we will use the security options the frameworks and libraries we will use give us. And since we are developing a decentralized site with the SOLID Project, all the users data will be stored in their own pods and just users with pods and permission could watch that information. In our database we only will save the user&#8217;s ID and his list of friend&#8217;s IDs.</p>
 </div>
-<div class="paragraph">
-<p>=== User expierence</p>
 </div>
+<div class="sect2">
+<h3 id="_user_expierence">4.4. User expierence</h3>
 <div class="paragraph">
 <p>Our intention is to make an intuitive site where the user can see all the important modules just entering. The map will be placed occupying the main part of the screen. On the map the user will see their own marks and friends marks, that will be slightly different. At the left of the screen the users will see a module with diverse information of the locations that are in the screen and updates of their friends. The ratings of the places will be represented with stars to achieve an easy understanding. Finally, at the bottom of the site we will place information about us and the site.</p>
 </div>
 <div style="page-break-after: always;"></div>
-<div id="section-design-decisions" class="paragraph">
-<p>== Design Decisions</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-design-decisions">5. Design Decisions</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -1527,49 +1420,84 @@ when your infrastructure is more complex.</p>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>== AD-01: Front-End technology
-* Status: Accepted
-* Context: We had to choose the Front-End technology to use in our web development.
-* Decision: We decided for React due to its huge community to solve our posible future problems. The other option was Angular or Vue, but the minimalism style of React made us selected it to make are work clearer. Vue is like the best of both worlds but the fact that its not supported by a big company, it has less support and popularity, takes us back.
-* Consequences: In this way we will take our first steps in React, hoping to solve our probleams easily.</p>
-</div>
-<div class="paragraph">
-<p>== AD-02: Back-End technology
-* Status: Accepted
-* Context: We had to choose the Back-End technology to use in our web development.
-* Decision: As we selected JavaScript as our language code, we have guided our decision to Node.js. Its one of the most used network apps so it gave us trust. For example, the last time I read one statics about back-end technology, Node.js had 49% of popularity. In this decision we didn´t have much doubt
-* Consequences: From now, we will start learning to work with Node.js. None of us has worked with Node earlier, so we wish we had few problems.</p>
-</div>
-<div class="paragraph">
-<p>== AD-03: Database server
-* Status: Proposed
-* Context: We started thinking about which database server use in our project. Most of our data will be stored in PODs following the SOLID principles, so the database has lower priority.
-* Decision: We had to choose between a relational or non relational database. The most of us had worked before with HSQLDeveloper so this could have been an option, but didn´t win the spot. We selected, may change later, to try using MariaDb to experiment with a different database. A disadvantage that we read is that Node.js, the backend technology selected, works worst with relational databases.
-* Consequences: For now, we will try to work with MariaDb but this may change in the future.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;&lt;&lt;
-<a id="section-quality-scenarios"></a>
-== Quality Requirements</p>
-<p class="tableblock">[role="arc42help"]</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
-<div class="sidebarblock">
+<div class="sect1">
+<h2 id="_ad_01_front_end_technology">6. AD-01: Front-End technology</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Status: Accepted</p>
+</li>
+<li>
+<p>Context: We had to choose the Front-End technology to use in our web development.</p>
+</li>
+<li>
+<p>Decision: We decided for React due to its huge community to solve our posible future problems. The other option was Angular or Vue, but the minimalism style of React made us selected it to make are work clearer. Vue is like the best of both worlds but the fact that its not supported by a big company, it has less support and popularity, takes us back.</p>
+</li>
+<li>
+<p>Consequences: In this way we will take our first steps in React, hoping to solve our probleams easily.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ad_02_back_end_technology">7. AD-02: Back-End technology</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Status: Accepted</p>
+</li>
+<li>
+<p>Context: We had to choose the Back-End technology to use in our web development.</p>
+</li>
+<li>
+<p>Decision: As we selected JavaScript as our language code, we have guided our decision to Node.js. Its one of the most used network apps so it gave us trust. For example, the last time I read one statics about back-end technology, Node.js had 49% of popularity. In this decision we didn´t have much doubt</p>
+</li>
+<li>
+<p>Consequences: From now, we will start learning to work with Node.js. None of us has worked with Node earlier, so we wish we had few problems.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ad_03_database_server">8. AD-03: Database server</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Status: Proposed</p>
+</li>
+<li>
+<p>Context: We started thinking about which database server use in our project. Most of our data will be stored in PODs following the SOLID principles, so the database has lower priority.</p>
+</li>
+<li>
+<p>Decision: We had to choose between a relational or non relational database. The most of us had worked before with HSQLDeveloper so this could have been an option, but didn´t win the spot. We selected, may change later, to try using MariaDb to experiment with a different database. A disadvantage that we read is that Node.js, the backend technology selected, works worst with relational databases.</p>
+</li>
+<li>
+<p>Consequences: For now, we will try to work with MariaDb but this may change in the future.</p>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-quality-scenarios">9. Quality Requirements</h2>
+<div class="sectionbody">
+<div class="sidebarblock arc42help">
 <div class="content">
-<div class="paragraph">
-<p>=== Quality Tree</p>
+
 </div>
 </div>
-</div>
+<div class="sect2">
+<h3 id="_quality_tree">9.1. Quality Tree</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
 <div class="paragraph">
 <div class="title">Content</div>
 <p>The quality tree (as defined in ATAM – Architecture Tradeoff Analysis Method) with quality/evaluation scenarios as leafs.</p>
@@ -1595,13 +1523,13 @@ when your infrastructure is more complex.</p>
 <div class="paragraph">
 <p>In any case the tree should include links to the scenarios of the following section.</p>
 </div>
-<div class="sidebarblock">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_quality_scenarios">9.2. Quality Scenarios</h3>
+<div class="sidebarblock arc42help">
 <div class="content">
-<div class="paragraph">
-<p>=== Quality Scenarios</p>
-</div>
-</div>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1643,15 +1571,17 @@ when your infrastructure is more complex.</p>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-technical-risks">4. Risks and Technical Debts</h2>
+<h2 id="section-technical-risks">10. Risks and Technical Debts</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_risks">4.1. Risks</h3>
+<h3 id="_risks">10.1. Risks</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1690,7 +1620,7 @@ when your infrastructure is more complex.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_technical_debts">4.2. Technical debts</h3>
+<h3 id="_technical_debts">10.2. Technical debts</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1727,10 +1657,8 @@ when your infrastructure is more complex.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-glossary">5. Glossary</h2>
+<h2 id="section-glossary">11. Glossary</h2>
 <div class="sectionbody">
-<div class="sidebarblock">
-<div class="content">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1792,8 +1720,6 @@ software and system architecture.</p>
 We acknowledge that this document uses material from the
 arc 42 architecture template, <a href="http://www.arc42.de" class="bare">http://www.arc42.de</a>.
 Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
-</div>
-</div>
 </div>
 </div>
 </div>
