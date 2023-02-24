@@ -9,6 +9,11 @@
 |Consideration
 |Masures to be taken
 
+|High
+|Lack of knowledge about the technologies
+|Most of the technologies used in the project are new to the team members. This requires extra effort at the beginning to learn them.
+|Spend time learning and getting to know the new technologies.
+
 |Medium
 |Huge proyect 
 |We are under pressure to have the project completed to what is needed by the deadline. 
@@ -19,10 +24,6 @@
 |Due to the workload between different subjects and the problems of time compatibility. 
 |It is necessary to have a good organisation and distribution of time between the members of the team. 
 
-|High
-|Lack of knowledge about the technologies
-|Most of the technologies used in the project are new to the team members. This requires extra effort at the beginning to learn them.
-|Spend time learning and getting to know the new technologies.
 |===
 
 === Technical debts
