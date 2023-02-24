@@ -1,4 +1,6 @@
 [[section-solution-strategy]]
+[role="arc42help"]
+****
 == Solution Strategy
 
 === Technology decisions
@@ -47,3 +49,4 @@ Our system will follow a MVC architecture. In this way, the visual part will cre
 
 * *Language*
 ** The project will be done in English and the communication between the team members will be in Spanish (our first language).
+****
