@@ -1,7 +1,7 @@
 [[section-technical-risks]]
 == Risks and Technical Debts
 
-=== Risk 
+=== Risks
 [%header, cols=4]
 |===
 |Risk
