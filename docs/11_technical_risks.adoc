@@ -8,7 +8,7 @@
 |Problem description
 |Consideration
 |Masures to be taken
-
+ 
 |High
 |Lack of knowledge about the technologies
 |Most of the technologies used in the project are new to the team members. This requires extra effort at the beginning to learn them.
