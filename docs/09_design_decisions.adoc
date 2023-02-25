@@ -21,20 +21,20 @@
 | For technical support, users have to depend on the knowledge base and fórum. Is no longer completely compatible with MySQL, which makes migration a tedious process.
 |===
 
-== AD-01: Front-End technology
+=== AD-01: Front-End technology
 * Status: Accepted
 * Context: We had to choose the Front-End technology to use in our web development. 
 * Decision: We decided for React due to its huge community to solve our posible future problems. The other option was Angular or Vue, but the minimalism style of React made us selected it to make are work clearer. Vue is like the best of both worlds but the fact that its not supported by a big company, it has less support and popularity, takes us back.
 * Consequences: In this way we will take our first steps in React, hoping to solve our probleams easily.
 
-== AD-02: Back-End technology
+=== AD-02: Back-End technology
 * Status: Accepted
 * Context: We had to choose the Back-End technology to use in our web development. 
 * Decision: As we selected JavaScript as our language code, we have guided our decision to Node.js. Its one of the most used network apps so it gave us trust. For example, the last time I read one statics about back-end technology, Node.js had 49% of popularity. In this decision we didn´t have much doubt
 * Consequences: From now, we will start learning to work with Node.js. None of us has worked with Node earlier, so we wish we had few problems.
 
 
-== AD-03: Database server
+=== AD-03: Database server
 * Status: Proposed
 * Context: We started thinking about which database server use in our project. Most of our data will be stored in PODs following the SOLID principles, so the database has lower priority.
 * Decision: We had to choose between a relational or non relational database. The most of us had worked before with HSQLDeveloper so this could have been an option, but didn´t win the spot. We selected, may change later, to try using MariaDb to experiment with a different database. A disadvantage that we read is that Node.js, the backend technology selected, works worst with relational databases.
@@ -42,5 +42,4 @@
 
 
 
-|=== 
 

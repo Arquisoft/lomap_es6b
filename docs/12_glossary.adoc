@@ -1,7 +1,6 @@
 [[section-glossary]]
 == Glossary
 
-****
 
 [options="header"]
 |===

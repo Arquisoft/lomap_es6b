@@ -1,7 +1,10 @@
 [[section-solution-strategy]]
+
 == Solution Strategy
 
 === Technology decisions
+[role="arc42help"]
+****
 We have made the following technology decisions:
 
 * *Database*: MariaDB
@@ -47,3 +50,4 @@ Our system will follow a MVC architecture. In this way, the visual part will cre
 
 * *Language*
 ** The project will be done in English and the communication between the team members will be in Spanish (our first language).
+****
