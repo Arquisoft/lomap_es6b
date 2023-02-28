@@ -465,6 +465,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#section-solution-strategy">4. Solution Strategy</a>
 <ul class="sectlevel2">
 <li><a href="#_technology_decisions">4.1. Technology decisions</a></li>
+<li><a href="#_decisions_about_the_top_level_decomposition_of_the_system">4.2. Decisions about the top-level decomposition of the system</a></li>
+<li><a href="#_decisions_on_how_to_achieve_key_quality_goals">4.3. Decisions on how to achieve key quality goals</a></li>
+<li><a href="#_relevant_organizational_decisions">4.4. Relevant organizational decisions</a></li>
 </ul>
 </li>
 <li><a href="#section-building-block-view">5. Building Block View</a>
@@ -483,6 +486,36 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a></li>
+<li><a href="#section-concepts">8. Cross-cutting Concepts</a>
+<ul class="sectlevel2">
+<li><a href="#_domain_model">8.1. Domain model</a></li>
+<li><a href="#_domain_concepts">8.2. Domain concepts</a></li>
+<li><a href="#_secutity">8.3. Secutity</a></li>
+<li><a href="#_user_expierence">8.4. User expierence</a></li>
+</ul>
+</li>
+<li><a href="#section-design-decisions">9. Design Decisions</a>
+<ul class="sectlevel2">
+<li><a href="#_ad_01_front_end_technology">9.1. AD-01: Front-End technology</a></li>
+<li><a href="#_ad_02_back_end_technology">9.2. AD-02: Back-End technology</a></li>
+<li><a href="#_ad_03_database_server">9.3. AD-03: Database server</a></li>
+<li><a href="#_ad_04_definitive_database_server">9.4. AD-04: Definitive Database server</a></li>
+<li><a href="#_ad_05_definitive_api_maps">9.5. AD-05: Definitive API Maps</a></li>
+</ul>
+</li>
+<li><a href="#section-quality-scenarios">10. Quality Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_quality_tree">10.1. Quality Tree</a></li>
+<li><a href="#_quality_scenarios">10.2. Quality Scenarios</a></li>
+</ul>
+</li>
+<li><a href="#section-technical-risks">11. Risks and Technical Debts</a>
+<ul class="sectlevel2">
+<li><a href="#_risks">11.1. Risks</a></li>
+<li><a href="#_technical_debts">11.2. Technical debts</a></li>
+</ul>
+</li>
+<li><a href="#section-glossary">12. Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -815,19 +848,17 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_technology_decisions">4.1. Technology decisions</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
 <div class="paragraph">
 <p>We have made the following technology decisions:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Database</strong>: MariaDB</p>
+<p><strong>Database</strong>: MongoDb</p>
 <div class="ulist">
 <ul>
 <li>
-<p>We have decided to work with this relational database mostly because it is the one we are used to. Its ease of use and the fact we have used this type of database in other subjects makes it the best option for us.</p>
+<p>We have decided to work with this non relational database mostly because it works well with Node.js. Its ease of use and the fact we have used this type of database in other subjects makes it the best option for us.</p>
 </li>
 </ul>
 </div>
@@ -853,11 +884,11 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 </li>
 <li>
-<p><strong>Map API</strong>: Google Maps API</p>
+<p><strong>Map API</strong>: OpenStreet Maps API</p>
 <div class="ulist">
 <ul>
 <li>
-<p>We already have experience using this API. Our decision was also influenced by the fact that this API is made by Google and therefore its support service, documentation and community is guaranteed to be great.</p>
+<p>We decided to use OpenStreet Maps mainly because its completely free, not like Google Maps, which was our first option. However, it´s a very used API too.</p>
 </li>
 </ul>
 </div>
@@ -884,16 +915,20 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>=== Decisions about the top-level decomposition of the system
-Our system will follow a MVC architecture. In this way, the visual part will crearly be separated from the database requests and then both of them will be coordinated by the controller part.</p>
 </div>
+<div class="sect2">
+<h3 id="_decisions_about_the_top_level_decomposition_of_the_system">4.2. Decisions about the top-level decomposition of the system</h3>
 <div class="paragraph">
-<p>=== Decisions on how to achieve key quality goals
-* <strong>Availability</strong> will be achieved by making sure that all the interactions the users make with our application are totally reliable and consistent. We will ensure that the system will do what it is supposed to.</p>
+<p>Our system will follow a MVC architecture. In this way, the visual part will crearly be separated from the database requests and then both of them will be coordinated by the controller part.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_decisions_on_how_to_achieve_key_quality_goals">4.3. Decisions on how to achieve key quality goals</h3>
 <div class="ulist">
 <ul>
+<li>
+<p><strong>Availability</strong> will be achieved by making sure that all the interactions the users make with our application are totally reliable and consistent. We will ensure that the system will do what it is supposed to.</p>
+</li>
 <li>
 <p><strong>Decentralization</strong> will be achieved by using SOLID Pods. By using them, almost all data will be stored in each user&#8217;s Pod achieving a fully decentralized system for all the important information.</p>
 </li>
@@ -908,15 +943,27 @@ Our system will follow a MVC architecture. In this way, the visual part will cre
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>=== Relevant organizational decisions
-* <strong>Communication</strong>
-<strong> We have created a Whatsapp group for short questions or messages.
-</strong> We also use Discord for making meetings if we need to.
-** It is important to mention that even although we use these channels, all decisions are always documented on the Github repository.</p>
 </div>
+<div class="sect2">
+<h3 id="_relevant_organizational_decisions">4.4. Relevant organizational decisions</h3>
 <div class="ulist">
 <ul>
+<li>
+<p><strong>Communication</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>We have created a Whatsapp group for short questions or messages.</p>
+</li>
+<li>
+<p>We also use Discord for making meetings if we need to.</p>
+</li>
+<li>
+<p>It is important to mention that even although we use these channels, all decisions are always documented on the Github repository.</p>
+</li>
+</ul>
+</div>
+</li>
 <li>
 <p><strong>"No day before" policy</strong></p>
 <div class="ulist">
@@ -938,8 +985,6 @@ Our system will follow a MVC architecture. In this way, the visual part will cre
 </div>
 </li>
 </ul>
-</div>
-</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1344,21 +1389,23 @@ building block instances depicted in this diagram.&gt;</em></p>
 <div class="sect1">
 <h2 id="section-deployment-view">7. Deployment View</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div style="page-break-after: always;"></div>
-<div id="section-concepts" class="paragraph">
-<p>== Cross-cutting Concepts</p>
-</div>
 <div class="paragraph">
-<p>=== Domain model</p>
+<p>Pendiente</p>
 </div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-concepts">8. Cross-cutting Concepts</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_domain_model">8.1. Domain model</h3>
 <div class="paragraph">
 <p><span class="image"><img src="./images/UmlDiagram.png" alt="Example UML Diagram"></span></p>
 </div>
-<div class="paragraph">
-<p>=== Domain concepts</p>
 </div>
+<div class="sect2">
+<h3 id="_domain_concepts">8.2. Domain concepts</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1393,22 +1440,25 @@ building block instances depicted in this diagram.&gt;</em></p>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>=== Secutity</p>
 </div>
+<div class="sect2">
+<h3 id="_secutity">8.3. Secutity</h3>
 <div class="paragraph">
 <p>In this subject, we will use the security options the frameworks and libraries we will use give us. And since we are developing a decentralized site with the SOLID Project, all the users data will be stored in their own pods and just users with pods and permission could watch that information. In our database we only will save the user&#8217;s ID and his list of friend&#8217;s IDs.</p>
 </div>
-<div class="paragraph">
-<p>=== User expierence</p>
 </div>
+<div class="sect2">
+<h3 id="_user_expierence">8.4. User expierence</h3>
 <div class="paragraph">
 <p>Our intention is to make an intuitive site where the user can see all the important modules just entering. The map will be placed occupying the main part of the screen. On the map the user will see their own marks and friends marks, that will be slightly different. At the left of the screen the users will see a module with diverse information of the locations that are in the screen and updates of their friends. The ratings of the places will be represented with stars to achieve an easy understanding. Finally, at the bottom of the site we will place information about us and the site.</p>
 </div>
 <div style="page-break-after: always;"></div>
-<div id="section-design-decisions" class="paragraph">
-<p>== Design Decisions</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-design-decisions">9. Design Decisions</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -1440,54 +1490,116 @@ building block instances depicted in this diagram.&gt;</em></p>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>=== AD-01: Front-End technology
-* Status: Accepted
-* Context: We had to choose the Front-End technology to use in our web development.
-* Decision: We decided for React due to its huge community to solve our posible future problems. The other option was Angular or Vue, but the minimalism style of React made us selected it to make are work clearer. Vue is like the best of both worlds but the fact that its not supported by a big company, it has less support and popularity, takes us back.
-* Consequences: In this way we will take our first steps in React, hoping to solve our probleams easily.</p>
+<div class="sect2">
+<h3 id="_ad_01_front_end_technology">9.1. AD-01: Front-End technology</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Status: Accepted</p>
+</li>
+<li>
+<p>Context: We had to choose the Front-End technology to use in our web development.</p>
+</li>
+<li>
+<p>Decision: We decided for React due to its huge community to solve our posible future problems. The other option was Angular or Vue, but the minimalism style of React made us selected it to make are work clearer. Vue is like the best of both worlds but the fact that its not supported by a big company, it has less support and popularity, takes us back.</p>
+</li>
+<li>
+<p>Consequences: In this way we will take our first steps in React, hoping to solve our probleams easily.</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>=== AD-02: Back-End technology
-* Status: Accepted
-* Context: We had to choose the Back-End technology to use in our web development.
-* Decision: As we selected JavaScript as our language code, we have guided our decision to Node.js. Its one of the most used network apps so it gave us trust. For example, the last time I read one statics about back-end technology, Node.js had 49% of popularity. In this decision we didn´t have much doubt
-* Consequences: From now, we will start learning to work with Node.js. None of us has worked with Node earlier, so we wish we had few problems.</p>
 </div>
-<div class="paragraph">
-<p>=== AD-03: Database server
-* Status: Proposed
-* Context: We started thinking about which database server use in our project. Most of our data will be stored in PODs following the SOLID principles, so the database has lower priority.
-* Decision: We had to choose between a relational or non relational database. The most of us had worked before with HSQLDeveloper so this could have been an option, but didn´t win the spot. We selected, may change later, to try using MariaDb to experiment with a different database. A disadvantage that we read is that Node.js, the backend technology selected, works worst with relational databases.
-* Consequences: For now, we will try to work with MariaDb but this may change in the future.</p>
+<div class="sect2">
+<h3 id="_ad_02_back_end_technology">9.2. AD-02: Back-End technology</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Status: Accepted</p>
+</li>
+<li>
+<p>Context: We had to choose the Back-End technology to use in our web development.</p>
+</li>
+<li>
+<p>Decision: As we selected JavaScript as our language code, we have guided our decision to Node.js. Its one of the most used network apps so it gave us trust. For example, the last time I read one statics about back-end technology, Node.js had 49% of popularity. In this decision we didn´t have much doubt</p>
+</li>
+<li>
+<p>Consequences: From now, we will start learning to work with Node.js. None of us has worked with Node earlier, so we wish we had few problems.</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>=== AD-04: Definitive Database server
-* Status: Accepted
-* Context: At first we thought using MariaDB as it is explained above. However, the fact that we will work with Node.js and that it doesn´t work well with relational databases, warned us.
-* Decision: As we haven´t started to implement yet, we decided to change to a non relational database to take less risk. Some of us had worked with it before and its easy to learn.
-* Consequences: We will use MongoDb as a database.</p>
 </div>
-<div class="paragraph">
-<p>=== AD-05: Definitive API Maps
-* Status: Accepted
-* Context: At first we thought using Googple Maps because we are used to it. Some of us had worked with it before in aother subject. But when we searched more, we have seen that Google Maps API has a monthly limit of free requests.
-* Decision: The range of decision is not very big, so we read about OpenStreet Maps and, as it is completely free and also popular, changed our decision.
-* Consequences: We will use OpenStreet Maps.</p>
+<div class="sect2">
+<h3 id="_ad_03_database_server">9.3. AD-03: Database server</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Status: Proposed</p>
+</li>
+<li>
+<p>Context: We started thinking about which database server use in our project. Most of our data will be stored in PODs following the SOLID principles, so the database has lower priority.</p>
+</li>
+<li>
+<p>Decision: We had to choose between a relational or non relational database. The most of us had worked before with HSQLDeveloper so this could have been an option, but didn´t win the spot. We selected, may change later, to try using MariaDb to experiment with a different database. A disadvantage that we read is that Node.js, the backend technology selected, works worst with relational databases.</p>
+</li>
+<li>
+<p>Consequences: For now, we will try to work with MariaDb but this may change in the future.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ad_04_definitive_database_server">9.4. AD-04: Definitive Database server</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Status: Accepted</p>
+</li>
+<li>
+<p>Context: At first we thought using MariaDB as it is explained above. However, the fact that we will work with Node.js and that it doesn´t work well with relational databases, warned us.</p>
+</li>
+<li>
+<p>Decision: As we haven´t started to implement yet, we decided to change to a non relational database to take less risk. Some of us had worked with it before and its easy to learn.</p>
+</li>
+<li>
+<p>Consequences: We will use MongoDb as a database.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ad_05_definitive_api_maps">9.5. AD-05: Definitive API Maps</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Status: Accepted</p>
+</li>
+<li>
+<p>Context: At first we thought using Googple Maps because we are used to it. Some of us had worked with it before in aother subject. But when we searched more, we have seen that Google Maps API has a monthly limit of free requests.</p>
+</li>
+<li>
+<p>Decision: The range of decision is not very big, so we read about OpenStreet Maps and, as it is completely free and also popular, changed our decision.</p>
+</li>
+<li>
+<p>Consequences: We will use OpenStreet Maps.</p>
+</li>
+</ul>
 </div>
 <div style="page-break-after: always;"></div>
-<div id="section-quality-scenarios" class="paragraph">
-<p>== Quality Requirements</p>
 </div>
 </div>
 </div>
-<div class="sidebarblock">
+<div class="sect1">
+<h2 id="section-quality-scenarios">10. Quality Requirements</h2>
+<div class="sectionbody">
+<div class="sidebarblock arc42help">
 <div class="content">
-<div class="paragraph">
-<p>=== Quality Tree</p>
+
 </div>
 </div>
-</div>
+<div class="sect2">
+<h3 id="_quality_tree">10.1. Quality Tree</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
 <div class="paragraph">
 <div class="title">Content</div>
 <p>The quality tree (as defined in ATAM – Architecture Tradeoff Analysis Method) with quality/evaluation scenarios as leafs.</p>
@@ -1513,13 +1625,13 @@ building block instances depicted in this diagram.&gt;</em></p>
 <div class="paragraph">
 <p>In any case the tree should include links to the scenarios of the following section.</p>
 </div>
-<div class="sidebarblock">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_quality_scenarios">10.2. Quality Scenarios</h3>
+<div class="sidebarblock arc42help">
 <div class="content">
-<div class="paragraph">
-<p>=== Quality Scenarios</p>
-</div>
-</div>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1561,15 +1673,17 @@ building block instances depicted in this diagram.&gt;</em></p>
 </tr>
 </tbody>
 </table>
-<div class="sidebarblock">
-<div class="content">
+</div>
+</div>
 <div style="page-break-after: always;"></div>
-<div id="section-technical-risks" class="paragraph">
-<p>== Risks and Technical Debts</p>
 </div>
-<div class="paragraph">
-<p>=== Risks</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="section-technical-risks">11. Risks and Technical Debts</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_risks">11.1. Risks</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1606,9 +1720,9 @@ building block instances depicted in this diagram.&gt;</em></p>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>=== Technical debts</p>
 </div>
+<div class="sect2">
+<h3 id="_technical_debts">11.2. Technical debts</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1641,9 +1755,12 @@ building block instances depicted in this diagram.&gt;</em></p>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
-<div id="section-glossary" class="paragraph">
-<p>== Glossary</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-glossary">12. Glossary</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1705,8 +1822,6 @@ software and system architecture.</p>
 We acknowledge that this document uses material from the
 arc 42 architecture template, <a href="http://www.arc42.de" class="bare">http://www.arc42.de</a>.
 Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
-</div>
-</div>
 </div>
 </div>
 </div>
