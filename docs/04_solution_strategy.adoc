@@ -1,14 +1,12 @@
 [[section-solution-strategy]]
 
 == Solution Strategy
-
 === Technology decisions
-[role="arc42help"]
-****
 We have made the following technology decisions:
 
 * *Database*: MariaDB
 ** We have decided to work with this relational database mostly because it is the one we are used to. Its ease of use and the fact we have used this type of database in other subjects makes it the best option for us.
+
 
 * *Branching strategy*: One branch per person.
 ** We will work with both *master* and *dev* branches and then each team member will have its own branch. From our point of view, this is the best way for organizing our code updates minimizing collisions as much as possible. We also decided to use this because some of the team members have already taken part of projects using the same startegy and have had good experiences.
@@ -50,4 +48,4 @@ Our system will follow a MVC architecture. In this way, the visual part will cre
 
 * *Language*
 ** The project will be done in English and the communication between the team members will be in Spanish (our first language).
-****
+
