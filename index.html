@@ -445,8 +445,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#section-introduction-and-goals">1. Introduction and Goals</a>
 <ul class="sectlevel2">
 <li><a href="#_requirements_overview">1.1. Requirements Overview</a></li>
-<li><a href="#_quality_goals">1.2. Quality Goals</a></li>
-<li><a href="#_stakeholders">1.3. Stakeholders</a></li>
 </ul>
 </li>
 <li><a href="#section-architecture-constraints">2. Architecture Constraints</a>
@@ -477,6 +475,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_ad_01_front_end_technology">5.1. AD-01: Front-End technology</a></li>
 <li><a href="#_ad_02_back_end_technology">5.2. AD-02: Back-End technology</a></li>
 <li><a href="#_ad_03_database_server">5.3. AD-03: Database server</a></li>
+<li><a href="#_ad_04_definitive_database_server">5.4. AD-04: Definitive Database server</a></li>
+<li><a href="#_ad_05_definitive_api_maps">5.5. AD-05: Definitive API Maps</a></li>
 </ul>
 </li>
 <li><a href="#section-quality-scenarios">6. Quality Requirements</a>
@@ -535,129 +535,13 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <h2 id="section-introduction-and-goals">1. Introduction and Goals</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Describes the relevant requirements and the driving forces that software architects and development team must consider. These include</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>underlying business goals, essential features and functional requirements for the system</p>
-</li>
-<li>
-<p>quality goals for the architecture</p>
-</li>
-<li>
-<p>relevant stakeholders and their expectations</p>
-</li>
-</ul>
+<p>Esto es una prueba</p>
 </div>
 <div class="sect2">
 <h3 id="_requirements_overview">1.1. Requirements Overview</h3>
 <div class="paragraph">
-<p>The application runs online and it’s deployed on <strong>RELLENAR</strong>. It also makes use of Solid Pods. In this way, it decentralizes most of the user’s data. Users will be shown a map where they can add locations, review scores, comments, etc. Each user will also be able to fully manage the information they provide to the application.</p>
+<p>Esto es una prueba parte 2</p>
 </div>
-<div class="paragraph">
-<p>The full list of requirements of the application can be found in <a href="https://arquisoft.github.io/course2223/labAssignmentDescription.html">the assignment page</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_quality_goals">1.2. Quality Goals</h3>
-<div class="paragraph">
-<p>The quality goals are we following are:</p>
-</div>
-<div class="sect3">
-<h4 id="_availability">1.2.1. Availability:</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>The system must have the capacity so the access to the data is totally reliable and consistent for users in order to make their operations with the system.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_decentralization">1.2.2. Decentralization:</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>All the information used by the system must be provided by the users or had given the system the permissions in order to obtain that information.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_testability">1.2.3. Testability:</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>The system must be testable in order to make a robust, secure and bug free system.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_secure">1.2.4. Secure:</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>The system will carry out checks on potentially dangerous decisions for the user, such as to provide personal data to the system to make more personal the interaction with the system</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_accessibilityusability">1.2.5. Accessibility/Usability:</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>The system must be easy to use for beginners or people without previous technical knowledge. Likewise, the system should provide the necessary help to the user to be able to navigate through the program without any doubt, in addition to having to be accessible to all people.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_stakeholders">1.3. Stakeholders</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Role/Name</th>
-<th class="tableblock halign-left valign-top">Contact</th>
-<th class="tableblock halign-left valign-top">Expectations</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Council of Brussels</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em><a href="https://www.brussels.be/contact-0" class="bare">https://www.brussels.be/contact-0</a></em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The entity that hire us to deliver the LoMap site. They should help to find the main requirements.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Teachers</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em><a href="https://arquisoft.github.io/course2223.html" class="bare">https://arquisoft.github.io/course2223.html</a></em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The teachers of the subject, who will control the process of this project and help us when we need.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Developers</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em><a href="https://github.com/Arquisoft/lomap_es6b" class="bare">https://github.com/Arquisoft/lomap_es6b</a></em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The students of this team that are going to develope the project. They also will manage all the architecture</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Final users</em></p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The future users of the site when it&#8217;s published. They can help to find some important requirements.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Solid community</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em><a href="https://forum.solidproject.org/" class="bare">https://forum.solidproject.org/</a></em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Users and developers related with the Solid Project. Since this project will use Solid, the community could be interested and also could help us in the process.</em></p></td>
-</tr>
-</tbody>
-</table>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1513,6 +1397,44 @@ building block instances depicted in this diagram.&gt;</em></p>
 </li>
 <li>
 <p>Consequences: For now, we will try to work with MariaDb but this may change in the future.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ad_04_definitive_database_server">5.4. AD-04: Definitive Database server</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Status: Accepted</p>
+</li>
+<li>
+<p>Context: At first we thought using MariaDB as it is explained above. However, the fact that we will work with Node.js and that it doesn´t work well with relational databases, warned us.</p>
+</li>
+<li>
+<p>Decision: As we haven´t started to implement yet, we decided to change to a non relational database to take less risk. Some of us had worked with it before and its easy to learn.</p>
+</li>
+<li>
+<p>Consequences: We will use MongoDb as a database.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ad_05_definitive_api_maps">5.5. AD-05: Definitive API Maps</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Status: Accepted</p>
+</li>
+<li>
+<p>Context: At first we thought using Googple Maps because we are used to it. Some of us had worked with it before in aother subject. But when we searched more, we have seen that Google Maps API has a monthly limit of free requests.</p>
+</li>
+<li>
+<p>Decision: The range of decision is not very big, so we read about OpenStreet Maps and, as it is completely free and also popular, changed our decision.</p>
+</li>
+<li>
+<p>Consequences: We will use OpenStreet Maps.</p>
 </li>
 </ul>
 </div>
