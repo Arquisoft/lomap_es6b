@@ -459,6 +459,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#section-system-scope-and-context">3. System Scope and Context</a>
 <ul class="sectlevel2">
 <li><a href="#_business_context">3.1. Business Context</a></li>
+<li><a href="#_decisions_about_the_top_level_decomposition_of_the_system">3.2. Decisions about the top-level decomposition of the system</a></li>
+<li><a href="#_decisions_on_how_to_achieve_key_quality_goals">3.3. Decisions on how to achieve key quality goals</a></li>
+<li><a href="#_relevant_organizational_decisions">3.4. Relevant organizational decisions</a></li>
 </ul>
 </li>
 <li><a href="#section-concepts">4. Cross-cutting Concepts</a>
@@ -807,8 +810,12 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <p>== Solution Strategy</p>
 </div>
 <div class="paragraph">
-<p>=== Technology decisions
-We have made the following technology decisions:</p>
+<p>=== Technology decisions</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>We have made the following technology decisions:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -874,16 +881,20 @@ We have made the following technology decisions:</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>=== Decisions about the top-level decomposition of the system
-Our system will follow a MVC architecture. In this way, the visual part will crearly be separated from the database requests and then both of them will be coordinated by the controller part.</p>
 </div>
+<div class="sect2">
+<h3 id="_decisions_about_the_top_level_decomposition_of_the_system">3.2. Decisions about the top-level decomposition of the system</h3>
 <div class="paragraph">
-<p>=== Decisions on how to achieve key quality goals
-* <strong>Availability</strong> will be achieved by making sure that all the interactions the users make with our application are totally reliable and consistent. We will ensure that the system will do what it is supposed to.</p>
+<p>Our system will follow a MVC architecture. In this way, the visual part will crearly be separated from the database requests and then both of them will be coordinated by the controller part.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_decisions_on_how_to_achieve_key_quality_goals">3.3. Decisions on how to achieve key quality goals</h3>
 <div class="ulist">
 <ul>
+<li>
+<p><strong>Availability</strong> will be achieved by making sure that all the interactions the users make with our application are totally reliable and consistent. We will ensure that the system will do what it is supposed to.</p>
+</li>
 <li>
 <p><strong>Decentralization</strong> will be achieved by using SOLID Pods. By using them, almost all data will be stored in each user&#8217;s Pod achieving a fully decentralized system for all the important information.</p>
 </li>
@@ -898,15 +909,27 @@ Our system will follow a MVC architecture. In this way, the visual part will cre
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>=== Relevant organizational decisions
-* <strong>Communication</strong>
-<strong> We have created a Whatsapp group for short questions or messages.
-</strong> We also use Discord for making meetings if we need to.
-** It is important to mention that even although we use these channels, all decisions are always documented on the Github repository.</p>
 </div>
+<div class="sect2">
+<h3 id="_relevant_organizational_decisions">3.4. Relevant organizational decisions</h3>
 <div class="ulist">
 <ul>
+<li>
+<p><strong>Communication</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>We have created a Whatsapp group for short questions or messages.</p>
+</li>
+<li>
+<p>We also use Discord for making meetings if we need to.</p>
+</li>
+<li>
+<p>It is important to mention that even although we use these channels, all decisions are always documented on the Github repository.</p>
+</li>
+</ul>
+</div>
+</li>
 <li>
 <p><strong>"No day before" policy</strong></p>
 <div class="ulist">
@@ -929,6 +952,8 @@ Our system will follow a MVC architecture. In this way, the visual part will cre
 </li>
 </ul>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div style="page-break-after: always;"></div>
 <div id="section-building-block-view" class="paragraph">
 <p>== Building Block View</p>
@@ -1723,7 +1748,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-24 09:42:45 +0100
+Last updated 2023-02-28 15:33:53 +0100
 </div>
 </div>
 </body>
