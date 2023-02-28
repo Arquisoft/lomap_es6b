@@ -1,42 +1,34 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
-
-[role="arc42help"]
-****
 Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
 
 * underlying business goals, essential features and functional requirements for the system
 * quality goals for the architecture
 * relevant stakeholders and their expectations
-****
 
 === Requirements Overview
-
-[role="arc42help"]
-****
 The application runs online and it’s deployed on **RELLENAR**. It also makes use of Solid Pods. In this way, it decentralizes most of the user’s data. Users will be shown a map where they can add locations, review scores, comments, etc. Each user will also be able to fully manage the information they provide to the application.
 
 The full list of requirements of the application can be found in https://arquisoft.github.io/course2223/labAssignmentDescription.html[the assignment page].
-****
 
 === Quality Goals
 
 The quality goals are we following are:
 
 ==== Availability:
-The system must have the capacity so the access to the data is totally reliable and consistent for users in order to make their operations with the system.
+* The system must have the capacity so the access to the data is totally reliable and consistent for users in order to make their operations with the system.
 
 ==== Decentralization:
-All the information used by the system must be provided by the users or had given the system the permissions in order to obtain that information.
+* All the information used by the system must be provided by the users or had given the system the permissions in order to obtain that information.
 
 ==== Testability:
-The system must be testable in order to make a robust, secure and bug free system.
+* The system must be testable in order to make a robust, secure and bug free system.
 
 ==== Secure:
-The system will carry out checks on potentially dangerous decisions for the user, such as to provide personal data to the system to make more personal the interaction with the system
+* The system will carry out checks on potentially dangerous decisions for the user, such as to provide personal data to the system to make more personal the interaction with the system
 
 ==== Accessibility/Usability:
-The system must be easy to use for beginners or people without previous technical knowledge. Likewise, the system should provide the necessary help to the user to be able to navigate through the program without any doubt, in addition to having to be accessible to all people. 
+* The system must be easy to use for beginners or people without previous technical knowledge. Likewise, the system should provide the necessary help to the user to be able to navigate through the program without any doubt, in addition to having to be accessible to all people. 
 
 
 === Stakeholders
