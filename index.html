@@ -445,6 +445,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#section-introduction-and-goals">1. Introduction and Goals</a>
 <ul class="sectlevel2">
 <li><a href="#_requirements_overview">1.1. Requirements Overview</a></li>
+<li><a href="#_quality_goals">1.2. Quality Goals</a></li>
+<li><a href="#_stakeholders">1.3. Stakeholders</a></li>
 </ul>
 </li>
 <li><a href="#section-architecture-constraints">2. Architecture Constraints</a>
@@ -457,41 +459,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#section-system-scope-and-context">3. System Scope and Context</a>
 <ul class="sectlevel2">
 <li><a href="#_business_context">3.1. Business Context</a></li>
-<li><a href="#_decisions_about_the_top_level_decomposition_of_the_system">3.2. Decisions about the top-level decomposition of the system</a></li>
-<li><a href="#_decisions_on_how_to_achieve_key_quality_goals">3.3. Decisions on how to achieve key quality goals</a></li>
-<li><a href="#_relevant_organizational_decisions">3.4. Relevant organizational decisions</a></li>
+<li><a href="#_technical_context">3.2. Technical Context</a></li>
 </ul>
 </li>
-<li><a href="#section-concepts">4. Cross-cutting Concepts</a>
+<li><a href="#section-solution-strategy">4. Solution Strategy</a>
 <ul class="sectlevel2">
-<li><a href="#_domain_model">4.1. Domain model</a></li>
-<li><a href="#_domain_concepts">4.2. Domain concepts</a></li>
-<li><a href="#_secutity">4.3. Secutity</a></li>
-<li><a href="#_user_expierence">4.4. User expierence</a></li>
+<li><a href="#_technology_decisions">4.1. Technology decisions</a></li>
 </ul>
 </li>
-<li><a href="#section-design-decisions">5. Design Decisions</a>
+<li><a href="#section-building-block-view">5. Building Block View</a>
 <ul class="sectlevel2">
-<li><a href="#_ad_01_front_end_technology">5.1. AD-01: Front-End technology</a></li>
-<li><a href="#_ad_02_back_end_technology">5.2. AD-02: Back-End technology</a></li>
-<li><a href="#_ad_03_database_server">5.3. AD-03: Database server</a></li>
-<li><a href="#_ad_04_definitive_database_server">5.4. AD-04: Definitive Database server</a></li>
-<li><a href="#_ad_05_definitive_api_maps">5.5. AD-05: Definitive API Maps</a></li>
+<li><a href="#_whitebox_overall_system">5.1. Whitebox Overall System</a></li>
+<li><a href="#_level_2">5.2. Level 2</a></li>
+<li><a href="#_level_3">5.3. Level 3</a></li>
 </ul>
 </li>
-<li><a href="#section-quality-scenarios">6. Quality Requirements</a>
+<li><a href="#section-runtime-view">6. Runtime View</a>
 <ul class="sectlevel2">
-<li><a href="#_quality_tree">6.1. Quality Tree</a></li>
-<li><a href="#_quality_scenarios">6.2. Quality Scenarios</a></li>
+<li><a href="#_runtime_scenario_1">6.1. &lt;Runtime Scenario 1&gt;</a></li>
+<li><a href="#_runtime_scenario_2">6.2. &lt;Runtime Scenario 2&gt;</a></li>
+<li><a href="#">6.3. &#8230;&#8203;</a></li>
+<li><a href="#_runtime_scenario_n">6.4. &lt;Runtime Scenario n&gt;</a></li>
 </ul>
 </li>
-<li><a href="#section-technical-risks">7. Risks and Technical Debts</a>
-<ul class="sectlevel2">
-<li><a href="#_risks">7.1. Risks</a></li>
-<li><a href="#_technical_debts">7.2. Technical debts</a></li>
-</ul>
-</li>
-<li><a href="#section-glossary">8. Glossary</a></li>
+<li><a href="#section-deployment-view">7. Deployment View</a></li>
 </ul>
 </div>
 </div>
@@ -535,13 +526,129 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <h2 id="section-introduction-and-goals">1. Introduction and Goals</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Esto es una prueba</p>
+<p>Describes the relevant requirements and the driving forces that software architects and development team must consider. These include</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>underlying business goals, essential features and functional requirements for the system</p>
+</li>
+<li>
+<p>quality goals for the architecture</p>
+</li>
+<li>
+<p>relevant stakeholders and their expectations</p>
+</li>
+</ul>
 </div>
 <div class="sect2">
 <h3 id="_requirements_overview">1.1. Requirements Overview</h3>
 <div class="paragraph">
-<p>Esto es una prueba parte 2</p>
+<p>The application runs online and it’s deployed on <strong>RELLENAR</strong>. It also makes use of Solid Pods. In this way, it decentralizes most of the user’s data. Users will be shown a map where they can add locations, review scores, comments, etc. Each user will also be able to fully manage the information they provide to the application.</p>
 </div>
+<div class="paragraph">
+<p>The full list of requirements of the application can be found in <a href="https://arquisoft.github.io/course2223/labAssignmentDescription.html">the assignment page</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_quality_goals">1.2. Quality Goals</h3>
+<div class="paragraph">
+<p>The quality goals are we following are:</p>
+</div>
+<div class="sect3">
+<h4 id="_availability">1.2.1. Availability:</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>The system must have the capacity so the access to the data is totally reliable and consistent for users in order to make their operations with the system.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_decentralization">1.2.2. Decentralization:</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>All the information used by the system must be provided by the users or had given the system the permissions in order to obtain that information.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_testability">1.2.3. Testability:</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>The system must be testable in order to make a robust, secure and bug free system.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_secure">1.2.4. Secure:</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>The system will carry out checks on potentially dangerous decisions for the user, such as to provide personal data to the system to make more personal the interaction with the system</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_accessibilityusability">1.2.5. Accessibility/Usability:</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>The system must be easy to use for beginners or people without previous technical knowledge. Likewise, the system should provide the necessary help to the user to be able to navigate through the program without any doubt, in addition to having to be accessible to all people.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stakeholders">1.3. Stakeholders</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Role/Name</th>
+<th class="tableblock halign-left valign-top">Contact</th>
+<th class="tableblock halign-left valign-top">Expectations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Council of Brussels</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em><a href="https://www.brussels.be/contact-0" class="bare">https://www.brussels.be/contact-0</a></em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The entity that hire us to deliver the LoMap site. They should help to find the main requirements.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Teachers</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em><a href="https://arquisoft.github.io/course2223.html" class="bare">https://arquisoft.github.io/course2223.html</a></em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The teachers of the subject, who will control the process of this project and help us when we need.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Developers</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em><a href="https://github.com/Arquisoft/lomap_es6b" class="bare">https://github.com/Arquisoft/lomap_es6b</a></em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The students of this team that are going to develope the project. They also will manage all the architecture</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Final users</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The future users of the site when it&#8217;s published. They can help to find some important requirements.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Solid community</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em><a href="https://forum.solidproject.org/" class="bare">https://forum.solidproject.org/</a></em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Users and developers related with the Solid Project. Since this project will use Solid, the community could be interested and also could help us in the process.</em></p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -644,8 +751,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_business_context">3.1. Business Context</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -668,9 +773,9 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>=== Technical Context</p>
 </div>
+<div class="sect2">
+<h3 id="_technical_context">3.2. Technical Context</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -702,14 +807,16 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
-<div id="section-solution-strategy" class="paragraph">
-<p>== Solution Strategy</p>
-</div>
-<div class="paragraph">
-<p>=== Technology decisions</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="section-solution-strategy">4. Solution Strategy</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_technology_decisions">4.1. Technology decisions</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
 <div class="paragraph">
 <p>We have made the following technology decisions:</p>
 </div>
@@ -777,20 +884,16 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_decisions_about_the_top_level_decomposition_of_the_system">3.2. Decisions about the top-level decomposition of the system</h3>
 <div class="paragraph">
-<p>Our system will follow a MVC architecture. In this way, the visual part will crearly be separated from the database requests and then both of them will be coordinated by the controller part.</p>
+<p>=== Decisions about the top-level decomposition of the system
+Our system will follow a MVC architecture. In this way, the visual part will crearly be separated from the database requests and then both of them will be coordinated by the controller part.</p>
 </div>
+<div class="paragraph">
+<p>=== Decisions on how to achieve key quality goals
+* <strong>Availability</strong> will be achieved by making sure that all the interactions the users make with our application are totally reliable and consistent. We will ensure that the system will do what it is supposed to.</p>
 </div>
-<div class="sect2">
-<h3 id="_decisions_on_how_to_achieve_key_quality_goals">3.3. Decisions on how to achieve key quality goals</h3>
 <div class="ulist">
 <ul>
-<li>
-<p><strong>Availability</strong> will be achieved by making sure that all the interactions the users make with our application are totally reliable and consistent. We will ensure that the system will do what it is supposed to.</p>
-</li>
 <li>
 <p><strong>Decentralization</strong> will be achieved by using SOLID Pods. By using them, almost all data will be stored in each user&#8217;s Pod achieving a fully decentralized system for all the important information.</p>
 </li>
@@ -805,27 +908,15 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>=== Relevant organizational decisions
+* <strong>Communication</strong>
+<strong> We have created a Whatsapp group for short questions or messages.
+</strong> We also use Discord for making meetings if we need to.
+** It is important to mention that even although we use these channels, all decisions are always documented on the Github repository.</p>
 </div>
-<div class="sect2">
-<h3 id="_relevant_organizational_decisions">3.4. Relevant organizational decisions</h3>
 <div class="ulist">
 <ul>
-<li>
-<p><strong>Communication</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>We have created a Whatsapp group for short questions or messages.</p>
-</li>
-<li>
-<p>We also use Discord for making meetings if we need to.</p>
-</li>
-<li>
-<p>It is important to mention that even although we use these channels, all decisions are always documented on the Github repository.</p>
-</li>
-</ul>
-</div>
-</li>
 <li>
 <p><strong>"No day before" policy</strong></p>
 <div class="ulist">
@@ -848,14 +939,17 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </li>
 </ul>
 </div>
-<div class="sidebarblock">
-<div class="content">
+</div>
+</div>
 <div style="page-break-after: always;"></div>
-<div id="section-building-block-view" class="paragraph">
-<p>== Building Block View</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="section-building-block-view">5. Building Block View</h2>
+<div class="sectionbody">
+<div class="sidebarblock arc42help">
+<div class="content">
 <div class="paragraph">
 <div class="title">Content</div>
 <p>The building block view shows the static decomposition of the system into building blocks (modules, components, subsystems, classes,
@@ -893,13 +987,12 @@ Thus it contains the white box description of selected building blocks of level 
 <div class="paragraph">
 <p><strong>Level 3</strong> zooms into selected building blocks of level 2, and so on.</p>
 </div>
-<div class="sidebarblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_whitebox_overall_system">5.1. Whitebox Overall System</h3>
+<div class="sidebarblock arc42help">
 <div class="content">
-<div class="paragraph">
-<p>=== Whitebox Overall System</p>
-</div>
-</div>
-</div>
 <div class="paragraph">
 <p>Here you describe the decomposition of the overall system using the following white box template. It contains</p>
 </div>
@@ -934,8 +1027,8 @@ In the best case you will get away with examples or simple signatures.</p>
 </li>
 </ul>
 </div>
-<div class="sidebarblock">
-<div class="content">
+</div>
+</div>
 <div class="paragraph">
 <p><em><strong>&lt;Overview Diagram&gt;</strong></em></p>
 </div>
@@ -955,8 +1048,8 @@ In the best case you will get away with examples or simple signatures.</p>
 </dd>
 </dl>
 </div>
-</div>
-</div>
+<div class="sidebarblock arc42help">
+<div class="content">
 <div class="paragraph">
 <p>Insert your explanations of black boxes from level 1:</p>
 </div>
@@ -990,13 +1083,12 @@ responsibility according to the following schema:</p>
 <p>If you use a list of black box descriptions then you fill in a separate black box template for every important building block .
 Its headline is the name of the black box.</p>
 </div>
-<div class="sidebarblock">
+</div>
+</div>
+<div class="sect3">
+<h4 id="_name_black_box_1">5.1.1. &lt;Name black box 1&gt;</h4>
+<div class="sidebarblock arc42help">
 <div class="content">
-<div class="paragraph">
-<p>==== &lt;Name black box 1&gt;</p>
-</div>
-</div>
-</div>
 <div class="paragraph">
 <p>Here you describe &lt;black box 1&gt;
 according the the following black box template:</p>
@@ -1023,8 +1115,8 @@ according the the following black box template:</p>
 </li>
 </ul>
 </div>
-<div class="sidebarblock">
-<div class="content">
+</div>
+</div>
 <div class="paragraph">
 <p><em>&lt;Purpose/Responsibility&gt;</em></p>
 </div>
@@ -1043,32 +1135,34 @@ according the the following black box template:</p>
 <div class="paragraph">
 <p><em>&lt;(optional) Open Issues/Problems/Risks&gt;</em></p>
 </div>
-<div class="paragraph">
-<p>==== &lt;Name black box 2&gt;</p>
 </div>
-<div class="paragraph">
-<p><em>&lt;black box template&gt;</em></p>
-</div>
-<div class="paragraph">
-<p>==== &lt;Name black box n&gt;</p>
-</div>
+<div class="sect3">
+<h4 id="_name_black_box_2">5.1.2. &lt;Name black box 2&gt;</h4>
 <div class="paragraph">
 <p><em>&lt;black box template&gt;</em></p>
 </div>
-<div class="paragraph">
-<p>==== &lt;Name interface 1&gt;</p>
 </div>
+<div class="sect3">
+<h4 id="_name_black_box_n">5.1.3. &lt;Name black box n&gt;</h4>
+<div class="paragraph">
+<p><em>&lt;black box template&gt;</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_name_interface_1">5.1.4. &lt;Name interface 1&gt;</h4>
 <div class="paragraph">
 <p>&#8230;&#8203;</p>
 </div>
-<div class="paragraph">
-<p>==== &lt;Name interface m&gt;</p>
 </div>
-<div class="paragraph">
-<p>=== Level 2</p>
-</div>
+<div class="sect3">
+<h4 id="_name_interface_m">5.1.5. &lt;Name interface m&gt;</h4>
+
 </div>
 </div>
+<div class="sect2">
+<h3 id="_level_2">5.2. Level 2</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
 <div class="paragraph">
 <p>Here you can specify the inner structure of (some) building blocks from level 1 as white boxes.</p>
 </div>
@@ -1077,41 +1171,41 @@ according the the following black box template:</p>
 Please prefer relevance over completeness. Specify important, surprising, risky, complex or volatile building blocks.
 Leave out normal, simple, boring or standardized parts of your system</p>
 </div>
-<div class="sidebarblock">
+</div>
+</div>
+<div class="sect3">
+<h4 id="_white_box_building_block_1">5.2.1. White Box <em>&lt;building block 1&gt;</em></h4>
+<div class="sidebarblock arc42help">
 <div class="content">
-<div class="paragraph">
-<p>==== White Box <em>&lt;building block 1&gt;</em></p>
-</div>
-</div>
-</div>
 <div class="paragraph">
 <p>&#8230;&#8203;describes the internal structure of <em>building block 1</em>.</p>
 </div>
-<div class="sidebarblock">
-<div class="content">
+</div>
+</div>
 <div class="paragraph">
 <p><em>&lt;white box template&gt;</em></p>
 </div>
-<div class="paragraph">
-<p>==== White Box <em>&lt;building block 2&gt;</em></p>
 </div>
+<div class="sect3">
+<h4 id="_white_box_building_block_2">5.2.2. White Box <em>&lt;building block 2&gt;</em></h4>
 <div class="paragraph">
 <p><em>&lt;white box template&gt;</em></p>
 </div>
 <div class="paragraph">
 <p>&#8230;&#8203;</p>
 </div>
-<div class="paragraph">
-<p>==== White Box <em>&lt;building block m&gt;</em></p>
 </div>
+<div class="sect3">
+<h4 id="_white_box_building_block_m">5.2.3. White Box <em>&lt;building block m&gt;</em></h4>
 <div class="paragraph">
 <p><em>&lt;white box template&gt;</em></p>
 </div>
-<div class="paragraph">
-<p>=== Level 3</p>
 </div>
 </div>
-</div>
+<div class="sect2">
+<h3 id="_level_3">5.3. Level 3</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
 <div class="paragraph">
 <p>Here you can specify the inner structure of (some) building blocks from level 2 as white boxes.</p>
 </div>
@@ -1119,39 +1213,42 @@ Leave out normal, simple, boring or standardized parts of your system</p>
 <p>When you need more detailed levels of your architecture please copy this
 part of arc42 for additional levels.</p>
 </div>
-<div class="sidebarblock">
+</div>
+</div>
+<div class="sect3">
+<h4 id="_white_box_building_block_x_1">5.3.1. White Box &lt;_building block x.1_&gt;</h4>
+<div class="sidebarblock arc42help">
 <div class="content">
-<div class="paragraph">
-<p>==== White Box &lt;_building block x.1_&gt;</p>
-</div>
-</div>
-</div>
 <div class="paragraph">
 <p>Specifies the internal structure of <em>building block x.1</em>.</p>
 </div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
 </div>
-<div class="paragraph">
-<p>==== White Box &lt;_building block x.2_&gt;</p>
 </div>
 <div class="paragraph">
 <p><em>&lt;white box template&gt;</em></p>
 </div>
-<div class="paragraph">
-<p>==== White Box &lt;_building block y.1_&gt;</p>
 </div>
+<div class="sect3">
+<h4 id="_white_box_building_block_x_2">5.3.2. White Box &lt;_building block x.2_&gt;</h4>
+<div class="paragraph">
+<p><em>&lt;white box template&gt;</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_white_box_building_block_y_1">5.3.3. White Box &lt;_building block y.1_&gt;</h4>
 <div class="paragraph">
 <p><em>&lt;white box template&gt;</em></p>
 </div>
 <div style="page-break-after: always;"></div>
-<div id="section-runtime-view" class="paragraph">
-<p>== Runtime View</p>
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="section-runtime-view">6. Runtime View</h2>
+<div class="sectionbody">
+<div class="sidebarblock arc42help">
+<div class="content">
 <div class="paragraph">
 <div class="title">Contents</div>
 <p>The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:</p>
@@ -1206,11 +1303,10 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </li>
 </ul>
 </div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p>=== &lt;Runtime Scenario 1&gt;</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_runtime_scenario_1">6.1. &lt;Runtime Scenario 1&gt;</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1230,36 +1326,39 @@ building block instances depicted in this diagram.&gt;</em></p>
 <img src="./images/Sequence%20diagram.png" alt="Sequence diagram" width="332" height="335">
 </div>
 </div>
-<div class="paragraph">
-<p>=== &lt;Runtime Scenario 2&gt;</p>
 </div>
-<div class="paragraph">
-<p>=== &#8230;&#8203;</p>
+<div class="sect2">
+<h3 id="_runtime_scenario_2">6.2. &lt;Runtime Scenario 2&gt;</h3>
+
 </div>
-<div class="paragraph">
-<p>=== &lt;Runtime Scenario n&gt;</p>
+<div class="sect2">
+<h3 id="">6.3. &#8230;&#8203;</h3>
+
 </div>
-<div style="page-break-after: always;"></div>
-<div id="section-deployment-view" class="paragraph">
-<p>== Deployment View</p>
-</div>
-</div>
-</div>
+<div class="sect2">
+<h3 id="_runtime_scenario_n">6.4. &lt;Runtime Scenario n&gt;</h3>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-concepts">4. Cross-cutting Concepts</h2>
+<h2 id="section-deployment-view">7. Deployment View</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_domain_model">4.1. Domain model</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div style="page-break-after: always;"></div>
+<div id="section-concepts" class="paragraph">
+<p>== Cross-cutting Concepts</p>
+</div>
+<div class="paragraph">
+<p>=== Domain model</p>
+</div>
 <div class="paragraph">
 <p><span class="image"><img src="./images/UmlDiagram.png" alt="Example UML Diagram"></span></p>
 </div>
+<div class="paragraph">
+<p>=== Domain concepts</p>
 </div>
-<div class="sect2">
-<h3 id="_domain_concepts">4.2. Domain concepts</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1294,25 +1393,22 @@ building block instances depicted in this diagram.&gt;</em></p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>=== Secutity</p>
 </div>
-<div class="sect2">
-<h3 id="_secutity">4.3. Secutity</h3>
 <div class="paragraph">
 <p>In this subject, we will use the security options the frameworks and libraries we will use give us. And since we are developing a decentralized site with the SOLID Project, all the users data will be stored in their own pods and just users with pods and permission could watch that information. In our database we only will save the user&#8217;s ID and his list of friend&#8217;s IDs.</p>
 </div>
+<div class="paragraph">
+<p>=== User expierence</p>
 </div>
-<div class="sect2">
-<h3 id="_user_expierence">4.4. User expierence</h3>
 <div class="paragraph">
 <p>Our intention is to make an intuitive site where the user can see all the important modules just entering. The map will be placed occupying the main part of the screen. On the map the user will see their own marks and friends marks, that will be slightly different. At the left of the screen the users will see a module with diverse information of the locations that are in the screen and updates of their friends. The ratings of the places will be represented with stars to achieve an easy understanding. Finally, at the bottom of the site we will place information about us and the site.</p>
 </div>
 <div style="page-break-after: always;"></div>
+<div id="section-design-decisions" class="paragraph">
+<p>== Design Decisions</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="section-design-decisions">5. Design Decisions</h2>
-<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -1344,116 +1440,54 @@ building block instances depicted in this diagram.&gt;</em></p>
 </tr>
 </tbody>
 </table>
-<div class="sect2">
-<h3 id="_ad_01_front_end_technology">5.1. AD-01: Front-End technology</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Status: Accepted</p>
-</li>
-<li>
-<p>Context: We had to choose the Front-End technology to use in our web development.</p>
-</li>
-<li>
-<p>Decision: We decided for React due to its huge community to solve our posible future problems. The other option was Angular or Vue, but the minimalism style of React made us selected it to make are work clearer. Vue is like the best of both worlds but the fact that its not supported by a big company, it has less support and popularity, takes us back.</p>
-</li>
-<li>
-<p>Consequences: In this way we will take our first steps in React, hoping to solve our probleams easily.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>=== AD-01: Front-End technology
+* Status: Accepted
+* Context: We had to choose the Front-End technology to use in our web development.
+* Decision: We decided for React due to its huge community to solve our posible future problems. The other option was Angular or Vue, but the minimalism style of React made us selected it to make are work clearer. Vue is like the best of both worlds but the fact that its not supported by a big company, it has less support and popularity, takes us back.
+* Consequences: In this way we will take our first steps in React, hoping to solve our probleams easily.</p>
 </div>
+<div class="paragraph">
+<p>=== AD-02: Back-End technology
+* Status: Accepted
+* Context: We had to choose the Back-End technology to use in our web development.
+* Decision: As we selected JavaScript as our language code, we have guided our decision to Node.js. Its one of the most used network apps so it gave us trust. For example, the last time I read one statics about back-end technology, Node.js had 49% of popularity. In this decision we didn´t have much doubt
+* Consequences: From now, we will start learning to work with Node.js. None of us has worked with Node earlier, so we wish we had few problems.</p>
 </div>
-<div class="sect2">
-<h3 id="_ad_02_back_end_technology">5.2. AD-02: Back-End technology</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Status: Accepted</p>
-</li>
-<li>
-<p>Context: We had to choose the Back-End technology to use in our web development.</p>
-</li>
-<li>
-<p>Decision: As we selected JavaScript as our language code, we have guided our decision to Node.js. Its one of the most used network apps so it gave us trust. For example, the last time I read one statics about back-end technology, Node.js had 49% of popularity. In this decision we didn´t have much doubt</p>
-</li>
-<li>
-<p>Consequences: From now, we will start learning to work with Node.js. None of us has worked with Node earlier, so we wish we had few problems.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>=== AD-03: Database server
+* Status: Proposed
+* Context: We started thinking about which database server use in our project. Most of our data will be stored in PODs following the SOLID principles, so the database has lower priority.
+* Decision: We had to choose between a relational or non relational database. The most of us had worked before with HSQLDeveloper so this could have been an option, but didn´t win the spot. We selected, may change later, to try using MariaDb to experiment with a different database. A disadvantage that we read is that Node.js, the backend technology selected, works worst with relational databases.
+* Consequences: For now, we will try to work with MariaDb but this may change in the future.</p>
 </div>
+<div class="paragraph">
+<p>=== AD-04: Definitive Database server
+* Status: Accepted
+* Context: At first we thought using MariaDB as it is explained above. However, the fact that we will work with Node.js and that it doesn´t work well with relational databases, warned us.
+* Decision: As we haven´t started to implement yet, we decided to change to a non relational database to take less risk. Some of us had worked with it before and its easy to learn.
+* Consequences: We will use MongoDb as a database.</p>
 </div>
-<div class="sect2">
-<h3 id="_ad_03_database_server">5.3. AD-03: Database server</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Status: Proposed</p>
-</li>
-<li>
-<p>Context: We started thinking about which database server use in our project. Most of our data will be stored in PODs following the SOLID principles, so the database has lower priority.</p>
-</li>
-<li>
-<p>Decision: We had to choose between a relational or non relational database. The most of us had worked before with HSQLDeveloper so this could have been an option, but didn´t win the spot. We selected, may change later, to try using MariaDb to experiment with a different database. A disadvantage that we read is that Node.js, the backend technology selected, works worst with relational databases.</p>
-</li>
-<li>
-<p>Consequences: For now, we will try to work with MariaDb but this may change in the future.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_ad_04_definitive_database_server">5.4. AD-04: Definitive Database server</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Status: Accepted</p>
-</li>
-<li>
-<p>Context: At first we thought using MariaDB as it is explained above. However, the fact that we will work with Node.js and that it doesn´t work well with relational databases, warned us.</p>
-</li>
-<li>
-<p>Decision: As we haven´t started to implement yet, we decided to change to a non relational database to take less risk. Some of us had worked with it before and its easy to learn.</p>
-</li>
-<li>
-<p>Consequences: We will use MongoDb as a database.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_ad_05_definitive_api_maps">5.5. AD-05: Definitive API Maps</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Status: Accepted</p>
-</li>
-<li>
-<p>Context: At first we thought using Googple Maps because we are used to it. Some of us had worked with it before in aother subject. But when we searched more, we have seen that Google Maps API has a monthly limit of free requests.</p>
-</li>
-<li>
-<p>Decision: The range of decision is not very big, so we read about OpenStreet Maps and, as it is completely free and also popular, changed our decision.</p>
-</li>
-<li>
-<p>Consequences: We will use OpenStreet Maps.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>=== AD-05: Definitive API Maps
+* Status: Accepted
+* Context: At first we thought using Googple Maps because we are used to it. Some of us had worked with it before in aother subject. But when we searched more, we have seen that Google Maps API has a monthly limit of free requests.
+* Decision: The range of decision is not very big, so we read about OpenStreet Maps and, as it is completely free and also popular, changed our decision.
+* Consequences: We will use OpenStreet Maps.</p>
 </div>
 <div style="page-break-after: always;"></div>
+<div id="section-quality-scenarios" class="paragraph">
+<p>== Quality Requirements</p>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="section-quality-scenarios">6. Quality Requirements</h2>
-<div class="sectionbody">
-<div class="sidebarblock arc42help">
+<div class="sidebarblock">
 <div class="content">
-
+<div class="paragraph">
+<p>=== Quality Tree</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_quality_tree">6.1. Quality Tree</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
+</div>
 <div class="paragraph">
 <div class="title">Content</div>
 <p>The quality tree (as defined in ATAM – Architecture Tradeoff Analysis Method) with quality/evaluation scenarios as leafs.</p>
@@ -1479,13 +1513,13 @@ building block instances depicted in this diagram.&gt;</em></p>
 <div class="paragraph">
 <p>In any case the tree should include links to the scenarios of the following section.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_quality_scenarios">6.2. Quality Scenarios</h3>
-<div class="sidebarblock arc42help">
+<div class="sidebarblock">
 <div class="content">
+<div class="paragraph">
+<p>=== Quality Scenarios</p>
+</div>
+</div>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1527,17 +1561,15 @@ building block instances depicted in this diagram.&gt;</em></p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
+<div class="sidebarblock">
+<div class="content">
 <div style="page-break-after: always;"></div>
+<div id="section-technical-risks" class="paragraph">
+<p>== Risks and Technical Debts</p>
 </div>
+<div class="paragraph">
+<p>=== Risks</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="section-technical-risks">7. Risks and Technical Debts</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_risks">7.1. Risks</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1574,9 +1606,9 @@ building block instances depicted in this diagram.&gt;</em></p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>=== Technical debts</p>
 </div>
-<div class="sect2">
-<h3 id="_technical_debts">7.2. Technical debts</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1609,12 +1641,9 @@ building block instances depicted in this diagram.&gt;</em></p>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
+<div id="section-glossary" class="paragraph">
+<p>== Glossary</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="section-glossary">8. Glossary</h2>
-<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1676,6 +1705,8 @@ software and system architecture.</p>
 We acknowledge that this document uses material from the
 arc 42 architecture template, <a href="http://www.arc42.de" class="bare">http://www.arc42.de</a>.
 Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
