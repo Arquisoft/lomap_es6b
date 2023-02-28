@@ -2,8 +2,6 @@
 == System Scope and Context
 === Business Context
 
-[role="arc42help"]
-****
 [%header, cols=2]
 |===
 |Constraint

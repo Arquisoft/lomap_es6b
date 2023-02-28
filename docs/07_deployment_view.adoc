@@ -2,7 +2,4 @@
 
 
 == Deployment View
-
-[role="arc42help"]
-****
-.Content
+Pendiente

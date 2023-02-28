@@ -42,3 +42,4 @@ The quality goals are we following are:
 | _Final users_ |  | _The future users of the site when it's published. They can help to find some important requirements._
 | _Solid community_ | _https://forum.solidproject.org/_ | _Users and developers related with the Solid Project. Since this project will use Solid, the community could be interested and also could help us in the process._
 |===
+
