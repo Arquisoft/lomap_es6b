@@ -1,44 +1,7 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
-
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
+Esto es una prueba
 
 === Requirements Overview
-The application runs online and it’s deployed on **RELLENAR**. It also makes use of Solid Pods. In this way, it decentralizes most of the user’s data. Users will be shown a map where they can add locations, review scores, comments, etc. Each user will also be able to fully manage the information they provide to the application.
+Esto es una prueba parte 2
 
-The full list of requirements of the application can be found in https://arquisoft.github.io/course2223/labAssignmentDescription.html[the assignment page].
-
-=== Quality Goals
-
-The quality goals are we following are:
-
-==== Availability:
-* The system must have the capacity so the access to the data is totally reliable and consistent for users in order to make their operations with the system.
-
-==== Decentralization:
-* All the information used by the system must be provided by the users or had given the system the permissions in order to obtain that information.
-
-==== Testability:
-* The system must be testable in order to make a robust, secure and bug free system.
-
-==== Secure:
-* The system will carry out checks on potentially dangerous decisions for the user, such as to provide personal data to the system to make more personal the interaction with the system
-
-==== Accessibility/Usability:
-* The system must be easy to use for beginners or people without previous technical knowledge. Likewise, the system should provide the necessary help to the user to be able to navigate through the program without any doubt, in addition to having to be accessible to all people. 
-
-
-=== Stakeholders
-
-[options="header",cols="1,2,2"]
-|===
-|Role/Name|Contact|Expectations
-| _Council of Brussels_ | _https://www.brussels.be/contact-0_ | _The entity that hire us to deliver the LoMap site. They should help to find the main requirements._
-| _Teachers_ | _https://arquisoft.github.io/course2223.html_ | _The teachers of the subject, who will control the process of this project and help us when we need._
-| _Developers_ | _https://github.com/Arquisoft/lomap_es6b_ | _The students of this team that are going to develope the project. They also will manage all the architecture_
-| _Final users_ |  | _The future users of the site when it's published. They can help to find some important requirements._
-| _Solid community_ | _https://forum.solidproject.org/_ | _Users and developers related with the Solid Project. Since this project will use Solid, the community could be interested and also could help us in the process._
-|===
