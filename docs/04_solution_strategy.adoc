@@ -1,41 +1,44 @@
 [[section-solution-strategy]]
 
 == Solution Strategy
+
 === Technology decisions
 We have made the following technology decisions:
 
-* *Database*: MariaDB
-** We have decided to work with this relational database mostly because it is the one we are used to. Its ease of use and the fact we have used this type of database in other subjects makes it the best option for us.
+  * *Database*: MongoDb
+  ** We have decided to work with this non relational database mostly because it works well with Node.js. Its ease of use and the fact we have used this type of database in other subjects makes it the best option for us.
 
+  * *Branching strategy*: One branch per person.
+  ** We will work with both *master* and *dev* branches and then each team member will have its own branch. From our point of view, this is the best way for organizing our code updates minimizing collisions as much as possible. We also decided to use this because some of the team members have already taken part of projects using the same startegy and have had good experiences.
 
-* *Branching strategy*: One branch per person.
-** We will work with both *master* and *dev* branches and then each team member will have its own branch. From our point of view, this is the best way for organizing our code updates minimizing collisions as much as possible. We also decided to use this because some of the team members have already taken part of projects using the same startegy and have had good experiences.
+  * *Coding language*: Javascript
+  ** As we decided to work with Node.js and React.js, the language we will use is Javascript.
 
-* *Coding language*: Javascript
-** As we decided to work with Node.js and React.js, the language we will use is Javascript.
+  * *Map API*: OpenStreet Maps API
+  ** We decided to use OpenStreet Maps mainly because its completely free, not like Google Maps, which was our first option. However, it´s a very used API too.
 
-* *Map API*: Google Maps API
-** We already have experience using this API. Our decision was also influenced by the fact that this API is made by Google and therefore its support service, documentation and community is guaranteed to be great.
+  * *Backend technology*: Node.js
+  ** We decided to work with Node because it is a well-known backend technology and also one of the best ways to implement SOLID Pods.
 
-* *Backend technology*: Node.js
-** We decided to work with Node because it is a well-known backend technology and also one of the best ways to implement SOLID Pods.
+  * *Frontend technology*: React.js
+  ** We do not have previous experience with frontend frameworks so its popularity and ease of learning was what made us to chose this technology.
 
-* *Frontend technology*: React.js
-** We do not have previous experience with frontend frameworks so its popularity and ease of learning was what made us to chose this technology.
 
 === Decisions about the top-level decomposition of the system
+
 Our system will follow a MVC architecture. In this way, the visual part will crearly be separated from the database requests and then both of them will be coordinated by the controller part.
 
 === Decisions on how to achieve key quality goals
-* *Availability* will be achieved by making sure that all the interactions the users make with our application are totally reliable and consistent. We will ensure that the system will do what it is supposed to.
 
-* *Decentralization* will be achieved by using SOLID Pods. By using them, almost all data will be stored in each user's Pod achieving a fully decentralized system for all the important information.
+  * *Availability* will be achieved by making sure that all the interactions the users make with our application are totally reliable and consistent. We will ensure that the system will do what it is supposed to.
 
-* We will also work on *testability* by making most of the functions testable. This will let us create unit tests for these functions and thus we will minimize the number of bugs. 
+  * *Decentralization* will be achieved by using SOLID Pods. By using them, almost all data will be stored in each user's Pod achieving a fully decentralized system for all the important information.
 
-* *Security* will be achieved with decentralization and by doing a strict control of permissions. This means users will only be able to access the data they are supposed to.
+  * We will also work on *testability* by making most of the functions testable. This will let us create unit tests for these functions and thus we will minimize the number of bugs. 
 
-* *Accesibility/Usability* will be reached by making a user-friendly and easy to use interface. This means we will work on features like color contrast, keyboard accesibility, etc.
+  * *Security* will be achieved with decentralization and by doing a strict control of permissions. This means users will only be able to access the data they are supposed to.
+
+  * *Accesibility/Usability* will be reached by making a user-friendly and easy to use interface. This means we will work on features like color contrast, keyboard accesibility, etc.
 
 === Relevant organizational decisions
 * *Communication*
