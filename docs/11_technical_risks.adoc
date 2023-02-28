@@ -1,17 +1,51 @@
 [[section-technical-risks]]
 == Risks and Technical Debts
 
+=== Risks
+[%header, cols=4]
+|===
+|Risk
+|Problem description
+|Consideration
+|Masures to be taken
+ 
+|High
+|Lack of knowledge about the technologies
+|Most of the technologies used in the project are new to the team members. This requires extra effort at the beginning to learn them.
+|Spend time learning and getting to know the new technologies.
 
-[role="arc42help"]
-****
-.Contents
-A list of identified technical risks or technical debts, ordered by priority
+|Medium
+|Huge proyect 
+|We are under pressure to have the project completed to what is needed by the deadline. 
+|It is therefore necessary to have good communication and a good working dynamic among the members of the team.
 
-.Motivation
-“Risk management is project management for grown-ups” (Tim Lister, Atlantic Systems Guild.) 
+|Medium
+|Time availability 
+|Due to the workload between different subjects and the problems of time compatibility. 
+|It is necessary to have a good organisation and distribution of time between the members of the team. 
 
-This should be your motto for systematic detection and evaluation of risks and technical debts in the architecture, which will be needed by management stakeholders (e.g. project managers, product owners) as part of the overall risk analysis and measurement planning.
+|===
 
-.Form
-List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
-****
+=== Technical debts
+
+[%header, cols=3]
+|===
+
+|Relevance
+|Technical debts
+|Considerations
+
+|High
+|Solid API
+|Because this is the first time we work with SOLID principles, we have no prior knowledge. This affects the project development process. 
+
+|Medium
+|React and JavaScript 
+|Some of the team members do not know JavaScript. Also, none of them are familiar with the React library. This can cause difficulties at the beginning of the project that will disappear as time goes by.
+
+|Medium
+|Node.js
+|None of the team has any knowledge of this platform, so there is an initial effort to learn how to use it.
+
+|===
+
