@@ -9,9 +9,10 @@ const SearchPlacesBar = (props) => {
             <TextField
                 id="fullWidth"
                 className={classes.inputRounded}
-                placeholder="Search"
+                placeholder="Search for places in this map..."
                 variant="outlined"
                 size="small"
+                style={{width: '100%'}}
             />
         </>
     );
