@@ -1,34 +1,33 @@
 import React from 'react';
-import {Delete, Edit, Save} from "@mui/icons-material";
-import {Button, Grid, IconButton} from "@mui/material";
+import {IconButton} from "@mui/material";
 import PlaceIcon from '@mui/icons-material/Place';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import GroupsIcon from '@mui/icons-material/Groups';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import useStyles from "./styles";
 const IconsSidebar = (props) => {
-  return (
-      <div style={{ display: 'flex', flexDirection: "column", justifyContent: 'space-between', alignItems: 'center'}}>
-         <IconButton size="large" style={{ marginTop: '28px', marginBottom: '28px', color: '#D9D9D9'  }}>
-            <PlaceIcon/>
-         </IconButton>
-          <IconButton style={{marginBottom: '28px', color: '#D9D9D9' }}>
-              <AddLocationAltIcon/>
-          </IconButton>
-            <IconButton style={{marginBottom: '28px', color: '#D9D9D9'  }}>
+    const classes = useStyles();
+    return (
+        <div className={classes.iconButtonsConstraints}>
+            <IconButton className={classes.firstIconButton}>    {/*every IconButton has a predefined Icon inside, which is imported from MUI*/}
+                <PlaceIcon/>               {/*predefined MUI icon*/}
+            </IconButton>
+            <IconButton className={classes.middleIconButton}>
+                <AddLocationAltIcon/>
+            </IconButton>
+            <IconButton className={classes.middleIconButton}>
                 <GroupsIcon/>
             </IconButton>
-            <IconButton style={{marginBottom: '28px', color: '#D9D9D9'  }}>
+            <IconButton className={classes.middleIconButton}>
                 <SettingsIcon/>
             </IconButton>
-            <IconButton style={{color: '#D9D9D9'}} /*style={{marginTop: 'auto' }}*/>
+            <IconButton className={classes.middleIconButton}  /*style={{marginTop: 'auto' }} for sending it to the bottom, for now leave commented*/>
                 <AccountCircleIcon/>
             </IconButton>
 
-
-
-    </div>
-  );
+        </div>
+    );
 };
 
 export default IconsSidebar;

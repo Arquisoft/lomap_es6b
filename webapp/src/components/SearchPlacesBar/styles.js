@@ -1,7 +1,5 @@
-import { makeStyles } from 'tss-react/mui';
+import { makeStyles } from '@mui/styles';
 
-export default makeStyles()((theme) => ({
-    inputRounded: {
-        borderRadius: '50%',
-    },
+export default makeStyles((theme) => ({
+
 }));
