@@ -15,6 +15,7 @@ app.listen(3000, () => {
 //incorporar la base de datos mongo
 //1.
 require('dotenv').config();
+console.log(process.env);
 const mongoString = process.env.DATABASE_URL
 //2.
 mongoose.connect(mongoString);
