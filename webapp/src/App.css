@@ -1,34 +1,26 @@
-.App {
-  text-align: center;
+
+/*
+ This creates the white border around the main content area.
+ And makes the app look like full screen.
+ */
+.MainBox{
+  height: 95vh;
+  padding: 20px;
+  paddingX: 40px;
 }
 
+/*
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+ */
+.MainGrid{
+  height: calc(100% - 64px);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*
+ Height 100% is needed to display the Map.
+ And overflow auto is needed to show the rounded borders.
+ */
+.MainMap{
+  height: 100%;
+  overflow: auto;
 }
