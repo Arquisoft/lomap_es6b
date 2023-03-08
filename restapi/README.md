@@ -3,9 +3,9 @@ The objective for this part is to make a rest API using Express, Node.js and Mon
 
 Lets analyze the packages used in this part (file package.json):
 - express: this is the main dependency for building the API. Express is a NodeJS web framework very useful for building API endpoints though it has other applications as well.
--dotent: dependency to link variables to files. Mainly used to keep api keys and passwords out of sight of the code when its published.
--mongoose: dependency to connect with MongoDb.
--nodemon: to restart our server everytime we save the file.
+- dotent: dependency to link variables to files. Mainly used to keep api keys and passwords out of sight of the code when its published.
+- mongoose: dependency to connect with MongoDb.
+- nodemon: to restart our server everytime we save the file.
      
 The code is quite straight forward, the [index.js](index.js) file launchs the api.
 
