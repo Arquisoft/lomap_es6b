@@ -4,6 +4,7 @@ import SearchPlacesBar from "../SearchPlacesBar/SearchPlacesBar";
 import FilterByBar from "../FilterByBar/FilterByBar";
 import { ReactComponent as Logo } from '../../logoLoMap.svg';
 import useStyles from './styles.js';
+import SearchBox from "../SearchBox/SearchBox";
 
 const Header = (props) => {
     const classes = useStyles(); // "classes" is an object that contains all the CSS classes from styles.js
@@ -14,7 +15,7 @@ const Header = (props) => {
             <Logo/> {/* Logo is an SVG file (logoLoMap.svg) */}
         </Grid>
         <Grid className={classes.gridSearchPlacesBar} item md={5}>
-            <SearchPlacesBar/>
+            <SearchBox />
         </Grid>
         <Grid className={classes.gridFilterByBar} item md={2}>
             <FilterByBar/>
