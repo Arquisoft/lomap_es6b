@@ -28,7 +28,7 @@ const FilterByBar = (props) => {
             options={top100Films}   //Loading the options for the filter
             getOptionLabel={(option) => option.title}
             renderInput={(params) => (  // Rendering the TextField inside the Autocomplete
-                <TextField {...params} placeholder="Filter by..."/>
+                <TextField {...params} placeholder="🐧 Filter by..."/>
             )}
             sx = {{     // Adding CSS to the TextField
                 width: '100%',
