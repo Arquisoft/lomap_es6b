@@ -501,6 +501,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_ad_03_database_server">9.3. AD-03: Database server</a></li>
 <li><a href="#_ad_04_definitive_database_server">9.4. AD-04: Definitive Database server</a></li>
 <li><a href="#_ad_05_definitive_api_maps">9.5. AD-05: Definitive API Maps</a></li>
+<li><a href="#_ad_06_postman">9.6. AD-06: Postman</a></li>
 </ul>
 </li>
 <li><a href="#section-quality-scenarios">10. Quality Requirements</a>
@@ -558,26 +559,10 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sect1">
 <h2 id="section-introduction-and-goals">1. Introduction and Goals</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Describes the relevant requirements and the driving forces that software architects and development team must consider. These include</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>underlying business goals, essential features and functional requirements for the system</p>
-</li>
-<li>
-<p>quality goals for the architecture</p>
-</li>
-<li>
-<p>relevant stakeholders and their expectations</p>
-</li>
-</ul>
-</div>
 <div class="sect2">
 <h3 id="_requirements_overview">1.1. Requirements Overview</h3>
 <div class="paragraph">
-<p>The application runs online and it’s deployed on <strong>RELLENAR</strong>. It also makes use of Solid Pods. In this way, it decentralizes most of the user’s data. Users will be shown a map where they can add locations, review scores, comments, etc. Each user will also be able to fully manage the information they provide to the application.</p>
+<p>The application runs online and it’s deployed on <strong>[NOT DECIDED YET]</strong>. It also makes use of Solid Pods to not keep the information centralized, in order to preserve user&#8217;s privacity. In this way, it decentralizes most of the user’s data. Users will be shown a map where they can add locations, review scores, comments, etc to create their own personalized maps. Each user will also be able to fully manage the information they provide to the application.</p>
 </div>
 <div class="paragraph">
 <p>The full list of requirements of the application can be found in <a href="https://arquisoft.github.io/course2223/labAssignmentDescription.html">the assignment page</a>.</p>
@@ -586,7 +571,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sect2">
 <h3 id="_quality_goals">1.2. Quality Goals</h3>
 <div class="paragraph">
-<p>The quality goals are we following are:</p>
+<p>The requirements to be met are the following:</p>
 </div>
 <div class="sect3">
 <h4 id="_availability">1.2.1. Availability:</h4>
@@ -603,7 +588,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="ulist">
 <ul>
 <li>
-<p>All the information used by the system must be provided by the users or had given the system the permissions in order to obtain that information.</p>
+<p>All the information used by the system must be provided by the users, or had given the system the permissions in order to obtain that information.</p>
 </li>
 </ul>
 </div>
@@ -623,7 +608,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="ulist">
 <ul>
 <li>
-<p>The system will carry out checks on potentially dangerous decisions for the user, such as to provide personal data to the system to make more personal the interaction with the system</p>
+<p>The system will carry out checks on potentially dangerous decisions for the user, such as to provide personal data to the system to make more personal the interaction with the system. We will also ensure that the requests and responses between client and the API are not compromised.</p>
 </li>
 </ul>
 </div>
@@ -633,7 +618,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="ulist">
 <ul>
 <li>
-<p>The system must be easy to use for beginners or people without previous technical knowledge. Likewise, the system should provide the necessary help to the user to be able to navigate through the program without any doubt, in addition to having to be accessible to all people.</p>
+<p>The system must be easy to use for beginners or people without previous technical knowledge. Likewise, the system should provide the necessary help to the user to be able to navigate through the program without any doubt, in addition to having to be accessible to all people. In order to do that, we decided to follow a minimalist rounded style.</p>
 </li>
 </ul>
 </div>
@@ -1584,6 +1569,25 @@ building block instances depicted in this diagram.&gt;</em></p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_ad_06_postman">9.6. AD-06: Postman</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Status: Accepted</p>
+</li>
+<li>
+<p>Context: We had trouble to start working at te backend. Mainly because it´s new for us and abstract. So to make it easier, we looked for a platform to let us see what we are doing.</p>
+</li>
+<li>
+<p>Decision:  We chose Postman API Platform, which is an API platform for building and using APIs. It let us see the process of the REST methods and experiment with the connection between MongoDB and Node.</p>
+</li>
+<li>
+<p>Consequences: We will use Postman API Platform.</p>
+</li>
+</ul>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1793,7 +1797,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-28 15:33:53 +0100
+Last updated 2023-03-07 21:02:07 +0100
 </div>
 </div>
 </body>
