@@ -2,25 +2,62 @@
 == Design Decisions
 
 
-[role="arc42help"]
-****
-.Contents
-Important, expensive, large scale or risky architecture decisions including rationals.
-With "decisions" we mean selecting one alternative based on given criteria.
+[options="header",cols="1,2,2"]
+|===
+|Technology
+|Pros
+|Cons
 
-Please use your judgement to decide whether an architectural decision should be documented
-here in this central section or whether you better document it locally
-(e.g. within the white box template of one building block).
+| *React*
+| It has a big community full of documentation and solutions to our posible problems.
+| Due to its minimalist style, it leans to have lot of packages and external dependencies
 
-Avoid redundancy. Refer to section 4, where you already captured the most important decisions of your architecture.
+| *Node.js*
+| One of the most used network app with lots of code. The Node packaged modules, npm, have already become huge and still growing.
+| APIs used in NodeJs are unstable as they change frequently. It´s a bit difficult to deal with relational databases.
 
-.Motivation
-Stakeholders of your system should be able to comprehend and retrace your decisions.
+| *MariaDb*
+| Easy to install, clear configuration files and works well with SQL standard.
+| For technical support, users have to depend on the knowledge base and fórum. Is no longer completely compatible with MySQL, which makes migration a tedious process.
+|===
 
-.Form
-Various options:
+=== AD-01: Front-End technology
+* Status: Accepted
+* Context: We had to choose the Front-End technology to use in our web development. 
+* Decision: We decided for React due to its huge community to solve our posible future problems. The other option was Angular or Vue, but the minimalism style of React made us selected it to make are work clearer. Vue is like the best of both worlds but the fact that its not supported by a big company, it has less support and popularity, takes us back.
+* Consequences: In this way we will take our first steps in React, hoping to solve our probleams easily.
 
-* List or table, ordered by importance and consequences or:
-* more detailed in form of separate sections per decision
-* ADR (architecture decision record) for every important decision
-****
+=== AD-02: Back-End technology
+* Status: Accepted
+* Context: We had to choose the Back-End technology to use in our web development. 
+* Decision: As we selected JavaScript as our language code, we have guided our decision to Node.js. Its one of the most used network apps so it gave us trust. For example, the last time I read one statics about back-end technology, Node.js had 49% of popularity. In this decision we didn´t have much doubt
+* Consequences: From now, we will start learning to work with Node.js. None of us has worked with Node earlier, so we wish we had few problems.
+
+
+=== AD-03: Database server
+* Status: Proposed
+* Context: We started thinking about which database server use in our project. Most of our data will be stored in PODs following the SOLID principles, so the database has lower priority.
+* Decision: We had to choose between a relational or non relational database. The most of us had worked before with HSQLDeveloper so this could have been an option, but didn´t win the spot. We selected, may change later, to try using MariaDb to experiment with a different database. A disadvantage that we read is that Node.js, the backend technology selected, works worst with relational databases.
+* Consequences: For now, we will try to work with MariaDb but this may change in the future.
+
+
+=== AD-04: Definitive Database server
+* Status: Accepted
+* Context: At first we thought using MariaDB as it is explained above. However, the fact that we will work with Node.js and that it doesn´t work well with relational databases, warned us.
+* Decision: As we haven´t started to implement yet, we decided to change to a non relational database to take less risk. Some of us had worked with it before and its easy to learn.
+* Consequences: We will use MongoDb as a database.
+
+
+=== AD-05: Definitive API Maps
+* Status: Accepted
+* Context: At first we thought using Googple Maps because we are used to it. Some of us had worked with it before in aother subject. But when we searched more, we have seen that Google Maps API has a monthly limit of free requests. 
+* Decision: The range of decision is not very big, so we read about OpenStreet Maps and, as it is completely free and also popular, changed our decision.
+* Consequences: We will use OpenStreet Maps.
+
+=== AD-06: Postman
+* Status: Accepted
+* Context: We had trouble to start working at te backend. Mainly because it´s new for us and abstract. So to make it easier, we looked for a platform to let us see what we are doing.
+* Decision:  We chose Postman API Platform, which is an API platform for building and using APIs. It let us see the process of the REST methods and experiment with the connection between MongoDB and Node. 
+* Consequences: We will use Postman API Platform.
+
+
