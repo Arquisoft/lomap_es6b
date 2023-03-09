@@ -54,4 +54,10 @@
 * Decision: The range of decision is not very big, so we read about OpenStreet Maps and, as it is completely free and also popular, changed our decision.
 * Consequences: We will use OpenStreet Maps.
 
+=== AD-06: Postman
+* Status: Accepted
+* Context: We had trouble to start working at te backend. Mainly because it´s new for us and abstract. So to make it easier, we looked for a platform to let us see what we are doing.
+* Decision:  We chose Postman API Platform, which is an API platform for building and using APIs. It let us see the process of the REST methods and experiment with the connection between MongoDB and Node. 
+* Consequences: We will use Postman API Platform.
+
 
