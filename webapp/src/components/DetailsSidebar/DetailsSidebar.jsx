@@ -1,33 +1,23 @@
 import React, {useState} from 'react';
 import useStyles from "./styles";
-
+import AddPlaceSidebar from "../AddPlaceSidebar/AddPlaceSidebar";
 const DetailsSidebar = (props) => {
     const classes = useStyles();
     const [content, setContent] = useState("");
+    const {places, setPlaces} = props;
 
-
-    const handleButtonAction = (buttonName) => {
+    const handleSelectedButton = (buttonName) => {
         switch (buttonName) {
             case 'MyPlaces' :
-                console.log('Funcion en details ' + buttonName);
-                setContent( 'Este es el contenido de MyPlaces');
-                break;
+                return <h1> My places.</h1>;
             case 'AddPlace' :
-                console.log('Funcion en details ' + buttonName);
-
-                break;
+                return <AddPlaceSidebar places={places} setPlaces={setPlaces} />;
             case 'Friends':
-                console.log('Funcion en details ' + buttonName);
-
-                break;
+                return <h1> Friends.</h1>;
             case 'Settings':
-                console.log('Funcion en details ' + buttonName);
-
-                break;
+                return <h1> Settings.</h1>;
             case 'Profile':
-                console.log('Funcion en details ' + buttonName);
-
-                break;
+                return <h1> Profile.</h1>;
             default:
                 setContent("");
                 break;
@@ -36,8 +26,8 @@ const DetailsSidebar = (props) => {
 
     return (
         <div className={classes.detailsSideBar}>
-            <div className ={classes.content}>
-                {props.selectedButton}
+            <div>
+                {handleSelectedButton(props.selectedButton)}
             </div>
         </div>
     );

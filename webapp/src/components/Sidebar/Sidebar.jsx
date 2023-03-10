@@ -7,7 +7,7 @@ import DetailsSidebar from "../DetailsSidebar/DetailsSidebar";
 const Sidebar = (props) => {
     const classes = useStyles();
     const [selectedButton, setSelectedButton] = useState("MyPlaces");
-
+    const {places, setPlaces} = props;
     const handleSelectedButtonChange = (selectedButton) => {
         setSelectedButton(selectedButton);
     };
@@ -21,8 +21,7 @@ const Sidebar = (props) => {
                     <IconsSidebar handleSelectedButtonChange={handleSelectedButtonChange}/>
               </Grid>
               <Grid item className={classes.detailsSidebarContainer}>
-                   <DetailsSidebar selectedButton={selectedButton}/>
-                    <h1 className={classes.tempText}>My places.</h1> {/*Just a temporary text, will be replaced by the details component*/}
+                   <DetailsSidebar places = {places} setPlaces = {setPlaces} selectedButton={selectedButton}/>
               </Grid>
           </Grid>
       </ div>
