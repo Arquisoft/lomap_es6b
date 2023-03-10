@@ -37,9 +37,6 @@ const FilterByBar = (props) => {
                     borderRadius: '999px',  // Rounded corners
                     backgroundColor: '#EAEAEA'  // Input background color
                 },
-                '& input': {    // Same as above
-                    fontSize: '1.2rem',
-                },
             }}
         />
     </div>
