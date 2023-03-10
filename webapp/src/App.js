@@ -3,8 +3,26 @@ import {Box, Grid, Paper} from "@mui/material";
 import Header from "./components/Header/Header";
 import Map from "./components/Map/Map";
 import Sidebar from "./components/Sidebar/Sidebar";
+import React,{useEffect, useState} from 'react';
 
 function App() {
+    //variable de estado que almacena los datos que traigamos del backend
+    const [backendData, setBackendData] = useState([{}])
+    //fetch the backend API  (en nuestro caso pueto 3000(?))
+    useEffect( () => {
+        fetch("/api").then( //cambiar la ruta api por get??????buscar info
+            response => { 
+                response.json();
+                console.log("respuesta convertida a json");
+            }
+        ).then(
+            //una vez ya tenemos los datos en json, los metemos en la variable anterior
+            data => {
+                setBackendData(data)
+            }
+        )
+    }, [] )
+
   return (
       <Box className='MainBox'>   {/* Important: it is always necessary to put all the elements inside one parent element*/}
           <Header /> {/* Header: Logo, SearchPlacesBar, FilterByBar */}
