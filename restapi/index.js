@@ -6,10 +6,10 @@ const app = express();
 
 //nos permite aceptar datos en tipo json
 app.use(express.json());
-
+ 
 //escuchar en el lpuerto 3000
-app.listen(3000, () => {
-    console.log(`Server Started at ${3000}`)
+app.listen(5000, () => {
+    console.log(`Server Started at ${5000}`)
 })
 
 //incorporar la base de datos mongo
