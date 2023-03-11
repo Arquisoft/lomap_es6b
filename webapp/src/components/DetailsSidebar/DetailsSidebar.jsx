@@ -1,17 +1,41 @@
 import React, {useState} from 'react';
 import useStyles from "./styles";
 import AddPlaceSidebar from "../AddPlaceSidebar/AddPlaceSidebar";
+import MyPlacesSidebar from "../MyPlacesSidebar/MyPlacesSidebar";
+import {Typography} from "@mui/material";
 const DetailsSidebar = (props) => {
     const classes = useStyles();
     const [content, setContent] = useState("");
-    const {places, setPlaces} = props;
+    const {places, setPlaces, selectedPoint, setSelectedPoint, selectedButton,setSelectedPlaceMyPlaces,
+        deletePlace, setPlacesLength} = props;
 
     const handleSelectedButton = (buttonName) => {
         switch (buttonName) {
             case 'MyPlaces' :
-                return <h1> My places.</h1>;
+                return (
+                    <>
+                        <Typography className={classes.title} variant="h4">
+                            My places.
+                        </Typography>
+                        <div style={{ overflow: "auto", height: "70vh" }}>
+                            <MyPlacesSidebar deletePlace={deletePlace} places={places} setPlaces={setPlaces}
+                                             setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces}/>
+                        </div>
+                    </>
+                        );
             case 'AddPlace' :
-                return <AddPlaceSidebar places={places} setPlaces={setPlaces} />;
+                return (
+                    <>
+                        <Typography className={classes.title} variant="h4">
+                            Create a new place.
+                        </Typography>
+
+                        <div>
+                            <AddPlaceSidebar places={places} setPlaces={setPlaces} selectedPoint={selectedPoint}
+                            setSelectedPoint={setSelectedPoint} setPlacesLength={setPlacesLength}/>;
+                        </div>
+                    </>
+                );
             case 'Friends':
                 return <h1> Friends.</h1>;
             case 'Settings':
@@ -26,9 +50,7 @@ const DetailsSidebar = (props) => {
 
     return (
         <div className={classes.detailsSideBar}>
-            <div>
-                {handleSelectedButton(props.selectedButton)}
-            </div>
+            {handleSelectedButton(selectedButton)}
         </div>
     );
 }
