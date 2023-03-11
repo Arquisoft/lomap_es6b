@@ -1,35 +1,52 @@
-import React, {useEffect, useRef} from 'react';
-import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
+import React, {useEffect, useRef, useState} from 'react';
+import {MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent} from "react-leaflet";
 import useStyles from './styles';
 import 'leaflet/dist/leaflet.css';
 import {Typography} from "@mui/material";
 import L from 'leaflet';
+
 const Map = (props) => {
     const classes = useStyles(); //for styling
-    const {selectedPlaceAutocomplete, places} = props;
+    const {selectedPlaceAutocomplete, places, selectedPoint, setSelectedPoint, selectedButton, selectedPlaceMyPlaces,
+        placesLength} = props;
     const defaultCoordinates = { lat: 50.8504500, lng: 4.3487800 }; //default center coordinates (Brussels), just temporary
     const mapRef = useRef();
 
+
+
     useEffect(() => {
         if (mapRef.current && places.length > 0) {
-
             const lastPlace = places[places.length - 1];
             mapRef.current.flyTo([lastPlace.latitude, lastPlace.longitude], 13, {
                 duration: 3 // set duration in seconds, lower value means faster animation
             });
         }
-    }, [places]);
+    }, [placesLength]);
 
     useEffect(() => {
-
         if(selectedPlaceAutocomplete != null){
-            console.log('Entroooooo')
             mapRef.current.flyTo([selectedPlaceAutocomplete.lat, selectedPlaceAutocomplete.lon], 13, {
                 duration: 3 // set duration in seconds, lower value means faster animation
             });
         }
     }, [selectedPlaceAutocomplete]);
 
+    useEffect(() => {
+        if(selectedPlaceMyPlaces != null){
+            mapRef.current.flyTo([selectedPlaceMyPlaces.lat, selectedPlaceMyPlaces.lng], 13, {
+                duration: 3 // set duration in seconds, lower value means faster animation
+            });
+        }
+    }, [selectedPlaceMyPlaces]);
+
+
+    const addIcon = new L.Icon({
+        iconUrl: 'https://i.imgur.com/IkXb2tv.png',
+        iconSize: [35, 35],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
 
     const blueIcon = new L.Icon({
         iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
@@ -40,18 +57,35 @@ const Map = (props) => {
         shadowSize: [41, 41]
     });
 
+
+    const showAddPlaceMarker = () => {
+        if(selectedPoint != null && selectedButton === "AddPlace"){
+            return <Marker position={{lat: selectedPoint.lat, lng: selectedPoint.lng}} icon={addIcon}> </Marker>
+        }
+    }
+
+
+    // Attach handleMapMove to a map move event
     return (
-        <MapContainer className={classes.mapContainer}
+
+        <MapContainer
+            className={classes.mapContainer}
           ref={mapRef}
-            center={defaultCoordinates}
-            zoom={13}                //zoom level
-            scrollWheelZoom={true} //for zooming in and out with the mouse wheel
-            //zoomControl={false}       this is for disabling the + - buttons on the map
-            >
+          center={defaultCoordinates}
+          zoom={13}
+          scrollWheelZoom={true}
+        >
+
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+
             />
+
+            <HandleMapClick onClick={(event) => {setSelectedPoint({lat: event.latlng.lat, lng: event.latlng.lng})}} />
+
+            {showAddPlaceMarker()}
+
             {places?.map((place) => (
                 <Marker key={place.id} position={{lat: place.latitude, lng: place.longitude}} icon={blueIcon}>
                     <Popup>
@@ -60,8 +94,18 @@ const Map = (props) => {
                     </Popup>
                 </Marker>
             ))}
-        </MapContainer>
+
+      </MapContainer>
+
     );
+};
+const HandleMapClick = ({ onClick }) => {
+    const map = useMapEvent('click', (e) => {
+        onClick(e);
+
+    });
+
+    return null;
 };
 
 export default Map;
