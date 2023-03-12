@@ -32,7 +32,7 @@ api.get(
 */
 
 //Get all Method
-api.get('/getAll', async (req, res) => {
+api.get('/placeMarks/getAll', async (req, res) => {
     try{
         const data = await Model.find();
         res.json(data)
@@ -44,12 +44,14 @@ api.get('/getAll', async (req, res) => {
 
 
 
-api.post("/post",
+api.post("/placeMarks/add",
   async (req, res) => {
     const data = new Model({
         name: req.body.name,
-        age: req.body.age,
-        email: req.body.email,
+        description: req.body.description,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
+        category: req.body.category
     })
     
     try {

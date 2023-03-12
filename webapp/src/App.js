@@ -4,30 +4,10 @@ import {Box, Grid, Paper} from "@mui/material";
 import Header from "./components/Header/Header";
 import Map from "./components/Map/Map";
 import Sidebar from "./components/Sidebar/Sidebar";
-import React,{useEffect, useState} from 'react';
 
 
 function App() {
-    //-------PRUEBAS CONEXION BACK FRONT
-    //variable de estado que almacena los datos que traigamos del backend
-    const [backendData, setBackendData] = useState([{}])
-    //fetch the backend API  (en nuestro caso pueto 3000(?))
-    useEffect( () => {
-        fetch("/api").then( //cambiar la ruta api por get??????buscar info
-            response => { 
-                response.json();
-                console.log("respuesta convertida a json");
-            }
-        ).then(
-            //una vez ya tenemos los datos en json, los metemos en la variable anterior
-            data => {
-                setBackendData(data)
-            }
-        )
-    }, [] )
-    //-------PRUEBAS CONEXION BACK FRONT
-
-
+   
 
    const [places, setPlaces] = useState(getPlacesFromStorage() || []);
    const [selectedPlaceAutocomplete, setSelectedPlaceAutocomplete] = useState(null);
