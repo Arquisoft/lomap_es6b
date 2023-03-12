@@ -18,15 +18,10 @@ export default makeStyles((theme) => ({
 
     detailsSidebarContainer: {
         backgroundColor: '#EAEAEA',
+        flexBasis: 0,
         flexGrow: 1,    //important, this makes the sidebar to take all the available space
         borderBottomRightRadius: '20px',    //round bottom right corner
         borderTopRightRadius: '20px'        //round top right corner
     },
 
-    // Temporary, delete after implementing the DetailsSideBar component
-    tempText: {
-        color: '#313439',
-        paddingLeft: '30px',
-        fontSize: '40px'
-    }
 }));
