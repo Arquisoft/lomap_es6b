@@ -8,6 +8,10 @@ const dataSchema = new mongoose.Schema({
     age: {
         required: true,
         type: Number
+    },
+    email: {
+        required:true,
+        type: String
     }
 })
 
