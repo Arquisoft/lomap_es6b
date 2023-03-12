@@ -47,8 +47,10 @@ function AddPlaceSidebar (props)  {
     }
 
     function addPlaceAndClearForm(){
-        addPlace();
-        clearForm();
+        if(selectedPoint.lat != null && selectedPoint.lng != null){
+            addPlace();
+            clearForm();
+        }
     }
  
    
