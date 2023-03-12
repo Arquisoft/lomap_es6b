@@ -1,11 +1,14 @@
+
 import './App.css';
 import {Box, Grid, Paper} from "@mui/material";
 import Header from "./components/Header/Header";
 import Map from "./components/Map/Map";
 import Sidebar from "./components/Sidebar/Sidebar";
-import {useEffect, useState} from "react";
+
 
 function App() {
+   
+
    const [places, setPlaces] = useState(getPlacesFromStorage() || []);
    const [selectedPoint, setSelectedPoint] = useState(null);
    const [selectedPlaceAutocomplete, setSelectedPlaceAutocomplete] = useState(null);

@@ -4,6 +4,8 @@ import TextField from "@mui/material/TextField";
 import useStyles from "./styles";
 import { v4 as uuid } from 'uuid';
 import PlaceEntity from "../../entities/PlaceEntity";
+import {addPlaceMark} from '../../api/api';//IMPORTAMOS EL MÉTODO NECESARIO PARA AÑADIR LA CHINCHETA
+
 const AddPlaceSidebar = (props) => {
     const {places, setPlaces, selectedPoint, setSelectedPoint, setPlacesLength} = props;
     const [name, setName] = useState("");
@@ -12,6 +14,7 @@ const AddPlaceSidebar = (props) => {
 
 
     const classes = useStyles();
+
     function isFormComplete(){
         return name !== "" && description !== ""  && category !== "";
     }
@@ -26,8 +29,8 @@ const AddPlaceSidebar = (props) => {
         addPlace();
         clearForm();
     }
-
-    function addPlace(){
+    /*
+    function addPlace(){ //similar a handleSubmit del proyecto de ejemplo
         const place = new PlaceEntity();
         place.id = uuid();
         place.name = name;
@@ -37,6 +40,20 @@ const AddPlaceSidebar = (props) => {
         place.category = category;
         setPlaces(currentPlaces => [...currentPlaces, place]);
         setPlacesLength(currentPlacesLength => currentPlacesLength + 1);
+
+    }
+    */
+
+    function addPlace() { //similar a handleSubmit del proyecto de ejemplo
+        async(req) => {
+            req.preventDefault();
+            result = await addPlaceMark({name, description,latitude,longitude, category});//metodo importado, le damos los parametros necesarios
+        }
+        if(result){
+            console.log("Añadiste un lugar con éxito");
+        } else {
+            console.log("Ha habido un error en el registro");
+        }
 
     }
 
