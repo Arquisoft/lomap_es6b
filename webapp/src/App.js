@@ -4,6 +4,7 @@ import {Box, Grid, Paper} from "@mui/material";
 import Header from "./components/Header/Header";
 import Map from "./components/Map/Map";
 import Sidebar from "./components/Sidebar/Sidebar";
+import {useState, useEffect} from 'react';
 
 
 function App() {
@@ -30,9 +31,9 @@ function App() {
     }, [selectedPoint]);
 
     
-
+    //YA NO HACE NADA, SE ALMACENA LA CIUDAD DENTRO DE "ADDPLACESIDEBAR.JSX"
     function savePlacesToStorage(){
-        localStorage.setItem("places", JSON.stringify(places));
+        //localStorage.setItem("places", JSON.stringify(places));
     }
     function getPlacesFromStorage(){
         return JSON.parse(localStorage.getItem("places"));
