@@ -4,23 +4,24 @@ import TextField from "@mui/material/TextField";
 import useStyles from "./styles";
 import { v4 as uuid } from 'uuid';
 import PlaceEntity from "../../entities/PlaceEntity";
+import {addPlaceMark} from '../../api/api';//IMPORTAMOS EL MÉTODO NECESARIO PARA AÑADIR LA CHINCHETA
+
 const AddPlaceSidebar = (props) => {
-    const {places, setPlaces} = props;
+    const {places, setPlaces, selectedPoint, setSelectedPoint, setPlacesLength} = props;
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [latitude, setLatitude] = useState("");
-    const [longitude, setLongitude] = useState("");
     const [category, setCategory] = useState("");
+
+
     const classes = useStyles();
+
     function isFormComplete(){
-        return name !== "" && description !== "" && latitude !== "" && longitude !== "" && category !== "";
+        return name !== "" && description !== ""  && category !== "";
     }
 
     function clearForm(){
         setName("");
         setDescription("");
-        setLatitude("");
-        setLongitude("");
         setCategory("");
     }
 
@@ -28,22 +29,37 @@ const AddPlaceSidebar = (props) => {
         addPlace();
         clearForm();
     }
-
-    function addPlace(){
+    /*
+    function addPlace(){ //similar a handleSubmit del proyecto de ejemplo
         const place = new PlaceEntity();
         place.id = uuid();
         place.name = name;
         place.description = description;
-        place.latitude = latitude;
-        place.longitude = longitude;
+        place.latitude = selectedPoint.lat;
+        place.longitude = selectedPoint.lng;
         place.category = category;
-        setPlaces([...places, place]);
+        setPlaces(currentPlaces => [...currentPlaces, place]);
+        setPlacesLength(currentPlacesLength => currentPlacesLength + 1);
+
+    }
+    */
+
+    function addPlace() { //similar a handleSubmit del proyecto de ejemplo
+        async(req) => {
+            req.preventDefault();
+            result = await addPlaceMark({name, description,latitude,longitude, category});//metodo importado, le damos los parametros necesarios
+        }
+        if(result){
+            console.log("Añadiste un lugar con éxito");
+        } else {
+            console.log("Ha habido un error en el registro");
+        }
 
     }
 
     return (
         <div>
-            <Typography className={classes.title} variant="h4">Create a new place.</Typography>
+
             <FormControl className={classes.formControl}>
                 <TextField
                     className = {classes.textField}
@@ -63,22 +79,7 @@ const AddPlaceSidebar = (props) => {
                     required
                     onChange={(e) => setDescription(e.target.value)}
                 />
-                <TextField
-                    className = {classes.textField}
-                    value={longitude}
-                    id="outlined-required"
-                    label="Longitude"
-                    required
-                    onChange={(e) => setLongitude(e.target.value)}
-                />
-                <TextField
-                    className = {classes.textField}
-                    value={latitude}
-                    id="outlined-required"
-                    label="Latitude"
-                    required
-                    onChange={(e) => setLatitude(e.target.value)}
-                />
+
                 <Select
                     className = {classes.textField}
                     value={category}

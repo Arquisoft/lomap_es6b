@@ -2,16 +2,20 @@
   "name": "basemongo",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-prom-bundle": "^6.6.0",
+    "express-validator": "^6.15.0",
     "mongoose": "^7.0.1",
     "nodemon": "^2.0.21"
   }

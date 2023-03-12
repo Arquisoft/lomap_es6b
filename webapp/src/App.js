@@ -1,20 +1,36 @@
+
 import './App.css';
 import {Box, Grid, Paper} from "@mui/material";
 import Header from "./components/Header/Header";
 import Map from "./components/Map/Map";
 import Sidebar from "./components/Sidebar/Sidebar";
-import {useEffect, useState} from "react";
+
 
 function App() {
+   
+
    const [places, setPlaces] = useState(getPlacesFromStorage() || []);
+   const [selectedPoint, setSelectedPoint] = useState(null);
    const [selectedPlaceAutocomplete, setSelectedPlaceAutocomplete] = useState(null);
+   const [selectedButton, setSelectedButton] = useState("MyPlaces");
+    const [selectedPlaceMyPlaces, setSelectedPlaceMyPlaces] = useState(null);
+    const [placesLength, setPlacesLength] = useState(0); //used just for the useEffect to work only when a place is added and not when a place is deleted
+
     useEffect(() => {
         savePlacesToStorage();
+        console.log('places changed:', places);
     }, [places]);
 
     useEffect(() => {
 
     }, [selectedPlaceAutocomplete]);
+
+    useEffect(() => {
+        console.log(selectedPoint)
+    }, [selectedPoint]);
+
+    
+
     function savePlacesToStorage(){
         localStorage.setItem("places", JSON.stringify(places));
     }
@@ -22,8 +38,12 @@ function App() {
         return JSON.parse(localStorage.getItem("places"));
     }
 
+    function deletePlace(placeID){
+        setPlaces(places.filter(place => place.id !== placeID));
+    }
+
   return (
-      <Box className='MainBox'>   {/* Important: it is always necessary to put all the elements inside one parent element*/}
+      <Box className='MainBox' >   {/* Important: it is always necessary to put all the elements inside one parent element*/}
           <Header setSelectedPlaceAutocomplete={setSelectedPlaceAutocomplete}/> {/* Header: Logo, SearchPlacesBar, FilterByBar */}
 
           <Grid className='MainGrid' container spacing={3}>{/* 3 spaces between the grids */}
@@ -31,13 +51,18 @@ function App() {
               <Grid item
                     md={5}> {/* 5 of 12 columns for the sidebar */}{/* "item" means that it is a grid inside a grid */}
                             {/* "md" means that it is a medium screen size */}
-                  <Sidebar places = {places} setPlaces = {setPlaces}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
+
+                  <Sidebar places = {places} setPlaces = {setPlaces} selectedButton={selectedButton}
+                           setSelectedButton={setSelectedButton} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
+                           setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}  setPlacesLength={setPlacesLength}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
               </Grid>
 
               <Grid item
                     md={7} > {/* 7 of 12 columns for the map */}
                   <Paper className='MainMap' style={{borderRadius: '20px' }}> {/* "sx" is for adding specific styles to a MUI component */}
-                      <Map selectedPlaceAutocomplete={selectedPlaceAutocomplete} places = {places}/>   {/* Map: OpenStreetMap working with Leaflet */}
+                      <Map places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
+                           setSelectedPoint={setSelectedPoint} selectedButton={selectedButton} selectedPlaceMyPlaces={selectedPlaceMyPlaces}
+                           placesLength={placesLength}/>   {/* Map: OpenStreetMap working with Leaflet */}
                   </Paper>
               </Grid>
           </Grid>
