@@ -2,4 +2,40 @@
 
 
 == Deployment View
-Pendiente
+
+
+=== Infrastructure Level 1
+image:7_DeploymentView.png["Deployment view diagram"]
+
+Motivation::
+
+For development and testing the execution environment we are working on each student’s machine. But when we´ll reach the production phase, we must deploy it in a Dockerized environment.
+
+Quality and/or Performance Features::
+
+We have chosen MongoDb to maximize the performance with Node.js.
+In the production phase, the user experience should be maximized with a good internet connection, but this is something we cannot control.
+
+
+
+=== Infrastructure Level 2
+
+[role="arc42help"]
+****
+Here you can include the internal structure of (some) infrastructure elements from level 1.
+Please copy the structure from level 1 for each selected element.
+****
+
+==== _<Infrastructure Element 1>_
+
+_<diagram + explanation>_
+
+==== _<Infrastructure Element 2>_
+
+_<diagram + explanation>_
+
+...
+
+==== _<Infrastructure Element n>_
+
+_<diagram + explanation>_
