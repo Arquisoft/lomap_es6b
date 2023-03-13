@@ -33,7 +33,7 @@ const DetailsSidebar = (props) => {
 
                         <div>
                             <AddPlaceSidebar places={places} setPlaces={setPlaces} selectedPoint={selectedPoint}
-                            setSelectedPoint={setSelectedPoint} setPlacesLength={setPlacesLength}/>;
+                            setSelectedPoint={setSelectedPoint} setPlacesLength={setPlacesLength}/>
                         </div>
                     </>
                 );
@@ -43,11 +43,11 @@ const DetailsSidebar = (props) => {
                 return (
                 <>
                     <Typography className={classes.title} variant="h4">
-                        Settings
+                        Settings.
                     </Typography>
 
                     <div>
-                        <SettingsSideBar />;
+                        <SettingsSideBar />
                     </div>
                 </>
                 );
