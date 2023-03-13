@@ -3,6 +3,7 @@ import useStyles from "./styles";
 import AddPlaceSidebar from "../AddPlaceSidebar/AddPlaceSidebar";
 import MyPlacesSidebar from "../MyPlacesSidebar/MyPlacesSidebar";
 import {Typography} from "@mui/material";
+import SettingsSideBar from "../SettingsSideBar/SettingsSideBar";
 const DetailsSidebar = (props) => {
     const classes = useStyles();
     const [content, setContent] = useState("");
@@ -32,14 +33,24 @@ const DetailsSidebar = (props) => {
 
                         <div>
                             <AddPlaceSidebar places={places} setPlaces={setPlaces} selectedPoint={selectedPoint}
-                            setSelectedPoint={setSelectedPoint} setPlacesLength={setPlacesLength}/>;
+                            setSelectedPoint={setSelectedPoint} setPlacesLength={setPlacesLength}/>
                         </div>
                     </>
                 );
             case 'Friends':
                 return <h1> Friends.</h1>;
             case 'Settings':
-                return <h1> Settings.</h1>;
+                return (
+                <>
+                    <Typography className={classes.title} variant="h4">
+                        Settings.
+                    </Typography>
+
+                    <div>
+                        <SettingsSideBar />
+                    </div>
+                </>
+                );
             case 'Profile':
                 return <h1> Profile.</h1>;
             default:

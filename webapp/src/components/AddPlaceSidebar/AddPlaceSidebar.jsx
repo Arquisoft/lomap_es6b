@@ -6,12 +6,33 @@ import { v4 as uuid } from 'uuid';
 import PlaceEntity from "../../entities/PlaceEntity";
 import {addPlaceMark} from '../../api/api';//IMPORTAMOS EL MÉTODO NECESARIO PARA AÑADIR LA CHINCHETA
 
-const AddPlaceSidebar = (props) => {
-    const {places, setPlaces, selectedPoint, setSelectedPoint, setPlacesLength} = props;
+function AddPlaceSidebar (props)  {
+    const { selectedPoint} = props;
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
 
+    const addPlace =  async(req) => {
+        //req.preventDefault(); //DESCOMENTAR ESTA LINEA NO GUARDA LOS DATOS
+        const place = new PlaceEntity();
+        place.id = uuid();
+        place.name = name;
+        place.description = description;
+        place.latitude = selectedPoint.lat;
+        place.longitude = selectedPoint.lng;
+        place.category = category;
+
+        //result = await addPlaceMark({name, description,latitude,longitude, category});//metodo importado, le damos los parametros necesarios
+        const result = await addPlaceMark(place);//metodo importado, le damos los parametros necesarios
+
+        if(result){
+            console.log("Añadiste un lugar con éxito");
+            //notificar el cambio al componente padre
+            //props.OnUserListChange();
+        } else {
+            console.log("Ha habido un error en el registro");
+        }
+    }
 
     const classes = useStyles();
 
@@ -26,36 +47,13 @@ const AddPlaceSidebar = (props) => {
     }
 
     function addPlaceAndClearForm(){
-        addPlace();
-        clearForm();
-    }
-    /*
-    function addPlace(){ //similar a handleSubmit del proyecto de ejemplo
-        const place = new PlaceEntity();
-        place.id = uuid();
-        place.name = name;
-        place.description = description;
-        place.latitude = selectedPoint.lat;
-        place.longitude = selectedPoint.lng;
-        place.category = category;
-        setPlaces(currentPlaces => [...currentPlaces, place]);
-        setPlacesLength(currentPlacesLength => currentPlacesLength + 1);
-
-    }
-    */
-
-    function addPlace() { //similar a handleSubmit del proyecto de ejemplo
-        async(req) => {
-            req.preventDefault();
-            result = await addPlaceMark({name, description,latitude,longitude, category});//metodo importado, le damos los parametros necesarios
+        if(selectedPoint.lat != null && selectedPoint.lng != null){
+            addPlace();
+            clearForm();
         }
-        if(result){
-            console.log("Añadiste un lugar con éxito");
-        } else {
-            console.log("Ha habido un error en el registro");
-        }
-
     }
+ 
+   
 
     return (
         <div>
