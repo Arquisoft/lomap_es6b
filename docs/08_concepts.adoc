@@ -21,11 +21,11 @@ image:UmlDiagram.png["Example UML Diagram"]
 |===
 
 
-=== Secutity
+=== Security
 
 In this subject, we will use the security options the frameworks and libraries we will use give us. And since we are developing a decentralized site with the SOLID Project, all the users data will be stored in their own pods and just users with pods and permission could watch that information. In our database we only will save the user's ID and his list of friend's IDs.
 
 
-=== User expierence
+=== User experience
 
 Our intention is to make an intuitive site where the user can see all the important modules just entering. The map will be placed occupying the main part of the screen. On the map the user will see their own marks and friends marks, that will be slightly different. At the left of the screen the users will see a module with diverse information of the locations that are in the screen and updates of their friends. The ratings of the places will be represented with stars to achieve an easy understanding. Finally, at the bottom of the site we will place information about us and the site.
