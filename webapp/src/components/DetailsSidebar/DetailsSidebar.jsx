@@ -4,6 +4,7 @@ import AddPlaceSidebar from "../AddPlaceSidebar/AddPlaceSidebar";
 import MyPlacesSidebar from "../MyPlacesSidebar/MyPlacesSidebar";
 import {Typography} from "@mui/material";
 import SettingsSideBar from "../SettingsSideBar/SettingsSideBar";
+import ProfileSideBar from "../ProfileSideBar/ProfileSideBar";
 const DetailsSidebar = (props) => {
     const classes = useStyles();
     const [content, setContent] = useState("");
@@ -38,7 +39,13 @@ const DetailsSidebar = (props) => {
                     </>
                 );
             case 'Friends':
-                return <h1> Friends.</h1>;
+                return (
+                    <>
+                        <Typography className={classes.title} variant="h4">
+                            Friends.
+                        </Typography>
+                    </>
+                );
             case 'Settings':
                 return (
                 <>
@@ -52,7 +59,17 @@ const DetailsSidebar = (props) => {
                 </>
                 );
             case 'Profile':
-                return <h1> Profile.</h1>;
+                return (
+                    <>
+                        <Typography className={classes.title} variant="h4">
+                            Profile.
+                        </Typography>
+
+                        <div>
+                            <ProfileSideBar />
+                        </div>
+                    </>
+                );
             default:
                 setContent("");
                 break;

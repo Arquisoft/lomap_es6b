@@ -3,6 +3,7 @@ import {Card, CardContent, CardHeader, IconButton, Menu, MenuItem, Typography} f
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import TravelExploreRoundedIcon from '@mui/icons-material/TravelExploreRounded';
 import DeletePlaceConfirmDialog from "../DeletePlaceConfirmDialog/DeletePlaceConfirmDialog";
+import {deletePlaceMarkByID} from "../../api/api";
 const PlaceCard = (props) => {
  const {place, setSelectedPlaceMyPlaces, deletePlace} = props;
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -17,8 +18,11 @@ const PlaceCard = (props) => {
     };
 
     const handleDeletePlace = () => {
-        deletePlace(place.id);
+        console.log(place.id);
+        deletePlaceMarkByID(place._id); //deleting in the database
+        deletePlace(place._id); //deleting in the frontend
     }
+
 
   return (
     <div>
