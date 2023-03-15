@@ -485,13 +485,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_runtime_scenario_n">6.4. &lt;Runtime Scenario n&gt;</a></li>
 </ul>
 </li>
-<li><a href="#section-deployment-view">7. Deployment View</a></li>
+<li><a href="#section-deployment-view">7. Deployment View</a>
+<ul class="sectlevel2">
+<li><a href="#_infrastructure_level_1">7.1. Infrastructure Level 1</a></li>
+<li><a href="#_infrastructure_level_2">7.2. Infrastructure Level 2</a></li>
+</ul>
+</li>
 <li><a href="#section-concepts">8. Cross-cutting Concepts</a>
 <ul class="sectlevel2">
 <li><a href="#_domain_model">8.1. Domain model</a></li>
 <li><a href="#_domain_concepts">8.2. Domain concepts</a></li>
-<li><a href="#_secutity">8.3. Secutity</a></li>
-<li><a href="#_user_expierence">8.4. User expierence</a></li>
+<li><a href="#_security">8.3. Security</a></li>
+<li><a href="#_user_experience">8.4. User experience</a></li>
 </ul>
 </li>
 <li><a href="#section-design-decisions">9. Design Decisions</a>
@@ -1374,10 +1379,44 @@ building block instances depicted in this diagram.&gt;</em></p>
 <div class="sect1">
 <h2 id="section-deployment-view">7. Deployment View</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
 <div class="paragraph">
-<p>Pendiente</p>
+<p><span class="image"><img src="./images/7_DeploymentView.png" alt="Deployment view diagram"></span></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivation</dt>
+<dd>
+<p>For development and testing the execution environment we are working on each student’s machine. But when we´ll reach the production phase, we must deploy it in a Dockerized environment.</p>
+</dd>
+<dt class="hdlist1">Quality and/or Performance Features</dt>
+<dd>
+<p>We have chosen MongoDb to maximize the performance with Node.js.
+In the production phase, the user experience should be maximized with a good internet connection, but this is something we cannot control.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_infrastructure_level_2">7.2. Infrastructure Level 2</h3>
+<div class="paragraph">
+<p><span class="image"><img src="./images/7_DeploymentView_p2.png" alt="Docker Deployment view diagram"></span></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivation</dt>
+<dd>
+<p>Above we are explaining the Dockerized environment of the production phase.</p>
+</dd>
+<dt class="hdlist1">Quality and/or Performance Features</dt>
+<dd>
+<p>We are going to use a cloud platform, Amazon Web Service, to deploy our software. To launch it, we will use Docker environment. This one will manage the frontend, backend and database to build and run the application.</p>
+</dd>
+</dl>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1427,13 +1466,13 @@ building block instances depicted in this diagram.&gt;</em></p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_secutity">8.3. Secutity</h3>
+<h3 id="_security">8.3. Security</h3>
 <div class="paragraph">
 <p>In this subject, we will use the security options the frameworks and libraries we will use give us. And since we are developing a decentralized site with the SOLID Project, all the users data will be stored in their own pods and just users with pods and permission could watch that information. In our database we only will save the user&#8217;s ID and his list of friend&#8217;s IDs.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_user_expierence">8.4. User expierence</h3>
+<h3 id="_user_experience">8.4. User experience</h3>
 <div class="paragraph">
 <p>Our intention is to make an intuitive site where the user can see all the important modules just entering. The map will be placed occupying the main part of the screen. On the map the user will see their own marks and friends marks, that will be slightly different. At the left of the screen the users will see a module with diverse information of the locations that are in the screen and updates of their friends. The ratings of the places will be represented with stars to achieve an easy understanding. Finally, at the bottom of the site we will place information about us and the site.</p>
 </div>
