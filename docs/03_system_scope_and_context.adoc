@@ -2,7 +2,8 @@
 == System Scope and Context
 === Business Context
 
-image::images/businessContextDiagram.png[]
+image:businessContextDiagram.png["Business context diagram"]
+
 
 [%header, cols=2]
 |===
