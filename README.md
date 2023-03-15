@@ -1,12 +1,8 @@
 # LoMap ES6B
 
--Daniel Uría Edroso
-
 -Manuel López Zürcher
 
 -Adriana Arias Coya
-
--Alberto Fernández Azcoaga
 
 -Alicia Fernández Pushkina
 
