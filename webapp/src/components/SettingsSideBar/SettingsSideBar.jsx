@@ -7,8 +7,6 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
-import InboxIcon from '@mui/icons-material/Inbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
 import LockIcon from '@mui/icons-material/Lock';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
@@ -18,7 +16,6 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SecurityIcon from '@mui/icons-material/Security';
 import SyncLockIcon from '@mui/icons-material/SyncLock';
-import PanoramaIcon from '@mui/icons-material/Panorama';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 const SettingsSideBar = () => {
     const classes = useStyles();
