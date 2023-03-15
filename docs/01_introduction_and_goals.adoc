@@ -2,7 +2,7 @@
 == Introduction and Goals
 
 === Requirements Overview
-The application runs online and it’s deployed on **[NOT DECIDED YET]**. It also makes use of Solid Pods to not keep the information centralized, in order to preserve user's privacity. In this way, it decentralizes most of the user’s data. Users will be shown a map where they can add locations, review scores, comments, etc to create their own personalized maps. Each user will also be able to fully manage the information they provide to the application.
+The application runs online. It also makes use of Solid Pods to not keep the information centralized, in order to preserve user's privacity. In this way, it decentralizes most of the user’s data. Users will be shown a map where they can add locations, review scores, comments, etc to create their own personalized maps. Each user will also be able to fully manage the information they provide to the application.
 
 The full list of requirements of the application can be found in https://arquisoft.github.io/course2223/labAssignmentDescription.html[the assignment page].
 

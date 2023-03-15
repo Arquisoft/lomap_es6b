@@ -2,16 +2,24 @@
 == System Scope and Context
 === Business Context
 
+image::images/businessContextDiagram.png[]
+
 [%header, cols=2]
 |===
 |Constraint
 |Explanation
 
-|User
-|Users interact with system by viewing and selecting places in the map. Users also have an account in the system that allows them to view their favorite sites.
+|*User*
+|Users interact with system by adding new places and being able to see the list of places that they have added.
 
-|Solid PODS
+|*Solid PODS*
 |Solid PODS have information about user’s addresses. We must store the shared information in a personal Pod according to the SOLID principles. The data is stored in a decentralized way.
+
+|*Database*
+|The database is used to store only the places' ID and coordinates just for the purpose of optimizing the app's performance.
+
+|*OpenStreetMap API*
+|The OpenStreetMap API is used to show a map with the places that the user has added. It is also used to let the user select in a map the place he wants to add. Lastly, it is also used for the autocomplete feature.
 |===
 
 === Technical Context
@@ -27,8 +35,8 @@
 |All the personal information of the users will be stored in "Pods" in order to follow the SOLID principles and build an app that takes in count user privacy, these pods will be fully stored locally in the user machine.
 
 |*GitHub*
-|We are gonna be using GitHub as the control version software, GitHub is a virtual workspace for developers where we can store our code, and keep track of changes and issues.
+|We are going to be using GitHub as the control version software, GitHub is a virtual workspace for developers where we can store our code, and keep track of changes and issues.
 
 |*React.js*
-|For the frontend we are gonna be using React, React is a widely-used JavaScript library that offers high flexibility and modularity, it also has a large community wich will be usefull in case of future problems during the development of the app.
+|For the frontend we are going to use React, React is a widely-used JavaScript library that offers high flexibility and modularity, it also has a large community which will be useful in case of future problems during the development of the app.
 |===
