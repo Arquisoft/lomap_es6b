@@ -50,7 +50,7 @@ function App() {
     }
 
     function deletePlace(placeID){
-        setPlaces(places.filter(place => place.id !== placeID));
+        setPlaces(places.filter(place => place._id !== placeID));
     }
 
   return (
