@@ -65,6 +65,16 @@ api.post("/placeMarks/add",
 }
 );
 
+api.delete("/placeMarks/delete/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const data = await Model.findByIdAndDelete(id);
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+})
+
 
 //Get by ID Method
 api.get('/getOne/:id', async (req, res) => {

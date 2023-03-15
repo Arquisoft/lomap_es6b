@@ -19,12 +19,12 @@ In the production phase, the user experience should be maximized with a good int
 
 
 === Infrastructure Level 2
-
+image:7_DeploymentView_p2.png["Docker Deployment view diagram"]
 
 Motivation::
-Here we are explaining the Dockerized environment of the production phase.
+Above we are explaining the Dockerized environment of the production phase.
 Quality and/or Performance Features::
-
+We are going to use a cloud platform, Amazon Web Service, to deploy our software. To launch it, we will use Docker environment. This one will manage the frontend, backend and database to build and run the application.
 
 
 

@@ -25,7 +25,8 @@ const MyPlacesSidebar = (props) => {
     const showPlaces = () => {
        
         return props.places.map((place)=> (
-            <PlaceCard key={place.id} place={place} setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}/>
+            console.log('key ' + place._id),
+            <PlaceCard key={place._id} place={place} setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}/>
         ))
             
     }
