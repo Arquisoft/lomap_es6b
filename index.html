@@ -479,10 +479,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#section-runtime-view">6. Runtime View</a>
 <ul class="sectlevel2">
-<li><a href="#_runtime_scenario_1">6.1. &lt;Runtime Scenario 1&gt;</a></li>
-<li><a href="#_runtime_scenario_2">6.2. &lt;Runtime Scenario 2&gt;</a></li>
-<li><a href="#">6.3. &#8230;&#8203;</a></li>
-<li><a href="#_runtime_scenario_n">6.4. &lt;Runtime Scenario n&gt;</a></li>
+<li><a href="#_adding_a_new_place">6.1. Adding a new place</a></li>
+<li><a href="#_viewing_a_place">6.2. Viewing a place</a></li>
+<li><a href="#_logging_into_the_application">6.3. Logging into the application</a></li>
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a>
@@ -567,7 +566,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sect2">
 <h3 id="_requirements_overview">1.1. Requirements Overview</h3>
 <div class="paragraph">
-<p>The application runs online and it’s deployed on <strong>[NOT DECIDED YET]</strong>. It also makes use of Solid Pods to not keep the information centralized, in order to preserve user&#8217;s privacity. In this way, it decentralizes most of the user’s data. Users will be shown a map where they can add locations, review scores, comments, etc to create their own personalized maps. Each user will also be able to fully manage the information they provide to the application.</p>
+<p>The application runs online. It also makes use of Solid Pods to not keep the information centralized, in order to preserve user&#8217;s privacity. In this way, it decentralizes most of the user’s data. Users will be shown a map where they can add locations, review scores, comments, etc to create their own personalized maps. Each user will also be able to fully manage the information they provide to the application.</p>
 </div>
 <div class="paragraph">
 <p>The full list of requirements of the application can be found in <a href="https://arquisoft.github.io/course2223/labAssignmentDescription.html">the assignment page</a>.</p>
@@ -724,7 +723,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The team</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We are a group of six and  we should get along with each other, to not hinder the work.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We are a group of four and  we should get along with each other, to not hinder the work.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Due dates</p></td>
@@ -732,7 +731,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Meetings</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">As a big group, we must have frequently meetings to know the updates of everyone. At least to weekly, one in our laboratory session.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We must have frequently meetings to know the updates of everyone. At least to weekly, one in our laboratory session.</p></td>
 </tr>
 </tbody>
 </table>
@@ -774,6 +773,11 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_business_context">3.1. Business Context</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/images/businessContextDiagram.png" alt="businessContextDiagram">
+</div>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -787,12 +791,20 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Users interact with system by viewing and selecting places in the map. Users also have an account in the system that allows them to view their favorite sites.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>User</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users interact with system by adding new places and being able to see the list of places that they have added.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Solid PODS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Solid PODS</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Solid PODS have information about user’s addresses. We must store the shared information in a personal Pod according to the SOLID principles. The data is stored in a decentralized way.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Database</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The database is used to store only the places' ID and coordinates just for the purpose of optimizing the app&#8217;s performance.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>OpenStreetMap API</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OpenStreetMap API is used to show a map with the places that the user has added. It is also used to let the user select in a map the place he wants to add. Lastly, it is also used for the autocomplete feature.</p></td>
 </tr>
 </tbody>
 </table>
@@ -821,11 +833,11 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>GitHub</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We are gonna be using GitHub as the control version software, GitHub is a virtual workspace for developers where we can store our code, and keep track of changes and issues.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We are going to be using GitHub as the control version software, GitHub is a virtual workspace for developers where we can store our code, and keep track of changes and issues.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>React.js</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">For the frontend we are gonna be using React, React is a widely-used JavaScript library that offers high flexibility and modularity, it also has a large community wich will be usefull in case of future problems during the development of the app.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For the frontend we are going to use React, React is a widely-used JavaScript library that offers high flexibility and modularity, it also has a large community which will be useful in case of future problems during the development of the app.</p></td>
 </tr>
 </tbody>
 </table>
@@ -848,7 +860,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="ulist">
 <ul>
 <li>
-<p>We have decided to work with this non relational database mostly because it works well with Node.js. Its ease of use and the fact we have used this type of database in other subjects makes it the best option for us.</p>
+<p>We have decided to work with this non-relational database mostly because it works well with Node.js. Its ease of use and the fact we have used this type of database in other subjects makes it the best option for us.</p>
 </li>
 </ul>
 </div>
@@ -858,7 +870,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="ulist">
 <ul>
 <li>
-<p>We will work with both <strong>master</strong> and <strong>dev</strong> branches and then each team member will have its own branch. From our point of view, this is the best way for organizing our code updates minimizing collisions as much as possible. We also decided to use this because some of the team members have already taken part of projects using the same startegy and have had good experiences.</p>
+<p>We will work with both <strong>master</strong> and <strong>dev</strong> branches and then each team member will have its own branch. From our point of view, this is the best way for organizing our code updates minimizing collisions as much as possible. We also decided to use this because some team members have already taken part of projects using the same strategy and have had good experiences.</p>
 </li>
 </ul>
 </div>
@@ -878,7 +890,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="ulist">
 <ul>
 <li>
-<p>We decided to use OpenStreet Maps mainly because its completely free, not like Google Maps, which was our first option. However, it´s a very used API too.</p>
+<p>We decided to use OpenStreet Maps mainly because it&#8217;s completely free, not like Google Maps, which was our first option. However, it´s a very used API too.</p>
 </li>
 </ul>
 </div>
@@ -898,7 +910,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="ulist">
 <ul>
 <li>
-<p>We do not have previous experience with frontend frameworks so its popularity and ease of learning was what made us to chose this technology.</p>
+<p>We do not have previous experience with frontend frameworks so its popularity and ease of learning was what made us to choose this technology.</p>
 </li>
 </ul>
 </div>
@@ -909,7 +921,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sect2">
 <h3 id="_decisions_about_the_top_level_decomposition_of_the_system">4.2. Decisions about the top-level decomposition of the system</h3>
 <div class="paragraph">
-<p>Our system will follow a MVC architecture. In this way, the visual part will crearly be separated from the database requests and then both of them will be coordinated by the controller part.</p>
+<p>Our system will follow an MVC architecture. In this way, the visual part will clearly be separated from the database requests and then both of them will be coordinated by the controller part.</p>
 </div>
 </div>
 <div class="sect2">
@@ -923,13 +935,13 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <p><strong>Decentralization</strong> will be achieved by using SOLID Pods. By using them, almost all data will be stored in each user&#8217;s Pod achieving a fully decentralized system for all the important information.</p>
 </li>
 <li>
-<p>We will also work on <strong>testability</strong> by making most of the functions testable. This will let us create unit tests for these functions and thus we will minimize the number of bugs.</p>
+<p>We will also work on <strong>testability</strong> by making most of the functions testable. This will let us create unit tests for these functions, and thus we will minimize the number of bugs.</p>
 </li>
 <li>
 <p><strong>Security</strong> will be achieved with decentralization and by doing a strict control of permissions. This means users will only be able to access the data they are supposed to.</p>
 </li>
 <li>
-<p><strong>Accesibility/Usability</strong> will be reached by making a user-friendly and easy to use interface. This means we will work on features like color contrast, keyboard accesibility, etc.</p>
+<p><strong>Accessibility/Usability</strong> will be reached by making a user-friendly and easy to use interface. This means we will work on features like color contrast, keyboard accessibility, etc.</p>
 </li>
 </ul>
 </div>
@@ -949,7 +961,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <p>We also use Discord for making meetings if we need to.</p>
 </li>
 <li>
-<p>It is important to mention that even although we use these channels, all decisions are always documented on the Github repository.</p>
+<p>It is important to mention that even, although we use these channels, all decisions are always documented on the GitHub repository.</p>
 </li>
 </ul>
 </div>
@@ -983,395 +995,197 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sect1">
 <h2 id="section-building-block-view">5. Building Block View</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Content</div>
-<p>The building block view shows the static decomposition of the system into building blocks (modules, components, subsystems, classes,
-interfaces, packages, libraries, frameworks, layers, partitions, tiers, functions, macros, operations,
-datas structures, &#8230;&#8203;) as well as their dependencies (relationships, associations, &#8230;&#8203;)</p>
-</div>
-<div class="paragraph">
-<p>This view is mandatory for every architecture documentation.
-In analogy to a house this is the <em>floor plan</em>.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Maintain an overview of your source code by making its structure understandable through
-abstraction.</p>
-</div>
-<div class="paragraph">
-<p>This allows you to communicate with your stakeholder on an abstract level without disclosing implementation details.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>The building block view is a hierarchical collection of black boxes and white boxes
-(see figure below) and their descriptions.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/05_building_blocks-EN.png" alt="Hierarchy of building blocks"></span></p>
-</div>
-<div class="paragraph">
-<p><strong>Level 1</strong> is the white box description of the overall system together with black
-box descriptions of all contained building blocks.</p>
-</div>
-<div class="paragraph">
-<p><strong>Level 2</strong> zooms into some building blocks of level 1.
-Thus it contains the white box description of selected building blocks of level 1, together with black box descriptions of their internal building blocks.</p>
-</div>
-<div class="paragraph">
-<p><strong>Level 3</strong> zooms into selected building blocks of level 2, and so on.</p>
-</div>
-</div>
-</div>
 <div class="sect2">
 <h3 id="_whitebox_overall_system">5.1. Whitebox Overall System</h3>
-<div class="sidebarblock arc42help">
+<div class="imageblock">
 <div class="content">
-<div class="paragraph">
-<p>Here you describe the decomposition of the overall system using the following white box template. It contains</p>
+<img src="./images/level1.png" alt="level1" width="418" height="263">
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>an overview diagram</p>
-</li>
-<li>
-<p>a motivation for the decomposition</p>
-</li>
-<li>
-<p>black box descriptions of the contained building blocks. For these we offer you alternatives:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>use <em>one</em> table for a short and pragmatic overview of all contained building blocks and their interfaces</p>
-</li>
-<li>
-<p>use a list of black box descriptions of the building blocks according to the black box template (see below).
-Depending on your choice of tool this list could be sub-chapters (in text files), sub-pages (in a Wiki) or nested elements (in a modeling tool).</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>(optional:) important interfaces, that are not explained in the black box templates of a building block, but are very important for understanding the white box.
-Since there are so many ways to specify interfaces why do not provide a specific template for them.
- In the worst case you have to specify and describe syntax, semantics, protocols, error handling,
- restrictions, versions, qualities, necessary compatibilities and many things more.
-In the best case you will get away with examples or simple signatures.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><em><strong>&lt;Overview Diagram&gt;</strong></em></p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
-<p><em>&lt;text explanation&gt;</em></p>
+<p>The LoMap application lets the user add and manage personal places of interest around the world. Its structure is designed in an almost full decentralized way, ensuring user&#8217;s privacy. This is achieved using PODs.</p>
 </dd>
 <dt class="hdlist1">Contained Building Blocks</dt>
-<dd>
-<p><em>&lt;Description of contained building block (black boxes)&gt;</em></p>
-</dd>
-<dt class="hdlist1">Important Interfaces</dt>
-<dd>
-<p><em>&lt;Description of important interfaces&gt;</em></p>
-</dd>
 </dl>
-</div>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Insert your explanations of black boxes from level 1:</p>
-</div>
-<div class="paragraph">
-<p>If you use tabular form you will only describe your black boxes with name and
-responsibility according to the following schema:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
+<col style="width: 25%;">
+<col style="width: 75%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top"><strong>Name</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Responsibility</strong></th>
+<th class="tableblock halign-left valign-top">Block name</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;black box 1&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> <em>&lt;Text&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>User</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is the person who uses the application and who owns the Pod.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;black box 2&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> <em>&lt;Text&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>LoMap</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is the application that allows the user to manage his places.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Map API</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is the API that allows the user to visualize the places on a map and also allows the autocompleting function.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Database</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is the database that stores small information about the places to improve the app performance.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pod</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is the personal data store of the user. It is used to store the places and the all the information about them.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>If you use a list of black box descriptions then you fill in a separate black box template for every important building block .
-Its headline is the name of the black box.</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_name_black_box_1">5.1.1. &lt;Name black box 1&gt;</h4>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Here you describe &lt;black box 1&gt;
-according the the following black box template:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Purpose/Responsibility</p>
-</li>
-<li>
-<p>Interface(s), when they are not extracted as separate paragraphs. This interfaces may include qualities and performance characteristics.</p>
-</li>
-<li>
-<p>(Optional) Quality-/Performance characteristics of the black box, e.g.availability, run time behavior, &#8230;&#8203;.</p>
-</li>
-<li>
-<p>(Optional) directory/file location</p>
-</li>
-<li>
-<p>(Optional) Fulfilled requirements (if you need traceability to requirements).</p>
-</li>
-<li>
-<p>(Optional) Open issues/problems/risks</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><em>&lt;Purpose/Responsibility&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;Interface(s)&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;(Optional) Quality/Performance Characteristics&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;(Optional) Directory/File Location&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;(Optional) Fulfilled Requirements&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;(optional) Open Issues/Problems/Risks&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_name_black_box_2">5.1.2. &lt;Name black box 2&gt;</h4>
-<div class="paragraph">
-<p><em>&lt;black box template&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_name_black_box_n">5.1.3. &lt;Name black box n&gt;</h4>
-<div class="paragraph">
-<p><em>&lt;black box template&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_name_interface_1">5.1.4. &lt;Name interface 1&gt;</h4>
-<div class="paragraph">
-<p>&#8230;&#8203;</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_name_interface_m">5.1.5. &lt;Name interface m&gt;</h4>
-
-</div>
 </div>
 <div class="sect2">
 <h3 id="_level_2">5.2. Level 2</h3>
-<div class="sidebarblock arc42help">
+<div class="imageblock">
 <div class="content">
-<div class="paragraph">
-<p>Here you can specify the inner structure of (some) building blocks from level 1 as white boxes.</p>
-</div>
-<div class="paragraph">
-<p>You have to decide which building blocks of your system are important enough to justify such a detailed description.
-Please prefer relevance over completeness. Specify important, surprising, risky, complex or volatile building blocks.
-Leave out normal, simple, boring or standardized parts of your system</p>
+<img src="./images/level2.png" alt="level2" width="435" height="364">
 </div>
 </div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivation</dt>
+<dd>
+<p>Inside LoMap, the system is separated by the Frontend and the Backend.</p>
+</dd>
+<dt class="hdlist1">Contained Building Blocks</dt>
+</dl>
 </div>
-<div class="sect3">
-<h4 id="_white_box_building_block_1">5.2.1. White Box <em>&lt;building block 1&gt;</em></h4>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>&#8230;&#8203;describes the internal structure of <em>building block 1</em>.</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_white_box_building_block_2">5.2.2. White Box <em>&lt;building block 2&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
-<div class="paragraph">
-<p>&#8230;&#8203;</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_white_box_building_block_m">5.2.3. White Box <em>&lt;building block m&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Block name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Frontend</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is the part of the application that the user interacts with, and that uses the map API.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Backend</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is the part of the application that manages the data and the communication with the database.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_level_3">5.3. Level 3</h3>
-<div class="sidebarblock arc42help">
+<div class="imageblock">
 <div class="content">
-<div class="paragraph">
-<p>Here you can specify the inner structure of (some) building blocks from level 2 as white boxes.</p>
-</div>
-<div class="paragraph">
-<p>When you need more detailed levels of your architecture please copy this
-part of arc42 for additional levels.</p>
+<img src="./images/level3.png" alt="level3" width="992" height="872">
 </div>
 </div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivation</dt>
+<dd>
+<p>Inside LoMap, the system is separated by the Frontend and the Backend.</p>
+</dd>
+<dt class="hdlist1">Contained Building Blocks</dt>
+</dl>
 </div>
-<div class="sect3">
-<h4 id="_white_box_building_block_x_1">5.3.1. White Box &lt;_building block x.1_&gt;</h4>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Specifies the internal structure of <em>building block x.1</em>.</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_white_box_building_block_x_2">5.3.2. White Box &lt;_building block x.2_&gt;</h4>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_white_box_building_block_y_1">5.3.3. White Box &lt;_building block y.1_&gt;</h4>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Block name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>MyPlaces</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows the user&#8217;s saved places in a map and a list.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>AddPlace</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lets the user add a new place selecting it on a map.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Social</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lets the user see the places of his friends.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Settings</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lets the user change the app settings.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Profile</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lets the user manage his profile information.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>FrontendAPI</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is the API that allows the Frontend to communicate with the Backend.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>RESTAPI</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is the API that allows the Backend to communicate with the Database.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Solid</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is the API that allows the Backend to communicate with the Pod.</p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
-</div>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="section-runtime-view">6. Runtime View</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>important use cases or features: how do building blocks execute them?</p>
-</li>
-<li>
-<p>interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?</p>
-</li>
-<li>
-<p>operation and administration: launch, start-up, stop</p>
-</li>
-<li>
-<p>error and exception scenarios</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their <strong>architectural relevance</strong>. It is <strong>not</strong> important to describe a large number of scenarios. You should rather document a representative selection.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
-You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>There are many notations for describing scenarios, e.g.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>numbered list of steps (in natural language)</p>
-</li>
-<li>
-<p>activity diagrams or flow charts</p>
-</li>
-<li>
-<p>sequence diagrams</p>
-</li>
-<li>
-<p>BPMN or EPCs (event process chains)</p>
-</li>
-<li>
-<p>state machines</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 <div class="sect2">
-<h3 id="_runtime_scenario_1">6.1. &lt;Runtime Scenario 1&gt;</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><em>&lt;insert runtime diagram or textual description of the scenario&gt;</em></p>
-</li>
-<li>
-<p><em>&lt;insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.&gt;</em></p>
-</li>
-</ul>
-</div>
+<h3 id="_adding_a_new_place">6.1. Adding a new place</h3>
 <div class="paragraph">
-<p>It is possible to use a sequence diagram:</p>
+<p>The user will be able to add any selected place in the map and add any information about it. The user will be able to add a place by clicking on the map and then clicking on the Add button. The place will be added to his Pod.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Sequence%20diagram.png" alt="Sequence diagram" width="332" height="335">
+<img src="./images/AddPlaces.png" alt="AddPlaces" width="521" height="493">
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_runtime_scenario_2">6.2. &lt;Runtime Scenario 2&gt;</h3>
-
+<h3 id="_viewing_a_place">6.2. Viewing a place</h3>
+<div class="paragraph">
+<p>The user will be able to view all his places in the map and in a sidebar with all the information about the place.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/ViewPlaces.png" alt="ViewPlaces" width="691" height="516">
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="">6.3. &#8230;&#8203;</h3>
-
+<h3 id="_logging_into_the_application">6.3. Logging into the application</h3>
+<div class="paragraph">
+<p>The user will be able to view all his places in the map and in a sidebar with all the information about the place.</p>
 </div>
-<div class="sect2">
-<h3 id="_runtime_scenario_n">6.4. &lt;Runtime Scenario n&gt;</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Login.png" alt="Login" width="635" height="517">
+</div>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
