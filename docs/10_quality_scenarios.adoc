@@ -2,7 +2,7 @@
 == Quality Requirements
 
 === Quality Tree
-Pendiente
+image::qualityTree2.png["Ejemplo de diagrama"]
 
 === Quality Scenarios
 [options="header"]
@@ -10,7 +10,7 @@ Pendiente
 | Quality attribute | Scenario | Approach
 | Availability |  We want to offer a wide range of possibilities and submaps in which the user can search for all the information or location they want. | We want to develop the option so that the user can investigate by zooming in on the map and seeing submaps starting from a main map in order to see the locations as clearly as possible.
 | Usability | Quick and easy navigation for not experienced users. | The main objective is to achieve a map and navigation within the application that is fast and indicative for users. That navigation operations such as scrolling on the map, zooming or the implementation of a search engine are easy to use and indicative for the end user.
-| Decentralization | The isolated and centralized use of users' personal information and updating based on user preferences | ""
+| Decentralization | The isolated and centralized use of users' personal information and updating based on user preferences | We want save separetly the information related to the user from the general information that could be storage in a data base.
 | Privacy | We do not want a fraudulent use of the user's personal information | Only the information of the user and/or friends will be shown if the user requests it, otherwise private information will never be shown.
 | Accesibilty | 
 We want the application to be usable for all the potential users that the final product may have. | Navigation and use of bright colors and aids to facilitate the use of the application
