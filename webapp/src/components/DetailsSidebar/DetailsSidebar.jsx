@@ -54,7 +54,7 @@ const DetailsSidebar = (props) => {
                     </Typography>
 
                     <div>
-                        <SettingsSideBar />
+                        <SettingsSideBar/>
                     </div>
                 </>
                 );

@@ -9,15 +9,14 @@ export default makeStyles((theme) => ({
     cardProfile: {
         margin: 'auto',
         paddingTop:'10px',
-        width: 390,
+        width: '80%',
         backgroundColor: "#f3f2f2",
         borderRadius:'15px',
     },
     text: {
-        display:'flex',
-        flexGrow: '1',
-        width:'100%'
-
+        width:'100%',
+        flexGrow:1,
+        flexBasis:0,
     },
     logoutButton: {
         color : "#faf5f3",

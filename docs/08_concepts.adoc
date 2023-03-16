@@ -13,7 +13,7 @@ image:UmlDiagram.png["Example UML Diagram"]
 [options="header"]
 |===
 | Concept         | Description
-| Map    | It's the main part of the interface, we obtain it through Google Maps API. The map is where the user can mark selected places an watch places marked by their friends.
+| Map    | It's the main part of the interface, we obtain it through OpenStreetMap API. The map is where the user can mark selected places an watch places marked by their friends.
 | User     | We only will save the ID of the users and the list of IDs of their friends in the site.
 | Friend    | A friend is an user that has been added as friend by another user.
 | Mark     | A mark identifies a location on the map. Marks are created by the users and once is created they can add rating, pictures, description ... We won't save any of that in our database. All that information will be stored in the user's pod.
@@ -23,9 +23,11 @@ image:UmlDiagram.png["Example UML Diagram"]
 
 === Security
 
-In this subject, we will use the security options the frameworks and libraries we will use give us. And since we are developing a decentralized site with the SOLID Project, all the users data will be stored in their own pods and just users with pods and permission could watch that information. In our database we only will save the user's ID and his list of friend's IDs.
+* *Privacy:* The information stored in the application is decentralised in pods. This ensures that the privacy of the users is protected.
+Part of the information can be stored in a centralised way in the database but always respecting the privacy of the users..
 
+* *Access control:* The system must have appropriate access controls in place to ensure that only authorized users can access and modify personal and shared data.
 
 === User experience
 
-Our intention is to make an intuitive site where the user can see all the important modules just entering. The map will be placed occupying the main part of the screen. On the map the user will see their own marks and friends marks, that will be slightly different. At the left of the screen the users will see a module with diverse information of the locations that are in the screen and updates of their friends. The ratings of the places will be represented with stars to achieve an easy understanding. Finally, at the bottom of the site we will place information about us and the site.
+Our intention is to make an intuitive site where the user can see all the important modules just entering. The map will be placed occupying a significant part of the screen. Users will be able to see the different locations of their saved sites displayed on the map. In addition, the user will be able to observe additional information on the left side of the screen or by hovering the mouse over the location.
