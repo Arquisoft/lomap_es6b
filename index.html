@@ -773,8 +773,10 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_business_context">3.1. Business Context</h3>
-<div class="paragraph">
-<p><span class="image"><img src="./images/businessContextDiagram.png" alt="Business context diagram"></span></p>
+<div class="imageblock">
+<div class="content">
+<img src="./images/images/businessContextDiagram.png" alt="businessContextDiagram">
+</div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1256,7 +1258,7 @@ In the production phase, the user experience should be maximized with a good int
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Map</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">It&#8217;s the main part of the interface, we obtain it through Google Maps API. The map is where the user can mark selected places an watch places marked by their friends.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It&#8217;s the main part of the interface, we obtain it through OpenStreetMap API. The map is where the user can mark selected places an watch places marked by their friends.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td>
@@ -1279,14 +1281,22 @@ In the production phase, the user experience should be maximized with a good int
 </div>
 <div class="sect2">
 <h3 id="_security">8.3. Security</h3>
-<div class="paragraph">
-<p>In this subject, we will use the security options the frameworks and libraries we will use give us. And since we are developing a decentralized site with the SOLID Project, all the users data will be stored in their own pods and just users with pods and permission could watch that information. In our database we only will save the user&#8217;s ID and his list of friend&#8217;s IDs.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Privacy:</strong> The information stored in the application is decentralised in pods. This ensures that the privacy of the users is protected.
+Part of the information can be stored in a centralised way in the database but always respecting the privacy of the users..</p>
+</li>
+<li>
+<p><strong>Access control:</strong> The system must have appropriate access controls in place to ensure that only authorized users can access and modify personal and shared data.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_user_experience">8.4. User experience</h3>
 <div class="paragraph">
-<p>Our intention is to make an intuitive site where the user can see all the important modules just entering. The map will be placed occupying the main part of the screen. On the map the user will see their own marks and friends marks, that will be slightly different. At the left of the screen the users will see a module with diverse information of the locations that are in the screen and updates of their friends. The ratings of the places will be represented with stars to achieve an easy understanding. Finally, at the bottom of the site we will place information about us and the site.</p>
+<p>Our intention is to make an intuitive site where the user can see all the important modules just entering. The map will be placed occupying a significant part of the screen. Users will be able to see the different locations of their saved sites displayed on the map. In addition, the user will be able to observe additional information on the left side of the screen or by hovering the mouse over the location.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1471,29 +1481,19 @@ In the production phase, the user experience should be maximized with a good int
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Availability</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We want to offer a wide range of possibilities and submaps in which the user can search for all the information or location they want.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We want to develop the option so that the user can investigate by zooming in on the map and seeing submaps starting from a main map in order to see the locations as clearly as possible.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Quick and easy navigation for not experienced users.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The main objective is to achieve a map and navigation within the application that is fast and indicative for users. That navigation operations such as scrolling on the map, zooming or the implementation of a search engine are easy to use and indicative for the end user.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The main objective is to ensure that the user can intuitively navigate through the application, and understand how it works in a simple way.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Decentralization</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The isolated and centralized use of users' personal information and updating based on user preferences</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We want save separetly the information related to the user from the general information that could be storage in a data base.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application needs to give confidence to be used without any risk.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We guarantee in the most efficient way that user data is protected by decentralised data storage .</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Privacy</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">We do not want a fraudulent use of the user&#8217;s personal information</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Only the information of the user and/or friends will be shown if the user requests it, otherwise private information will never be shown.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Accesibilty</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We want the application to be usable for all the potential users that the final product may have.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Navigation and use of bright colors and aids to facilitate the use of the application</p></td>
 </tr>
 </tbody>
 </table>
@@ -1524,15 +1524,15 @@ In the production phase, the user experience should be maximized with a good int
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lack of knowledge about the technologies</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Most of the technologies used in the project are new to the team members. This requires extra effort at the beginning to learn them.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Spend time learning and getting to know the new technologies.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Huge proyect</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">We are under pressure to have the project completed to what is needed by the deadline.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">It is therefore necessary to have good communication and a good working dynamic among the members of the team.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lack of knowledge about the technologies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Most of the technologies used in the project are new to the team members. This requires extra effort at the beginning to learn them.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spend time learning and getting to know the new technologies.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
@@ -1567,7 +1567,7 @@ In the production phase, the user experience should be maximized with a good int
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">React and JavaScript</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Some of the team members do not know JavaScript. Also, none of them are familiar with the React library. This can cause difficulties at the beginning of the project that will disappear as time goes by.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Some team members do not know JavaScript. Also, none of them are familiar with the React library. This can cause difficulties at the beginning of the project that will disappear as time goes by.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
@@ -1620,8 +1620,20 @@ In the production phase, the user experience should be maximized with a good int
 <td class="tableblock halign-left valign-top"><p class="tableblock">Software that helps two or more computer programs to comunicate to each other.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Google Maps API</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">It&#8217;s an API by Google that allows you to use the power of Google Maps and put it directly on your own site.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenStreetMap API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenStreetMap has an editing API for fetching and saving raw geodata from/to the OpenStreetMap database.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A set of platform as a service products that use OS-level virtualization to deliver software in containers.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Open source document-oriented NoSQL database.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Express.js</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Free and open source back-end framework for developing web applications and APIs with Node.js</p></td>
 </tr>
 </tbody>
 </table>
