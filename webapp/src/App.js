@@ -7,6 +7,8 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import {useState, useEffect} from 'react';
 import  {getPlaceMarks} from './api/api';
 import LoginWall from "./components/LoginWall/LoginWall";
+import { SessionProvider} from "@inrupt/solid-ui-react";
+import { useSession } from "@inrupt/solid-ui-react/dist";
 
 
 function App() {
@@ -23,7 +25,17 @@ function App() {
    const [selectedButton, setSelectedButton] = useState("MyPlaces");
     const [selectedPlaceMyPlaces, setSelectedPlaceMyPlaces] = useState(null);
     const [placesLength, setPlacesLength] = useState(0); //used just for the useEffect to work only when a place is added and not when a place is deleted
+    
+    //uso esto para el control del logeo
+    const{session} =useSession();
 
+    session.onLogin(()=>{
+        setIsLogged(true)
+    })
+
+    session.onLogout(()=>{
+        setIsLogged(false)
+    })
     const [isLogged, setIsLogged] = useState(true);
 
     useEffect(() => {
@@ -50,11 +62,11 @@ function App() {
     }
 
     function deletePlace(placeID){
-        setPlaces(places.filter(place => place.id !== placeID));
+        setPlaces(places.filter(place => place._id !== placeID));
     }
 
   return (
-      <>
+    <SessionProvider sessionId="log-in-example">
           {!isLogged ? ( <LoginWall/> ) : (null)}
               <Box className='MainBox' >   {/* Important: it is always necessary to put all the elements inside one parent element*/}
                   <Header setSelectedPlaceAutocomplete={setSelectedPlaceAutocomplete}/> {/* Header: Logo, SearchPlacesBar, FilterByBar */}
@@ -81,7 +93,7 @@ function App() {
                       </Grid>
                   </Grid>
               </Box>
-      </>
+        </SessionProvider>
 
   );
 }
