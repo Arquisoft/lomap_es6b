@@ -64,7 +64,7 @@ const DetailsSidebar = (props) => {
                             Customize your experience or delete all your data.
                         </Typography>
                         <div>
-                            <SettingsSideBar />
+                            <SettingsSideBar setPlaces={setPlaces}/>
                         </div>
                     </>
                 );
