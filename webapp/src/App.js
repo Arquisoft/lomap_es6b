@@ -25,7 +25,8 @@ function App() {
    const [selectedButton, setSelectedButton] = useState("MyPlaces");
     const [selectedPlaceMyPlaces, setSelectedPlaceMyPlaces] = useState(null);
     const [placesLength, setPlacesLength] = useState(0); //used just for the useEffect to work only when a place is added and not when a place is deleted
-    
+    const [selectedFilters, setSelectedFilters] = useState([]);
+
     //uso esto para el control del logeo
     const{session} =useSession();
 
@@ -43,6 +44,8 @@ function App() {
         //console.log('places changed:', places);
         refreshMyPlacesList();
     }, []);
+
+
 
     useEffect(() => {
 
@@ -69,7 +72,7 @@ function App() {
     <SessionProvider sessionId="log-in-example">
           {!isLogged ? ( <LoginWall/> ) : (null)}
               <Box className='MainBox' >   {/* Important: it is always necessary to put all the elements inside one parent element*/}
-                  <Header setSelectedPlaceAutocomplete={setSelectedPlaceAutocomplete}/> {/* Header: Logo, SearchPlacesBar, FilterByBar */}
+                  <Header setSelectedPlaceAutocomplete={setSelectedPlaceAutocomplete} setSelectedFilters={setSelectedFilters}/> {/* Header: Logo, SearchPlacesBar, FilterByBar */}
 
                   <Grid className='MainGrid' container spacing={3}>{/* 3 spaces between the grids */}
                       {/* "container" means that it is a grid with more grids inside */}
@@ -88,7 +91,7 @@ function App() {
                           <Paper className='MainMap' style={{borderRadius: '20px' }}> {/* "sx" is for adding specific styles to a MUI component */}
                               <Map places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
                                    setSelectedPoint={setSelectedPoint} selectedButton={selectedButton} selectedPlaceMyPlaces={selectedPlaceMyPlaces}
-                                   placesLength={placesLength}/>   {/* Map: OpenStreetMap working with Leaflet */}
+                                   placesLength={placesLength} selectedFilters={selectedFilters}/>   {/* Map: OpenStreetMap working with Leaflet */}
                           </Paper>
                       </Grid>
                   </Grid>
