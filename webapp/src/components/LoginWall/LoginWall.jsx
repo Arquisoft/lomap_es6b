@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 const LoginWall = (props) => {
     const classes = useStyles();
     const [idp, setIdp] = useState("https://inrupt.net");
-    const [currentUrl, setCurrentUrl] = useState("http://localhost:3000/api");
+    const [currentUrl, setCurrentUrl] = useState("http://localhost:3000/");
 
     
   return (

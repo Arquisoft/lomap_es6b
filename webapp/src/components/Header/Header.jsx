@@ -8,7 +8,7 @@ import SearchBox from "../SearchBox/SearchBox";
 
 const Header = (props) => {
     const classes = useStyles(); // "classes" is an object that contains all the CSS classes from styles.js
-    const {setSelectedPlaceAutocomplete} = props;
+    const {setSelectedPlaceAutocomplete, setSelectedFilters} = props;
   return (
     <div>
       <Grid container spacing={3}> {/* Grid containing Logo, SearchPlacesBar and FilterByBar. Setting the space between them to 3 */}
@@ -19,7 +19,7 @@ const Header = (props) => {
             <SearchBox setSelectedPlaceAutocomplete={setSelectedPlaceAutocomplete}/>
         </Grid>
         <Grid className={classes.gridFilterByBar} item md={2}>
-            <FilterByBar/>
+            <FilterByBar setSelectedFilters={setSelectedFilters}/>
         </Grid>
       </Grid>
     </div>
