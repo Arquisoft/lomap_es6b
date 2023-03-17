@@ -5,49 +5,55 @@ import TextField from '@mui/material/TextField';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Card from '@mui/material/Card';
-import {Button, CardContent} from "@mui/material";
+import {Button, CardContent, Typography} from "@mui/material";
+import {
+    useSession,
+    CombinedDataProvider,
+    Image,
+    Text,
+} from "@inrupt/solid-ui-react";
+import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 
-const ProfileSideBar = () => {
+const ProfileSideBar = (props) => {
     const classes = useStyles();
+    const {userWebId, handleLogout} = props;
 
     return (
         <div>
-            <div className={classes.div1}>
-                <Avatar className={classes.avatarImage}
-                        alt="User image profile"
-                />
-            </div>
-            <div >
-                <Card className={classes.cardProfile}>
-                    <CardContent>
-                        <List>
-                            <ListItem>
-                                <TextField disabled={true} className={classes.text}
-                                           id="email"
-                                           label="Email Address"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <TextField disabled={true} className={classes.text}
-                                           id="username"
-                                           label="Username"
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <TextField disabled={true} className={classes.text}
-                                           id="webId"
-                                           label="WebID"
-                                />
-                            </ListItem>
+            <CombinedDataProvider datasetUrl={userWebId} thingUrl={userWebId}>
+                <div className={classes.div1}>
+                    <Avatar className={classes.avatarImage}
+                            alt="User image profile">
+                        <Image property={VCARD.hasPhoto.iri.value} style={{maxHeight: '150px'}}/>
+                    </Avatar>
 
-                        </List>
-                    </CardContent>
-                </Card>
-                <Button variant="contained"  className={classes.logoutButton}>
-                    Log Out
-                </Button>
-            </div>
+                </div>
+                <div >
+                    <Card className={classes.cardProfile}>
+                        <CardContent>
+                            <List>
+                                <ListItem>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        <Text property={VCARD.fn.iri.value} />
+                                    </Typography>
+                                </ListItem>
 
+                                <ListItem>
+                                    <TextField editable={false} className={classes.text}
+                                               id="webId"
+                                               value={userWebId}
+                                               InputLabelProps={{ shrink: true }}
+                                               label="WebId"
+                                    />
+                                </ListItem>
+                            </List>
+                        </CardContent>
+                    </Card>
+                    <Button variant="contained"  onClick={handleLogout} className={classes.logoutButton}>
+                        Log Out
+                    </Button>
+                </div>
+            </CombinedDataProvider>
         </div>
     );
 
