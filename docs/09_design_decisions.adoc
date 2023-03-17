@@ -41,5 +41,23 @@
 * Consequences: For now, we will try to work with MariaDb but this may change in the future.
 
 
+=== AD-04: Definitive Database server
+* Status: Accepted
+* Context: At first we thought using MariaDB as it is explained above. However, the fact that we will work with Node.js and that it doesn´t work well with relational databases, warned us.
+* Decision: As we haven´t started to implement yet, we decided to change to a non relational database to take less risk. Some of us had worked with it before and its easy to learn.
+* Consequences: We will use MongoDb as a database.
+
+
+=== AD-05: Definitive API Maps
+* Status: Accepted
+* Context: At first we thought using Googple Maps because we are used to it. Some of us had worked with it before in aother subject. But when we searched more, we have seen that Google Maps API has a monthly limit of free requests. 
+* Decision: The range of decision is not very big, so we read about OpenStreet Maps and, as it is completely free and also popular, changed our decision.
+* Consequences: We will use OpenStreet Maps.
+
+=== AD-06: Postman
+* Status: Accepted
+* Context: We had trouble to start working at te backend. Mainly because it´s new for us and abstract. So to make it easier, we looked for a platform to let us see what we are doing.
+* Decision:  We chose Postman API Platform, which is an API platform for building and using APIs. It let us see the process of the REST methods and experiment with the connection between MongoDB and Node. 
+* Consequences: We will use Postman API Platform.
 
 

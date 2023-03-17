@@ -3,6 +3,28 @@
 
 == Deployment View
 
-[role="arc42help"]
-****
-.Content
+
+=== Infrastructure Level 1
+image:7_DeploymentView.png["Deployment view diagram"]
+
+Motivation::
+
+For development and testing the execution environment we are working on each student’s machine. But when we´ll reach the production phase, we must deploy it in a Dockerized environment.
+
+Quality and/or Performance Features::
+
+We have chosen MongoDb to maximize the performance with Node.js.
+In the production phase, the user experience should be maximized with a good internet connection, but this is something we cannot control.
+
+
+
+=== Infrastructure Level 2
+image:7_DeploymentView_p2.png["Docker Deployment view diagram"]
+
+Motivation::
+Above we are explaining the Dockerized environment of the production phase.
+Quality and/or Performance Features::
+We are going to use a cloud platform, Amazon Web Service, to deploy our software. To launch it, we will use Docker environment. This one will manage the frontend, backend and database to build and run the application.
+
+
+

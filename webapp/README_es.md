@@ -12,7 +12,7 @@ La app se lanzará y escuchará en el puerto 3000. Ahora mismo la app es un "Hol
 Vamos a hacer algunas modificaciones en la app, crearemos una app que pida el nombre y el email al usuario y lo envíe a una api rest.Además la webapp listará todos los usuarios registrados.
 
 Basicamente la app debería ser capaz de coger el nombre y el email del usuario, enviarlo a la api y refrescar la lista de los usuarios desde la api. Puedes revisar el código relevante en los componentes
-[EmailForm.tsx](src/components/EmailForm.tsx) y [UserList.tsx](src/components/UserList.tsx). El componente [App.tsx](src/App.tsx) funciona como coordinador de los otros componentes.
+[EmailForm.tsx](src/components/EmailForm.tsx) y [UserList.tsx](src/components/UserList.tsx). El componente [App.js](src/App.js) funciona como coordinador de los otros componentes.
 
 ### Testeando la webapp
 
