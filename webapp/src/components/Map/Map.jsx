@@ -8,7 +8,7 @@ import L from 'leaflet';
 const Map = (props) => {
     const classes = useStyles(); //for styling
     const {selectedPlaceAutocomplete, places, selectedPoint, setSelectedPoint, selectedButton, selectedPlaceMyPlaces,
-        placesLength} = props;
+        placesLength, selectedFilters} = props;
     const defaultCoordinates = { lat: 50.8504500, lng: 4.3487800 }; //default center coordinates (Brussels), just temporary
     const mapRef = useRef();
 
@@ -64,6 +64,34 @@ const Map = (props) => {
         }
     }
 
+    const showPlaces = () => {
+        if(selectedFilters.length == 0){
+            return places?.map((place) => (
+                <Marker key={place.id} position={{lat: place.latitude, lng: place.longitude}} icon={blueIcon}>
+                    <Popup>
+                        <div><Typography variant="subtitle1">{place.name} | {place.category}</Typography></div>
+                        <div><Typography variant="subtitle3">{place.description}</Typography></div>
+                    </Popup>
+                </Marker>
+            ))
+        }
+        else{
+            let filteredPlaces = places?.filter((place) => {
+                return selectedFilters.includes(place.category);
+            } );
+
+            return filteredPlaces?.map((place) => (
+                <Marker key={place.id} position={{lat: place.latitude, lng: place.longitude}} icon={blueIcon}>
+                    <Popup>
+                        <div><Typography variant="subtitle1">{place.name} | {place.category}</Typography></div>
+                        <div><Typography variant="subtitle3">{place.description}</Typography></div>
+                    </Popup>
+                </Marker>
+            ))
+
+        }
+    }
+
 
     // Attach handleMapMove to a map move event
     return (
@@ -86,14 +114,16 @@ const Map = (props) => {
 
             {showAddPlaceMarker()}
 
-            {places?.map((place) => (
+            {/*{places?.map((place) => (
                 <Marker key={place.id} position={{lat: place.latitude, lng: place.longitude}} icon={blueIcon}>
                     <Popup>
                         <div><Typography variant="subtitle1">{place.name} | {place.category}</Typography></div>
                         <div><Typography variant="subtitle3">{place.description}</Typography></div>
                     </Popup>
                 </Marker>
-            ))}
+            ))}*/}
+
+            {showPlaces()}
 
       </MapContainer>
 
