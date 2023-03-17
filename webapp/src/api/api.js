@@ -5,16 +5,16 @@ export async function addPlaceMark(placeMark){
     let response = await fetch(apiEndPoint+'/placeMarks/add', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
-        
+
         body: JSON.stringify({name:placeMark.name, description:placeMark.description,
-                            latitude:placeMark.latitude, longitude:placeMark.longitude, 
-                            category:placeMark.category})
-                            
-      });
+            latitude:placeMark.latitude, longitude:placeMark.longitude,
+            category:placeMark.category})
+
+    });
     if (response.status===200)
-      return true;
+        return true;
     else
-      return false;
+        return false;
 }
 
 export async function getPlaceMarks(){
@@ -26,10 +26,18 @@ export async function getPlaceMarks(){
 
 export async function deletePlaceMarkByID(placeID){
     const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
-    let response = await fetch(apiEndPoint+'/placeMarks/delete/'+placeID,{
+    let response = await fetch(apiEndPoint+'/placeMarks/delete/byID/'+placeID,{
         method: 'DELETE',
     });
     //The objects returned by the api are directly convertible to User objects
     return response.json()
+}
 
+export async function deleteAllPlaceMarks(){
+    const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
+    let response = await fetch(apiEndPoint+'/placeMarks/delete/all',{
+        method: 'DELETE',
+    });
+    //The objects returned by the api are directly convertible to User objects
+    return response.json()
 }

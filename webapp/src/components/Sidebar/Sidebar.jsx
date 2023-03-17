@@ -11,7 +11,7 @@ const Sidebar = (props) => {
         setSelectedPoint,setSelectedPlaceMyPlaces,deletePlace, setPlacesLength} = props;
     const handleSelectedButtonChange = (selectedButton) => {
         setSelectedButton(selectedButton);
-    };
+    }
 
   return (
       <div className={classes.mainConstraints}>
