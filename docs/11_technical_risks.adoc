@@ -8,16 +8,16 @@
 |Problem description
 |Consideration
 |Masures to be taken
- 
+
 |High
+|Huge proyect
+|We are under pressure to have the project completed to what is needed by the deadline.
+|It is therefore necessary to have good communication and a good working dynamic among the members of the team.
+
+|Medium
 |Lack of knowledge about the technologies
 |Most of the technologies used in the project are new to the team members. This requires extra effort at the beginning to learn them.
 |Spend time learning and getting to know the new technologies.
-
-|Medium
-|Huge proyect 
-|We are under pressure to have the project completed to what is needed by the deadline. 
-|It is therefore necessary to have good communication and a good working dynamic among the members of the team.
 
 |Medium
 |Time availability 
@@ -41,7 +41,7 @@
 
 |Medium
 |React and JavaScript 
-|Some of the team members do not know JavaScript. Also, none of them are familiar with the React library. This can cause difficulties at the beginning of the project that will disappear as time goes by.
+|Some team members do not know JavaScript. Also, none of them are familiar with the React library. This can cause difficulties at the beginning of the project that will disappear as time goes by.
 
 |Medium
 |Node.js

@@ -45,30 +45,40 @@ api.get('/placeMarks/getAll', async (req, res) => {
 
 
 api.post("/placeMarks/add",
-  async (req, res) => {
-    const data = new Model({
-        name: req.body.name,
-        description: req.body.description,
-        latitude: req.body.latitude,
-        longitude: req.body.longitude,
-        category: req.body.category
-    })
-    
-    try {
-    const dataToSave = await data.save();
-    res.status(200).json(dataToSave)
-    }
-    catch (error) {
-        res.status(400).json({message: error.message})
-    }
+    async (req, res) => {
+        const data = new Model({
+            name: req.body.name,
+            description: req.body.description,
+            latitude: req.body.latitude,
+            longitude: req.body.longitude,
+            category: req.body.category
+        })
 
-}
+        try {
+            const dataToSave = await data.save();
+            res.status(200).json(dataToSave)
+        }
+        catch (error) {
+            res.status(400).json({message: error.message})
+        }
+
+    }
 );
 
-api.delete("/placeMarks/delete/:id", async (req, res) => {
+api.delete("/placeMarks/delete/byID/:id", async (req, res) => {
     try {
         const id = req.params.id;
         const data = await Model.findByIdAndDelete(id);
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+})
+
+api.delete("/placeMarks/delete/all", async (req, res) => {
+    try {
+        const data = await Model.deleteMany({ });
+        console.log("SE HAN BORRADO TODOS LOS MARCADORES");
     }
     catch (error) {
         res.status(400).json({ message: error.message })
@@ -103,7 +113,7 @@ api.patch('/update/:id', async (req, res) => {
     catch (error) {
         res.status(400).json({ message: error.message })
     }
-}) 
+})
 
 //Delete by ID Method
 api.delete('/delete/:id', async (req, res) => {

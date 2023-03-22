@@ -8,6 +8,8 @@ export default makeStyles((theme) => ({
 
     mainContainer: {
         height: "100%",
+        backgroundColor: '#EAEAEA',
+        borderRadius: '20px',
     },
 
     iconsSidebarContainer: {
