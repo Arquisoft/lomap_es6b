@@ -28,8 +28,8 @@ In this version we deploy the app locally without docker. In order to solve the 
 1) Go into our `restapi` folder.
 2) You will see a file called `.env_sample` with this content
    ```bash
-   DATABASE_URL = mongodb+srv://<username>:<password>@lomapes6b.qrix8pk.mongodb.net/test
-3) You will have to create in your repository your own file called `.env`, with the same content showed above, but updated with your MongoDb access data. (Without the <> symbols) If you don´t have access yet, contact us.
+   DATABASE_URL = mongodb+srv://username:password@lomapes6b.qrix8pk.mongodb.net/test
+3) You will have to create in your repository your own file called `.env`, with the same content showed above, but updated with your MongoDb access data. If you don´t have access yet, contact us.
 
 4) Now, open one terminal, compile and run `restapi`. If everything went well, you will read *database connected*.
    ```shell
