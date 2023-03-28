@@ -11,28 +11,20 @@ const Model = require('./models/model');
 
 module.exports = api;
 
-/*
-interface User {
-    name: string;
-    email: string;
-}
-*/
 
-/*
-//This is not a restapi as it mantains state but it is here for
-//simplicity. A database should be used instead.
-let users = [];
-
-api.get(
-    "/users/list",
-    async (req, res) => {
-        return res.status(200).send(users);
-    }
-);
-*/
-
-//Get all Method
+//returns all the placemarks
 api.get('/placeMarks/getAll', async (req, res) => {
+    try{
+        const data = await Model.find();
+        res.json(data)
+    }
+    catch(error){
+        res.status(200).json({message: error.message})
+    }
+})
+
+//returns the placemarks of the current user
+api.get('/placeMarks/getPlaceMarksByUser', async (req, res) => {
     try{
         const data = await Model.find();
         res.json(data)
@@ -51,7 +43,10 @@ api.post("/placeMarks/add",
             description: req.body.description,
             latitude: req.body.latitude,
             longitude: req.body.longitude,
-            category: req.body.category
+            category: req.body.category,
+            webId: req.body.webId,
+            placeId: req.body.placeId
+
         })
 
         try {

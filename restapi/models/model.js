@@ -20,6 +20,14 @@ const dataSchema = new mongoose.Schema({
     category: {
         required: true,
         type: String
+    },
+    webId: {
+        required: true,
+        type: String
+    },
+    placeId: {
+        required: false,//TODO
+        type: String
     }
 })
 

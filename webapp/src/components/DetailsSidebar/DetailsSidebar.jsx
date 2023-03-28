@@ -39,7 +39,8 @@ const DetailsSidebar = (props) => {
                         </Typography>
                         <div>
                             <AddPlaceSidebar places={places} setPlaces={setPlaces} selectedPoint={selectedPoint}
-                                             setSelectedPoint={setSelectedPoint} setPlacesLength={setPlacesLength}/>
+                                             setSelectedPoint={setSelectedPoint} setPlacesLength={setPlacesLength}
+                                             userWebId={userWebId}/>
                         </div>
                     </>
                 );
