@@ -97,7 +97,7 @@ function App() {
     return (
         <SessionProvider sessionId="log-in-example">
             {/*{checkIfLogged()}*/}
-            {isLogged ? null : <LoginWall/>}
+
             <Box className='MainBox' >   {/* Important: it is always necessary to put all the elements inside one parent element*/}
                 <Header setSelectedPlaceAutocomplete={setSelectedPlaceAutocomplete} setSelectedFilters={setSelectedFilters}/> {/* Header: Logo, SearchPlacesBar, FilterByBar */}
 
@@ -124,6 +124,7 @@ function App() {
                     </Grid>
                 </Grid>
             </Box>
+            {isLogged ? null : <LoginWall/>}
         </SessionProvider>
 
     );
