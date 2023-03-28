@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="861" height="208" viewBox="0 0 861 208">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 50px;
+        text-anchor: middle;
+        font-family: "Century Gothic";
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-3 {
+        fill: #06d869;
+      }
+
+      .cls-4 {
+        fill: #232323;
+      }
+
+      .cls-5 {
+        fill: #666;
+      }
+    </style>
+  </defs>
+  <text id="LoMap_copy" data-name="LoMap copy" class="cls-1" transform="translate(549.147 151.312) scale(3.882)"><tspan x="0">LoMap</tspan></text>
+  <text id="Save_share_discover_" data-name="Save, share, discover!" class="cls-1" transform="translate(487.323 193.294) scale(0.923)"><tspan x="0">Save, share, discover!</tspan></text>
+  <ellipse id="Ellipse_1_copy_2" data-name="Ellipse 1 copy 2" cx="106" cy="65.547" rx="59.219" ry="63.672"/>
+  <path id="Ellipse_1_copy" data-name="Ellipse 1 copy" class="cls-2" d="M106,0.063A61.031,61.031,0,1,1,44.969,61.094,61.031,61.031,0,0,1,106,.063ZM106,162s25.451-23.111,40-45c14.358-21.6,15.78-30.9,16-31H50a135.109,135.109,0,0,0,19,36c14.651,19.622,37,40,37,40"/>
+  <ellipse class="cls-3" cx="106" cy="61.094" rx="24.906" ry="24.906"/>
+  <rect x="754" y="189" width="26" height="4"/>
+  <rect class="cls-4" x="754" y="189" width="1" height="4"/>
+  <rect class="cls-5" x="779" y="189" width="1" height="4"/>
+  <path id="Shape_316_1" data-name="Shape 316 1" class="cls-2" d="M0,208H212l-45.57-93h-9.907L148.6,127h9.907L191.2,195H20.8L53.5,127H63.4l-7.925-12h-10.9Z"/>
+</svg>
