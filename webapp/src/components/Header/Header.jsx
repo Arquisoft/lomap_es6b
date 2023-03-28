@@ -2,7 +2,7 @@ import React from 'react';
 import {Grid} from "@mui/material";
 import SearchPlacesBar from "../SearchPlacesBar/SearchPlacesBar";
 import FilterByBar from "../FilterByBar/FilterByBar";
-import { ReactComponent as Logo } from '../../logoLoMap.svg';
+import { ReactComponent as Logo } from '../../full_logo_new.svg';
 import useStyles from './styles.js';
 import SearchBox from "../SearchBox/SearchBox";
 
