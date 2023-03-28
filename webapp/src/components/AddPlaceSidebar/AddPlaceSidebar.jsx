@@ -19,8 +19,12 @@ function AddPlaceSidebar (props)  {
         place.latitude = selectedPoint.lat;
         place.longitude = selectedPoint.lng;
         place.category = category;
-        place.webId = userWebId;
-        console.log( userWebId);
+
+        //Con una webId como esta "https://aliciafp15.inrupt.net/profile/card#me";
+        const parts = userWebId.split('.'); // Dividimos la cadena en partes utilizando el punto como separador
+        const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
+        place.webId = webId;//acotamos para guardar solo el nombre de usuario
+        console.log( webId);
         
 
         //result = await addPlaceMark({name, description,latitude,longitude, category});//metodo importado, le damos los parametros necesarios

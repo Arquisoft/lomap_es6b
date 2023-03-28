@@ -23,9 +23,9 @@ export async function getPlaceMarks(){
     return response.json()
 }
 
-export async function getPlaceMarksByUser(){
+export async function getPlaceMarksByUser(webId){
     const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
-    let response = await fetch(apiEndPoint+'/placeMarks/getPlaceMarksByUser');
+    let response = await fetch(apiEndPoint+'/placeMarks/getPlaceMarksByUser/'+ webId);
     //The objects returned by the api are directly convertible to User objects
     return response.json()
 }

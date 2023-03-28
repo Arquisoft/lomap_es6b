@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import Map from "./components/Map/Map";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {useState, useEffect} from 'react';
-import  {getPlaceMarks} from './api/api';
+import  {getPlaceMarks, getPlaceMarksByUser} from './api/api';
 import LoginWall from "./components/LoginWall/LoginWall";
 import { SessionProvider} from "@inrupt/solid-ui-react";
 import { useSession } from "@inrupt/solid-ui-react/dist";
@@ -13,11 +13,16 @@ import { useSession } from "@inrupt/solid-ui-react/dist";
 
 function App() {
 
+    //uso esto para el control del logeo
+    const {session} = useSession();
 
-    //const [places, setPlaces] = useState(getPlacesFromStorage() || []);
+
+    const [isLogged, setIsLogged] = useState(localStorage.getItem("isLogged"));
+    const [userWebId, setUserWebId] = useState(localStorage.getItem("userWebId"));
+
     const [places, setPlaces] = useState([]);
     const refreshMyPlacesList = async () => {
-        setPlaces(await getPlaceMarks());//donde estÃ¡ este metodo?importado de la api rest
+        setPlaces(await getPlaceMarksByUser(userWebId));
     }
 
     const [selectedPoint, setSelectedPoint] = useState(null);
@@ -28,12 +33,7 @@ function App() {
     const [selectedFilters, setSelectedFilters] = useState([]);
 
 
-    //uso esto para el control del logeo
-    const {session} = useSession();
-
-
-    const [isLogged, setIsLogged] = useState(localStorage.getItem("isLogged"));
-    const [userWebId, setUserWebId] = useState(localStorage.getItem("userWebId"));
+    
     useEffect(() => {
         // Check if the user has already logged in before
         const locallySavedLogin = localStorage.getItem("isLogged");

@@ -1,7 +1,4 @@
-﻿/*
-import express, { Request, Response, Router } from 'express';
-import {check} from 'express-validator';
-*/
+﻿
 const {check} = require('express-validator');
 
 const { json } = require('express');
@@ -24,10 +21,10 @@ api.get('/placeMarks/getAll', async (req, res) => {
 })
 
 //returns the placemarks of the current user
-api.get('/placeMarks/getPlaceMarksByUser', async (req, res) => {
-    try{
-        const data = await Model.find();
-        res.json(data)
+api.get('/placeMarks/getPlaceMarksByUser/:webId', async (req, res) => {    try{
+        const { webId } = req.params;
+        const data = await Model.find({ webId });
+        res.json(data);
     }
     catch(error){
         res.status(200).json({message: error.message})
