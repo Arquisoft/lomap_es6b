@@ -9,7 +9,7 @@ const DetailsSidebar = (props) => {
     const classes = useStyles();
     const [content, setContent] = useState("");
     const {places, setPlaces, selectedPoint, setSelectedPoint, selectedButton,setSelectedPlaceMyPlaces,
-        deletePlace, setPlacesLength} = props;
+        deletePlace, setPlacesLength,userWebId, handleLogout} = props;
 
     const handleSelectedButton = (buttonName) => {
         switch (buttonName) {
@@ -19,22 +19,28 @@ const DetailsSidebar = (props) => {
                         <Typography className={classes.title} variant="h4">
                             My places.
                         </Typography>
+                        <Typography className={classes.subtitle} variant="subtitle1">
+                            Here you can see, delete or travel to your places.
+                        </Typography>
                         <div style={{ overflow: "auto", height: "70vh" }}>
                             <MyPlacesSidebar deletePlace={deletePlace} places={places} setPlaces={setPlaces}
                                              setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces}/>
                         </div>
                     </>
-                        );
+                );
             case 'AddPlace' :
                 return (
                     <>
                         <Typography className={classes.title} variant="h4">
                             Create a new place.
                         </Typography>
-
+                        <Typography className={classes.subtitle} variant="subtitle1">
+                            Click on the map and fill the form to create a new place.
+                        </Typography>
                         <div>
                             <AddPlaceSidebar places={places} setPlaces={setPlaces} selectedPoint={selectedPoint}
-                            setSelectedPoint={setSelectedPoint} setPlacesLength={setPlacesLength}/>
+                                             setSelectedPoint={setSelectedPoint} setPlacesLength={setPlacesLength}
+                                             userWebId={userWebId}/>
                         </div>
                     </>
                 );
@@ -44,19 +50,24 @@ const DetailsSidebar = (props) => {
                         <Typography className={classes.title} variant="h4">
                             Friends.
                         </Typography>
+                        <Typography className={classes.subtitle} variant="subtitle1">
+                            We are still working on this feature...
+                        </Typography>
                     </>
                 );
             case 'Settings':
                 return (
-                <>
-                    <Typography className={classes.title} variant="h4">
-                        Settings.
-                    </Typography>
-
-                    <div>
-                        <SettingsSideBar />
-                    </div>
-                </>
+                    <>
+                        <Typography className={classes.title} variant="h4">
+                            Settings.
+                        </Typography>
+                        <Typography className={classes.subtitle} variant="subtitle1">
+                            Customize your experience or delete all your data.
+                        </Typography>
+                        <div>
+                            <SettingsSideBar setPlaces={setPlaces}/>
+                        </div>
+                    </>
                 );
             case 'Profile':
                 return (
@@ -64,9 +75,11 @@ const DetailsSidebar = (props) => {
                         <Typography className={classes.title} variant="h4">
                             Profile.
                         </Typography>
-
+                        <Typography className={classes.subtitle} variant="subtitle1">
+                            Manage your profile.
+                        </Typography>
                         <div>
-                            <ProfileSideBar />
+                            <ProfileSideBar userWebId={userWebId} handleLogout={handleLogout}/>
                         </div>
                     </>
                 );
@@ -84,6 +97,3 @@ const DetailsSidebar = (props) => {
 }
 
 export default DetailsSidebar ;
-
-
-

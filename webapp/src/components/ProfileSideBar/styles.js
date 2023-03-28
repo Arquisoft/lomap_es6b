@@ -1,8 +1,8 @@
 import { makeStyles } from '@mui/styles';
 export default makeStyles((theme) => ({
     avatarImage: {
-        width: 150,
-        height: 150,
+        width: "150px",
+        height: "150px",
         margin: 'auto',
         marginBottom:'10px',
     },

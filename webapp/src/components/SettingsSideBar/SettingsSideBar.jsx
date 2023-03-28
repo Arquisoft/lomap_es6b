@@ -17,10 +17,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SecurityIcon from '@mui/icons-material/Security';
 import SyncLockIcon from '@mui/icons-material/SyncLock';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-const SettingsSideBar = () => {
+import {deleteAllPlaceMarks} from "../../api/api";
+import DeletePlaceConfirmDialog from "../DeletePlaceConfirmDialog/DeletePlaceConfirmDialog";
+import DeleteAllDataConfirmDialog from "../DeleteAllDataConfirmDialog/DeleteAllDataConfirmDialog";
+const SettingsSideBar = (props) => {
     const classes = useStyles();
 
+    const {setPlaces} = props;
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const [open, setOpen] = React.useState(false);
 
     const [openAppearance, setOpenAppearance] = React.useState(false);
     const [openPrivacy, setOpenPrivacy] = React.useState(false);
@@ -34,6 +39,20 @@ const SettingsSideBar = () => {
     const handleDarkMode = (event) => {
         setIsDarkMode(event.target.checked);
     };
+    const handleDeleteAll = () => {
+        deleteAllPlaceMarks();
+        setPlaces([]);
+        handleClose();
+    };
+
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
 
     return (
@@ -46,7 +65,7 @@ const SettingsSideBar = () => {
                                 <AutoAwesomeIcon />
                             </ListItemIcon>
                             <ListItemText primary="Appearance" />
-                                {openAppearance ? <ExpandLess /> : <ExpandMore />}
+                            {openAppearance ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
                         <Collapse in={!openAppearance} timeout="auto" unmountOnExit >
                             <List component="div" sx = {{paddingLeft: '30px'}}>
@@ -72,7 +91,7 @@ const SettingsSideBar = () => {
                                 <LockIcon />
                             </ListItemIcon>
                             <ListItemText primary="Privacy" />
-                                {openPrivacy ? <ExpandLess /> : <ExpandMore />}
+                            {openPrivacy ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
                         <Collapse in={!openPrivacy} timeout="auto" unmountOnExit >
                             <List component="div" sx={{ paddingLeft: '30px'}}>
@@ -95,12 +114,14 @@ const SettingsSideBar = () => {
                 <Divider />
                 <nav aria-label="settings forders 2">
                     <List>
-                        <ListItemButton variant="contained" endIcon={<DeleteIcon />} className={classes.deleteButton}>
+                        <ListItemButton variant="contained" endicon={<DeleteIcon/>} className={classes.deleteButton}
+                                        onClick={handleClickOpen}>
                             Delete all data
                         </ListItemButton>
                     </List>
                 </nav>
             </Box>
+            <DeleteAllDataConfirmDialog open={open} handleClose={handleClose} handleDeleteAll={handleDeleteAll}/>
         </div>
     )
 }
