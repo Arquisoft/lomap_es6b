@@ -17,12 +17,13 @@ function App() {
     const {session} = useSession();
 
 
-    const [isLogged, setIsLogged] = useState(localStorage.getItem("isLogged"));
-    const [userWebId, setUserWebId] = useState(localStorage.getItem("userWebId"));
+    //const [isLogged, setIsLogged] = useState(localStorage.getItem("isLogged"));
+    const [userWebId, setUserWebId] = useState();
 
     const [places, setPlaces] = useState([]);
     const refreshMyPlacesList = async () => {
         setPlaces(await getPlaceMarksByUser(userWebId));
+
     }
 
     const [selectedPoint, setSelectedPoint] = useState(null);
@@ -36,25 +37,25 @@ function App() {
     
     useEffect(() => {
         // Check if the user has already logged in before
-        const locallySavedLogin = localStorage.getItem("isLogged");
+        /*const locallySavedLogin = localStorage.getItem("isLogged");
         if (locallySavedLogin === "true") {
             setIsLogged(true);
-        }
+        }*/
 
         // Register the login and logout event listeners
         session.onLogin(() => {
-            setIsLogged(true);
-            localStorage.setItem("isLogged", "true");
+            /*setIsLogged(true);
+            localStorage.setItem("isLogged", "true");*/
             setUserWebId(session.info.webId);
-            localStorage.setItem("userWebId", session.info.webId);
-            window.location.reload();
+            /*localStorage.setItem("userWebId", session.info.webId);*/
+            //window.location.reload();
         });
 
         session.onLogout(() => {
-            setIsLogged(false);
-            localStorage.removeItem("isLogged");
+            //setIsLogged(false);
+            //localStorage.removeItem("isLogged");
             setUserWebId(null);
-            localStorage.removeItem("userWebId");
+            //localStorage.removeItem("userWebId");
             window.location.reload();
         });
     }, [session]);
@@ -75,6 +76,7 @@ function App() {
 
     useEffect(() => {
         console.log(selectedPoint)
+        console.log(session)
     }, [selectedPoint]);
 
 
@@ -124,7 +126,7 @@ function App() {
                     </Grid>
                 </Grid>
             </Box>
-            {isLogged ? null : <LoginWall/>}
+            {session.info.isLoggedIn ? null : <LoginWall/>}
         </SessionProvider>
 
     );
