@@ -17,7 +17,7 @@ export default makeStyles((theme) => ({
     loginCard: { // add parent class
         minWidth: '30vw',
         minHeight: '30vh',
-        borderRadius: '24px',
+        borderRadius: '16px',
         display: 'flex',
         flexDirection: 'column',
         padding: '32px',
@@ -36,4 +36,8 @@ export default makeStyles((theme) => ({
         width: '300px',
         marginTop: '24px !important',
     },
+    logoIcon: {
+        width: 'auto',
+        height: '80px',
+    }
 }));
