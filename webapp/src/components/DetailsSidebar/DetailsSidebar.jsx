@@ -9,7 +9,7 @@ const DetailsSidebar = (props) => {
     const classes = useStyles();
     const [content, setContent] = useState("");
     const {places, setPlaces, selectedPoint, setSelectedPoint, selectedButton,setSelectedPlaceMyPlaces,
-        deletePlace, setPlacesLength,userWebId, handleLogout} = props;
+        deletePlace, setPlacesLength,userWebId, handleLogout, session} = props;
 
     const handleSelectedButton = (buttonName) => {
         switch (buttonName) {
@@ -40,7 +40,7 @@ const DetailsSidebar = (props) => {
                         <div>
                             <AddPlaceSidebar places={places} setPlaces={setPlaces} selectedPoint={selectedPoint}
                                              setSelectedPoint={setSelectedPoint} setPlacesLength={setPlacesLength}
-                                             userWebId={userWebId}/>
+                                             userWebId={userWebId} session={session}/>
                         </div>
                     </>
                 );

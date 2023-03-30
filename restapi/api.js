@@ -60,7 +60,7 @@ api.post("/placeMarks/add",
 api.delete("/placeMarks/delete/byID/:id", async (req, res) => {
     try {
         const id = req.params.id;
-        const data = await Model.findByIdAndDelete(id);
+        await Model.findByIdAndDelete(id);
     }
     catch (error) {
         res.status(400).json({ message: error.message })
@@ -69,7 +69,7 @@ api.delete("/placeMarks/delete/byID/:id", async (req, res) => {
 
 api.delete("/placeMarks/delete/all", async (req, res) => {
     try {
-        const data = await Model.deleteMany({ });
+        await Model.deleteMany({ });
         console.log("SE HAN BORRADO TODOS LOS MARCADORES");
     }
     catch (error) {
@@ -118,5 +118,3 @@ api.delete('/delete/:id', async (req, res) => {
         res.status(400).json({ message: error.message })
     }
 })
-
-//export default api;

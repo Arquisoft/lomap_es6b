@@ -4,15 +4,15 @@ import TextField from "@mui/material/TextField";
 import useStyles from "./styles";
 import PlaceEntity from "../../entities/PlaceEntity";
 import {addPlaceMark} from '../../api/api';
+import { savePlace } from '../../solidapi/solidAdapter';
 
 function AddPlaceSidebar (props)  {
-    const { selectedPoint, places, setPlaces,userWebId} = props;
+    const { selectedPoint, places, setPlaces,userWebId, session} = props;
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
 
     const addPlace =  async(req) => {
-        //req.preventDefault(); //DESCOMENTAR ESTA LINEA NO GUARDA LOS DATOS
         const place = new PlaceEntity();
         place.name = name;
         place.description = description;
@@ -25,6 +25,9 @@ function AddPlaceSidebar (props)  {
         const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
         place.webId = webId;//acotamos para guardar solo el nombre de usuario
         console.log( webId);
+
+        //GUARDA EL LUGAR EN LOS PODS!!
+        savePlace(session,place);
         
 
         //result = await addPlaceMark({name, description,latitude,longitude, category});//metodo importado, le damos los parametros necesarios

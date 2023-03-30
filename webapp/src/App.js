@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import Map from "./components/Map/Map";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {useState, useEffect} from 'react';
-import  {getPlaceMarks, getPlaceMarksByUser} from './api/api';
+import  {getPlaceMarksByUser} from './api/api';
 import LoginWall from "./components/LoginWall/LoginWall";
 import { SessionProvider} from "@inrupt/solid-ui-react";
 import { useSession } from "@inrupt/solid-ui-react/dist";
@@ -17,14 +17,9 @@ function App() {
     const {session} = useSession();
 
 
-    //const [isLogged, setIsLogged] = useState(localStorage.getItem("isLogged"));
     const [userWebId, setUserWebId] = useState();
-
     const [places, setPlaces] = useState([]);
-    const refreshMyPlacesList = async () => {
-        setPlaces(await getPlaceMarksByUser(userWebId));
 
-    }
 
     const [selectedPoint, setSelectedPoint] = useState(null);
     const [selectedPlaceAutocomplete, setSelectedPlaceAutocomplete] = useState(null);
@@ -36,48 +31,39 @@ function App() {
 
     
     useEffect(() => {
-        // Check if the user has already logged in before
-        /*const locallySavedLogin = localStorage.getItem("isLogged");
-        if (locallySavedLogin === "true") {
-            setIsLogged(true);
-        }*/
 
         // Register the login and logout event listeners
         session.onLogin(() => {
-            /*setIsLogged(true);
-            localStorage.setItem("isLogged", "true");*/
             setUserWebId(session.info.webId);
-            /*localStorage.setItem("userWebId", session.info.webId);*/
-            //window.location.reload();
-        });
+        }); 
 
         session.onLogout(() => {
-            //setIsLogged(false);
-            //localStorage.removeItem("isLogged");
             setUserWebId(null);
-            //localStorage.removeItem("userWebId");
             window.location.reload();
         });
-    }, [session]);
+    }, [session],);
 
-    /*useEffect(() => {
-        localStorage.setItem("isLogged", JSON.stringify(isLogged));
-    }, [isLogged]);*/
+    
 
     useEffect(() => {
+        const refreshMyPlacesList = async () => {
+            //Con una webId como esta "https://aliciafp15.inrupt.net/profile/card#me";
+            const parts = userWebId.split('.'); // Dividimos la cadena en partes utilizando el punto como separador
+            const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
+            setPlaces(await getPlaceMarksByUser(webId));
+        }
+
         refreshMyPlacesList();
-    }, []);
-
+    }, [userWebId]);
 
 
     useEffect(() => {
-
     }, [selectedPlaceAutocomplete]);
 
     useEffect(() => {
         console.log(selectedPoint)
         console.log(session)
-    }, [selectedPoint]);
+    }, [selectedPoint,session]);
 
 
     function deletePlace(placeID){
@@ -87,18 +73,10 @@ function App() {
     const handleLogout = () => {
         session.logout();
     }
-    /*const checkIfLogged = () => {
-        let locallySavedLogin = JSON.parse(localStorage.getItem("isLogged")); // gets from the cookies if the user is logged in or not
-        if(!locallySavedLogin){
-            return <LoginWall/>
-        }else{
-            return null;
-        }
-    }*/
+
 
     return (
         <SessionProvider sessionId="log-in-example">
-            {/*{checkIfLogged()}*/}
 
             <Box className='MainBox' >   {/* Important: it is always necessary to put all the elements inside one parent element*/}
                 <Header setSelectedPlaceAutocomplete={setSelectedPlaceAutocomplete} setSelectedFilters={setSelectedFilters}/> {/* Header: Logo, SearchPlacesBar, FilterByBar */}
@@ -113,7 +91,8 @@ function App() {
                         <Sidebar places = {places} setPlaces = {setPlaces} selectedButton={selectedButton}
                                  setSelectedButton={setSelectedButton} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
                                  setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}  setPlacesLength={setPlacesLength}
-                                 userWebId={userWebId} handleLogout={handleLogout}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
+                                 userWebId={userWebId} handleLogout={handleLogout}
+                                 session={session}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
                     </Grid>
 
                     <Grid item
