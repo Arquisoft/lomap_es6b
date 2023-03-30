@@ -91,7 +91,8 @@ function App() {
                         <Sidebar places = {places} setPlaces = {setPlaces} selectedButton={selectedButton}
                                  setSelectedButton={setSelectedButton} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
                                  setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}  setPlacesLength={setPlacesLength}
-                                 userWebId={userWebId} handleLogout={handleLogout}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
+                                 userWebId={userWebId} handleLogout={handleLogout}
+                                 session={session}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
                     </Grid>
 
                     <Grid item
