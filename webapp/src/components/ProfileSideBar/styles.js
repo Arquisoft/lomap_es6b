@@ -1,22 +1,23 @@
 import { makeStyles } from '@mui/styles';
 export default makeStyles((theme) => ({
     avatarImage: {
-        width: 150,
-        height: 150,
+        width: "150px",
+        height: "150px",
         margin: 'auto',
         marginBottom:'10px',
     },
     cardProfile: {
         margin: 'auto',
         paddingTop:'10px',
-        width: '80%',
+        width: 390,
         backgroundColor: "#f3f2f2",
         borderRadius:'15px',
     },
     text: {
-        width:'100%',
-        flexGrow:1,
-        flexBasis:0,
+        display:'flex',
+        flexGrow: '1',
+        width:'100%'
+
     },
     logoutButton: {
         color : "#faf5f3",

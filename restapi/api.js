@@ -1,7 +1,4 @@
-﻿/*
-import express, { Request, Response, Router } from 'express';
-import {check} from 'express-validator';
-*/
+﻿
 const {check} = require('express-validator');
 
 const { json } = require('express');
@@ -11,31 +8,23 @@ const Model = require('./models/model');
 
 module.exports = api;
 
-/*
-interface User {
-    name: string;
-    email: string;
-}
-*/
 
-/*
-//This is not a restapi as it mantains state but it is here for
-//simplicity. A database should be used instead.
-let users = [];
-
-api.get(
-    "/users/list",
-    async (req, res) => {
-        return res.status(200).send(users);
-    }
-);
-*/
-
-//Get all Method
+//returns all the placemarks
 api.get('/placeMarks/getAll', async (req, res) => {
     try{
         const data = await Model.find();
         res.json(data)
+    }
+    catch(error){
+        res.status(200).json({message: error.message})
+    }
+})
+
+//returns the placemarks of the current user
+api.get('/placeMarks/getPlaceMarksByUser/:webId', async (req, res) => {    try{
+        const { webId } = req.params;
+        const data = await Model.find({ webId });
+        res.json(data);
     }
     catch(error){
         res.status(200).json({message: error.message})
@@ -51,7 +40,10 @@ api.post("/placeMarks/add",
             description: req.body.description,
             latitude: req.body.latitude,
             longitude: req.body.longitude,
-            category: req.body.category
+            category: req.body.category,
+            webId: req.body.webId,
+            placeId: req.body.placeId
+
         })
 
         try {
@@ -68,7 +60,7 @@ api.post("/placeMarks/add",
 api.delete("/placeMarks/delete/byID/:id", async (req, res) => {
     try {
         const id = req.params.id;
-        const data = await Model.findByIdAndDelete(id);
+        await Model.findByIdAndDelete(id);
     }
     catch (error) {
         res.status(400).json({ message: error.message })
@@ -77,7 +69,7 @@ api.delete("/placeMarks/delete/byID/:id", async (req, res) => {
 
 api.delete("/placeMarks/delete/all", async (req, res) => {
     try {
-        const data = await Model.deleteMany({ });
+        await Model.deleteMany({ });
         console.log("SE HAN BORRADO TODOS LOS MARCADORES");
     }
     catch (error) {
@@ -126,5 +118,3 @@ api.delete('/delete/:id', async (req, res) => {
         res.status(400).json({ message: error.message })
     }
 })
-
-//export default api;

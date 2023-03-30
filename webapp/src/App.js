@@ -5,100 +5,110 @@ import Header from "./components/Header/Header";
 import Map from "./components/Map/Map";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {useState, useEffect} from 'react';
-import  {getPlaceMarks} from './api/api';
+import  {getPlaceMarksByUser} from './api/api';
 import LoginWall from "./components/LoginWall/LoginWall";
 import { SessionProvider} from "@inrupt/solid-ui-react";
 import { useSession } from "@inrupt/solid-ui-react/dist";
 
 
 function App() {
-   
 
-   //const [places, setPlaces] = useState(getPlacesFromStorage() || []);
-   const [places, setPlaces] = useState([]);
-   const refreshMyPlacesList = async () => {
-    setPlaces(await getPlaceMarks());//donde está este metodo?importado de la api rest
-  }
+    //uso esto para el control del logeo
+    const {session} = useSession();
 
-   const [selectedPoint, setSelectedPoint] = useState(null);
-   const [selectedPlaceAutocomplete, setSelectedPlaceAutocomplete] = useState(null);
-   const [selectedButton, setSelectedButton] = useState("MyPlaces");
+
+    const [userWebId, setUserWebId] = useState();
+    const [places, setPlaces] = useState([]);
+
+
+    const [selectedPoint, setSelectedPoint] = useState(null);
+    const [selectedPlaceAutocomplete, setSelectedPlaceAutocomplete] = useState(null);
+    const [selectedButton, setSelectedButton] = useState("MyPlaces");
     const [selectedPlaceMyPlaces, setSelectedPlaceMyPlaces] = useState(null);
     const [placesLength, setPlacesLength] = useState(0); //used just for the useEffect to work only when a place is added and not when a place is deleted
     const [selectedFilters, setSelectedFilters] = useState([]);
 
-    //uso esto para el control del logeo
-    const{session} =useSession();
 
-    session.onLogin(()=>{
-        setIsLogged(true)
-    })
+    
+    useEffect(() => {
 
-    session.onLogout(()=>{
-        setIsLogged(false)
-    })
-    const [isLogged, setIsLogged] = useState(true);
+        // Register the login and logout event listeners
+        session.onLogin(() => {
+            setUserWebId(session.info.webId);
+        }); 
+
+        session.onLogout(() => {
+            setUserWebId(null);
+            window.location.reload();
+        });
+    }, [session],);
+
+    
 
     useEffect(() => {
-        //savePlacesToStorage();//ahora lo hace AddPlacesSideBar.jsx
-        //console.log('places changed:', places);
+        const refreshMyPlacesList = async () => {
+            //Con una webId como esta "https://aliciafp15.inrupt.net/profile/card#me";
+            const parts = userWebId.split('.'); // Dividimos la cadena en partes utilizando el punto como separador
+            const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
+            setPlaces(await getPlaceMarksByUser(webId));
+        }
+
         refreshMyPlacesList();
-    }, []);
-
+    }, [userWebId]);
 
 
     useEffect(() => {
-
     }, [selectedPlaceAutocomplete]);
 
     useEffect(() => {
         console.log(selectedPoint)
-    }, [selectedPoint]);
+        console.log(session)
+    }, [selectedPoint,session]);
 
-    
-    //YA NO HACE NADA, SE ALMACENA LA CIUDAD DENTRO DE "ADDPLACESIDEBAR.JSX"
-    function savePlacesToStorage(){
-        //localStorage.setItem("places", JSON.stringify(places));
-    }
-    function getPlacesFromStorage(){
-        //return JSON.parse(localStorage.getItem("places"));
-    }
 
     function deletePlace(placeID){
         setPlaces(places.filter(place => place._id !== placeID));
     }
 
-  return (
-    <SessionProvider sessionId="log-in-example">
-          {!isLogged ? ( <LoginWall/> ) : (null)}
-              <Box className='MainBox' >   {/* Important: it is always necessary to put all the elements inside one parent element*/}
-                  <Header setSelectedPlaceAutocomplete={setSelectedPlaceAutocomplete} setSelectedFilters={setSelectedFilters}/> {/* Header: Logo, SearchPlacesBar, FilterByBar */}
-
-                  <Grid className='MainGrid' container spacing={3}>{/* 3 spaces between the grids */}
-                      {/* "container" means that it is a grid with more grids inside */}
-                      <Grid item
-                            md={5}> {/* 5 of 12 columns for the sidebar */}{/* "item" means that it is a grid inside a grid */}
-                          {/* "md" means that it is a medium screen size */}
+    const handleLogout = () => {
+        session.logout();
+    }
 
 
-                          <Sidebar places = {places} setPlaces = {setPlaces} selectedButton={selectedButton}
-                                   setSelectedButton={setSelectedButton} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
-                                   setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}  setPlacesLength={setPlacesLength}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
-                      </Grid>
+    return (
+        <SessionProvider sessionId="log-in-example">
 
-                      <Grid item
-                            md={7} > {/* 7 of 12 columns for the map */}
-                          <Paper className='MainMap' style={{borderRadius: '20px' }}> {/* "sx" is for adding specific styles to a MUI component */}
-                              <Map places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
-                                   setSelectedPoint={setSelectedPoint} selectedButton={selectedButton} selectedPlaceMyPlaces={selectedPlaceMyPlaces}
-                                   placesLength={placesLength} selectedFilters={selectedFilters}/>   {/* Map: OpenStreetMap working with Leaflet */}
-                          </Paper>
-                      </Grid>
-                  </Grid>
-              </Box>
+            <Box className='MainBox' >   {/* Important: it is always necessary to put all the elements inside one parent element*/}
+                <Header setSelectedPlaceAutocomplete={setSelectedPlaceAutocomplete} setSelectedFilters={setSelectedFilters}/> {/* Header: Logo, SearchPlacesBar, FilterByBar */}
+
+                <Grid className='MainGrid' container spacing={3}>{/* 3 spaces between the grids */}
+                    {/* "container" means that it is a grid with more grids inside */}
+                    <Grid item
+                          md={5}> {/* 5 of 12 columns for the sidebar */}{/* "item" means that it is a grid inside a grid */}
+                        {/* "md" means that it is a medium screen size */}
+
+
+                        <Sidebar places = {places} setPlaces = {setPlaces} selectedButton={selectedButton}
+                                 setSelectedButton={setSelectedButton} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
+                                 setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}  setPlacesLength={setPlacesLength}
+                                 userWebId={userWebId} handleLogout={handleLogout}
+                                 session={session}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
+                    </Grid>
+
+                    <Grid item
+                          md={7} > {/* 7 of 12 columns for the map */}
+                        <Paper className='MainMap' style={{borderRadius: '20px' }}> {/* "sx" is for adding specific styles to a MUI component */}
+                            <Map places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
+                                 setSelectedPoint={setSelectedPoint} selectedButton={selectedButton} selectedPlaceMyPlaces={selectedPlaceMyPlaces}
+                                 placesLength={placesLength} selectedFilters={selectedFilters}/>   {/* Map: OpenStreetMap working with Leaflet */}
+                        </Paper>
+                    </Grid>
+                </Grid>
+            </Box>
+            {session.info.isLoggedIn ? null : <LoginWall/>}
         </SessionProvider>
 
-  );
+    );
 }
 
 export default App;

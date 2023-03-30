@@ -9,7 +9,7 @@ const DetailsSidebar = (props) => {
     const classes = useStyles();
     const [content, setContent] = useState("");
     const {places, setPlaces, selectedPoint, setSelectedPoint, selectedButton,setSelectedPlaceMyPlaces,
-        deletePlace, setPlacesLength} = props;
+        deletePlace, setPlacesLength,userWebId, handleLogout, session} = props;
 
     const handleSelectedButton = (buttonName) => {
         switch (buttonName) {
@@ -39,7 +39,8 @@ const DetailsSidebar = (props) => {
                         </Typography>
                         <div>
                             <AddPlaceSidebar places={places} setPlaces={setPlaces} selectedPoint={selectedPoint}
-                                             setSelectedPoint={setSelectedPoint} setPlacesLength={setPlacesLength}/>
+                                             setSelectedPoint={setSelectedPoint} setPlacesLength={setPlacesLength}
+                                             userWebId={userWebId} session={session}/>
                         </div>
                     </>
                 );
@@ -78,7 +79,7 @@ const DetailsSidebar = (props) => {
                             Manage your profile.
                         </Typography>
                         <div>
-                            <ProfileSideBar />
+                            <ProfileSideBar userWebId={userWebId} handleLogout={handleLogout}/>
                         </div>
                     </>
                 );

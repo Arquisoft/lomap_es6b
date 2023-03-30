@@ -15,6 +15,12 @@ export default makeStyles((theme) => ({
     gridFilterByBar: {
         display: 'flex',
         justifyContent: 'center',
+    },
+
+    logoIcon: {
+        width: 'auto',
+        height: '60px',
+        paddingBottom: '10px',
     }
 
 }));
