@@ -10,6 +10,9 @@ import LoginWall from "./components/LoginWall/LoginWall";
 import { SessionProvider} from "@inrupt/solid-ui-react";
 import { useSession } from "@inrupt/solid-ui-react/dist";
 
+import { getPlaces } from './solidapi/solidAdapter';
+
+
 
 function App() {
 
@@ -48,9 +51,13 @@ function App() {
     useEffect(() => {
         const refreshMyPlacesList = async () => {
             //Con una webId como esta "https://aliciafp15.inrupt.net/profile/card#me";
-            const parts = userWebId.split('.'); // Dividimos la cadena en partes utilizando el punto como separador
-            const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
-            setPlaces(await getPlaceMarksByUser(webId));
+            //const parts = userWebId.split('.'); // Dividimos la cadena en partes utilizando el punto como separador
+            //const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
+            //setPlaces(await getPlaceMarksByUser(webId));
+
+            //sacando los lugares de los pods 
+           setPlaces(await getPlaces(session));
+
         }
 
         refreshMyPlacesList();
