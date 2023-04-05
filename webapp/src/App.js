@@ -51,6 +51,8 @@ function App() {
     useEffect(() => {
         const refreshMyPlacesList = async () => {
             //Con una webId como esta "https://aliciafp15.inrupt.net/profile/card#me";
+            if(userWebId == null)
+                return null;
             const parts = userWebId.split('.'); // Dividimos la cadena en partes utilizando el punto como separador
             //const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
             //setPlaces(await getPlaceMarksByUser(webId));

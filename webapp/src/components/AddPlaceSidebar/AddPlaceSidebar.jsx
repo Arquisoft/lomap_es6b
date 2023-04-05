@@ -26,12 +26,11 @@ function AddPlaceSidebar (props)  {
         place.webId = webId;//acotamos para guardar solo el nombre de usuario
         console.log( webId);
 
-        //GUARDA EL LUGAR EN LOS PODS!!
+        //guarda el Place en los pods con todos los datos
         savePlace(session,place);
         
-
-        //result = await addPlaceMark({name, description,latitude,longitude, category});//metodo importado, le damos los parametros necesarios
-        const result = await addPlaceMark(place);//metodo importado, le damos los parametros necesarios
+        //guarda en la base de datos la Placemark con los datos mínimos
+        const result = await addPlaceMark(place);//lat, long, webid, placeid
         setPlaces([...places, place]);
 
         if(result){
