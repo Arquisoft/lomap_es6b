@@ -8,14 +8,25 @@ export function savePlace(session, placeEntity) {
     if (session.info.webId == null) {
         return null;
     } 
-    console.log("la sesion: "+session);
-    console.log("info webid: "+session.info.webId);
 
+   
 
     let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");//https://username.inrupt.net
     let PlacesUrl = basicUrl.concat("/public", "/Places", "/" + place.id + ".json");//ruta donde queremos guardar el lugar
-    let blob = new Blob([JSON.stringify(place)], { type: "application/json" });
-    let file = new File([blob], place.id + ".json", { type: "application/json" });
+
+
+    place = JSON.parse(JSON.stringify(place))
+    //añadimos las caracteristicas de jsonld
+    place["@context"] = "https://schema.org/";
+    place["@type"] = "Place";
+
+
+
+    let blob = new Blob([JSON.stringify(place)],{ type: "application/ld+json" });
+    let file = new File([blob], place.id + ".jsonld", { type: blob.type });
+
+
+    //le paso el file creado con el blob
     writeData(session,PlacesUrl,file);
     return place;
 }
