@@ -5,6 +5,10 @@ import MyPlacesSidebar from "../MyPlacesSidebar/MyPlacesSidebar";
 import {Typography} from "@mui/material";
 import SettingsSideBar from "../SettingsSideBar/SettingsSideBar";
 import ProfileSideBar from "../ProfileSideBar/ProfileSideBar";
+import SocialSidebar from "../SocialSidebar/SocialSidebar";
+import { FOAF } from '@inrupt/lit-generated-vocab-common';
+import {getFriends} from "../../solidapi/solidAdapter";
+
 const DetailsSidebar = (props) => {
     const classes = useStyles();
     const [content, setContent] = useState("");
@@ -45,14 +49,18 @@ const DetailsSidebar = (props) => {
                     </>
                 );
             case 'Friends':
+                console.log(getFriends(userWebId));
                 return (
                     <>
                         <Typography className={classes.title} variant="h4">
                             Friends.
                         </Typography>
                         <Typography className={classes.subtitle} variant="subtitle1">
-                            We are still working on this feature...
+                            Explore your friends places.
                         </Typography>
+                        <div>
+                            <SocialSidebar userWebId={userWebId}/>
+                        </div>
                     </>
                 );
             case 'Settings':
