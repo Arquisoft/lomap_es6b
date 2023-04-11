@@ -773,10 +773,8 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_business_context">3.1. Business Context</h3>
-<div class="imageblock">
-<div class="content">
-<img src="./images/images/businessContextDiagram.png" alt="businessContextDiagram">
-</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/businessContextDiagram.png" alt="Business context diagram"></span></p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1196,7 +1194,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sect2">
 <h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
 <div class="paragraph">
-<p><span class="image"><img src="./images/7_DeploymentView.png" alt="Deployment view diagram"></span></p>
+<p><span class="image"><img src="./images/DeploymentView_dev.png" alt="Deployment view diagram"></span></p>
 </div>
 <div class="dlist">
 <dl>
@@ -1211,6 +1209,28 @@ In the production phase, the user experience should be maximized with a good int
 </dd>
 </dl>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Node/Artifact</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>restapi</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Listens on port 5000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>webapp</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Listens on port 3000</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_infrastructure_level_2">7.2. Infrastructure Level 2</h3>
