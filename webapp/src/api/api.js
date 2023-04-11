@@ -5,10 +5,8 @@ export async function addPlaceMark(placeMark){
     let response = await fetch(apiEndPoint+'/placeMarks/add', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
-
-        body: JSON.stringify({name:placeMark.name, description:placeMark.description,
+        body: JSON.stringify({
             latitude:placeMark.latitude, longitude:placeMark.longitude,
-            category:placeMark.category,
             webId:placeMark.webId, placeID:placeMark.placeID
         })
 
