@@ -500,12 +500,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#section-design-decisions">9. Design Decisions</a>
 <ul class="sectlevel2">
-<li><a href="#_ad_01_front_end_technology">9.1. AD-01: Front-End technology</a></li>
-<li><a href="#_ad_02_back_end_technology">9.2. AD-02: Back-End technology</a></li>
-<li><a href="#_ad_03_database_server">9.3. AD-03: Database server</a></li>
-<li><a href="#_ad_04_definitive_database_server">9.4. AD-04: Definitive Database server</a></li>
-<li><a href="#_ad_05_definitive_api_maps">9.5. AD-05: Definitive API Maps</a></li>
+<li><a href="#_ad_01_front_end_technology_react">9.1. AD-01: Front-End technology: React</a></li>
+<li><a href="#_ad_02_back_end_technology_node_js">9.2. AD-02: Back-End technology: Node.js</a></li>
+<li><a href="#_ad_03_database_server_mariadb">9.3. AD-03: Database server: MariaDb</a></li>
+<li><a href="#_ad_04_definitive_database_server_mongodb">9.4. AD-04: Definitive Database server: MongoDb</a></li>
+<li><a href="#_ad_05_definitive_api_maps_openstreet_maps">9.5. AD-05: Definitive API Maps: OpenStreet Maps</a></li>
 <li><a href="#_ad_06_postman">9.6. AD-06: Postman</a></li>
+<li><a href="#_ad_07_format_specificaction_for_pods_json">9.7. AD-07: Format Specificaction for PODs: JSON</a></li>
+<li><a href="#_ad_08_format_specificaction_for_pods_json_ld">9.8. AD-08: Format Specificaction for PODs: JSON-LD</a></li>
 </ul>
 </li>
 <li><a href="#section-quality-scenarios">10. Quality Requirements</a>
@@ -1325,39 +1327,8 @@ Part of the information can be stored in a centralised way in the database but a
 <div class="sect1">
 <h2 id="section-design-decisions">9. Design Decisions</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Technology</th>
-<th class="tableblock halign-left valign-top">Pros</th>
-<th class="tableblock halign-left valign-top">Cons</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>React</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">It has a big community full of documentation and solutions to our posible problems.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Due to its minimalist style, it leans to have lot of packages and external dependencies</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Node.js</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">One of the most used network app with lots of code. The Node packaged modules, npm, have already become huge and still growing.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">APIs used in NodeJs are unstable as they change frequently. It´s a bit difficult to deal with relational databases.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>MariaDb</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Easy to install, clear configuration files and works well with SQL standard.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">For technical support, users have to depend on the knowledge base and fórum. Is no longer completely compatible with MySQL, which makes migration a tedious process.</p></td>
-</tr>
-</tbody>
-</table>
 <div class="sect2">
-<h3 id="_ad_01_front_end_technology">9.1. AD-01: Front-End technology</h3>
+<h3 id="_ad_01_front_end_technology_react">9.1. AD-01: Front-End technology: React</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1376,7 +1347,7 @@ Part of the information can be stored in a centralised way in the database but a
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ad_02_back_end_technology">9.2. AD-02: Back-End technology</h3>
+<h3 id="_ad_02_back_end_technology_node_js">9.2. AD-02: Back-End technology: Node.js</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1395,11 +1366,11 @@ Part of the information can be stored in a centralised way in the database but a
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ad_03_database_server">9.3. AD-03: Database server</h3>
+<h3 id="_ad_03_database_server_mariadb">9.3. AD-03: Database server: MariaDb</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Status: Proposed</p>
+<p>Status: Rejected</p>
 </li>
 <li>
 <p>Context: We started thinking about which database server use in our project. Most of our data will be stored in PODs following the SOLID principles, so the database has lower priority.</p>
@@ -1414,7 +1385,7 @@ Part of the information can be stored in a centralised way in the database but a
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ad_04_definitive_database_server">9.4. AD-04: Definitive Database server</h3>
+<h3 id="_ad_04_definitive_database_server_mongodb">9.4. AD-04: Definitive Database server: MongoDb</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1433,7 +1404,7 @@ Part of the information can be stored in a centralised way in the database but a
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ad_05_definitive_api_maps">9.5. AD-05: Definitive API Maps</h3>
+<h3 id="_ad_05_definitive_api_maps_openstreet_maps">9.5. AD-05: Definitive API Maps: OpenStreet Maps</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1466,6 +1437,44 @@ Part of the information can be stored in a centralised way in the database but a
 </li>
 <li>
 <p>Consequences: We will use Postman API Platform.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ad_07_format_specificaction_for_pods_json">9.7. AD-07: Format Specificaction for PODs: JSON</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Status: Rejected</p>
+</li>
+<li>
+<p>Context: We had to choose a format to save the data in the SOLID pods. The options where JSON, JSON-LD , or RDF.</p>
+</li>
+<li>
+<p>Decision: We have decided to use JSON because we are more used to it.</p>
+</li>
+<li>
+<p>Consequences: Our app writes and reads files from pods in JSON.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ad_08_format_specificaction_for_pods_json_ld">9.8. AD-08: Format Specificaction for PODs: JSON-LD</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Status: Accepted</p>
+</li>
+<li>
+<p>Context: One of the requirements of this assignment is that there must exists interoperability between the data stored by the different applications. In <a href="https://github.com/Arquisoft/lomapSpec/issues/6">this issue</a> from the LomacSpec repository there was a discussion about which could be the best option.</p>
+</li>
+<li>
+<p>Decision: Despite not reaching an agreement, we have chosen to follow the JSON-LS format. It´s a point in between JSON and RDF.</p>
+</li>
+<li>
+<p>Consequences: We have to update our code in solidapi to follow the JSON-LS format, but this won´t be a big trouble.</p>
 </li>
 </ul>
 </div>
