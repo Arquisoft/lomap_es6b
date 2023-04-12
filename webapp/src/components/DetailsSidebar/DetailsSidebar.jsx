@@ -36,7 +36,7 @@ const DetailsSidebar = (props) => {
                         </Typography>
                         <div style={{ overflow: "auto", height: "70vh" }}>
                             <MyPlacesSidebar deletePlace={deletePlace} places={places} setPlaces={setPlaces}
-                                             setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces}/>
+                                             setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} session={session} />
                         </div>
                     </>
                 );
