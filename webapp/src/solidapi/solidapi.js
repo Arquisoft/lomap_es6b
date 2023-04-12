@@ -1,5 +1,5 @@
 ﻿import {
-    overwriteFile, getFile, getSolidDataset, getContainedResourceUrlAll
+    overwriteFile, getFile, getSolidDataset, getContainedResourceUrlAll, deleteFile
 } from '@inrupt/solid-client';
 
 
@@ -57,6 +57,17 @@ async function findDataInContainer(session, url) {
 }
 
 
+async function deleteData(session, url) {
+    let result = true;
+  try {
+    await deleteFile(url , { fetch: session.fetch });
+  } catch (error) {
+    result = false;
+  }
+  return result;
+  }
 
 
-export { writeData, findDataInContainer };
+
+
+export { writeData, findDataInContainer , deleteData};

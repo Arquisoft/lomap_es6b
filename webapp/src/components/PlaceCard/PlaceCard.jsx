@@ -4,8 +4,10 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import TravelExploreRoundedIcon from '@mui/icons-material/TravelExploreRounded';
 import DeletePlaceConfirmDialog from "../DeletePlaceConfirmDialog/DeletePlaceConfirmDialog";
 import {deletePlaceMarkByID} from "../../api/api";
+import { removePlace } from '../../solidapi/solidAdapter';
+
 const PlaceCard = (props) => {
-    const {place, setSelectedPlaceMyPlaces, deletePlace} = props;
+    const {place, setSelectedPlaceMyPlaces, deletePlace, session} = props;
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -16,10 +18,14 @@ const PlaceCard = (props) => {
         setOpen(false);
     };
 
-    const handleDeletePlace = () => {
+    const handleDeletePlace = async(req) => {
         console.log(place.id);
+        
+        console.log("El id que buscará en el pod es: " + place.id) //correcto, asi lo tenemos guardado en los pods por ahora
+        //no se si los guiones que separan en el log, y en la web de los pods no aparecen, afectan
+        removePlace(session,place.id)//TODO delete from the pods
         deletePlaceMarkByID(place._id); //deleting in the database
-        deletePlace(place._id); //deleting in the frontend
+        deletePlace(place.id); //deleting in the frontend PROBLEMA: ME BORRA TODA LA LISTA
     }
 
 

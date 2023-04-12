@@ -76,7 +76,7 @@ function App() {
 
 
     function deletePlace(placeID){
-        setPlaces(places.filter(place => place._id !== placeID));
+        setPlaces(places.filter(place => place.id !== placeID));//antes: place._id (por mongo)
     }
 
     const handleLogout = () => {

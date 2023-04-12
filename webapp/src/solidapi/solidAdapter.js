@@ -1,5 +1,5 @@
 ﻿import PlaceEntity from "../entities/PlaceEntity";
-import { writeData, findDataInContainer} from "./solidapi";
+import { writeData, findDataInContainer, deleteData} from "./solidapi";
 
 export function savePlace(session, placeEntity) {
     let place = placeEntity;
@@ -8,9 +8,6 @@ export function savePlace(session, placeEntity) {
     if (session.info.webId == null) {
         return null;
     } 
-
-   
-
     let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");//https://username.inrupt.net
     let PlacesUrl = basicUrl.concat("/public", "/Places", "/" + place.id + ".json");//ruta donde queremos guardar el lugar
 
@@ -50,5 +47,22 @@ export async function getPlaces(session){
         }
     }
     return places;
+}
+
+export async function removePlace(session,placeId){
+    //por hacer
+    // Obtenemos la lista de lugares existentes
+    const places = await getPlaces(session);
+
+    // Buscamos el lugar que queremos eliminar
+    const placeToDelete = places.find(place => place.id === placeId);
+
+    // Si el lugar existe, eliminamos su archivo
+    if (placeToDelete) {
+        const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
+        const placeUrl = basicUrl.concat("/public", "/Places", "/" + placeToDelete.id + ".json");
+        deleteData(session, placeUrl);
+    }
+    
 }
 
