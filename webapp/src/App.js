@@ -30,7 +30,7 @@ function App() {
     const [selectedPlaceMyPlaces, setSelectedPlaceMyPlaces] = useState(null);
     const [placesLength, setPlacesLength] = useState(0); //used just for the useEffect to work only when a place is added and not when a place is deleted
     const [selectedFilters, setSelectedFilters] = useState([]);
-
+    const [selectedFriendPlaces, setSelectedFriendPlaces] = useState([]);
 
     
     useEffect(() => {
@@ -101,7 +101,7 @@ function App() {
                                  setSelectedButton={setSelectedButton} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
                                  setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}  setPlacesLength={setPlacesLength}
                                  userWebId={userWebId} handleLogout={handleLogout}
-                                 session={session}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
+                                 session={session} selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
                     </Grid>
 
                     <Grid item
@@ -109,7 +109,8 @@ function App() {
                         <Paper className='MainMap' style={{borderRadius: '20px' }}> {/* "sx" is for adding specific styles to a MUI component */}
                             <Map places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
                                  setSelectedPoint={setSelectedPoint} selectedButton={selectedButton} selectedPlaceMyPlaces={selectedPlaceMyPlaces}
-                                 placesLength={placesLength} selectedFilters={selectedFilters}/>   {/* Map: OpenStreetMap working with Leaflet */}
+                                 placesLength={placesLength} selectedFilters={selectedFilters}
+                                 selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/>   {/* Map: OpenStreetMap working with Leaflet */}
                         </Paper>
                     </Grid>
                 </Grid>

@@ -6,7 +6,7 @@ import FriendCard from "../FriendCard/FriendCard";
 
 const SocialSidebar = (props) => {
     // const classes = useStyles();
-    const {userWebId} = props;
+    const {userWebId, setSelectedFriend,setSelectedButton} = props;
     const [friends, setFriends] = useState([]);
     useEffect(() => {
         getFriends(userWebId).then((friends) => {
@@ -17,7 +17,7 @@ const SocialSidebar = (props) => {
     const showFriends = () => {
         console.log(friends);
         return friends?.map((friend) => (
-            <FriendCard key={friend.friendURL} friend={friend} />
+            <FriendCard key={friend.friendURL} friend={friend} setSelectedButton={setSelectedButton} setSelectedFriend={setSelectedFriend} />
         ));
     };
 

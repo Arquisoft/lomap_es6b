@@ -9,7 +9,7 @@ import {VCARD} from "@inrupt/lit-generated-vocab-common";
 import {useStyles} from "tss-react/mui";
 const FriendCard = (props) => {
     const classes = useStyles();
-    const {friend} = props;
+    const {friend, setSelectedFriend, setSelectedButton} = props;
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -33,8 +33,8 @@ const FriendCard = (props) => {
                     component='div' style={{paddingBottom: '10px'}}
                     action={
                         <>
-                            <IconButton aria-label="view" >
-                                <MapIcon style={{color: '#6986e8'}}/>
+                            <IconButton aria-label="view" onClick={() => {setSelectedFriend(friend); setSelectedButton('Friend');}}>
+                                <MapIcon style={{color: '#6986e8'}} />
                             </IconButton>
                             <IconButton aria-label="menu" onClick={handleClickOpen}>
                                 <DeleteRoundedIcon style={{color: '#dc6868'}} />

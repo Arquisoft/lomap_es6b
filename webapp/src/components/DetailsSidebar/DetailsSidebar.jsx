@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import useStyles from "./styles";
 import AddPlaceSidebar from "../AddPlaceSidebar/AddPlaceSidebar";
 import MyPlacesSidebar from "../MyPlacesSidebar/MyPlacesSidebar";
@@ -7,14 +7,22 @@ import SettingsSideBar from "../SettingsSideBar/SettingsSideBar";
 import ProfileSideBar from "../ProfileSideBar/ProfileSideBar";
 import SocialSidebar from "../SocialSidebar/SocialSidebar";
 import { FOAF } from '@inrupt/lit-generated-vocab-common';
-import {getFriends} from "../../solidapi/solidAdapter";
+import {getFriends, getPlacesByWebId} from "../../solidapi/solidAdapter";
 
 const DetailsSidebar = (props) => {
     const classes = useStyles();
     const [content, setContent] = useState("");
-    const {places, setPlaces, selectedPoint, setSelectedPoint, selectedButton,setSelectedPlaceMyPlaces,
-        deletePlace, setPlacesLength,userWebId, handleLogout, session} = props;
+    const {places, setPlaces, selectedPoint, setSelectedPoint, setSelectedButton, selectedButton,setSelectedPlaceMyPlaces,
+        deletePlace, setPlacesLength,userWebId, handleLogout, session, selectedFriendPlaces, setSelectedFriendPlaces} = props;
+    const [selectedFriend, setSelectedFriend] = useState([]);
 
+
+    useEffect(() => {
+        let friendWebId = selectedFriend.friendURL;
+        getPlacesByWebId(session, friendWebId).then((places) => {
+            setSelectedFriendPlaces(places);
+        });
+    }, [selectedFriend],);
     const handleSelectedButton = (buttonName) => {
         switch (buttonName) {
             case 'MyPlaces' :
@@ -48,7 +56,7 @@ const DetailsSidebar = (props) => {
                         </div>
                     </>
                 );
-            case 'Friends':
+            case 'Social':
                 console.log(getFriends(userWebId));
                 return (
                     <>
@@ -59,7 +67,22 @@ const DetailsSidebar = (props) => {
                             Explore your friends places.
                         </Typography>
                         <div>
-                            <SocialSidebar userWebId={userWebId}/>
+                            <SocialSidebar userWebId={userWebId} setSelectedFriend={setSelectedFriend} setSelectedButton={setSelectedButton}/>
+                        </div>
+                    </>
+                );
+            case 'Friend':
+                return (
+                    <>
+                        <Typography className={classes.title} variant="h4">
+                            {selectedFriend.friendName}
+                        </Typography>
+                        <Typography className={classes.subtitle} variant="subtitle1">
+                            {selectedFriend.friendURL}
+                        </Typography>
+                        <div style={{ overflow: "auto", height: "70vh" }}>
+                            <MyPlacesSidebar places={selectedFriendPlaces} setPlaces={setPlaces}
+                                             setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces}/>
                         </div>
                     </>
                 );
