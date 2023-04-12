@@ -9,7 +9,7 @@ const Sidebar = (props) => {
 
     const {places, setPlaces, selectedButton, setSelectedButton, selectedPoint,
         setSelectedPoint,setSelectedPlaceMyPlaces,deletePlace, setPlacesLength, userWebId, handleLogout, session,
-        selectedFriendPlaces, setSelectedFriendPlaces} = props;
+        selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend} = props;
     const handleSelectedButtonChange = (selectedButton) => {
         setSelectedButton(selectedButton);
     };
@@ -28,7 +28,8 @@ const Sidebar = (props) => {
                                     setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}
                                     setPlacesLength={setPlacesLength} userWebId={userWebId} handleLogout={handleLogout}
                                     session={session} setSelectedButton={setSelectedButton}
-                                    selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/>
+                                    selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}
+                                    deleteFriend={deleteFriend}/>
                 </Grid>
             </Grid>
         </ div>

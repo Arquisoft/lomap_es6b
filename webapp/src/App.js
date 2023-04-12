@@ -79,6 +79,10 @@ function App() {
         setPlaces(places.filter(place => place.id !== placeID));//antes: place._id (por mongo)
     }
 
+    function deleteFriend(friendID) {
+
+    }
+
     const handleLogout = () => {
         session.logout();
     }

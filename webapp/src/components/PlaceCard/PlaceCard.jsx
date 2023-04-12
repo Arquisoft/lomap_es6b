@@ -7,7 +7,7 @@ import {deletePlaceMarkByID} from "../../api/api";
 import { removePlace } from '../../solidapi/solidAdapter';
 
 const PlaceCard = (props) => {
-    const {place, setSelectedPlaceMyPlaces, deletePlace, session} = props;
+    const {place, setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton } = props;
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -41,10 +41,11 @@ const PlaceCard = (props) => {
                             <IconButton aria-label="view" onClick={()=>setSelectedPlaceMyPlaces({lat: place.latitude, lng: place.longitude})}>
                                 <TravelExploreRoundedIcon style={{color: '#6986e8'}}/>
                             </IconButton>
-                            <IconButton aria-label="menu" onClick={handleClickOpen}>
-                                <DeleteRoundedIcon style={{color: '#dc6868'}} />
-                            </IconButton>
-
+                            {showDeleteButton ? (
+                                <IconButton aria-label="menu" onClick={handleClickOpen}>
+                                    <DeleteRoundedIcon style={{color: '#dc6868'}} />
+                                </IconButton>
+                            ) : null}
                         </>
                     }
                     title={<Typography variant="h5" style={{fontWeight: "bold"}}>{place.name}</Typography>}

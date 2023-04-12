@@ -5,7 +5,7 @@ import PlaceCard from "../PlaceCard/PlaceCard";
 import {Marker, Popup} from "react-leaflet";
 import List from '@mui/material/List';
 const MyPlacesSidebar = (props) => {
-    const {places, setPlaces,setSelectedPlaceMyPlaces, deletePlace, session} = props;
+    const {places, setPlaces,setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton} = props;
     const classes = useStyles();
 
    
@@ -14,7 +14,7 @@ const MyPlacesSidebar = (props) => {
         return props.places?.map((place)=> (
             console.log('key ' + place._id),
             <PlaceCard key={place._id} place={place} setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} 
-            deletePlace={deletePlace} session={session}/>
+            deletePlace={deletePlace} session={session} showDeleteButton = {showDeleteButton} />
         ))
             
     }
