@@ -10,6 +10,9 @@ import LoginWall from "./components/LoginWall/LoginWall";
 import { SessionProvider} from "@inrupt/solid-ui-react";
 import { useSession } from "@inrupt/solid-ui-react/dist";
 
+import { getPlaces } from './solidapi/solidAdapter';
+
+
 
 function App() {
 
@@ -27,7 +30,7 @@ function App() {
     const [selectedPlaceMyPlaces, setSelectedPlaceMyPlaces] = useState(null);
     const [placesLength, setPlacesLength] = useState(0); //used just for the useEffect to work only when a place is added and not when a place is deleted
     const [selectedFilters, setSelectedFilters] = useState([]);
-
+    const [selectedFriendPlaces, setSelectedFriendPlaces] = useState([]);
 
     
     useEffect(() => {
@@ -48,9 +51,15 @@ function App() {
     useEffect(() => {
         const refreshMyPlacesList = async () => {
             //Con una webId como esta "https://aliciafp15.inrupt.net/profile/card#me";
+            if(userWebId == null)
+                return null;
             const parts = userWebId.split('.'); // Dividimos la cadena en partes utilizando el punto como separador
-            const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
-            setPlaces(await getPlaceMarksByUser(webId));
+            //const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
+            //setPlaces(await getPlaceMarksByUser(webId));
+
+            //sacando los lugares de los pods 
+           setPlaces(await getPlaces(session));
+
         }
 
         refreshMyPlacesList();
@@ -67,7 +76,7 @@ function App() {
 
 
     function deletePlace(placeID){
-        setPlaces(places.filter(place => place._id !== placeID));
+        setPlaces(places.filter(place => place.id !== placeID));//antes: place._id (por mongo)
     }
 
     const handleLogout = () => {
@@ -92,7 +101,7 @@ function App() {
                                  setSelectedButton={setSelectedButton} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
                                  setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}  setPlacesLength={setPlacesLength}
                                  userWebId={userWebId} handleLogout={handleLogout}
-                                 session={session}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
+                                 session={session} selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
                     </Grid>
 
                     <Grid item
@@ -100,7 +109,8 @@ function App() {
                         <Paper className='MainMap' style={{borderRadius: '20px' }}> {/* "sx" is for adding specific styles to a MUI component */}
                             <Map places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
                                  setSelectedPoint={setSelectedPoint} selectedButton={selectedButton} selectedPlaceMyPlaces={selectedPlaceMyPlaces}
-                                 placesLength={placesLength} selectedFilters={selectedFilters}/>   {/* Map: OpenStreetMap working with Leaflet */}
+                                 placesLength={placesLength} selectedFilters={selectedFilters}
+                                 selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/>   {/* Map: OpenStreetMap working with Leaflet */}
                         </Paper>
                     </Grid>
                 </Grid>

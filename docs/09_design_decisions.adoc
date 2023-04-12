@@ -2,53 +2,36 @@
 == Design Decisions
 
 
-[options="header",cols="1,2,2"]
-|===
-|Technology
-|Pros
-|Cons
 
-| *React*
-| It has a big community full of documentation and solutions to our posible problems.
-| Due to its minimalist style, it leans to have lot of packages and external dependencies
 
-| *Node.js*
-| One of the most used network app with lots of code. The Node packaged modules, npm, have already become huge and still growing.
-| APIs used in NodeJs are unstable as they change frequently. It´s a bit difficult to deal with relational databases.
-
-| *MariaDb*
-| Easy to install, clear configuration files and works well with SQL standard.
-| For technical support, users have to depend on the knowledge base and fórum. Is no longer completely compatible with MySQL, which makes migration a tedious process.
-|===
-
-=== AD-01: Front-End technology
+=== AD-01: Front-End technology: React
 * Status: Accepted
 * Context: We had to choose the Front-End technology to use in our web development. 
 * Decision: We decided for React due to its huge community to solve our posible future problems. The other option was Angular or Vue, but the minimalism style of React made us selected it to make are work clearer. Vue is like the best of both worlds but the fact that its not supported by a big company, it has less support and popularity, takes us back.
 * Consequences: In this way we will take our first steps in React, hoping to solve our probleams easily.
 
-=== AD-02: Back-End technology
+=== AD-02: Back-End technology: Node.js
 * Status: Accepted
 * Context: We had to choose the Back-End technology to use in our web development. 
 * Decision: As we selected JavaScript as our language code, we have guided our decision to Node.js. Its one of the most used network apps so it gave us trust. For example, the last time I read one statics about back-end technology, Node.js had 49% of popularity. In this decision we didn´t have much doubt
 * Consequences: From now, we will start learning to work with Node.js. None of us has worked with Node earlier, so we wish we had few problems.
 
 
-=== AD-03: Database server
-* Status: Proposed
+=== AD-03: Database server: MariaDb
+* Status: Rejected
 * Context: We started thinking about which database server use in our project. Most of our data will be stored in PODs following the SOLID principles, so the database has lower priority.
 * Decision: We had to choose between a relational or non relational database. The most of us had worked before with HSQLDeveloper so this could have been an option, but didn´t win the spot. We selected, may change later, to try using MariaDb to experiment with a different database. A disadvantage that we read is that Node.js, the backend technology selected, works worst with relational databases.
 * Consequences: For now, we will try to work with MariaDb but this may change in the future.
 
 
-=== AD-04: Definitive Database server
+=== AD-04: Definitive Database server: MongoDb
 * Status: Accepted
 * Context: At first we thought using MariaDB as it is explained above. However, the fact that we will work with Node.js and that it doesn´t work well with relational databases, warned us.
 * Decision: As we haven´t started to implement yet, we decided to change to a non relational database to take less risk. Some of us had worked with it before and its easy to learn.
 * Consequences: We will use MongoDb as a database.
 
 
-=== AD-05: Definitive API Maps
+=== AD-05: Definitive API Maps: OpenStreet Maps
 * Status: Accepted
 * Context: At first we thought using Googple Maps because we are used to it. Some of us had worked with it before in aother subject. But when we searched more, we have seen that Google Maps API has a monthly limit of free requests. 
 * Decision: The range of decision is not very big, so we read about OpenStreet Maps and, as it is completely free and also popular, changed our decision.
@@ -60,4 +43,14 @@
 * Decision:  We chose Postman API Platform, which is an API platform for building and using APIs. It let us see the process of the REST methods and experiment with the connection between MongoDB and Node. 
 * Consequences: We will use Postman API Platform.
 
+=== AD-07: Format Specificaction for PODs: JSON
+* Status: Rejected
+* Context: We had to choose a format to save the data in the SOLID pods. The options where JSON, JSON-LD , or RDF.
+* Decision: We have decided to use JSON because we are more used to it.
+* Consequences: Our app writes and reads files from pods in JSON.
 
+=== AD-08: Format Specificaction for PODs: JSON-LD
+* Status: Accepted
+* Context: One of the requirements of this assignment is that there must exists interoperability between the data stored by the different applications. In https://github.com/Arquisoft/lomapSpec/issues/6[this issue] from the LomacSpec repository there was a discussion about which could be the best option.
+* Decision: Despite not reaching an agreement, we have chosen to follow the JSON-LS format. It´s a point in between JSON and RDF.
+* Consequences: We have to update our code in solidapi to follow the JSON-LS format, but this won´t be a big trouble.

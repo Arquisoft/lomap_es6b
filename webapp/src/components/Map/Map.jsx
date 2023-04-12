@@ -8,10 +8,10 @@ import L from 'leaflet';
 const Map = (props) => {
     const classes = useStyles(); //for styling
     const {selectedPlaceAutocomplete, places, selectedPoint, setSelectedPoint, selectedButton, selectedPlaceMyPlaces,
-        placesLength, selectedFilters} = props;
+        placesLength, selectedFilters, selectedFriendPlaces, setSelectedFriendPlaces} = props;
     const defaultCoordinates = { lat: 50.8504500, lng: 4.3487800 }; //default center coordinates (Brussels), just temporary
     const mapRef = useRef();
-
+    const [showingPlaces, setShowingPlaces] = useState(places);
 
 
     useEffect(() => {
@@ -39,6 +39,13 @@ const Map = (props) => {
         }
     }, [selectedPlaceMyPlaces]);
 
+    useEffect(() => {
+        setShowingPlaces(places);
+    }, [places, selectedButton]);
+
+    useEffect(() => {
+        setShowingPlaces(selectedFriendPlaces);
+    }, [selectedFriendPlaces]);
 
     const addIcon = new L.Icon({
         iconUrl: 'https://i.imgur.com/IkXb2tv.png',
@@ -65,8 +72,8 @@ const Map = (props) => {
     }
 
     const showPlaces = () => {
-        if(selectedFilters.length == 0){
-            return places?.map((place) => (
+        if(selectedFilters.length === 0){
+            return showingPlaces?.map((place) => (
                 <Marker key={place.id} position={{lat: place.latitude, lng: place.longitude}} icon={blueIcon}>
                     <Popup>
                         <div><Typography variant="subtitle1">{place.name} | {place.category}</Typography></div>
@@ -76,7 +83,7 @@ const Map = (props) => {
             ))
         }
         else{
-            let filteredPlaces = places?.filter((place) => {
+            let filteredPlaces = showingPlaces?.filter((place) => {
                 return selectedFilters.includes(place.category);
             } );
 
