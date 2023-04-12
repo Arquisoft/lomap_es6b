@@ -26,7 +26,7 @@ const IconsSidebar = (props) => {
             <IconButton className={classes.middleIconButton} onClick={() => handleButtonClick('AddPlace')}>
                 <AddLocationAltIcon/>
             </IconButton>
-            <IconButton className={classes.middleIconButton} onClick={() => handleButtonClick('Friends')}>
+            <IconButton className={classes.middleIconButton} onClick={() => handleButtonClick('Social')}>
                 <GroupsIcon/>
             </IconButton>
             <IconButton className={classes.middleIconButton} onClick={() => handleButtonClick('Settings')}>
