@@ -20,7 +20,19 @@ export function savePlace(session, placeEntity) {
         return null;
     } 
     let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");//https://username.inrupt.net
-    let PlacesUrl = basicUrl.concat("/public", "/Places", "/" + place.id + ".json");//ruta donde queremos guardar el lugar
+
+
+    let privacyOfPlace = place.privacy;
+    console.log(privacyOfPlace);
+    let PlacesUrl ="";
+    let PlacesUrlPublic ="";
+
+    if(privacyOfPlace === "Public"){
+        PlacesUrlPublic = basicUrl.concat("/public", "/Places", "/" + place.id + ".json");
+        PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
+    }else if(privacyOfPlace === "Private") {
+        PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
+    }
 
 
     place = JSON.parse(JSON.stringify(place))
@@ -35,7 +47,14 @@ export function savePlace(session, placeEntity) {
 
 
     //le paso el file creado con el blob
-    writeData(session,PlacesUrl,file);
+    if(privacyOfPlace === "Public") { //si es publico se guarda en la carpeta de contenido privado y en la de público
+        writeData(session,PlacesUrl,file);
+        writeData(session,PlacesUrlPublic,file);
+
+    }else {
+        writeData(session,PlacesUrl,file);
+
+    }
     return place;
 }
 
@@ -45,7 +64,7 @@ export async function getPlaces(session){
     } // Check if the webId is undefined
 
     let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-    let pointsUrl = basicUrl.concat("/public", "/Places/");
+    let pointsUrl = basicUrl.concat("/private", "/Places/");
 
     let places = [];
     let files = await findDataInContainer(session, pointsUrl);

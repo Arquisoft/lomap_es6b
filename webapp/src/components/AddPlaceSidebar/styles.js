@@ -9,6 +9,7 @@ export default makeStyles((theme) => ({
         margin: '25px',
         marginBottom: '5px',
         marginTop: '5px',
+        variant:"outlined",
     },
     title: {
         margin: '25px',
