@@ -90,8 +90,15 @@ export async function removePlace(session,placeId){
     // Si el lugar existe, eliminamos su archivo
     if (placeToDelete) {
         const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-        const placeUrl = basicUrl.concat("/public", "/Places", "/" + placeToDelete.id + ".json");
-        deleteData(session, placeUrl);
+        const placeUrl = basicUrl.concat("/private", "/Places", "/" + placeToDelete.id + ".json");
+
+        if (placeToDelete.privacy === "Public") {
+            deleteData(session, placeUrl);
+            const placeUrlPublic = basicUrl.concat("/public", "/Places", "/" + placeToDelete.id + ".json");
+            deleteData(session, placeUrlPublic);
+        }else {
+            deleteData(session, placeUrl);
+        }
     }
 }
     
