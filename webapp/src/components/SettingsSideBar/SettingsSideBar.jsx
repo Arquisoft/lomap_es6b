@@ -20,6 +20,7 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import {deleteAllPlaceMarks} from "../../api/api";
 import DeletePlaceConfirmDialog from "../DeletePlaceConfirmDialog/DeletePlaceConfirmDialog";
 import DeleteAllDataConfirmDialog from "../DeleteAllDataConfirmDialog/DeleteAllDataConfirmDialog";
+import {Alert, Snackbar} from "@mui/material";
 const SettingsSideBar = (props) => {
     const classes = useStyles();
 
@@ -29,6 +30,17 @@ const SettingsSideBar = (props) => {
 
     const [openAppearance, setOpenAppearance] = React.useState(false);
     const [openPrivacy, setOpenPrivacy] = React.useState(false);
+
+    const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+
+    const handleSnackbarOpen = () => {
+        setSnackbarOpen(true);
+    };
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
+
     const handleClickAppearance = () => {
         setOpenAppearance(!openAppearance);
     };
@@ -43,6 +55,7 @@ const SettingsSideBar = (props) => {
         deleteAllPlaceMarks();
         setPlaces([]);
         handleClose();
+        handleSnackbarOpen(); //abrimos el snackbar
     };
 
 
@@ -122,6 +135,11 @@ const SettingsSideBar = (props) => {
                 </nav>
             </Box>
             <DeleteAllDataConfirmDialog open={open} handleClose={handleClose} handleDeleteAll={handleDeleteAll}/>
+            <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
+                <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
+                    ¡all data removed successfully!
+                </Alert>
+            </Snackbar>
         </div>
     )
 }

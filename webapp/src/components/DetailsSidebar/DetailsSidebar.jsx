@@ -13,7 +13,7 @@ const DetailsSidebar = (props) => {
     const classes = useStyles();
     const [content, setContent] = useState("");
     const {places, setPlaces, selectedPoint, setSelectedPoint, setSelectedButton, selectedButton,setSelectedPlaceMyPlaces,
-        deletePlace, setPlacesLength,userWebId, handleLogout, session, selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend} = props;
+        deletePlace, setPlacesLength,userWebId, session, selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend} = props;
     const [selectedFriend, setSelectedFriend] = useState([]);
     const [showDeleteButton, setShowDeleteButton] =useState(true);
 
@@ -98,7 +98,7 @@ const DetailsSidebar = (props) => {
                             Customize your experience or delete all your data.
                         </Typography>
                         <div>
-                            <SettingsSideBar setPlaces={setPlaces}/>
+                            <SettingsSideBar setPlaces={setPlaces}  />
                         </div>
                     </>
                 );
@@ -112,7 +112,7 @@ const DetailsSidebar = (props) => {
                             Manage your profile.
                         </Typography>
                         <div>
-                            <ProfileSideBar userWebId={userWebId} handleLogout={handleLogout}/>
+                            <ProfileSideBar userWebId={userWebId}  session = {session}/>
                         </div>
                     </>
                 );

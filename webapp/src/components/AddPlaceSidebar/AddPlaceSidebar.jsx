@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, FormControl, MenuItem, Select, } from "@mui/material";
+import {Button, FormControl, MenuItem, Select, Alert, SnackBar, Snackbar} from "@mui/material";
 import TextField from "@mui/material/TextField";
 import useStyles from "./styles";
 import PlaceEntity from "../../entities/PlaceEntity";
@@ -12,6 +12,16 @@ function AddPlaceSidebar (props)  {
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
     const [privacy, setPrivacy] =  useState("");
+    const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+
+    const handleSnackbarOpen = () => {
+        setSnackbarOpen(true);
+    };
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
+
     const addPlace =  async(req) => {
         const place = new PlaceEntity();
         place.name = name;
@@ -39,9 +49,12 @@ function AddPlaceSidebar (props)  {
             console.log("{userWebId}" + {userWebId});
             //notificar el cambio al componente padre
             //props.OnUserListChange();
+            handleSnackbarOpen(); //abrir el snackbar
+
         } else {
             console.log("Ha habido un error en el registro");
         }
+
     }
 
 
@@ -108,6 +121,11 @@ function AddPlaceSidebar (props)  {
                 <Button className = {classes.textField} type='submit' variant="contained" onClick={addPlaceAndClearForm} disabled={!isFormComplete()}>Add place</Button>
 
             </FormControl>
+            <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
+                <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
+                    ¡Place successfully added!
+                </Alert>
+            </Snackbar>
         </div>
     );
 };
