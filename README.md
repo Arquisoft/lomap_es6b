@@ -6,7 +6,6 @@
 
 -Alicia Fernández Pushkina
 
--Jaime Sánchez Lorenzo
 
 
 
