@@ -3,6 +3,9 @@ name: CI for LOMAP_ES6B
 on:
   release:
     types: [published]
+  push:
+    branches:
+      - master
 
 jobs:
   unit-test-webapp:
