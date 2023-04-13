@@ -3,6 +3,14 @@
 import { writeData, findDataInContainer, deleteData} from "./solidapi";
 import * as solid from "@inrupt/solid-client";
 import {FOAF, VCARD} from "@inrupt/lit-generated-vocab-common";
+import {
+    getSolidDataset,
+    saveSolidDatasetAt,
+    removeUrlFromThing,
+    getThing,
+    getUrlAll,
+    setThing
+} from '@inrupt/solid-client';
 
 export function savePlace(session, placeEntity) {
     let place = placeEntity;
@@ -12,7 +20,19 @@ export function savePlace(session, placeEntity) {
         return null;
     } 
     let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");//https://username.inrupt.net
-    let PlacesUrl = basicUrl.concat("/public", "/Places", "/" + place.id + ".json");//ruta donde queremos guardar el lugar
+
+
+    let privacyOfPlace = place.privacy;
+    console.log(privacyOfPlace);
+    let PlacesUrl ="";
+    let PlacesUrlPublic ="";
+
+    if(privacyOfPlace === "Public"){
+        PlacesUrlPublic = basicUrl.concat("/public", "/Places", "/" + place.id + ".json");
+        PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
+    }else if(privacyOfPlace === "Private") {
+        PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
+    }
 
 
     place = JSON.parse(JSON.stringify(place))
@@ -27,7 +47,14 @@ export function savePlace(session, placeEntity) {
 
 
     //le paso el file creado con el blob
-    writeData(session,PlacesUrl,file);
+    if(privacyOfPlace === "Public") { //si es publico se guarda en la carpeta de contenido privado y en la de público
+        writeData(session,PlacesUrl,file);
+        writeData(session,PlacesUrlPublic,file);
+
+    }else {
+        writeData(session,PlacesUrl,file);
+
+    }
     return place;
 }
 
@@ -37,7 +64,7 @@ export async function getPlaces(session){
     } // Check if the webId is undefined
 
     let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-    let pointsUrl = basicUrl.concat("/public", "/Places/");
+    let pointsUrl = basicUrl.concat("/private", "/Places/");
 
     let places = [];
     let files = await findDataInContainer(session, pointsUrl);
@@ -63,8 +90,15 @@ export async function removePlace(session,placeId){
     // Si el lugar existe, eliminamos su archivo
     if (placeToDelete) {
         const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-        const placeUrl = basicUrl.concat("/public", "/Places", "/" + placeToDelete.id + ".json");
-        deleteData(session, placeUrl);
+        const placeUrl = basicUrl.concat("/private", "/Places", "/" + placeToDelete.id + ".json");
+
+        if (placeToDelete.privacy === "Public") {
+            deleteData(session, placeUrl);
+            const placeUrlPublic = basicUrl.concat("/public", "/Places", "/" + placeToDelete.id + ".json");
+            deleteData(session, placeUrlPublic);
+        }else {
+            deleteData(session, placeUrl);
+        }
     }
 }
     
@@ -111,4 +145,26 @@ export async function getFriends(webId){
     }
     return friends;
 }
+
+export async function deleteFriendPod(userWebId, friendwebID) {
+    //Obtenemos la lista de amigos
+    const friends = await getFriends(userWebId);
+
+    //Buscamos el amigo que queremos borrar
+    const friendToDelete = friends.find(friend => friend.friendURL === friendwebID);
+
+    // Si el amigo existe, lo eliminamos
+    if (friendToDelete) {
+        const updatedFriends = friends.filter(friend => friend.friendURL !== friendwebID);
+
+        // Actualizamos el documento de amigos
+        const myDataset = await solid.getSolidDataset(userWebId); //obtenemos el dataset de la URI
+        const theThing = await solid.getThing(myDataset, userWebId);
+        const friendsList = solid.getUrlAll(theThing, FOAF.knows);
+        let updatedList = friendsList.filter(friend => friend !== friendwebID);
+        await solid.removeUrl(myDataset, FOAF.knows, friendwebID);
+        await solid.saveSolidDatasetAt(userWebId, myDataset);
+    }
+}
+
 

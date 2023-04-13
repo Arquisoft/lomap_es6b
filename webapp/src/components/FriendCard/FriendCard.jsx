@@ -1,15 +1,17 @@
 import React from 'react';
 import {Card, CardContent, CardHeader, IconButton, Menu, MenuItem, Typography} from "@mui/material";
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import DeletePlaceConfirmDialog from "../DeletePlaceConfirmDialog/DeletePlaceConfirmDialog";
 import MapIcon from '@mui/icons-material/Map';
 import Avatar from "@mui/material/Avatar";
 import {Image} from "@inrupt/solid-ui-react";
 import {VCARD} from "@inrupt/lit-generated-vocab-common";
 import {useStyles} from "tss-react/mui";
+import DeleteFriendConfirmDialog from "../DeleteFriendConfirmDialog/DeleteFriendConfirmDialog";
+import { deleteFriendPod } from '../../solidapi/solidAdapter';
+
 const FriendCard = (props) => {
     const classes = useStyles();
-    const {friend, setSelectedFriend, setSelectedButton} = props;
+    const {friend, setSelectedFriend, setSelectedButton, deleteFriend, userWebId} = props;
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -22,13 +24,14 @@ const FriendCard = (props) => {
 
     const handleDeleteFriend = () => {
         console.log("DELETING FRIEND...");
+        deleteFriendPod(userWebId, "https://uo282249.inrupt.net/profile/card#me"); //deleting in the frontend
+
     }
 
     console.log(friend.profilePicture);
     return (
         <div>
             <Card style={{margin: '25px', marginTop:'0px'}}>
-
                 <CardHeader
                     component='div' style={{paddingBottom: '10px'}}
                     action={
@@ -52,7 +55,7 @@ const FriendCard = (props) => {
                     </Typography>
                 </CardContent>
             </Card>
-            <DeletePlaceConfirmDialog open={open} handleClose={handleClose} />
+            <DeleteFriendConfirmDialog open={open} handleClose={handleClose} handleDeleteFriend={handleDeleteFriend}/>
         </div>
     );
 };

@@ -11,7 +11,7 @@ function AddPlaceSidebar (props)  {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
-
+    const [privacy, setPrivacy] =  useState("");
     const addPlace =  async(req) => {
         const place = new PlaceEntity();
         place.name = name;
@@ -19,6 +19,7 @@ function AddPlaceSidebar (props)  {
         place.latitude = selectedPoint.lat;
         place.longitude = selectedPoint.lng;
         place.category = category;
+        place.privacy = privacy;
 
         //Con una webId como esta "https://aliciafp15.inrupt.net/profile/card#me";
         const parts = userWebId.split('.'); // Dividimos la cadena en partes utilizando el punto como separador
@@ -43,16 +44,18 @@ function AddPlaceSidebar (props)  {
         }
     }
 
+
     const classes = useStyles();
 
     function isFormComplete(){
-        return name !== "" && description !== ""  && category !== "";
+        return name !== "" && description !== ""  && category !== "" && privacy !== "";
     }
 
     function clearForm(){
         setName("");
         setDescription("");
         setCategory("");
+        setPrivacy("");
     }
 
     function addPlaceAndClearForm(){
@@ -61,8 +64,6 @@ function AddPlaceSidebar (props)  {
             clearForm();
         }
     }
- 
-   
 
     return (
         <div>
@@ -96,6 +97,14 @@ function AddPlaceSidebar (props)  {
                     <MenuItem value="Attractions">Attractions</MenuItem>
                 </Select>
 
+                <Select
+                    className = {classes.textField}
+                    value = {privacy}
+                    onChange={(e)=>setPrivacy(e.target.value)}>
+                    <MenuItem value="Public">Share place with my friends</MenuItem>
+                    <MenuItem value="Private">Store place privately</MenuItem>
+
+                </Select>
                 <Button className = {classes.textField} type='submit' variant="contained" onClick={addPlaceAndClearForm} disabled={!isFormComplete()}>Add place</Button>
 
             </FormControl>

@@ -7,6 +7,7 @@ import { LoginButton } from "@inrupt/solid-ui-react";
 import { useEffect } from 'react';
 const LoginWall = (props) => {
     const classes = useStyles();
+    const {setSession} = props;
     const [idp, setIdp] = useState("https://inrupt.net");
     const [currentUrl, setCurrentUrl] = useState("http://localhost:3000/");
 
