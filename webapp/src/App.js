@@ -1,24 +1,28 @@
 
 import './App.css';
-import {Box, Grid, Paper} from "@mui/material";
+import {Alert, Box, Grid, Paper, Snackbar} from "@mui/material";
 import Header from "./components/Header/Header";
 import Map from "./components/Map/Map";
 import Sidebar from "./components/Sidebar/Sidebar";
-import {useState, useEffect} from 'react';
-import  {getPlaceMarks} from './api/api';
+import React, {useState, useEffect} from 'react';
+import  {getPlaceMarksByUser} from './api/api';
 import LoginWall from "./components/LoginWall/LoginWall";
 import { SessionProvider} from "@inrupt/solid-ui-react";
 import { useSession } from "@inrupt/solid-ui-react/dist";
 
+import { getPlaces } from './solidapi/solidAdapter';
+
+
 
 function App() {
 
+    //uso esto para el control del logeo
+    const {session} = useSession();
 
-    //const [places, setPlaces] = useState(getPlacesFromStorage() || []);
+
+    const [userWebId, setUserWebId] = useState();
     const [places, setPlaces] = useState([]);
-    const refreshMyPlacesList = async () => {
-        setPlaces(await getPlaceMarks());//donde estÃ¡ este metodo?importado de la api rest
-    }
+
 
     const [selectedPoint, setSelectedPoint] = useState(null);
     const [selectedPlaceAutocomplete, setSelectedPlaceAutocomplete] = useState(null);
@@ -26,78 +30,76 @@ function App() {
     const [selectedPlaceMyPlaces, setSelectedPlaceMyPlaces] = useState(null);
     const [placesLength, setPlacesLength] = useState(0); //used just for the useEffect to work only when a place is added and not when a place is deleted
     const [selectedFilters, setSelectedFilters] = useState([]);
+    const [selectedFriendPlaces, setSelectedFriendPlaces] = useState([]);
+    const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
 
-    //uso esto para el control del logeo
-    const {session} = useSession();
-
-
-    const [isLogged, setIsLogged] = useState(localStorage.getItem("isLogged"));
-    const [userWebId, setUserWebId] = useState(localStorage.getItem("userWebId"));
     useEffect(() => {
-        // Check if the user has already logged in before
-        const locallySavedLogin = localStorage.getItem("isLogged");
-        if (locallySavedLogin === "true") {
-            setIsLogged(true);
-        }
 
         // Register the login and logout event listeners
         session.onLogin(() => {
-            setIsLogged(true);
-            localStorage.setItem("isLogged", "true");
             setUserWebId(session.info.webId);
-            localStorage.setItem("userWebId", session.info.webId);
-            window.location.reload();
-        });
+            handleSnackbarOpen();
+        }); 
 
         session.onLogout(() => {
-            setIsLogged(false);
-            localStorage.removeItem("isLogged");
             setUserWebId(null);
-            localStorage.removeItem("userWebId");
             window.location.reload();
         });
-    }, [session]);
+    }, [session],);
 
-    /*useEffect(() => {
-        localStorage.setItem("isLogged", JSON.stringify(isLogged));
-    }, [isLogged]);*/
+    
 
     useEffect(() => {
+        const refreshMyPlacesList = async () => {
+            //Con una webId como esta "https://aliciafp15.inrupt.net/profile/card#me";
+            if(userWebId == null)
+                return null;
+            const parts = userWebId.split('.'); // Dividimos la cadena en partes utilizando el punto como separador
+            //const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
+            //setPlaces(await getPlaceMarksByUser(webId));
+
+            //sacando los lugares de los pods 
+           setPlaces(await getPlaces(session));
+
+        }
+
         refreshMyPlacesList();
-    }, []);
-
+    }, [userWebId]);
 
 
     useEffect(() => {
-
     }, [selectedPlaceAutocomplete]);
 
     useEffect(() => {
         console.log(selectedPoint)
-    }, [selectedPoint]);
+        console.log(session)
+    }, [selectedPoint,session]);
 
 
     function deletePlace(placeID){
-        setPlaces(places.filter(place => place._id !== placeID));
+        setPlaces(places.filter(place => place.id !== placeID));//antes: place._id (por mongo)
     }
 
-    const handleLogout = () => {
-        session.logout();
+    function deleteFriend(friendID) {
+
     }
-    /*const checkIfLogged = () => {
-        let locallySavedLogin = JSON.parse(localStorage.getItem("isLogged")); // gets from the cookies if the user is logged in or not
-        if(!locallySavedLogin){
-            return <LoginWall/>
-        }else{
-            return null;
-        }
-    }*/
+
+    // const handleLogout = () => {
+    //     session.logout();
+    // }
+
+    const handleSnackbarOpen = () => {
+        setSnackbarOpen(true);
+    };
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
 
     return (
         <SessionProvider sessionId="log-in-example">
-            {/*{checkIfLogged()}*/}
-            {isLogged ? null : <LoginWall/>}
+
             <Box className='MainBox' >   {/* Important: it is always necessary to put all the elements inside one parent element*/}
                 <Header setSelectedPlaceAutocomplete={setSelectedPlaceAutocomplete} setSelectedFilters={setSelectedFilters}/> {/* Header: Logo, SearchPlacesBar, FilterByBar */}
 
@@ -111,7 +113,8 @@ function App() {
                         <Sidebar places = {places} setPlaces = {setPlaces} selectedButton={selectedButton}
                                  setSelectedButton={setSelectedButton} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
                                  setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}  setPlacesLength={setPlacesLength}
-                                 userWebId={userWebId} handleLogout={handleLogout}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
+                                 userWebId={userWebId} session={session} selectedFriendPlaces={selectedFriendPlaces}
+                                 setSelectedFriendPlaces={setSelectedFriendPlaces}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
                     </Grid>
 
                     <Grid item
@@ -119,11 +122,18 @@ function App() {
                         <Paper className='MainMap' style={{borderRadius: '20px' }}> {/* "sx" is for adding specific styles to a MUI component */}
                             <Map places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
                                  setSelectedPoint={setSelectedPoint} selectedButton={selectedButton} selectedPlaceMyPlaces={selectedPlaceMyPlaces}
-                                 placesLength={placesLength} selectedFilters={selectedFilters}/>   {/* Map: OpenStreetMap working with Leaflet */}
+                                 placesLength={placesLength} selectedFilters={selectedFilters}
+                                 selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/>   {/* Map: OpenStreetMap working with Leaflet */}
                         </Paper>
                     </Grid>
                 </Grid>
             </Box>
+            <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
+                <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
+                    ¡Login to your account successfully!
+                </Alert>
+            </Snackbar>
+            {session.info.isLoggedIn ? null : <LoginWall/>}
         </SessionProvider>
 
     );

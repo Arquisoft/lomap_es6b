@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {IconButton} from "@mui/material";
 import PlaceIcon from '@mui/icons-material/Place';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
@@ -7,8 +7,6 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import useStyles from "./styles";
 
-import handleButtonAction from '../DetailsSidebar/DetailsSidebar';
-import Sidebar from "../Sidebar/Sidebar";
 const IconsSidebar = (props) => {
     const classes = useStyles();
 
@@ -26,7 +24,7 @@ const IconsSidebar = (props) => {
             <IconButton className={classes.middleIconButton} onClick={() => handleButtonClick('AddPlace')}>
                 <AddLocationAltIcon/>
             </IconButton>
-            <IconButton className={classes.middleIconButton} onClick={() => handleButtonClick('Friends')}>
+            <IconButton className={classes.middleIconButton} onClick={() => handleButtonClick('Social')}>
                 <GroupsIcon/>
             </IconButton>
             <IconButton className={classes.middleIconButton} onClick={() => handleButtonClick('Settings')}>

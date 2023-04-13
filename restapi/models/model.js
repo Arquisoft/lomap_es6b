@@ -1,14 +1,6 @@
 const mongoose = require('mongoose');
 //CAMBIAR EL NOMBRE DE LA CLASE A PLACEMARK
 const dataSchema = new mongoose.Schema({
-    name: {
-        required: true,
-        type: String
-    },
-    description: {
-        required: false,
-        type: String
-    },
     latitude: {
         required:true,
         type: Number
@@ -17,8 +9,12 @@ const dataSchema = new mongoose.Schema({
         required:true,
         type: Number
     },
-    category: {
+    webId: {
         required: true,
+        type: String
+    },
+    placeId: {
+        required: false,//TODO
         type: String
     }
 })
