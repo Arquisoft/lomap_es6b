@@ -35,39 +35,37 @@ const FriendCard = (props) => {
     return (
         <div>
             <CombinedDataProvider datasetUrl={friendUrl} thingUrl={friendUrl}>
-            <Card style={{margin: '25px', marginTop:'0px'}}>
-                <CardHeader
-                    component='div' style={{paddingBottom: '10px'}}
-                    avatar={
-                    <Avatar className={classes.avatarImage}
-                        alt="Friend image profile">
-                        <Image property={VCARD.hasPhoto.iri.value}  style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'cover' }}/>
-                    </Avatar>
-                    }
-                    action={
-                        <>
-                            <IconButton aria-label="view" onClick={() => {setSelectedFriend(friend); setSelectedButton('Friend');}}>
-                                <MapIcon style={{color: '#6986e8'}} />
-                            </IconButton>
-                            <IconButton aria-label="menu" onClick={handleClickOpen}>
-                                <DeleteRoundedIcon style={{color: '#dc6868'}} />
-                            </IconButton>
-
-                        </>
-                    }
-                    title={<Typography variant="h5" style={{fontWeight: "bold"}}>{friend.friendName}</Typography>}
-                    // subheader={<Typography variant="h6" color="textSecondary">{place.category}</Typography>}
-                />
-                <CardContent component="div" style={{paddingTop: '0px'}} >
-                    <Typography variant="body2" component="p">
-                        {/*{place.description}*/}
-                        {part}
-                    </Typography>
-                </CardContent>
-            </Card>
-            <DeleteFriendConfirmDialog open={open} handleClose={handleClose} handleDeleteFriend={handleDeleteFriend}/>
+                <Card style={{margin: '25px', marginTop:'0px'}}>
+                    <CardHeader
+                        component='div' style={{paddingBottom: '10px'}}
+                        avatar={
+                            <Avatar className={classes.avatarImage}
+                                    alt="Friend image profile">
+                                    <Image property={VCARD.hasPhoto.iri.value}  style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'cover' }}/>
+                            </Avatar>
+                        }
+                        action={
+                            <>
+                                <IconButton aria-label="view" onClick={() => {setSelectedFriend(friend); setSelectedButton('Friend');}}>
+                                    <MapIcon style={{color: '#6986e8'}} />
+                                </IconButton>
+                                <IconButton aria-label="menu" onClick={handleClickOpen}>
+                                    <DeleteRoundedIcon style={{color: '#dc6868'}} />
+                                </IconButton>
+                            </>
+                        }
+                        title={<Typography variant="h5" style={{fontWeight: "bold"}}>{friend.friendName}</Typography>}
+                        // subheader={<Typography variant="h6" color="textSecondary">{place.category}</Typography>}
+                    />
+                    <CardContent component="div" style={{paddingTop: '0px'}} >
+                        <Typography variant="body2" component="p">
+                            {/*{place.description}*/}
+                            {part}
+                        </Typography>
+                    </CardContent>
+                </Card>
+                <DeleteFriendConfirmDialog open={open} handleClose={handleClose} handleDeleteFriend={handleDeleteFriend}/>
             </CombinedDataProvider>
-
         </div>
     );
 };
