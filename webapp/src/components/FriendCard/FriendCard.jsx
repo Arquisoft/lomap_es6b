@@ -3,7 +3,7 @@ import {Card, CardContent, CardHeader, IconButton, Menu, MenuItem, Typography} f
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import MapIcon from '@mui/icons-material/Map';
 import Avatar from "@mui/material/Avatar";
-import {Image} from "@inrupt/solid-ui-react";
+import {CombinedDataProvider, Image} from "@inrupt/solid-ui-react";
 import {VCARD} from "@inrupt/lit-generated-vocab-common";
 import {useStyles} from "tss-react/mui";
 import DeleteFriendConfirmDialog from "../DeleteFriendConfirmDialog/DeleteFriendConfirmDialog";
@@ -14,6 +14,9 @@ const FriendCard = (props) => {
     const {friend, setSelectedFriend, setSelectedButton, deleteFriend, userWebId} = props;
     const [open, setOpen] = React.useState(false);
 
+    const friendUrl = friend.friendURL;
+    const parts = friendUrl.split("/");
+    const part = parts[2].split(".")[0];
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -28,12 +31,19 @@ const FriendCard = (props) => {
 
     }
 
-    console.log(friend.profilePicture);
+   // console.log(friend.profilePicture);
     return (
         <div>
+            <CombinedDataProvider datasetUrl={friendUrl} thingUrl={friendUrl}>
             <Card style={{margin: '25px', marginTop:'0px'}}>
                 <CardHeader
                     component='div' style={{paddingBottom: '10px'}}
+                    avatar={
+                    <Avatar className={classes.avatarImage}
+                        alt="Friend image profile">
+                        <Image property={VCARD.hasPhoto.iri.value}  style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'cover' }}/>
+                    </Avatar>
+                    }
                     action={
                         <>
                             <IconButton aria-label="view" onClick={() => {setSelectedFriend(friend); setSelectedButton('Friend');}}>
@@ -51,11 +61,13 @@ const FriendCard = (props) => {
                 <CardContent component="div" style={{paddingTop: '0px'}} >
                     <Typography variant="body2" component="p">
                         {/*{place.description}*/}
-                        {friend.friendURL}
+                        {part}
                     </Typography>
                 </CardContent>
             </Card>
             <DeleteFriendConfirmDialog open={open} handleClose={handleClose} handleDeleteFriend={handleDeleteFriend}/>
+            </CombinedDataProvider>
+
         </div>
     );
 };

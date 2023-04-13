@@ -9,7 +9,7 @@ import {
     removeUrlFromThing,
     getThing,
     getUrlAll,
-    setThing
+    setThing, getNamedNode
 } from '@inrupt/solid-client';
 
 export function savePlace(session, placeEntity) {
@@ -123,6 +123,15 @@ export async function getPlacesByWebId(session, webId){
     return places;
 }
 
+export async function getFriendsImage(webId) {
+    if (webId == null) {
+        return null;
+    } // Check if the webId is undefined
+    let basicUrl = webId?.split("/").slice(0, 3).join("/");
+    let pictureUrl = basicUrl.concat("/profile", "/card/","photo/");
+
+    return pictureUrl;
+}
 
 export async function getFriends(webId){
     let myDataset = await solid.getSolidDataset(webId); // obtain the dataset from the URI
@@ -134,13 +143,20 @@ export async function getFriends(webId){
     for(let i in friendsURL){
         myDataset = await solid.getSolidDataset(friendsURL[i]); // obtain the dataset from the URI
         theThing = await solid.getThing(myDataset, friendsURL[i]);
+
+        //
         let name = solid.getStringNoLocale(theThing, FOAF.name);
+        // let hasPhoto = theThing.get(getNamedNode(VCARD.hasPhoto));
+        // let profilePicture = hasPhoto ? solid.getUrl(hasPhoto) : null;
+
         let friend = {
             friendURL:friendsURL[i],
             friendName:name,
             profilePicture:VCARD.hasPhoto.iri.value,
+            //profilePicture: profilePicture,
+            //profilePicture: getFriendsImage(friendsURL[i]),
         }
-        console.log(friend.profilePicture);
+        //console.log(friend.profilePicture);
         friends.push(friend);
     }
     return friends;
