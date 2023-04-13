@@ -1,5 +1,16 @@
 import React from 'react';
-import {Card, CardContent, CardHeader, IconButton, Menu, MenuItem, Typography, Chip} from "@mui/material";
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    IconButton,
+    Menu,
+    MenuItem,
+    Typography,
+    Chip,
+    Alert,
+    Snackbar
+} from "@mui/material";
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import TravelExploreRoundedIcon from '@mui/icons-material/TravelExploreRounded';
 import DeletePlaceConfirmDialog from "../DeletePlaceConfirmDialog/DeletePlaceConfirmDialog";
@@ -11,6 +22,8 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 const PlaceCard = (props) => {
     const {place, setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton } = props;
     const [open, setOpen] = React.useState(false);
+    const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -18,7 +31,17 @@ const PlaceCard = (props) => {
 
     const handleClose = () => {
         setOpen(false);
+
     };
+
+    const handleSnackbarOpen = () => {
+        setSnackbarOpen(true);
+    };
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
+
 
     const handleDeletePlace = () => {
         console.log(place.id);
@@ -30,13 +53,13 @@ const PlaceCard = (props) => {
 
         deletePlace(place.id); //deleting in the frontend
         handleClose();//cerrar la pestaña de dialogo
+        handleSnackbarOpen(); //abrir el snackbar
     }
 
 
     return (
         <div>
             <Card style={{margin: '25px', marginTop:'0px'}}>
-
                 <CardHeader
                     component='div' style={{paddingBottom: '10px'}}
                     action={
@@ -65,6 +88,12 @@ const PlaceCard = (props) => {
 
                 </CardContent>
             </Card>
+            <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
+                <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
+                    ¡Place successfully removed!
+                </Alert>
+            </Snackbar>
+
             <DeletePlaceConfirmDialog open={open} handleClose={handleClose} handleDeletePlace={handleDeletePlace}/>
         </div>
     );
