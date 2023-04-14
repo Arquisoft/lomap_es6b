@@ -6,16 +6,15 @@ import {Typography} from "@mui/material";
 import SettingsSideBar from "../SettingsSideBar/SettingsSideBar";
 import ProfileSideBar from "../ProfileSideBar/ProfileSideBar";
 import SocialSidebar from "../SocialSidebar/SocialSidebar";
-import { FOAF } from '@inrupt/lit-generated-vocab-common';
 import {getFriends, getPlacesByWebId} from "../../solidapi/solidAdapter";
 
 const DetailsSidebar = (props) => {
     const classes = useStyles();
-    const [content, setContent] = useState("");
+    const [setContent] = useState("");
     const {places, setPlaces, selectedPoint, setSelectedPoint, setSelectedButton, selectedButton,setSelectedPlaceMyPlaces,
         deletePlace, setPlacesLength,userWebId, session, selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend} = props;
     const [selectedFriend, setSelectedFriend] = useState([]);
-    const [showDeleteButton, setShowDeleteButton] =useState(true);
+    const [showDeleteButton] =useState(true);
 
     useEffect(() => {
         let friendWebId = selectedFriend.friendURL;

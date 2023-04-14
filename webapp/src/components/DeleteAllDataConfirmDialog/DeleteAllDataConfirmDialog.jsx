@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Paper} from "@mui/material";
+import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
 
 
 const DeleteAllDataConfirmDialog = (props) => {

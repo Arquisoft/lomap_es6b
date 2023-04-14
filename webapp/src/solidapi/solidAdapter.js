@@ -1,16 +1,7 @@
-﻿import PlaceEntity from "../entities/PlaceEntity";
-
+﻿
 import { writeData, findDataInContainer, deleteData} from "./solidapi";
 import * as solid from "@inrupt/solid-client";
 import {FOAF, VCARD} from "@inrupt/lit-generated-vocab-common";
-import {
-    getSolidDataset,
-    saveSolidDatasetAt,
-    removeUrlFromThing,
-    getThing,
-    getUrlAll,
-    setThing, getNamedNode
-} from '@inrupt/solid-client';
 
 export function savePlace(session, placeEntity) {
     let place = placeEntity;
@@ -143,20 +134,13 @@ export async function getFriends(webId){
     for(let i in friendsURL){
         myDataset = await solid.getSolidDataset(friendsURL[i]); // obtain the dataset from the URI
         theThing = await solid.getThing(myDataset, friendsURL[i]);
-
-        //
         let name = solid.getStringNoLocale(theThing, FOAF.name);
-        // let hasPhoto = theThing.get(getNamedNode(VCARD.hasPhoto));
-        // let profilePicture = hasPhoto ? solid.getUrl(hasPhoto) : null;
 
         let friend = {
             friendURL:friendsURL[i],
             friendName:name,
             profilePicture:VCARD.hasPhoto.iri.value,
-            //profilePicture: profilePicture,
-            //profilePicture: getFriendsImage(friendsURL[i]),
         }
-        //console.log(friend.profilePicture);
         friends.push(friend);
     }
     return friends;

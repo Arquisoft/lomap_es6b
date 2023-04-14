@@ -18,7 +18,6 @@ import SecurityIcon from '@mui/icons-material/Security';
 import SyncLockIcon from '@mui/icons-material/SyncLock';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import {deleteAllPlaceMarks} from "../../api/api";
-import DeletePlaceConfirmDialog from "../DeletePlaceConfirmDialog/DeletePlaceConfirmDialog";
 import DeleteAllDataConfirmDialog from "../DeleteAllDataConfirmDialog/DeleteAllDataConfirmDialog";
 import {Alert, Snackbar} from "@mui/material";
 const SettingsSideBar = (props) => {

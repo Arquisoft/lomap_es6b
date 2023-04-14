@@ -1,11 +1,9 @@
 import React from 'react';
-import {Typography} from "@mui/material";
 import useStyles from "./styles";
 import PlaceCard from "../PlaceCard/PlaceCard";
-import {Marker, Popup} from "react-leaflet";
-import List from '@mui/material/List';
+
 const MyPlacesSidebar = (props) => {
-    const {places, setPlaces,setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton} = props;
+    const {setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton} = props;
     const classes = useStyles();
 
    
