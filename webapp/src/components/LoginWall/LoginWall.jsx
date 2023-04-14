@@ -3,18 +3,16 @@ import useStyles from './styles';
 import {Button, Card, Typography} from "@mui/material";
 import { ReactComponent as Logo } from '../../full_logo_new.svg';
 import { useState } from 'react';
-import { LoginButton } from "@inrupt/solid-ui-react"; 
-import { useEffect } from 'react';
+import { LoginButton } from "@inrupt/solid-ui-react";
+
 const LoginWall = (props) => {
     const classes = useStyles();
-    const {setSession} = props;
-    const [idp, setIdp] = useState("https://inrupt.net");
-    const [currentUrl, setCurrentUrl] = useState("http://localhost:3000/");
+    const [idp] = useState("https://inrupt.net");
+    const [currentUrl] = useState("http://localhost:3000/");
 
     
   return (
     <div>
-
         <div className={classes.blurredBg} >
             <Card className={classes.loginCard}>
                 <Logo className={classes.logoIcon}/>
