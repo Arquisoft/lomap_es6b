@@ -13,9 +13,9 @@ const DetailsSidebar = (props) => {
     const classes = useStyles();
     const [content, setContent] = useState("");
     const {places, setPlaces, selectedPoint, setSelectedPoint, setSelectedButton, selectedButton,setSelectedPlaceMyPlaces,
-        deletePlace, setPlacesLength,userWebId, handleLogout, session, selectedFriendPlaces, setSelectedFriendPlaces} = props;
+        deletePlace, setPlacesLength,userWebId, session, selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend} = props;
     const [selectedFriend, setSelectedFriend] = useState([]);
-
+    const [showDeleteButton, setShowDeleteButton] =useState(true);
 
     useEffect(() => {
         let friendWebId = selectedFriend.friendURL;
@@ -36,7 +36,8 @@ const DetailsSidebar = (props) => {
                         </Typography>
                         <div style={{ overflow: "auto", height: "70vh" }}>
                             <MyPlacesSidebar deletePlace={deletePlace} places={places} setPlaces={setPlaces}
-                                             setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces}/>
+                                             setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} session={session}
+                                            showDeleteButton = {showDeleteButton}/>
                         </div>
                     </>
                 );
@@ -67,7 +68,7 @@ const DetailsSidebar = (props) => {
                             Explore your friends places.
                         </Typography>
                         <div>
-                            <SocialSidebar userWebId={userWebId} setSelectedFriend={setSelectedFriend} setSelectedButton={setSelectedButton}/>
+                            <SocialSidebar userWebId={userWebId} setSelectedFriend={setSelectedFriend} setSelectedButton={setSelectedButton} deleteFriend={deleteFriend}/>
                         </div>
                     </>
                 );
@@ -82,7 +83,8 @@ const DetailsSidebar = (props) => {
                         </Typography>
                         <div style={{ overflow: "auto", height: "70vh" }}>
                             <MyPlacesSidebar places={selectedFriendPlaces} setPlaces={setPlaces}
-                                             setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces}/>
+                                             setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces}
+                                             setShowDeleteButton = {false}/>
                         </div>
                     </>
                 );
@@ -96,7 +98,7 @@ const DetailsSidebar = (props) => {
                             Customize your experience or delete all your data.
                         </Typography>
                         <div>
-                            <SettingsSideBar setPlaces={setPlaces}/>
+                            <SettingsSideBar setPlaces={setPlaces}  />
                         </div>
                     </>
                 );
@@ -110,7 +112,7 @@ const DetailsSidebar = (props) => {
                             Manage your profile.
                         </Typography>
                         <div>
-                            <ProfileSideBar userWebId={userWebId} handleLogout={handleLogout}/>
+                            <ProfileSideBar userWebId={userWebId}  session = {session}/>
                         </div>
                     </>
                 );

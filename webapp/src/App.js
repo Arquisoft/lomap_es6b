@@ -1,10 +1,10 @@
 
 import './App.css';
-import {Box, Grid, Paper} from "@mui/material";
+import {Alert, Box, Grid, Paper, Snackbar} from "@mui/material";
 import Header from "./components/Header/Header";
 import Map from "./components/Map/Map";
 import Sidebar from "./components/Sidebar/Sidebar";
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import  {getPlaceMarksByUser} from './api/api';
 import LoginWall from "./components/LoginWall/LoginWall";
 import { SessionProvider} from "@inrupt/solid-ui-react";
@@ -31,13 +31,15 @@ function App() {
     const [placesLength, setPlacesLength] = useState(0); //used just for the useEffect to work only when a place is added and not when a place is deleted
     const [selectedFilters, setSelectedFilters] = useState([]);
     const [selectedFriendPlaces, setSelectedFriendPlaces] = useState([]);
+    const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
-    
+
     useEffect(() => {
 
         // Register the login and logout event listeners
         session.onLogin(() => {
             setUserWebId(session.info.webId);
+            handleSnackbarOpen();
         }); 
 
         session.onLogout(() => {
@@ -76,13 +78,24 @@ function App() {
 
 
     function deletePlace(placeID){
-        setPlaces(places.filter(place => place._id !== placeID));
+        setPlaces(places.filter(place => place.id !== placeID));//antes: place._id (por mongo)
     }
 
-    const handleLogout = () => {
-        session.logout();
+    function deleteFriend(friendID) {
+
     }
 
+    // const handleLogout = () => {
+    //     session.logout();
+    // }
+
+    const handleSnackbarOpen = () => {
+        setSnackbarOpen(true);
+    };
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
 
     return (
         <SessionProvider sessionId="log-in-example">
@@ -100,8 +113,8 @@ function App() {
                         <Sidebar places = {places} setPlaces = {setPlaces} selectedButton={selectedButton}
                                  setSelectedButton={setSelectedButton} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
                                  setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}  setPlacesLength={setPlacesLength}
-                                 userWebId={userWebId} handleLogout={handleLogout}
-                                 session={session} selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
+                                 userWebId={userWebId} session={session} selectedFriendPlaces={selectedFriendPlaces}
+                                 setSelectedFriendPlaces={setSelectedFriendPlaces}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
                     </Grid>
 
                     <Grid item
@@ -115,6 +128,11 @@ function App() {
                     </Grid>
                 </Grid>
             </Box>
+            <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
+                <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
+                    ¡Login to your account successfully!
+                </Alert>
+            </Snackbar>
             {session.info.isLoggedIn ? null : <LoginWall/>}
         </SessionProvider>
 

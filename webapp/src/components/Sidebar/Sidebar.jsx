@@ -8,8 +8,8 @@ const Sidebar = (props) => {
     const classes = useStyles();
 
     const {places, setPlaces, selectedButton, setSelectedButton, selectedPoint,
-        setSelectedPoint,setSelectedPlaceMyPlaces,deletePlace, setPlacesLength, userWebId, handleLogout, session,
-        selectedFriendPlaces, setSelectedFriendPlaces} = props;
+        setSelectedPoint,setSelectedPlaceMyPlaces,deletePlace, setPlacesLength, userWebId, session,
+        selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend} = props;
     const handleSelectedButtonChange = (selectedButton) => {
         setSelectedButton(selectedButton);
     };
@@ -26,9 +26,10 @@ const Sidebar = (props) => {
                     <DetailsSidebar places = {places} setPlaces = {setPlaces} selectedButton={selectedButton}
                                     selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
                                     setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}
-                                    setPlacesLength={setPlacesLength} userWebId={userWebId} handleLogout={handleLogout}
+                                    setPlacesLength={setPlacesLength} userWebId={userWebId}
                                     session={session} setSelectedButton={setSelectedButton}
-                                    selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/>
+                                    selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}
+                                    deleteFriend={deleteFriend}/>
                 </Grid>
             </Grid>
         </ div>
