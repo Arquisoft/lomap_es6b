@@ -67,7 +67,10 @@ const DetailsSidebar = (props) => {
                             Explore your friends places.
                         </Typography>
                         <div>
-                            <SocialSidebar userWebId={userWebId} setSelectedFriend={setSelectedFriend} setSelectedButton={setSelectedButton} deleteFriend={deleteFriend}/>
+                            <SocialSidebar userWebId={userWebId} setSelectedFriend={setSelectedFriend}
+                                           setSelectedButton={setSelectedButton} deleteFriend={deleteFriend}
+                                            session = {session}
+                            />
                         </div>
                     </>
                 );
