@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, FormControl, MenuItem, Select, Alert, SnackBar, Snackbar} from "@mui/material";
+import {Button, FormControl, MenuItem, Select, Alert, Snackbar} from "@mui/material";
 import TextField from "@mui/material/TextField";
 import useStyles from "./styles";
 import PlaceEntity from "../../entities/PlaceEntity";

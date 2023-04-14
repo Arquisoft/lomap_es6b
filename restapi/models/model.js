@@ -14,7 +14,7 @@ const dataSchema = new mongoose.Schema({
         type: String
     },
     placeId: {
-        required: false,//TODO
+        required: false,
         type: String
     }
 })

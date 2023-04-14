@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardContent, CardHeader, IconButton, Menu, MenuItem, Typography} from "@mui/material";
+import {Card, CardContent, CardHeader, IconButton, Typography} from "@mui/material";
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import MapIcon from '@mui/icons-material/Map';
 import Avatar from "@mui/material/Avatar";
@@ -11,7 +11,7 @@ import { deleteFriendPod } from '../../solidapi/solidAdapter';
 
 const FriendCard = (props) => {
     const classes = useStyles();
-    const {friend, setSelectedFriend, setSelectedButton, deleteFriend, userWebId} = props;
+    const {friend, setSelectedFriend, setSelectedButton, userWebId} = props;
     const [open, setOpen] = React.useState(false);
 
     const friendUrl = friend.friendURL;
@@ -31,7 +31,6 @@ const FriendCard = (props) => {
 
     }
 
-   // console.log(friend.profilePicture);
     return (
         <div>
             <CombinedDataProvider datasetUrl={friendUrl} thingUrl={friendUrl}>
@@ -59,7 +58,6 @@ const FriendCard = (props) => {
                     />
                     <CardContent component="div" style={{paddingTop: '0px'}} >
                         <Typography variant="body2" component="p">
-                            {/*{place.description}*/}
                             {part}
                         </Typography>
                     </CardContent>

@@ -1,14 +1,6 @@
-﻿/*
-import express, { Application, RequestHandler } from "express";
-import cors from 'cors';
-import bp from 'body-parser';
-import promBundle from 'express-prom-bundle';
-import api from "./api"; 
-*/
-
+﻿
 const express = require('express');
-//const Application = express.Application();
-//const RequestHandler = express.RequestHandler();
+
 
 const mongoose = require('mongoose');
 const cors = require('cors');
