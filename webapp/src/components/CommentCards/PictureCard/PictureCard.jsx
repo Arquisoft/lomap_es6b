@@ -9,7 +9,7 @@ import {useStyles} from "tss-react/mui";
 import DeleteFriendConfirmDialog from "../DeleteFriendConfirmDialog/DeleteFriendConfirmDialog";
 import { deleteFriendPod } from '../../solidapi/solidAdapter';
 
-const FriendCard = (props) => {
+const PictureCard = (props) => {
     const classes = useStyles();
     const {friend, setSelectedFriend, setSelectedButton, deleteFriend, userWebId} = props;
     const [open, setOpen] = React.useState(false);
@@ -39,12 +39,9 @@ const FriendCard = (props) => {
                     <CardHeader
                         component='div' style={{paddingBottom: '10px'}}
                         avatar={
-                            <Avatar style={{width: "65px",
-                                height: "65px",
-                                margin: 'auto',
-                                marginBottom:'10px'}}
+                            <Avatar className={classes.avatarImage}
                                     alt="Friend image profile">
-                                    <Image property={VCARD.hasPhoto.iri.value} style={{maxHeight: '65px'}}/>
+                                    <Image property={VCARD.hasPhoto.iri.value}  style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'cover' }}/>
                             </Avatar>
                         }
                         action={
@@ -58,14 +55,14 @@ const FriendCard = (props) => {
                             </>
                         }
                         title={<Typography variant="h5" style={{fontWeight: "bold"}}>{friend.friendName}</Typography>}
-                        subheader={<Typography variant="h6" color="textSecondary">{part}</Typography>}
+                        // subheader={<Typography variant="h6" color="textSecondary">{place.category}</Typography>}
                     />
-                    {/*<CardContent component="div" style={{paddingTop: '0px'}} >*/}
-                    {/*    <Typography variant="body2" component="p">*/}
-                    {/*        /!*{place.description}*!/*/}
-                    {/*        */}
-                    {/*    </Typography>*/}
-                    {/*</CardContent>*/}
+                    <CardContent component="div" style={{paddingTop: '0px'}} >
+                        <Typography variant="body2" component="p">
+                            {/*{place.description}*/}
+                            {part}
+                        </Typography>
+                    </CardContent>
                 </Card>
                 <DeleteFriendConfirmDialog open={open} handleClose={handleClose} handleDeleteFriend={handleDeleteFriend}/>
             </CombinedDataProvider>
@@ -73,4 +70,4 @@ const FriendCard = (props) => {
     );
 };
 
-export default FriendCard;
+export default PictureCard;
