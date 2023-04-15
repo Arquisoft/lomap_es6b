@@ -1,15 +1,15 @@
 import React from 'react';
-import {Card, CardContent, CardHeader, IconButton, Menu, MenuItem, Typography} from "@mui/material";
+import {Card, CardContent, CardHeader, IconButton, Menu, MenuItem, Rating, Typography} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import {CombinedDataProvider, Image, Text} from "@inrupt/solid-ui-react";
 import {VCARD} from "@inrupt/lit-generated-vocab-common";
 import {useStyles} from "tss-react/mui";
 
-const ImageCommentCard = (props) => {
+const RatingCommentCard = (props) => {
     const classes = useStyles();
-    const {key, image} = props;
+    const {key, rating} = props;
     const [open, setOpen] = React.useState(false);
-    const posterWebId = image.posterWebId;
+    const posterWebId = rating.posterWebId;
     //const friendUrl = friend.friendURL;
     const parts = posterWebId.split("/");
     const part = parts[2].split(".")[0];
@@ -53,7 +53,13 @@ const ImageCommentCard = (props) => {
                         // title={<Typography variant="h5" style={{ fontSize: "16px"}}>
                         //     {imageURL.text}
                         // </Typography>}
-                        title={<img src={image.text} style={{maxWidth: '100%', maxHeight: '30vh'}}/>}
+                        title={
+                            <Rating
+                                name="simple-controlled"
+                                value={rating.value}
+                                readOnly
+                            />
+                        }
                         subheader={<Typography variant="h6" color="textSecondary" style={{fontSize: "16px"}}><Text property={VCARD.fn.iri.value} /> | {part}</Typography>}
                     />
                     {/*<CardContent component="div" style={{paddingTop: '0px'}} >*/}
@@ -69,4 +75,4 @@ const ImageCommentCard = (props) => {
     );
 };
 
-export default ImageCommentCard;
+export default RatingCommentCard;

@@ -5,7 +5,7 @@ import {
     Button,
     FormControl,
     InputLabel,
-    MenuItem,
+    MenuItem, Rating,
     Select
 } from "@mui/material";
 import AddCommentButton from "./AddCommentButton/AddCommentButton";
@@ -17,6 +17,7 @@ import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
 import ImageCommentCard from "../CommentCards/ImageCommentCard/ImageCommentCard";
+import RatingCommentCard from "../CommentCards/RatingCommentCard/RatingCommentCard";
 
 const CommentsSidebar = (props) => {
     const classes = useStyles();
@@ -26,9 +27,10 @@ const CommentsSidebar = (props) => {
     const [openTextDialog, setOpenTextDialog] = React.useState(false);
     const [commentValue, setCommentValue] = useState('');
     const [imageValue, setImageValue] = useState('');
-
+    const [ratingValue, setRatingValue] = useState(-1);
     const [selectedCommentType, setSelectedCommentType] = useState('text');
     const [openImageDialog, setOpenImageDialog] = React.useState(false);
+    const [openRatingDialog, setOpenRatingDialog] = React.useState(false);
     const handleClickOpen = (value) => {
         console.log(value);
         if(value === "Add a text comment"){
@@ -36,6 +38,9 @@ const CommentsSidebar = (props) => {
         }
         if(value === "Add an image"){
             handleClickOpenImageDialog();
+        }
+        if(value === "Add a rating"){
+            handleClickOpenRatingDialog();
         }
 
     };
@@ -56,6 +61,14 @@ const CommentsSidebar = (props) => {
         setOpenImageDialog(false);
     };
 
+    const handleClickOpenRatingDialog = () => {
+        setOpenRatingDialog(true);
+    };
+
+    const handleCloseRatingDialog = () => {
+        setOpenRatingDialog(false);
+    };
+
     const showTextComments = () => {
         console.log(place.textComments);
         console.log("PLACE:")
@@ -69,8 +82,17 @@ const CommentsSidebar = (props) => {
         console.log(place.imageComments);
         console.log("PLACE:")
         console.log(place)
-        return place.imageComments?.map((imageURL) => (
-            <ImageCommentCard key={place.id} imageURL={imageURL}/>
+        return place.imageComments?.map((image) => (
+            <ImageCommentCard key={place.id} image={image}/>
+        ));
+    };
+
+    const showRatingComments = () => {
+        console.log(place.ratingComments);
+        console.log("PLACE:")
+        console.log(place)
+        return place.ratingComments?.map((rating) => (
+            <RatingCommentCard key={place.id} rating={rating}/>
         ));
     };
 
@@ -89,8 +111,17 @@ const CommentsSidebar = (props) => {
         console.log(place.imageComments)
         savePlace(session, place);
         handleCloseImageDialog();
-        setCommentValue("");
+        setImageValue("");
     }
+    const handleAddRatingComment = () => {
+        console.log(place.ratingComments)
+        place.ratingComments.push({posterWebId: userWebId, value: ratingValue});
+        console.log(place.ratingComments);
+        savePlace(session, place);
+        handleCloseRatingDialog();
+        setRatingValue(-1);
+    }
+
 
     const showData = () => {
         if(selectedCommentType === "text"){
@@ -98,6 +129,9 @@ const CommentsSidebar = (props) => {
         }
         else if(selectedCommentType === "image"){
             return showImageComments();
+        }
+        else if(selectedCommentType === "rating"){
+            return showRatingComments();
         }
         else return null;
     }
@@ -121,7 +155,7 @@ const CommentsSidebar = (props) => {
                     label="Type of comments to show"
                 >
                     <MenuItem onClick={()=>handleCommentTypeChange("text")} value={"text"}>Text comments</MenuItem>
-                    <MenuItem onClick={()=>handleCommentTypeChange("review")} value={"review"}>Reviews</MenuItem>
+                    <MenuItem onClick={()=>handleCommentTypeChange("rating")} value={"rating"}>Ratings</MenuItem>
                     <MenuItem onClick={()=>handleCommentTypeChange("image")} value={"image"}>Images</MenuItem>
                 </Select>
             </FormControl>
@@ -167,6 +201,34 @@ const CommentsSidebar = (props) => {
             <DialogActions>
                 <Button onClick={handleCloseImageDialog}>Cancel</Button>
                 <Button onClick={handleAddImageComment}>Add</Button>
+            </DialogActions>
+        </Dialog>
+
+        <Dialog  open={openRatingDialog} onClose={handleCloseRatingDialog}>
+            <DialogTitle style={{marginBottom: '-10px'}}>Add a rating</DialogTitle>
+            <DialogContent >
+                <DialogContentText style={{marginBottom: '12px'}}>
+                    It will be posted on the place page.
+                </DialogContentText>
+                {/*<TextField style={{minWidth: '450px'}}*/}
+                {/*           autoFocus*/}
+                {/*           id="outlined-multiline-static"*/}
+                {/*           label="Paste your rating URL here"*/}
+                {/*           fullWidth*/}
+                {/*           value={ratingValue} // bind TextField value to ratingValue state*/}
+                {/*           onChange={(e) => setRatingValue(e.target.value)}*/}
+                {/*/>*/}
+                <Rating
+                    name="simple-controlled"
+                    value={ratingValue}
+                    onChange={(event, newValue) => {
+                        setRatingValue(newValue);
+                    }}
+                />
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={handleCloseRatingDialog}>Cancel</Button>
+                <Button onClick={handleAddRatingComment}>Add</Button>
             </DialogActions>
         </Dialog>
 

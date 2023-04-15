@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import CommentsSidebar from "../CommentsSidebar";
 
-const options = ['Add a text comment', 'Add an image', 'Add a review'];
+const options = ['Add a text comment', 'Add an image', 'Add a rating'];
 
 const SplitButton = (props) => {
     const {handleClickOpen} = props;
@@ -77,7 +77,6 @@ const SplitButton = (props) => {
                                     {options.map((option, index) => (
                                         <MenuItem
                                             key={option}
-                                            disabled={index === 2}
                                             selected={index === selectedIndex}
                                             onClick={(event) => handleMenuItemClick(event, index)}
                                         >

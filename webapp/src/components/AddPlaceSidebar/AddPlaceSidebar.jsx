@@ -33,6 +33,7 @@ function AddPlaceSidebar (props)  {
         place.privacy = privacy;
         place.textComments = [];
         place.imageComments = [];
+        place.ratingComments = [];
         const { v4: uuidv4 } = require('uuid');
         place.id = uuidv4();//actualmente se guarda en los pods, con un id aleatorio
 
