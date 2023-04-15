@@ -1,5 +1,5 @@
 export default class PlaceEntity {
-    constructor(id, category, name, description, latitude, longitude, webId, comments,privacy){
+    constructor(id, category, name, description, latitude, longitude, webId, textComments,privacy, imageComments){
         this.id = id;
         this.category = category;
         this.name = name;
@@ -7,7 +7,8 @@ export default class PlaceEntity {
         this.latitude = latitude;
         this.longitude = longitude;
         this.webId = webId;
-        this.textComments = comments;
+        this.textComments = textComments;
         this.privacy = privacy;
+        this.imageComments = imageComments;
     }
 }

@@ -9,7 +9,7 @@ import {useStyles} from "tss-react/mui";
 import DeleteFriendConfirmDialog from "../DeleteFriendConfirmDialog/DeleteFriendConfirmDialog";
 import { deleteFriendPod } from '../../solidapi/solidAdapter';
 
-const ReviewCard = (props) => {
+const ReviewCommentCard = (props) => {
     const classes = useStyles();
     const {friend, setSelectedFriend, setSelectedButton, deleteFriend, userWebId} = props;
     const [open, setOpen] = React.useState(false);
@@ -70,4 +70,4 @@ const ReviewCard = (props) => {
     );
 };
 
-export default ReviewCard;
+export default ReviewCommentCard;

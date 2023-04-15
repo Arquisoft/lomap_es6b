@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import CommentsSidebar from "../CommentsSidebar";
 
-const options = ['Add a text comment', 'Add a picture', 'Add a review'];
+const options = ['Add a text comment', 'Add an image', 'Add a review'];
 
 const SplitButton = (props) => {
     const {handleClickOpen} = props;
@@ -42,7 +42,7 @@ const SplitButton = (props) => {
     return (
         <React.Fragment>
             <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-                <Button onClick={handleClickOpen}>{options[selectedIndex]}</Button>
+                <Button onClick={()=>handleClickOpen(options[selectedIndex])}>{options[selectedIndex]}</Button>
                 <Button
                     size="small"
                     aria-controls={open ? 'split-button-menu' : undefined}
@@ -77,7 +77,7 @@ const SplitButton = (props) => {
                                     {options.map((option, index) => (
                                         <MenuItem
                                             key={option}
-                                            disabled={index === 2 || index === 1}
+                                            disabled={index === 2}
                                             selected={index === selectedIndex}
                                             onClick={(event) => handleMenuItemClick(event, index)}
                                         >
