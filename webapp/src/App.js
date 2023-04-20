@@ -5,7 +5,6 @@ import Header from "./components/Header/Header";
 import Map from "./components/Map/Map";
 import Sidebar from "./components/Sidebar/Sidebar";
 import React, {useState, useEffect} from 'react';
-import  {getPlaceMarksByUser} from './api/api';
 import LoginWall from "./components/LoginWall/LoginWall";
 import { SessionProvider} from "@inrupt/solid-ui-react";
 import { useSession } from "@inrupt/solid-ui-react/dist";
@@ -14,7 +13,7 @@ import { getPlaces } from './solidapi/solidAdapter';
 
 
 
-function App() {
+const App = () => {
 
     //uso esto para el control del logeo
     const {session} = useSession();
@@ -40,7 +39,7 @@ function App() {
         session.onLogin(() => {
             setUserWebId(session.info.webId);
             handleSnackbarOpen();
-        }); 
+        });
 
         session.onLogout(() => {
             setUserWebId(null);
@@ -48,7 +47,7 @@ function App() {
         });
     }, [session],);
 
-    
+
 
     useEffect(() => {
         const refreshMyPlacesList = async () => {
@@ -59,7 +58,7 @@ function App() {
             //const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
             //setPlaces(await getPlaceMarksByUser(webId));
 
-            //sacando los lugares de los pods 
+            //sacando los lugares de los pods
            setPlaces(await getPlaces(session));
 
         }
@@ -98,6 +97,7 @@ function App() {
     };
 
     return (
+        <div>
         <SessionProvider sessionId="log-in-example">
 
             <Box className='MainBox' >   {/* Important: it is always necessary to put all the elements inside one parent element*/}
@@ -135,7 +135,7 @@ function App() {
             </Snackbar>
             {session.info.isLoggedIn ? null : <LoginWall/>}
         </SessionProvider>
-
+        </div>
     );
 }
 
