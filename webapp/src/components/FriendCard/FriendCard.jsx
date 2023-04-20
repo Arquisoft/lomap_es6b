@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardContent, CardHeader, IconButton, Typography} from "@mui/material";
+import {Card, CardContent, CardHeader, IconButton, Menu, MenuItem, Typography} from "@mui/material";
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import MapIcon from '@mui/icons-material/Map';
 import Avatar from "@mui/material/Avatar";
@@ -11,7 +11,7 @@ import { deleteFriendPod } from '../../solidapi/solidAdapter';
 
 const FriendCard = (props) => {
     const classes = useStyles();
-    const {friend, setSelectedFriend, setSelectedButton, userWebId} = props;
+    const {friend, setSelectedFriend, setSelectedButton, deleteFriend, userWebId} = props;
     const [open, setOpen] = React.useState(false);
 
     const friendUrl = friend.friendURL;
@@ -31,6 +31,7 @@ const FriendCard = (props) => {
 
     }
 
+   // console.log(friend.profilePicture);
     return (
         <div>
             <CombinedDataProvider datasetUrl={friendUrl} thingUrl={friendUrl}>
@@ -38,9 +39,12 @@ const FriendCard = (props) => {
                     <CardHeader
                         component='div' style={{paddingBottom: '10px'}}
                         avatar={
-                            <Avatar className={classes.avatarImage}
+                            <Avatar style={{width: "65px",
+                                height: "65px",
+                                margin: 'auto',
+                                marginBottom:'10px'}}
                                     alt="Friend image profile">
-                                    <Image property={VCARD.hasPhoto.iri.value}  style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'cover' }}/>
+                                    <Image property={VCARD.hasPhoto.iri.value} style={{maxHeight: '65px'}}/>
                             </Avatar>
                         }
                         action={
@@ -54,13 +58,14 @@ const FriendCard = (props) => {
                             </>
                         }
                         title={<Typography variant="h5" style={{fontWeight: "bold"}}>{friend.friendName}</Typography>}
-                        // subheader={<Typography variant="h6" color="textSecondary">{place.category}</Typography>}
+                        subheader={<Typography variant="h6" color="textSecondary">{part}</Typography>}
                     />
-                    <CardContent component="div" style={{paddingTop: '0px'}} >
-                        <Typography variant="body2" component="p">
-                            {part}
-                        </Typography>
-                    </CardContent>
+                    {/*<CardContent component="div" style={{paddingTop: '0px'}} >*/}
+                    {/*    <Typography variant="body2" component="p">*/}
+                    {/*        /!*{place.description}*!/*/}
+                    {/*        */}
+                    {/*    </Typography>*/}
+                    {/*</CardContent>*/}
                 </Card>
                 <DeleteFriendConfirmDialog open={open} handleClose={handleClose} handleDeleteFriend={handleDeleteFriend}/>
             </CombinedDataProvider>
