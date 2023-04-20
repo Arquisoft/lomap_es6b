@@ -4,8 +4,6 @@ import {
     CardContent,
     CardHeader,
     IconButton,
-    Menu,
-    MenuItem,
     Typography,
     Chip,
     Alert,
@@ -48,7 +46,7 @@ const PlaceCard = (props) => {
         
         console.log("El id que buscará en el pod es: " + place.id) //correcto, asi lo tenemos guardado en los pods por ahora
         //no se si los guiones que separan en el log, y en la web de los pods no aparecen, afectan
-        removePlace(session,place.id)//TODO delete from the pods
+        removePlace(session,place.id)// delete from the pods
         deletePlaceMarkByID(place._id); //deleting in the database
 
         deletePlace(place.id); //deleting in the frontend

@@ -7,12 +7,11 @@ import ListItem from '@mui/material/ListItem';
 import Card from '@mui/material/Card';
 import {Alert, Button, CardContent, Snackbar, Typography} from "@mui/material";
 import {
-    useSession,
     CombinedDataProvider,
     Image,
     Text,
 } from "@inrupt/solid-ui-react";
-import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
+import { VCARD } from "@inrupt/lit-generated-vocab-common";
 
 const ProfileSideBar = (props) => {
     const classes = useStyles();
