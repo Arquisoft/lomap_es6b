@@ -6,18 +6,17 @@ import {Typography} from "@mui/material";
 import SettingsSideBar from "../SettingsSideBar/SettingsSideBar";
 import ProfileSideBar from "../ProfileSideBar/ProfileSideBar";
 import SocialSidebar from "../SocialSidebar/SocialSidebar";
-import { FOAF } from '@inrupt/lit-generated-vocab-common';
 import {getFriends, getPlacesByWebId} from "../../solidapi/solidAdapter";
 import CommentsSidebar from "../CommentsSidebar/CommentsSidebar";
 
 const DetailsSidebar = (props) => {
     const classes = useStyles();
-    const [content, setContent] = useState("");
+    const [setContent] = useState("");
     const {places, setPlaces, selectedPoint, setSelectedPoint, setSelectedButton, selectedButton,setSelectedPlaceMyPlaces,
         deletePlace, setPlacesLength,userWebId, session, selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend} = props;
     const [selectedFriend, setSelectedFriend] = useState([]);
     const [selectedPlaceComment, setSelectedPlaceComment] = useState([]);
-    const [showDeleteButton, setShowDeleteButton] =useState(true);
+    const [showDeleteButton] =useState(true);
     const selectedFriendUsername = selectedFriend.friendURL?.split("/")[2].split(".")[0]
 
     useEffect(() => {
@@ -72,7 +71,11 @@ const DetailsSidebar = (props) => {
                             Explore your friends places.
                         </Typography>
                         <div style={{ overflow: "auto", height: "70vh" }}>
-                            <SocialSidebar userWebId={userWebId} setSelectedFriend={setSelectedFriend} setSelectedButton={setSelectedButton} deleteFriend={deleteFriend}/>
+                            <SocialSidebar userWebId={userWebId}
+                                           setSelectedFriend={setSelectedFriend}
+                                           setSelectedButton={setSelectedButton}
+                                           deleteFriend={deleteFriend}
+                                           session = {session}/>
                         </div>
                     </>
                 );

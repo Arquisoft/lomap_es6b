@@ -121,15 +121,6 @@ const Map = (props) => {
 
             {showAddPlaceMarker()}
 
-            //{/*{places?.map((place) => (
-                <Marker key={place.id} position={{lat: place.latitude, lng: place.longitude}} icon={blueIcon}>
-                    <Popup>
-                        <div><Typography variant="subtitle1">{place.name} | {place.category}</Typography></div>
-                        <div><Typography variant="subtitle3">{place.description}</Typography></div>
-                    </Popup>
-                </Marker>
-           // ))}*/}
-
             {showPlaces()}
 
       </MapContainer>
