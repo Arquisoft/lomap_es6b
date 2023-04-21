@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Grid} from "@mui/material";
 import IconsSidebar from "../IconsSidebar/IconsSidebar";
 import useStyles from "./styles";
@@ -8,7 +8,7 @@ const Sidebar = (props) => {
     const classes = useStyles();
 
     const {places, setPlaces, selectedButton, setSelectedButton, selectedPoint,
-        setSelectedPoint,setSelectedPlaceMyPlaces,deletePlace, setPlacesLength, userWebId, handleLogout, session,
+        setSelectedPoint,setSelectedPlaceMyPlaces,deletePlace, setPlacesLength, userWebId, session,
         selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend} = props;
     const handleSelectedButtonChange = (selectedButton) => {
         setSelectedButton(selectedButton);
@@ -26,7 +26,7 @@ const Sidebar = (props) => {
                     <DetailsSidebar places = {places} setPlaces = {setPlaces} selectedButton={selectedButton}
                                     selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
                                     setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}
-                                    setPlacesLength={setPlacesLength} userWebId={userWebId} handleLogout={handleLogout}
+                                    setPlacesLength={setPlacesLength} userWebId={userWebId}
                                     session={session} setSelectedButton={setSelectedButton}
                                     selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}
                                     deleteFriend={deleteFriend}/>

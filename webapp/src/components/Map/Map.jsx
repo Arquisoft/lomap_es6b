@@ -1,5 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent} from "react-leaflet";
+// import {MapContainer} from "react-leaflet";
+// import {Marker} from "react-leaflet";
+// import {Popup} from "react-leaflet";
+// import {TileLayer} from "react-leaflet";
+// import {useMapEvent} from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMapEvent} from "react-leaflet";
 import useStyles from './styles';
 import 'leaflet/dist/leaflet.css';
 import {Typography} from "@mui/material";
@@ -102,7 +107,7 @@ const Map = (props) => {
 
     // Attach handleMapMove to a map move event
     return (
-
+        <div>
         <MapContainer
             className={classes.mapContainer}
           ref={mapRef}
@@ -121,19 +126,10 @@ const Map = (props) => {
 
             {showAddPlaceMarker()}
 
-            {/*{places?.map((place) => (
-                <Marker key={place.id} position={{lat: place.latitude, lng: place.longitude}} icon={blueIcon}>
-                    <Popup>
-                        <div><Typography variant="subtitle1">{place.name} | {place.category}</Typography></div>
-                        <div><Typography variant="subtitle3">{place.description}</Typography></div>
-                    </Popup>
-                </Marker>
-            ))}*/}
-
             {showPlaces()}
 
       </MapContainer>
-
+        </div>
     );
 };
 const HandleMapClick = ({ onClick }) => {

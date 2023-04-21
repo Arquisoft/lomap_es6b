@@ -5,18 +5,32 @@ import TextField from '@mui/material/TextField';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Card from '@mui/material/Card';
-import {Button, CardContent, Typography} from "@mui/material";
+
+import {Alert, Button, CardContent, Snackbar, Typography} from "@mui/material";
 import {
-    useSession,
     CombinedDataProvider,
     Image,
     Text,
 } from "@inrupt/solid-ui-react";
-import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
+import { VCARD } from "@inrupt/lit-generated-vocab-common";
 
 const ProfileSideBar = (props) => {
     const classes = useStyles();
-    const {userWebId, handleLogout} = props;
+    const {userWebId, session} = props;
+    const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+
+    const handleSnackbarOpen = () => {
+        setSnackbarOpen(true);
+    };
+
+    const handleLogout = () => {
+        session.logout();
+        handleSnackbarOpen();
+    }
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
 
     return (
         <div>
@@ -52,6 +66,11 @@ const ProfileSideBar = (props) => {
                     <Button variant="contained"  onClick={handleLogout} className={classes.logoutButton}>
                         Log Out
                     </Button>
+                    <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
+                        <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
+                            ¡Log out successfully!
+                        </Alert>
+                    </Snackbar>
                 </div>
             </CombinedDataProvider>
         </div>

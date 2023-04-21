@@ -1,11 +1,10 @@
 
 import './App.css';
-import {Box, Grid, Paper} from "@mui/material";
+import {Alert, Box, Grid, Paper, Snackbar} from "@mui/material";
 import Header from "./components/Header/Header";
 import Map from "./components/Map/Map";
 import Sidebar from "./components/Sidebar/Sidebar";
-import {useState, useEffect} from 'react';
-import  {getPlaceMarksByUser} from './api/api';
+import React, {useState, useEffect} from 'react';
 import LoginWall from "./components/LoginWall/LoginWall";
 import { SessionProvider} from "@inrupt/solid-ui-react";
 import { useSession } from "@inrupt/solid-ui-react/dist";
@@ -14,7 +13,7 @@ import { getPlaces } from './solidapi/solidAdapter';
 
 
 
-function App() {
+const App = () => {
 
     //uso esto para el control del logeo
     const {session} = useSession();
@@ -31,14 +30,16 @@ function App() {
     const [placesLength, setPlacesLength] = useState(0); //used just for the useEffect to work only when a place is added and not when a place is deleted
     const [selectedFilters, setSelectedFilters] = useState([]);
     const [selectedFriendPlaces, setSelectedFriendPlaces] = useState([]);
+    const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
-    
+
     useEffect(() => {
 
         // Register the login and logout event listeners
         session.onLogin(() => {
             setUserWebId(session.info.webId);
-        }); 
+            handleSnackbarOpen();
+        });
 
         session.onLogout(() => {
             setUserWebId(null);
@@ -46,7 +47,7 @@ function App() {
         });
     }, [session],);
 
-    
+
 
     useEffect(() => {
         const refreshMyPlacesList = async () => {
@@ -57,7 +58,7 @@ function App() {
             //const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
             //setPlaces(await getPlaceMarksByUser(webId));
 
-            //sacando los lugares de los pods 
+            //sacando los lugares de los pods
            setPlaces(await getPlaces(session));
 
         }
@@ -83,12 +84,20 @@ function App() {
 
     }
 
-    const handleLogout = () => {
-        session.logout();
-    }
+    // const handleLogout = () => {
+    //     session.logout();
+    // }
 
+    const handleSnackbarOpen = () => {
+        setSnackbarOpen(true);
+    };
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
 
     return (
+        <div>
         <SessionProvider sessionId="log-in-example">
 
             <Box className='MainBox' >   {/* Important: it is always necessary to put all the elements inside one parent element*/}
@@ -104,8 +113,8 @@ function App() {
                         <Sidebar places = {places} setPlaces = {setPlaces} selectedButton={selectedButton}
                                  setSelectedButton={setSelectedButton} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
                                  setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}  setPlacesLength={setPlacesLength}
-                                 userWebId={userWebId} handleLogout={handleLogout}
-                                 session={session} selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
+                                 userWebId={userWebId} session={session} selectedFriendPlaces={selectedFriendPlaces}
+                                 setSelectedFriendPlaces={setSelectedFriendPlaces}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
                     </Grid>
 
                     <Grid item
@@ -119,9 +128,14 @@ function App() {
                     </Grid>
                 </Grid>
             </Box>
+            <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
+                <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
+                    ¡Login to your account successfully!
+                </Alert>
+            </Snackbar>
             {session.info.isLoggedIn ? null : <LoginWall/>}
         </SessionProvider>
-
+        </div>
     );
 }
 

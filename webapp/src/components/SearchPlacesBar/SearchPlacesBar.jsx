@@ -1,9 +1,7 @@
 import React from 'react';
 import {TextField, Typography} from "@mui/material";
-//import useStyles from './styles.js';
 
 const SearchPlacesBar = (props) => {
-    //const classes = useStyles(); // "classes" is an object that contains all the CSS classes from styles.js
     return (
         <>
             <TextField

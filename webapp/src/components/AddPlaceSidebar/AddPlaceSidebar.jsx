@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {Button, FormControl, MenuItem, Select, } from "@mui/material";
+import {Button, FormControl, MenuItem, Select, Alert, Snackbar} from "@mui/material";
 import TextField from "@mui/material/TextField";
 import useStyles from "./styles";
 import PlaceEntity from "../../entities/PlaceEntity";
 import {addPlaceMark} from '../../api/api';
 import { savePlace } from '../../solidapi/solidAdapter';
+import {v4 as uuidv4} from "uuid";
 
 function AddPlaceSidebar (props)  {
     const { selectedPoint, places, setPlaces,userWebId, session} = props;
@@ -12,6 +13,16 @@ function AddPlaceSidebar (props)  {
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
     const [privacy, setPrivacy] =  useState("");
+    const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+
+    const handleSnackbarOpen = () => {
+        setSnackbarOpen(true);
+    };
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
+
     const addPlace =  async(req) => {
         const place = new PlaceEntity();
         place.name = name;
@@ -20,6 +31,11 @@ function AddPlaceSidebar (props)  {
         place.longitude = selectedPoint.lng;
         place.category = category;
         place.privacy = privacy;
+        place.textComments = [];
+        place.imageComments = [];
+        place.ratingComments = [];
+        const { v4: uuidv4 } = require('uuid');
+        place.id = uuidv4();//actualmente se guarda en los pods, con un id aleatorio
 
         //Con una webId como esta "https://aliciafp15.inrupt.net/profile/card#me";
         const parts = userWebId.split('.'); // Dividimos la cadena en partes utilizando el punto como separador
@@ -39,9 +55,12 @@ function AddPlaceSidebar (props)  {
             console.log("{userWebId}" + {userWebId});
             //notificar el cambio al componente padre
             //props.OnUserListChange();
+            handleSnackbarOpen(); //abrir el snackbar
+
         } else {
             console.log("Ha habido un error en el registro");
         }
+
     }
 
 
@@ -108,6 +127,11 @@ function AddPlaceSidebar (props)  {
                 <Button className = {classes.textField} type='submit' variant="contained" onClick={addPlaceAndClearForm} disabled={!isFormComplete()}>Add place</Button>
 
             </FormControl>
+            <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
+                <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
+                    ¡Place successfully added!
+                </Alert>
+            </Snackbar>
         </div>
     );
 };
