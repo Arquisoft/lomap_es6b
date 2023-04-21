@@ -5,6 +5,7 @@ import useStyles from "./styles";
 import PlaceEntity from "../../entities/PlaceEntity";
 import {addPlaceMark} from '../../api/api';
 import { savePlace } from '../../solidapi/solidAdapter';
+import {v4 as uuidv4} from "uuid";
 
 function AddPlaceSidebar (props)  {
     const { selectedPoint, places, setPlaces,userWebId, session} = props;
@@ -30,6 +31,11 @@ function AddPlaceSidebar (props)  {
         place.longitude = selectedPoint.lng;
         place.category = category;
         place.privacy = privacy;
+        place.textComments = [];
+        place.imageComments = [];
+        place.ratingComments = [];
+        const { v4: uuidv4 } = require('uuid');
+        place.id = uuidv4();//actualmente se guarda en los pods, con un id aleatorio
 
         //Con una webId como esta "https://aliciafp15.inrupt.net/profile/card#me";
         const parts = userWebId.split('.'); // Dividimos la cadena en partes utilizando el punto como separador

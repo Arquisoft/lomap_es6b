@@ -1,12 +1,10 @@
-﻿
-import { writeData, findDataInContainer, deleteData} from "./solidapi";
+﻿import { writeData, findDataInContainer, deleteData} from "./solidapi";
 import * as solid from "@inrupt/solid-client";
 import {FOAF, VCARD} from "@inrupt/lit-generated-vocab-common";
 
 export function savePlace(session, placeEntity) {
     let place = placeEntity;
-    const { v4: uuidv4 } = require('uuid');
-    place.id = uuidv4();//Actualmente, se guarda en los pods, con un id aleatorio
+
     if (session.info.webId == null) {
         return null;
     } 
@@ -15,7 +13,7 @@ export function savePlace(session, placeEntity) {
 
     let privacyOfPlace = place.privacy;
     console.log(privacyOfPlace);
-    let PlacesUrl;
+    let PlacesUrl ="";
     let PlacesUrlPublic ="";
 
     // if(privacyOfPlace === "Public"){
@@ -24,7 +22,7 @@ export function savePlace(session, placeEntity) {
     // }else if(privacyOfPlace === "Private") {
     //     PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
     // }
-    PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json"); //ahora se guardan todos en private
+
 
     place = JSON.parse(JSON.stringify(place))
     //añadimos las caracteristicas de jsonld
@@ -45,7 +43,7 @@ export function savePlace(session, placeEntity) {
     // }else {
         writeData(session,PlacesUrl,file);
 
-    // }
+    //}
     return place;
 }
 
@@ -83,7 +81,6 @@ export async function removePlace(session,placeId){
         const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
         const placeUrl = basicUrl.concat("/private", "/Places", "/" + placeToDelete.id + ".json");
 
-        deleteData(session, placeUrl); //ahora se guardan todos en la carpeta private
         // if (placeToDelete.privacy === "Public") {
         //     deleteData(session, placeUrl);
         //     const placeUrlPublic = basicUrl.concat("/public", "/Places", "/" + placeToDelete.id + ".json");
@@ -91,9 +88,24 @@ export async function removePlace(session,placeId){
         // }else {
         //     deleteData(session, placeUrl);
         // }
+        deleteData(session, placeUrl);
     }
 }
-    
+
+export function modifyPlace(session, placeId, updatedPlaceEntity) {
+    const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
+    const placeUrlPublic = basicUrl.concat("/public", "/Places", "/" + placeId + ".json");
+
+    const updatedPlace = JSON.parse(JSON.stringify(updatedPlaceEntity));
+    updatedPlace["@context"] = "https://schema.org/";
+    updatedPlace["@type"] = "Place";
+
+    const blob = new Blob([JSON.stringify(updatedPlace)],{ type: "application/ld+json" });
+    const file = new File([blob], placeId + ".jsonld", { type: blob.type });
+
+    return writeData(session, placeUrlPublic, file);
+}
+
 export async function getPlacesByWebId(session, webId){
     if (webId == null) {
         return null;
@@ -135,13 +147,15 @@ export async function getFriends(webId){
     for(let i in friendsURL){
         myDataset = await solid.getSolidDataset(friendsURL[i]); // obtain the dataset from the URI
         theThing = await solid.getThing(myDataset, friendsURL[i]);
+
         let name = solid.getStringNoLocale(theThing, FOAF.name);
 
         let friend = {
             friendURL:friendsURL[i],
             friendName:name,
             profilePicture:VCARD.hasPhoto.iri.value,
-        }
+       }
+
         friends.push(friend);
     }
     return friends;
@@ -166,8 +180,8 @@ export async function deleteFriendPod(userWebId, friendwebID) {
         await solid.removeUrl(myDataset, FOAF.knows, friendwebID);
         await solid.saveSolidDatasetAt(userWebId, myDataset);
     }
-}
 
+}
 //Función que da permiso a un amigo sobre un sitio
 export async function giveFriendPermissionPoint(webId,session, placeId, friendUrl) {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardContent, CardHeader, IconButton, Typography} from "@mui/material";
+import {Card, CardHeader, IconButton, Typography} from "@mui/material";
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import MapIcon from '@mui/icons-material/Map';
 import Avatar from "@mui/material/Avatar";
@@ -28,7 +28,6 @@ const FriendCard = (props) => {
     const handleDeleteFriend = () => {
         console.log("DELETING FRIEND...");
         deleteFriendPod(userWebId, "https://uo282249.inrupt.net/profile/card#me"); //deleting in the frontend
-
     }
 
     return (
@@ -38,9 +37,12 @@ const FriendCard = (props) => {
                     <CardHeader
                         component='div' style={{paddingBottom: '10px'}}
                         avatar={
-                            <Avatar className={classes.avatarImage}
+                            <Avatar style={{width: "65px",
+                                height: "65px",
+                                margin: 'auto',
+                                marginBottom:'10px'}}
                                     alt="Friend image profile">
-                                    <Image property={VCARD.hasPhoto.iri.value}  style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'cover' }}/>
+                                    <Image property={VCARD.hasPhoto.iri.value} style={{maxHeight: '65px'}}/>
                             </Avatar>
                         }
                         action={
@@ -54,13 +56,8 @@ const FriendCard = (props) => {
                             </>
                         }
                         title={<Typography variant="h5" style={{fontWeight: "bold"}}>{friend.friendName}</Typography>}
-                        // subheader={<Typography variant="h6" color="textSecondary">{place.category}</Typography>}
+                        subheader={<Typography variant="h6" color="textSecondary">{part}</Typography>}
                     />
-                    <CardContent component="div" style={{paddingTop: '0px'}} >
-                        <Typography variant="body2" component="p">
-                            {part}
-                        </Typography>
-                    </CardContent>
                 </Card>
                 <DeleteFriendConfirmDialog open={open} handleClose={handleClose} handleDeleteFriend={handleDeleteFriend}/>
             </CombinedDataProvider>

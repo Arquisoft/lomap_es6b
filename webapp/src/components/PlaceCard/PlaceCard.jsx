@@ -16,9 +16,9 @@ import {deletePlaceMarkByID} from "../../api/api";
 import { removePlace } from '../../solidapi/solidAdapter';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 const PlaceCard = (props) => {
-    const {place, setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton } = props;
+    const {place, setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton, setSelectedPlaceComment, setSelectedButton } = props;
     const [open, setOpen] = React.useState(false);
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
@@ -63,6 +63,9 @@ const PlaceCard = (props) => {
                     action={
                         <>
                             <Chip icon = {place.privacy === "Public" ? <Diversity3Icon/> : <PermIdentityIcon/>} label={place.privacy}  />
+                            <IconButton aria-label="view" onClick={()=>{setSelectedPlaceComment(place); setSelectedButton('Comments');}}>
+                                <ForumRoundedIcon style={{color: '#ffb941'}}/>
+                            </IconButton>
                             <IconButton aria-label="view" onClick={()=>setSelectedPlaceMyPlaces({lat: place.latitude, lng: place.longitude})}>
                                 <TravelExploreRoundedIcon style={{color: '#6986e8'}}/>
                             </IconButton>

@@ -5,13 +5,14 @@ import TextField from '@mui/material/TextField';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Card from '@mui/material/Card';
+
 import {Alert, Button, CardContent, Snackbar, Typography} from "@mui/material";
 import {
     CombinedDataProvider,
     Image,
     Text,
 } from "@inrupt/solid-ui-react";
-import {  VCARD } from "@inrupt/lit-generated-vocab-common";
+import { VCARD } from "@inrupt/lit-generated-vocab-common";
 
 const ProfileSideBar = (props) => {
     const classes = useStyles();
