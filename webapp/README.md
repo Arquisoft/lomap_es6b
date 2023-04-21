@@ -1,3 +1,10 @@
+NOTA PARA REPLICAR NUESTRO ERROR EN TEST
+```console
+cd webapp
+npm ci --force
+npm test --coverage --watchAll
+```
+
 ## The webapp
 In this case we are using React with Typescript for the webapp. Lets create the app in the directory webapp with the following command (make sure you have npm installed in your system):
 ```console
