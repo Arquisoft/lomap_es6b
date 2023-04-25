@@ -103,7 +103,6 @@ const Map = (props) => {
 
     // Attach handleMapMove to a map move event
     return (
-        <div>
         <MapContainer
             className={classes.mapContainer}
           ref={mapRef}
@@ -125,7 +124,6 @@ const Map = (props) => {
             {showPlaces()}
 
       </MapContainer>
-        </div>
     );
 };
 const HandleMapClick = ({ onClick }) => {
