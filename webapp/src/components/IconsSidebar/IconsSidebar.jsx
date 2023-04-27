@@ -11,26 +11,25 @@ const IconsSidebar = (props) => {
     const classes = useStyles();
 
     const handleButtonClick = (buttonName) => {
-        console.log('Se ha pulsado el boton ' + buttonName);
         props.handleSelectedButtonChange(buttonName);
     }
 
 
     return (
         <div className={classes.iconButtonsConstraints}>
-            <IconButton title={'my-places'} className={classes.firstIconButton} onClick={() => handleButtonClick('MyPlaces')}>    {/*every IconButton has a predefined Icon inside, which is imported from MUI*/}
-                <PlaceIcon/>               {/*predefined MUI icon*/}
+            <IconButton data-testid="place-icon" className={classes.firstIconButton} onClick={() => handleButtonClick('MyPlaces')}>    {/*every IconButton has a predefined Icon inside, which is imported from MUI*/}
+                <PlaceIcon />               {/*predefined MUI icon*/}
             </IconButton>
-            <IconButton className={classes.middleIconButton} onClick={() => handleButtonClick('AddPlace')}>
+            <IconButton data-testid="addplace-icon" className={classes.middleIconButton} onClick={() => handleButtonClick('AddPlace')}>
                 <AddLocationAltIcon/>
             </IconButton>
-            <IconButton className={classes.middleIconButton} onClick={() => handleButtonClick('Social')}>
+            <IconButton data-testid="groups-icon" className={classes.middleIconButton} onClick={() => handleButtonClick('Social')}>
                 <GroupsIcon/>
             </IconButton>
-            <IconButton className={classes.middleIconButton} onClick={() => handleButtonClick('Settings')}>
+            <IconButton data-testid="settings-icon" className={classes.middleIconButton} onClick={() => handleButtonClick('Settings')}>
                 <SettingsIcon/>
             </IconButton>
-            <IconButton className={classes.middleIconButton} onClick={() => handleButtonClick('Profile')} /*style={{marginTop: 'auto' }} for sending it to the bottom, for now leave commented*/>
+            <IconButton data-testid="profile-icon" className={classes.middleIconButton} onClick={() => handleButtonClick('Profile')} /*style={{marginTop: 'auto' }} for sending it to the bottom, for now leave commented*/>
                 <AccountCircleIcon/>
             </IconButton>
         </div>
