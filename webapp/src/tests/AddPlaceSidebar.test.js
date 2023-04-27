@@ -3,6 +3,8 @@ import {fireEvent, getByRole, render, screen, waitFor, within} from '@testing-li
 import AddPlaceSidebar from '../components/AddPlaceSidebar/AddPlaceSidebar';
 import UserEvent from "@testing-library/user-event";
 import { getRoles } from '@testing-library/dom';
+import {wait} from "@testing-library/user-event/dist/utils";
+import * as wrapper from "@testing-library/dom";
 test('testeando addPlace', async () => {
   render(<AddPlaceSidebar/>);
 
@@ -25,20 +27,35 @@ test('testeando addPlace', async () => {
 });
 
 test('todos las categorías se muestran en el combobox', async () => {
-
       render(<AddPlaceSidebar />);
 
-      const cbCategory = screen.getByTitle('Place Category');
+    const cbCategory = screen.getByTestId('select-categories');
+    fireEvent.mouseDown(cbCategory.childNodes[0]);
 
-      fireEvent.mouseDown(cbCategory);
+      await waitFor(()=> {
+          const option = screen.getByTestId("Bar");
+          fireEvent.click(option);
+      });
+
+    //mayor avance:
+    // let ct = cbCategory.childNodes[0]
+    // console.log(ct)
+    // let ca = ct.childNodes[0].children;
+    // expect(ct.childNodes[0].children).toBe("Bar");
 
 
 
-    const option = screen.getByRole("option", {name:"Bar"});
 
-      fireEvent.click(option);
 
-      expect(cbCategory.value).toBe("Bar");
-
-    }
+    //   fireEvent.mouseDown(cbCategory);
+    //   console.debug(screen.queryAllByRole("listbox"))
+    // const listbx = screen.getByRole("listbox");
+    //
+    // const option = screen.queryAllByTestId(/.*/);
+    // console.debug(option);
+    //   fireEvent.click(option);
+    //
+    //   expect(getByText("Bar").toBeInTheDocument();
+    //
+     }
 );

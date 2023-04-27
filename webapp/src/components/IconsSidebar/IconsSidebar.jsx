@@ -18,7 +18,7 @@ const IconsSidebar = (props) => {
 
     return (
         <div className={classes.iconButtonsConstraints}>
-            <IconButton className={classes.firstIconButton} onClick={() => handleButtonClick('MyPlaces')}>    {/*every IconButton has a predefined Icon inside, which is imported from MUI*/}
+            <IconButton title={'my-places'} className={classes.firstIconButton} onClick={() => handleButtonClick('MyPlaces')}>    {/*every IconButton has a predefined Icon inside, which is imported from MUI*/}
                 <PlaceIcon/>               {/*predefined MUI icon*/}
             </IconButton>
             <IconButton className={classes.middleIconButton} onClick={() => handleButtonClick('AddPlace')}>

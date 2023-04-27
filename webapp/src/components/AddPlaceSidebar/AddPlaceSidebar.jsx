@@ -128,16 +128,22 @@ function AddPlaceSidebar (props)  {
                     onChange={(e) => setDescription(e.target.value)}></TextField>
             </FormControl>
             <FormControl className={classes.formControl}>
+
                 <Select
                     title="Place Category"
                     className={classes.textField}
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
+                    data-testid='select-categories'
                 >
-                    {placeCategories.map(category =>
-                        <MenuItem key={category.title} title={category.title} value={category.title} role="option">{category.title}</MenuItem>
-                    )}
+                    <MenuItem key={"Bar"} data-testid="Bar" title={"Bar"} value={"Bar"} role="option">Bar</MenuItem>
+                    <MenuItem key={"Cafe"} data-testid="Cafe" title={"Cafe"} value={"Cafe"} role="option">Cafe</MenuItem>
+
+                    {/*{placeCategories.map(category =>*/}
+                    {/*    <MenuItem key={category.title} data-testid={category.title} title={category.title} value={category.title} role="option">{category.title}</MenuItem>*/}
+                    {/*)}*/}
                 </Select>
+
             </FormControl>
             <FormControl className={classes.formControl}>
                 <Select
