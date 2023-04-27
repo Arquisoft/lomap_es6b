@@ -9,10 +9,10 @@ const ImageCommentCard = (props) => {
     const classes = useStyles();
     const {key, image} = props;
     const [open, setOpen] = React.useState(false);
-    const posterWebId = image.posterWebId;
+    const posterWebId = image?.posterWebId;
     //const friendUrl = friend.friendURL;
-    const parts = posterWebId.split("/");
-    const part = parts[2].split(".")[0];
+    const parts = posterWebId?.split("/");
+    const part = parts?.[2]?.split(".")[0];
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -30,8 +30,8 @@ const ImageCommentCard = (props) => {
     // console.log(friend.profilePicture);
     return (
         <div>
-            <CombinedDataProvider datasetUrl={posterWebId} thingUrl={posterWebId}>
-                <Card style={{margin: '25px', marginTop:'0px'}}>
+            <CombinedDataProvider data-testid="dataProvider"  datasetUrl={posterWebId} thingUrl={posterWebId}>
+                <Card data-testid="imageCommentCard" style={{margin: '25px', marginTop:'0px'}}>
                     <CardHeader
                         component='div' style={{paddingBottom: '10px'}}
                         avatar={
@@ -53,7 +53,7 @@ const ImageCommentCard = (props) => {
                         // title={<Typography variant="h5" style={{ fontSize: "16px"}}>
                         //     {imageURL.text}
                         // </Typography>}
-                        title={<img src={image.text} style={{maxWidth: '100%', maxHeight: '30vh'}}/>}
+                        title={<img src={image?.text} style={{maxWidth: '100%', maxHeight: '30vh'}}/>}
                         subheader={<Typography variant="h6" color="textSecondary" style={{fontSize: "16px"}}><Text property={VCARD.fn.iri.value} /> | {part}</Typography>}
                     />
                     {/*<CardContent component="div" style={{paddingTop: '0px'}} >*/}

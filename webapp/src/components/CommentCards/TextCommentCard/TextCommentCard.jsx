@@ -11,10 +11,10 @@ const TextCommentCard = (props) => {
     const classes = useStyles();
     const {key, comment} = props;
     const [open, setOpen] = React.useState(false);
-    const posterWebId = comment.posterWebId;
+    const posterWebId = comment?.posterWebId;
     //const friendUrl = friend.friendURL;
-    const parts = posterWebId.split("/");
-    const part = parts[2].split(".")[0];
+    const parts = posterWebId?.split("/");
+    const part = parts?.[2]?.split(".")[0];
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -53,7 +53,7 @@ const TextCommentCard = (props) => {
                         //     </>
                         // }
                         title={<Typography variant="h5" style={{ fontSize: "16px"}}>
-                            {comment.text}
+                            {comment?.text}
                         </Typography>}
                         subheader={<Typography variant="h6" color="textSecondary" style={{fontSize: "16px"}}><Text property={VCARD.fn.iri.value} /> | {part}</Typography>}
                     />

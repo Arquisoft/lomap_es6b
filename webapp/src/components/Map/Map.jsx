@@ -73,7 +73,7 @@ const Map = (props) => {
     }
 
     const showPlaces = () => {
-        if(selectedFilters.length === 0){
+        if(selectedFilters?.length === 0){
             return showingPlaces?.map((place) => (
                 <Marker key={place.id} position={{lat: place.latitude, lng: place.longitude}} icon={blueIcon}>
                     <Popup>
