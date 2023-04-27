@@ -9,7 +9,7 @@
 Actor User
 Component LoMap
 Component Pod
-Component Map as "Map API"
+Component MapBox as "MapBox API"
 Component Database
 
 User -right-> LoMap: interacts with
@@ -18,7 +18,7 @@ User .right.> Pod: owns
 
 LoMap <-right-> Pod: transfers data
 
-LoMap --> Map: uses
+LoMap --> MapBox: uses
 
 LoMap <--> Database: transfers data
 
@@ -59,7 +59,7 @@ Component LoMap {
 
 }
 Component Pod
-Component Map as "Map API"
+Component MapBox as "MapBox API"
 Component Database
 
 User -right-> Frontend: interacts with
@@ -68,7 +68,7 @@ User .right.> Pod: owns
 
 Backend <-right-> Pod: transfers data
 
-Frontend --> Map: uses
+Frontend --> MapBox: uses
 
 Backend <--> Database: transfers data
 
@@ -112,14 +112,14 @@ Component LoMap {
 
 }
 Component Pod
-Component Map as "OpenStreetMap API"
+Component MapBox as "OpenStreetMap API"
 Component Database
 
 User --> Frontend: interacts with
 User ..> Pod: owns
 Solid <--> Pod: manages
 RESTAPI <--> Database: manages
-Frontend --> Map: uses
+Frontend --> MapBox: uses
 FrontendAPI <--> Backend: communicates
 Views <--> FrontendAPI: communicates
 

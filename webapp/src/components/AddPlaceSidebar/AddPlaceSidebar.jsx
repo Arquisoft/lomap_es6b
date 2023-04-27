@@ -12,7 +12,7 @@ function AddPlaceSidebar (props)  {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
-    const [privacy, setPrivacy] =  useState("");
+    // const [privacy, setPrivacy] =  useState("");
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
     const handleSnackbarOpen = () => {
@@ -30,7 +30,7 @@ function AddPlaceSidebar (props)  {
         place.latitude = selectedPoint.lat;
         place.longitude = selectedPoint.lng;
         place.category = category;
-        place.privacy = privacy;
+        // place.privacy = privacy;
         place.textComments = [];
         place.imageComments = [];
         place.ratingComments = [];
@@ -67,14 +67,14 @@ function AddPlaceSidebar (props)  {
     const classes = useStyles();
 
     function isFormComplete(){
-        return name !== "" && description !== ""  && category !== "" && privacy !== "";
+        return name !== "" && description !== ""  && category !== "" ;
     }
 
     function clearForm(){
         setName("");
         setDescription("");
         setCategory("");
-        setPrivacy("");
+        // setPrivacy("");
     }
 
     function addPlaceAndClearForm(){
@@ -116,14 +116,14 @@ function AddPlaceSidebar (props)  {
                     <MenuItem value="Attractions">Attractions</MenuItem>
                 </Select>
 
-                <Select
-                    className = {classes.textField}
-                    value = {privacy}
-                    onChange={(e)=>setPrivacy(e.target.value)}>
-                    <MenuItem value="Public">Share place with my friends</MenuItem>
-                    <MenuItem value="Private">Store place privately</MenuItem>
+                {/*<Select*/}
+                {/*    className = {classes.textField}*/}
+                {/*    value = {privacy}*/}
+                {/*    onChange={(e)=>setPrivacy(e.target.value)}>*/}
+                {/*    <MenuItem value="Public">Share place with my friends</MenuItem>*/}
+                {/*    <MenuItem value="Private">Store place privately</MenuItem>*/}
 
-                </Select>
+                {/*</Select>*/}
                 <Button className = {classes.textField} type='submit' variant="contained" onClick={addPlaceAndClearForm} disabled={!isFormComplete()}>Add place</Button>
 
             </FormControl>

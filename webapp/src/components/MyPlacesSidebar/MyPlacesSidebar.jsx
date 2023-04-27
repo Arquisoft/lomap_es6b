@@ -4,17 +4,17 @@ import PlaceCard from "../PlaceCard/PlaceCard";
 
 const MyPlacesSidebar = (props) => {
     const {setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton, setSelectedPlaceComment,
-        setSelectedButton} = props;
+        setSelectedButton,userWebId} = props;
     const classes = useStyles();
 
    
     const showPlaces = () => {
-       
         return props.places?.map((place)=> (
             console.log('key ' + place._id),
             <PlaceCard key={place._id} place={place} setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} 
             deletePlace={deletePlace} session={session} showDeleteButton = {showDeleteButton}
-                       setSelectedPlaceComment={setSelectedPlaceComment} setSelectedButton={setSelectedButton}/>
+                       setSelectedPlaceComment={setSelectedPlaceComment} setSelectedButton={setSelectedButton}
+                        userWebId={userWebId}/>
         ))
             
     }

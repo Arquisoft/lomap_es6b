@@ -13,8 +13,9 @@ export function savePlace(session, placeEntity) {
 
     let privacyOfPlace = place.privacy;
     console.log(privacyOfPlace);
-    let PlacesUrl ="";
-    let PlacesUrlPublic ="";
+    let PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
+    //
+    // let PlacesUrlPublic ="";
 
     // if(privacyOfPlace === "Public"){
     //     PlacesUrlPublic = basicUrl.concat("/public", "/Places", "/" + place.id + ".json");
