@@ -70,10 +70,10 @@ const CommentsSidebar = (props) => {
     };
 
     const showTextComments = () => {
-        console.log(place.textComments);
+        console.log(place?.textComments);
         console.log("PLACE:")
         console.log(place)
-        return place.textComments?.map((comment) => (
+        return place?.textComments?.map((comment) => (
             <TextCommentCard key={place.id} comment={comment}/>
         ));
     };
@@ -143,7 +143,8 @@ const CommentsSidebar = (props) => {
         <>
         <div style={{ height: '100%', marginLeft: '25px', marginRight: '25px', marginBottom: '5px', textAlign: 'center', display:'flex', flexDirection: 'column', gap: '25px'}}>
             <div>
-                <AddCommentButton handleClickOpen={handleClickOpen} className={classes.button} style={{width: '100%'}} />
+                <AddCommentButton handleClickOpen={handleClickOpen} className={classes.button} style={{width: '100%'} }
+                data-testid = "addCommentButton" />
             </div>
             <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Showing</InputLabel>
