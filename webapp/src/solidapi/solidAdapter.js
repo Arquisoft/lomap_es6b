@@ -154,7 +154,7 @@ export async function getFriends(webId){
         let friend = {
             friendURL:friendsURL[i],
             friendName:name,
-            profilePicture:VCARD.hasPhoto.iri.value,
+            // profilePicture:VCARD.hasPhoto.iri.value,
        }
 
         friends.push(friend);

@@ -9,10 +9,10 @@ const RatingCommentCard = (props) => {
     const classes = useStyles();
     const {key, rating} = props;
     const [open, setOpen] = React.useState(false);
-    const posterWebId = rating.posterWebId;
+    const posterWebId = rating?.posterWebId;
     //const friendUrl = friend.friendURL;
-    const parts = posterWebId.split("/");
-    const part = parts[2].split(".")[0];
+    const parts = posterWebId?.split("/");
+    const part = parts?.[2]?.split(".")[0];
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -39,7 +39,9 @@ const RatingCommentCard = (props) => {
                                 height: "65px",
                                 margin: 'auto',
                                 marginBottom:'10px'}}
-                                    alt="Friend image profile">
+                                    alt="Friend image profile"
+                                    data-testid="avatarCard"
+                                    >
                                 <Image property={VCARD.hasPhoto.iri.value} style={{maxHeight: '65px'}}/>
                             </Avatar>
                         }
@@ -56,7 +58,7 @@ const RatingCommentCard = (props) => {
                         title={
                             <Rating
                                 name="simple-controlled"
-                                value={rating.value}
+                                value={rating?.value}
                                 readOnly
                             />
                         }

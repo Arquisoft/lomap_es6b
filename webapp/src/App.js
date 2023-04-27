@@ -32,6 +32,26 @@ const App = () => {
     const [selectedFriendPlaces, setSelectedFriendPlaces] = useState([]);
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
+    const placeCategories = [
+        { title: 'Bar' },
+        { title: 'Restaurant' },
+        { title: 'Shop' },
+        { title: 'Supermarket' },
+        { title: 'Hotel' },
+        { title: 'Cinema' },
+        { title: 'Academic Institution' },
+        { title: 'Public Institution' },
+        { title: 'Sports Club' },
+        { title: 'Museum' },
+        { title: 'Park' },
+        { title: 'Landscape' },
+        { title: 'Monument' },
+        { title: 'Hospital' },
+        { title: 'Police Station' },
+        { title: 'Transport Center' },
+        { title: 'Entertainment' },
+        { title: 'Other' }
+    ];
 
     useEffect(() => {
 
@@ -101,7 +121,8 @@ const App = () => {
         <SessionProvider sessionId="log-in-example">
 
             <Box className='MainBox' >   {/* Important: it is always necessary to put all the elements inside one parent element*/}
-                <Header setSelectedPlaceAutocomplete={setSelectedPlaceAutocomplete} setSelectedFilters={setSelectedFilters}/> {/* Header: Logo, SearchPlacesBar, FilterByBar */}
+                <Header setSelectedPlaceAutocomplete={setSelectedPlaceAutocomplete} setSelectedFilters={setSelectedFilters}
+                        placeCategories={placeCategories}/> {/* Header: Logo, SearchPlacesBar, FilterByBar */}
 
                 <Grid className='MainGrid' container spacing={3}>{/* 3 spaces between the grids */}
                     {/* "container" means that it is a grid with more grids inside */}
@@ -114,7 +135,7 @@ const App = () => {
                                  setSelectedButton={setSelectedButton} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
                                  setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}  setPlacesLength={setPlacesLength}
                                  userWebId={userWebId} session={session} selectedFriendPlaces={selectedFriendPlaces}
-                                 setSelectedFriendPlaces={setSelectedFriendPlaces}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
+                                 setSelectedFriendPlaces={setSelectedFriendPlaces} placeCategories={placeCategories}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
                     </Grid>
 
                     <Grid item

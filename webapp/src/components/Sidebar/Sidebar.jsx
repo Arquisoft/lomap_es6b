@@ -9,7 +9,7 @@ const Sidebar = (props) => {
 
     const {places, setPlaces, selectedButton, setSelectedButton, selectedPoint,
         setSelectedPoint,setSelectedPlaceMyPlaces,deletePlace, setPlacesLength, userWebId, session,
-        selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend} = props;
+        selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend, placeCategories} = props;
     const handleSelectedButtonChange = (selectedButton) => {
         setSelectedButton(selectedButton);
     };
@@ -20,16 +20,16 @@ const Sidebar = (props) => {
           and the detailsSidebar takes the remaining space. (see styles.js) */}
             <Grid container className={classes.mainContainer}>
                 <Grid item className={classes.iconsSidebarContainer}>
-                    <IconsSidebar handleSelectedButtonChange={handleSelectedButtonChange}/>
+                    <IconsSidebar handleSelectedButtonChange={handleSelectedButtonChange} data-testid="icons-sidebar"/>
                 </Grid>
                 <Grid item className={classes.detailsSidebarContainer}>
-                    <DetailsSidebar places = {places} setPlaces = {setPlaces} selectedButton={selectedButton}
+                    <DetailsSidebar data-testid="details-sidebar" places = {places} setPlaces = {setPlaces} selectedButton={selectedButton}
                                     selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
                                     setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}
                                     setPlacesLength={setPlacesLength} userWebId={userWebId}
                                     session={session} setSelectedButton={setSelectedButton}
                                     selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}
-                                    deleteFriend={deleteFriend}/>
+                                    deleteFriend={deleteFriend} placeCategories={placeCategories}/>
                 </Grid>
             </Grid>
         </ div>
