@@ -94,8 +94,9 @@ function AddPlaceSidebar (props)  {
                     id="outlined-required"
                     label="Place Name"
                     required
-                    onChange={(e) => setName(e.target.value)}
-                />
+                    onChange={(e) => setName(e.target.value)}></TextField>
+            </FormControl>
+            <FormControl className={classes.formControl}>
                 <TextField
                     className = {classes.textField}
                     value={description}
@@ -104,9 +105,9 @@ function AddPlaceSidebar (props)  {
                     multiline
                     rows={4}
                     required
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-
+                    onChange={(e) => setDescription(e.target.value)}></TextField>
+            </FormControl>
+            <FormControl className={classes.formControl}>
                 <Select
                     className = {classes.textField}
                     value={category}
@@ -115,7 +116,8 @@ function AddPlaceSidebar (props)  {
                     <MenuItem value="Hotels">Hotels</MenuItem>
                     <MenuItem value="Attractions">Attractions</MenuItem>
                 </Select>
-
+            </FormControl>
+            <FormControl className={classes.formControl}>
                 <Select
                     className = {classes.textField}
                     value = {privacy}
