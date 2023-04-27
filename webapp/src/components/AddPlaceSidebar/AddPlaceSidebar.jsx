@@ -15,6 +15,26 @@ function AddPlaceSidebar (props)  {
     const [privacy, setPrivacy] =  useState("");
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
+    const placeCategories = [ //repetición de código, pero necesario para que placeCategories no se inicie como undefined :(
+        {title: 'Bar'},
+        {title: 'Restaurant'},
+        {title: 'Shop'},
+        {title: 'Supermarket'},
+        {title: 'Hotel'},
+        {title: 'Cinema'},
+        {title: 'Academic Institution'},
+        {title: 'Public Institution'},
+        {title: 'Sports Club'},
+        {title: 'Museum'},
+        {title: 'Park'},
+        {title: 'Landscape'},
+        {title: 'Monument'},
+        {title: 'Hospital'},
+        {title: 'Police Station'},
+        {title: 'Transport Center'},
+        {title: 'Entertainment'},
+        {title: 'Other'}
+    ];
     const handleSnackbarOpen = () => {
         setSnackbarOpen(true);
     };
@@ -94,8 +114,9 @@ function AddPlaceSidebar (props)  {
                     id="outlined-required"
                     label="Place Name"
                     required
-                    onChange={(e) => setName(e.target.value)}
-                />
+                    onChange={(e) => setName(e.target.value)}></TextField>
+            </FormControl>
+            <FormControl className={classes.formControl}>
                 <TextField
                     className = {classes.textField}
                     value={description}
@@ -104,19 +125,29 @@ function AddPlaceSidebar (props)  {
                     multiline
                     rows={4}
                     required
-                    onChange={(e) => setDescription(e.target.value)}
-                />
+                    onChange={(e) => setDescription(e.target.value)}></TextField>
+            </FormControl>
+            <FormControl className={classes.formControl}>
 
                 <Select
-                    className = {classes.textField}
+                    title="Place Category"
+                    className={classes.textField}
                     value={category}
-                    onChange={(e)=>setCategory(e.target.value)}>
-                    <MenuItem value="Restaurants">Restaurants</MenuItem>
-                    <MenuItem value="Hotels">Hotels</MenuItem>
-                    <MenuItem value="Attractions">Attractions</MenuItem>
+                    onChange={(e) => setCategory(e.target.value)}
+                    data-testid='select-categories'
+                >
+                    <MenuItem key={"Bar"} data-testid="Bar" title={"Bar"} value={"Bar"} role="option">Bar</MenuItem>
+                    <MenuItem key={"Cafe"} data-testid="Cafe" title={"Cafe"} value={"Cafe"} role="option">Cafe</MenuItem>
+
+                    {/*{placeCategories.map(category =>*/}
+                    {/*    <MenuItem key={category.title} data-testid={category.title} title={category.title} value={category.title} role="option">{category.title}</MenuItem>*/}
+                    {/*)}*/}
                 </Select>
 
+            </FormControl>
+            <FormControl className={classes.formControl}>
                 <Select
+                    title="Place Privacy"
                     className = {classes.textField}
                     value = {privacy}
                     onChange={(e)=>setPrivacy(e.target.value)}>
@@ -124,7 +155,17 @@ function AddPlaceSidebar (props)  {
                     <MenuItem value="Private">Store place privately</MenuItem>
 
                 </Select>
-                <Button className = {classes.textField} type='submit' variant="contained" onClick={addPlaceAndClearForm} disabled={!isFormComplete()}>Add place</Button>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+
+            <Button className = {classes.textField}
+                        title={'Add Place Button'}
+                        type='submit'
+                        variant="contained"
+                        onClick={addPlaceAndClearForm}
+                        disabled={!isFormComplete()}>
+                    Add place
+                </Button>
 
             </FormControl>
             <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
