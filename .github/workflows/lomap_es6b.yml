@@ -1,8 +1,11 @@
 name: CI for LOMAP_ES6B
 
 on:
-  release:
-    types: [published]
+  push:
+    branches: 
+    - dev
+    - master
+
 
 jobs:
   unit-test-webapp:
@@ -15,7 +18,7 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-    - run: npm ci
+    - run: npm ci --force
     - run: npm test --coverage --watchAll
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
@@ -32,7 +35,7 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-    - run: npm ci
+    - run: npm ci 
     - run: npm test --coverage --watchAll
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
