@@ -1,10 +1,7 @@
 import React from 'react';
-import {fireEvent, getByRole, render, screen, waitFor, within} from '@testing-library/react';
+import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import AddPlaceSidebar from '../components/AddPlaceSidebar/AddPlaceSidebar';
-import UserEvent from "@testing-library/user-event";
-import { getRoles } from '@testing-library/dom';
-import {wait} from "@testing-library/user-event/dist/utils";
-import * as wrapper from "@testing-library/dom";
+
 test('testeando addPlace', async () => {
   render(<AddPlaceSidebar/>);
 

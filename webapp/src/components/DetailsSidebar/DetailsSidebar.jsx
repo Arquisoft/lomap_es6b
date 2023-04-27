@@ -11,7 +11,7 @@ import CommentsSidebar from "../CommentsSidebar/CommentsSidebar";
 
 const DetailsSidebar = (props) => {
     const classes = useStyles();
-    const [setContent] = useState("");
+    let setContent = useState("");
     const {places, setPlaces, selectedPoint, setSelectedPoint, setSelectedButton, selectedButton,setSelectedPlaceMyPlaces,
         deletePlace, setPlacesLength,userWebId, session, selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend,
         placeCategories} = props;
@@ -22,10 +22,12 @@ const DetailsSidebar = (props) => {
 
     useEffect(() => {
         let friendWebId = selectedFriend.friendURL;
-        getPlacesByWebId(session, friendWebId).then((places) => {
-            setSelectedFriendPlaces(places);
-        });
-    }, [selectedFriend],);
+        if(session && friendWebId){
+            getPlacesByWebId(session, friendWebId).then((places) => {
+                setSelectedFriendPlaces(places);
+            });
+        }
+    }, [selectedFriend]);
     const handleSelectedButton = (buttonName) => {
         switch (buttonName) {
             case 'MyPlaces' :
@@ -141,7 +143,7 @@ const DetailsSidebar = (props) => {
                     </>
                 );
             default:
-                setContent("");
+                setContent="";
                 break;
         }
     }
