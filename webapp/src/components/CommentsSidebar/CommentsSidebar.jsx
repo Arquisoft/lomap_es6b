@@ -139,6 +139,13 @@ const CommentsSidebar = (props) => {
     const handleCommentTypeChange = (value) => {
         setSelectedCommentType(value);
     }
+
+    const options = [
+        { value: 'text', label: 'Text comments'  },
+        { value: 'rating', label: 'Ratings' },
+        { value: 'image', label: 'Images' },
+      ];
+      
     return (
         <>
         <div style={{ height: '100%', marginLeft: '25px', marginRight: '25px', marginBottom: '5px', textAlign: 'center', display:'flex', flexDirection: 'column', gap: '25px'}}>
@@ -147,13 +154,14 @@ const CommentsSidebar = (props) => {
                 data-testid = "addCommentButton" />
             </div>
             <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Showing</InputLabel>
+                <InputLabel id="demo-simple-select-label" data-testid= "commentSidebarLabelShowing" >Showing</InputLabel>
                 <Select
 
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={selectedCommentType}
                     label="Type of comments to show"
+                    data-testid= "Type of comments to show"
                 >
                     <MenuItem onClick={()=>handleCommentTypeChange("text")} value={"text"}>Text comments</MenuItem>
                     <MenuItem onClick={()=>handleCommentTypeChange("rating")} value={"rating"}>Ratings</MenuItem>
