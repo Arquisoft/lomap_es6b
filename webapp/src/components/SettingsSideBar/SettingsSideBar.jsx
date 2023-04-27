@@ -134,7 +134,7 @@ const SettingsSideBar = (props) => {
                 </nav>
             </Box>
             <DeleteAllDataConfirmDialog open={open} handleClose={handleClose} handleDeleteAll={handleDeleteAll}/>
-            <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
+            <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose} data-testid='snack'>
                 <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
                     ¡all data removed successfully!
                 </Alert>

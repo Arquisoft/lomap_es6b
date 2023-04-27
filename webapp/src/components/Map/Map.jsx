@@ -1,15 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
-// import {MapContainer} from "react-leaflet";
-// import {Marker} from "react-leaflet";
-// import {Popup} from "react-leaflet";
-// import {TileLayer} from "react-leaflet";
-// import {useMapEvent} from "react-leaflet";
 import { MapContainer, Marker, Popup, TileLayer, useMapEvent} from "react-leaflet";
 import useStyles from './styles';
 import 'leaflet/dist/leaflet.css';
 import {Typography} from "@mui/material";
 import L from 'leaflet';
 
+//será function?
 const Map = (props) => {
     const classes = useStyles(); //for styling
     const {selectedPlaceAutocomplete, places, selectedPoint, setSelectedPoint, selectedButton, selectedPlaceMyPlaces,
@@ -77,7 +73,7 @@ const Map = (props) => {
     }
 
     const showPlaces = () => {
-        if(selectedFilters.length === 0){
+        if(selectedFilters?.length === 0){
             return showingPlaces?.map((place) => (
                 <Marker key={place.id} position={{lat: place.latitude, lng: place.longitude}} icon={blueIcon}>
                     <Popup>
@@ -107,7 +103,6 @@ const Map = (props) => {
 
     // Attach handleMapMove to a map move event
     return (
-        <div>
         <MapContainer
             className={classes.mapContainer}
           ref={mapRef}
@@ -129,7 +124,6 @@ const Map = (props) => {
             {showPlaces()}
 
       </MapContainer>
-        </div>
     );
 };
 const HandleMapClick = ({ onClick }) => {

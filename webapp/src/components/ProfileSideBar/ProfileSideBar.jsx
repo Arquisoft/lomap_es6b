@@ -63,10 +63,10 @@ const ProfileSideBar = (props) => {
                             </List>
                         </CardContent>
                     </Card>
-                    <Button variant="contained"  onClick={handleLogout} className={classes.logoutButton}>
+                    <Button variant="contained" data-testid="logout-button" onClick={handleLogout} className={classes.logoutButton} >
                         Log Out
                     </Button>
-                    <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
+                    <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose} data-testid="snack">
                         <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
                             ¡Log out successfully!
                         </Alert>

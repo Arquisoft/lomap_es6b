@@ -18,11 +18,12 @@ const LoginWall = (props) => {
                 <Logo className={classes.logoIcon}/>
                 <Typography variant="h4" className={classes.title}>You have to login with your Solid POD in order to use LoMap.</Typography>
                 <LoginButton
-                  oidcIssuer={idp}
+
+                    oidcIssuer={idp}
                   redirectUrl={currentUrl}
                   options={{ mode:'no-cors'}}
                 >
-                  <Button variant="contained" className={classes.loginButton}>Login</Button>
+                  <Button data-testid='login-button' variant="contained" className={classes.loginButton}>Login</Button>
                 </LoginButton>
             </Card>
         </div>

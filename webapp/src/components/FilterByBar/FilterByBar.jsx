@@ -4,12 +4,8 @@ import useStyles from "./styles"; //it is important to import from styles.js
 
 const FilterByBar = (props) => {
     const classes = useStyles();    // "classes" is an object that contains all the CSS classes from styles.js
-    const {setSelectedFilters} = props; // "filters" is an array that contains the filters that are currently selected
-    const placeCategories = [   //contains the example options for the filter
-        { title: 'Restaurants'},
-        { title: 'Hotels'},
-        { title: 'Attractions'},
-    ];
+    const {setSelectedFilters, placeCategories} = props; // "filters" is an array that contains the filters that are currently selected
+
     const handleOptionSelect = (event, value) => {
         let newFilters = value.map((filter) => filter.title);
         setSelectedFilters(newFilters);

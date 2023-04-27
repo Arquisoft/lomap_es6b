@@ -11,9 +11,10 @@ import CommentsSidebar from "../CommentsSidebar/CommentsSidebar";
 
 const DetailsSidebar = (props) => {
     const classes = useStyles();
-    const [setContent] = useState("");
+    let setContent = useState("");
     const {places, setPlaces, selectedPoint, setSelectedPoint, setSelectedButton, selectedButton,setSelectedPlaceMyPlaces,
-        deletePlace, setPlacesLength,userWebId, session, selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend} = props;
+        deletePlace, setPlacesLength,userWebId, session, selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend,
+        placeCategories} = props;
     const [selectedFriend, setSelectedFriend] = useState([]);
     const [selectedPlaceComment, setSelectedPlaceComment] = useState([]);
     const [showDeleteButton] =useState(true);
@@ -21,10 +22,12 @@ const DetailsSidebar = (props) => {
 
     useEffect(() => {
         let friendWebId = selectedFriend.friendURL;
-        getPlacesByWebId(session, friendWebId).then((places) => {
-            setSelectedFriendPlaces(places);
-        });
-    }, [selectedFriend],);
+        if(session && friendWebId){
+            getPlacesByWebId(session, friendWebId).then((places) => {
+                setSelectedFriendPlaces(places);
+            });
+        }
+    }, [selectedFriend]);
     const handleSelectedButton = (buttonName) => {
         switch (buttonName) {
             case 'MyPlaces' :
@@ -56,7 +59,7 @@ const DetailsSidebar = (props) => {
                         <div style={{ overflow: "auto", height: "70vh" }}>
                             <AddPlaceSidebar places={places} setPlaces={setPlaces} selectedPoint={selectedPoint}
                                              setSelectedPoint={setSelectedPoint} setPlacesLength={setPlacesLength}
-                                             userWebId={userWebId} session={session}/>
+                                             userWebId={userWebId} session={session} placeCategories={placeCategories}/>
                         </div>
                     </>
                 );
@@ -140,7 +143,7 @@ const DetailsSidebar = (props) => {
                     </>
                 );
             default:
-                setContent("");
+                setContent="";
                 break;
         }
     }

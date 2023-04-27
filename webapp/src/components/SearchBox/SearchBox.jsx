@@ -12,8 +12,6 @@ const SearchBox = (props) => {
 
     const handleOptionSelect = (event, autocompleteValue) => {
         setSelectedPlaceAutocomplete(autocompleteValue);
-        console.log(autocompleteValue);
-
     }
 
     const handleInputChange = debounce(async (event, value) => {  // Debounce doesn't allow the function to be called too often
@@ -32,6 +30,7 @@ const SearchBox = (props) => {
 
     return (
         <Autocomplete
+            data-testid="search-bar"
             blurOnSelect
             options={options}
             getOptionLabel={(option) => option.display_name}

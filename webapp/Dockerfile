@@ -3,7 +3,7 @@ LABEL org.opencontainers.image.source https://github.com/arquisoft/lomap_es6b
 COPY . /app
 WORKDIR /app
 #Install the dependencies
-RUN npm install
+RUN npm install --force 
 
 ARG API_URI="http://localhost:5000/api"
 ENV REACT_APP_API_URI=$API_URI
