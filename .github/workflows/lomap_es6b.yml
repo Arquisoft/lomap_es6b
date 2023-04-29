@@ -19,7 +19,7 @@ jobs:
       with:
         node-version: 18
     - run: npm ci --force
-    - run: npm test --coverage --watchAll
+    - run: npm test -- --coverage --watchAll=false
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
       env:
