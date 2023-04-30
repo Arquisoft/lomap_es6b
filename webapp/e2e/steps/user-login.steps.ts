@@ -1,7 +1,7 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
 
-const feature = loadFeature('../features/user-login.feature');
+const feature = loadFeature('./features/user-login.feature');
 
 let page: puppeteer.Page;
 let browser: puppeteer.Browser;
