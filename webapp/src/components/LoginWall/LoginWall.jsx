@@ -23,7 +23,7 @@ const LoginWall = (props) => {
                   redirectUrl={currentUrl}
                   options={{ mode:'no-cors'}}
                 >
-                  <Button data-testid='login-button' variant="contained" className={classes.loginButton}>Login</Button>
+                  <Button id='login-button' variant="contained" className={classes.loginButton}>Login</Button>
                 </LoginButton>
             </Card>
         </div>
