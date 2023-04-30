@@ -104,6 +104,7 @@ const Map = (props) => {
     // Attach handleMapMove to a map move event
     return (
         <MapContainer
+            id='map-id'
             className={classes.mapContainer}
           ref={mapRef}
           center={defaultCoordinates}

@@ -23,7 +23,7 @@ const App = () => {
     const [places, setPlaces] = useState([]);
 
 
-    const [selectedPoint, setSelectedPoint] = useState(null);
+    const [selectedPoint, setSelectedPoint] = useState({lat: 50.8504500, lng: 4.3487800});
     const [selectedPlaceAutocomplete, setSelectedPlaceAutocomplete] = useState(null);
     const [selectedButton, setSelectedButton] = useState("MyPlaces");
     const [selectedPlaceMyPlaces, setSelectedPlaceMyPlaces] = useState(null);
@@ -141,7 +141,7 @@ const App = () => {
                     <Grid item
                           md={7} > {/* 7 of 12 columns for the map */}
                         <Paper className='MainMap' style={{borderRadius: '20px' }}> {/* "sx" is for adding specific styles to a MUI component */}
-                            <Map places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
+                            <Map  places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
                                  setSelectedPoint={setSelectedPoint} selectedButton={selectedButton} selectedPlaceMyPlaces={selectedPlaceMyPlaces}
                                  placesLength={placesLength} selectedFilters={selectedFilters}
                                  selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/>   {/* Map: OpenStreetMap working with Leaflet */}
@@ -150,7 +150,7 @@ const App = () => {
                 </Grid>
             </Box>
             <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
-                <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
+                <Alert id='login-success' onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
                     ¡Login to your account successfully!
                 </Alert>
             </Snackbar>

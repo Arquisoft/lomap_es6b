@@ -109,9 +109,9 @@ function AddPlaceSidebar (props)  {
 
             <FormControl className={classes.formControl}>
                 <TextField
+                    id='input-name'
                     className = {classes.textField}
                     value={name}
-                    id="outlined-required"
                     label="Place Name"
                     required
                     onChange={(e) => setName(e.target.value)}></TextField>
@@ -120,7 +120,7 @@ function AddPlaceSidebar (props)  {
                 <TextField
                     className = {classes.textField}
                     value={description}
-                    id="outlined-multiline-static"
+                    id='input-description'
                     label="Place Description"
                     multiline
                     rows={4}
@@ -134,31 +134,30 @@ function AddPlaceSidebar (props)  {
                     className={classes.textField}
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    data-testid='select-categories'
+                    id='select-categories'
                 >
-                    <MenuItem key={"Bar"} data-testid="Bar" title={"Bar"} value={"Bar"} role="option">Bar</MenuItem>
-                    <MenuItem key={"Cafe"} data-testid="Cafe" title={"Cafe"} value={"Cafe"} role="option">Cafe</MenuItem>
-
-                    {/*{placeCategories.map(category =>*/}
-                    {/*    <MenuItem key={category.title} data-testid={category.title} title={category.title} value={category.title} role="option">{category.title}</MenuItem>*/}
-                    {/*)}*/}
+                    {placeCategories.map(category =>
+                        <MenuItem key={category.title} id={category.title} title={category.title} value={category.title} role="option">{category.title}</MenuItem>
+                    )}
                 </Select>
 
             </FormControl>
             <FormControl className={classes.formControl}>
                 <Select
+                    id='select-privacy'
                     title="Place Privacy"
                     className = {classes.textField}
                     value = {privacy}
                     onChange={(e)=>setPrivacy(e.target.value)}>
-                    <MenuItem value="Public">Share place with my friends</MenuItem>
-                    <MenuItem value="Private">Store place privately</MenuItem>
+                    <MenuItem id='item-public' value="Public">Share place with my friends</MenuItem>
+                    <MenuItem id='item-private' value="Private">Store place privately</MenuItem>
 
                 </Select>
             </FormControl>
             <FormControl className={classes.formControl}>
 
             <Button className = {classes.textField}
+                    id='add-place-button'
                         title={'Add Place Button'}
                         type='submit'
                         variant="contained"
@@ -168,7 +167,7 @@ function AddPlaceSidebar (props)  {
                 </Button>
 
             </FormControl>
-            <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
+            <Snackbar id='addplace-success' open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
                 <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
                     ¡Place successfully added!
                 </Alert>
