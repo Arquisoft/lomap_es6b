@@ -7,14 +7,15 @@ export function savePlace(session, placeEntity) {
 
     if (session.info.webId == null) {
         return null;
-    } 
+    }
     let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");//https://username.inrupt.net
 
 
     let privacyOfPlace = place.privacy;
     console.log(privacyOfPlace);
-    let PlacesUrl ="";
-    let PlacesUrlPublic ="";
+    let PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
+    //
+    // let PlacesUrlPublic ="";
 
     // if(privacyOfPlace === "Public"){
     //     PlacesUrlPublic = basicUrl.concat("/public", "/Places", "/" + place.id + ".json");
@@ -41,7 +42,7 @@ export function savePlace(session, placeEntity) {
     //     writeData(session,PlacesUrlPublic,file);
     //
     // }else {
-        writeData(session,PlacesUrl,file);
+    writeData(session,PlacesUrl,file);
 
     //}
     return place;
