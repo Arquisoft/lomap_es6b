@@ -3,7 +3,6 @@ import {Button, FormControl, MenuItem, Select, Alert, Snackbar} from "@mui/mater
 import TextField from "@mui/material/TextField";
 import useStyles from "./styles";
 import PlaceEntity from "../../entities/PlaceEntity";
-import {addPlaceMark} from '../../api/api';
 import { savePlace } from '../../solidapi/solidAdapter';
 import {v4 as uuidv4} from "uuid";
 
@@ -65,21 +64,11 @@ function AddPlaceSidebar (props)  {
 
         //guarda el Place en los pods con todos los datos
         savePlace(session,place);
-        
-        //guarda en la base de datos la Placemark con los datos mínimos
-        const result = await addPlaceMark(place);//lat, long, webid, placeid
+
+
         setPlaces([...places, place]);
 
-        if(result){
-            console.log("Añadiste un lugar con éxito");
-            console.log("{userWebId}" + {userWebId});
-            //notificar el cambio al componente padre
-            //props.OnUserListChange();
-            handleSnackbarOpen(); //abrir el snackbar
-
-        } else {
-            console.log("Ha habido un error en el registro");
-        }
+        handleSnackbarOpen(); //abrir el snackbar
 
     }
 
