@@ -5,14 +5,21 @@ import 'leaflet/dist/leaflet.css';
 import {Typography} from "@mui/material";
 import L from 'leaflet';
 
-//será function?
 const Map = (props) => {
     const classes = useStyles(); //for styling
     const {selectedPlaceAutocomplete, places, selectedPoint, setSelectedPoint, selectedButton, selectedPlaceMyPlaces,
-        placesLength, selectedFilters, selectedFriendPlaces, setSelectedFriendPlaces} = props;
-    const defaultCoordinates = { lat: 50.8504500, lng: 4.3487800 }; //default center coordinates (Brussels), just temporary
+        placesLength, selectedFilters, selectedFriendPlaces, setSelectedFriendPlaces, defaultCoordinates} = props;
     const mapRef = useRef();
     const [showingPlaces, setShowingPlaces] = useState(places);
+
+    useEffect(() => {
+        if (mapRef.current && defaultCoordinates.lat && defaultCoordinates.lng) {
+            mapRef.current.flyTo([defaultCoordinates.lat, defaultCoordinates.lng], 13, {
+                duration: 3 // set duration in seconds, lower value means faster animation
+            });
+            setSelectedPoint({lat: defaultCoordinates.lat, lng: defaultCoordinates.lng})
+        }
+    }, [defaultCoordinates]);
 
 
     useEffect(() => {

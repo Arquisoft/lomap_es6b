@@ -31,6 +31,7 @@ const App = () => {
     const [selectedFilters, setSelectedFilters] = useState([]);
     const [selectedFriendPlaces, setSelectedFriendPlaces] = useState([]);
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+    const [defaultCoordinates, setDefaultCoordinates] = useState({lat: 50.8504500, lng: 4.3487800})
 
     const placeCategories = [
         { title: 'Bar' },
@@ -53,12 +54,30 @@ const App = () => {
         { title: 'Other' }
     ];
 
+
+
+
     useEffect(() => {
 
         // Register the login and logout event listeners
         session.onLogin(() => {
             setUserWebId(session.info.webId);
             handleSnackbarOpen();
+            /* GEOLOCATION */
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    setDefaultCoordinates({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    });
+                    console.log(position.coords.latitude)
+                    console.log(position.coords.longitude)
+                }, (error) => {
+                    console.log(error);
+                });
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
         });
 
         session.onLogout(() => {
@@ -141,7 +160,7 @@ const App = () => {
                     <Grid item
                           md={7} > {/* 7 of 12 columns for the map */}
                         <Paper className='MainMap' style={{borderRadius: '20px' }}> {/* "sx" is for adding specific styles to a MUI component */}
-                            <Map  places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
+                            <Map defaultCoordinates={defaultCoordinates} places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
                                  setSelectedPoint={setSelectedPoint} selectedButton={selectedButton} selectedPlaceMyPlaces={selectedPlaceMyPlaces}
                                  placesLength={placesLength} selectedFilters={selectedFilters}
                                  selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/>   {/* Map: OpenStreetMap working with Leaflet */}
