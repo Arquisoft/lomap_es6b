@@ -22,16 +22,15 @@ import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ShareIcon from '@mui/icons-material/Share';
-import SharePlacesDialog from "../SharePlacesDialog/SharePlacesDialog";
 
 const PlaceCard = (props) => {
     const {place, setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton, setSelectedPlaceComment, setSelectedButton,
             userWebId} = props;
     const [open, setOpen] = React.useState(false);
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+    const [snackbarOpenShare, setSnackbarOpenShare] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [anchorElNested, setAnchorElNested] = React.useState(null);
-    const [openShareFriend, setOpenShareFriend] = React.useState(false);
+
 
     const [friends, setFriends] = React.useState([]);
 
@@ -67,15 +66,14 @@ const PlaceCard = (props) => {
         setAnchorEl(null);
     };
 
-    const handleShareOneFriendButton = () => {
-        //setAnchorElNested(event.currentTarget);
-        setOpenShareFriend(true);
+    const handleSnackbarOpenShare = () => {
+        setSnackbarOpenShare(true);
     };
 
-    const  handleCloseShareOneFriendButton = () => {
-       // setAnchorElNested(null);
-        setOpenShareFriend(false);
+    const handleSnackbarCloseShare = () => {
+        setSnackbarOpenShare(false);
     };
+
 
 
     const handleDeletePlace = () => {
@@ -92,13 +90,11 @@ const PlaceCard = (props) => {
 
     const handleSharePlaceWithAllFriends = () => {
         console.log("Boton compartir con todos mis amigos");
-        giveAllFriendPermissionPoint(session.id, session, place._id);
+        giveAllFriendPermissionPoint(userWebId, session,place.id);
+        handleSnackbarOpenShare();
     };
 
-    const handleSharePlaceWithFriend = (event, index) => {
-        console.log("Boton compartir con un amigo");
-        giveFriendPermissionPoint(friends[index].id);
-    }
+
 
     return (
         <div>
@@ -124,9 +120,8 @@ const PlaceCard = (props) => {
                                 onClose={handleCloseShareButton}
 
                             >
-                                <MenuItem onClick={handleCloseShareButton}>Share with all my friends</MenuItem>
-                                <MenuItem onClick={handleShareOneFriendButton}>Share with a friend of choice</MenuItem>
-                                <MenuItem onClick={handleCloseShareButton}>Option 3</MenuItem>
+                                <MenuItem onClick={handleSharePlaceWithAllFriends}>Share with my friends</MenuItem>
+
                             </Menu>
 {/*                            <Menu*/}
 {/*                                id="nested-menu"*/}
@@ -177,13 +172,16 @@ const PlaceCard = (props) => {
             </Card>
             <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
                 <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
-                    ¡Place successfully removed!
+                    Place successfully removed!
                 </Alert>
             </Snackbar>
 
             <DeletePlaceConfirmDialog open={open} handleClose={handleClose} handleDeletePlace={handleDeletePlace}/>
-            <SharePlacesDialog openShareFriend={openShareFriend}  handleCloseShareOneFriendButton={handleCloseShareOneFriendButton}
-                               handleSharePlaceWithFriend={handleSharePlaceWithFriend} friends={friends}/>
+            <Snackbar open={snackbarOpenShare} autoHideDuration={3000} onClose={handleSnackbarCloseShare}>
+                <Alert onClose={handleSnackbarCloseShare} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
+                    Place successfully shared!
+                </Alert>
+            </Snackbar>
         </div>
     );
 };
