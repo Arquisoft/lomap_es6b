@@ -226,22 +226,22 @@ export async function giveFriendPermissionPoint(webId,session, placeId, friendUr
 }
 
 //Funcion que da permiso sobre un punto a todos los amigos
-export async function giveAllFriendPermissionPoint(webId,session) {
+export async function giveAllFriendPermissionPoint(webId,session, placeID) {
 
     let myDataset = await solid.getSolidDataset(webId); // obtain the dataset from the URI
     let theThing = await solid.getThing(myDataset, webId);
     let friendsURL = solid.getUrlAll(theThing, FOAF.knows); //array de amigos
-
+    console.log(friendsURL);
     try {
-        for(let friend in friendsURL){
+        for(let i in friendsURL){
+            console.log(i);
             let name =extractNameFromUrl(webId);
             console.log("name corto :"+name)
-             const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+name +".inrupt.net/private/Places/", {
+             const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+name +".inrupt.net/private/Places/"+placeID+".json", {
             fetch: session.fetch
             });
 
-        //recorremos el array de amigos para compartir el sitio con todos los amigos
-        // for(let friend in friendsURL){ //para cada amigo
+
             let resourceAcl;
             if (!hasResourceAcl(myDatasetWithAcl)) {
                 if (!hasAccessibleAcl(myDatasetWithAcl)) {
@@ -260,12 +260,12 @@ export async function giveAllFriendPermissionPoint(webId,session) {
             }
             const updatedAcl = solid.setAgentResourceAccess( //se establecen los permisos
                 resourceAcl,
-                friend,
+                friendsURL[i],
                 { read: true, append: false, write: false, control: false }
             );
 
             await saveAclFor(myDatasetWithAcl, updatedAcl, { fetch: session.fetch }); //se guardan en cada amigo los cambios
-            console.log("Permisos al amigo :"+ friend);
+            console.log("Permisos al amigo :"+ friendsURL[i]);
         }
 
     } catch (error) {
@@ -273,7 +273,7 @@ export async function giveAllFriendPermissionPoint(webId,session) {
     }
 }
 
-export async function extractNameFromUrl(url) {
+export function extractNameFromUrl(url) {
     let start = url.indexOf("//") + 2;
     let end = url.indexOf(".", start);
     return url.substring(start, end);

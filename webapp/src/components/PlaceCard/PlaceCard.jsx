@@ -92,7 +92,7 @@ const PlaceCard = (props) => {
 
     const handleSharePlaceWithAllFriends = () => {
         console.log("Boton compartir con todos mis amigos");
-        giveAllFriendPermissionPoint(session.id, session);
+        giveAllFriendPermissionPoint(userWebId, session,place.id);
     };
 
     const handleSharePlaceWithFriend = (event, index) => {
