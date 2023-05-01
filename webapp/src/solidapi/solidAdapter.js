@@ -1,20 +1,28 @@
 ﻿import { writeData, findDataInContainer, deleteData} from "./solidapi";
 import * as solid from "@inrupt/solid-client";
 import {FOAF, VCARD} from "@inrupt/lit-generated-vocab-common";
+import {
+    createAclFromFallbackAcl,
+    getResourceAcl, getSolidDatasetWithAcl,
+    hasAccessibleAcl,
+    hasFallbackAcl,
+    hasResourceAcl, saveAclFor
+} from "@inrupt/solid-client";
 
 export function savePlace(session, placeEntity) {
     let place = placeEntity;
 
     if (session.info.webId == null) {
         return null;
-    } 
+    }
     let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");//https://username.inrupt.net
 
 
     let privacyOfPlace = place.privacy;
     console.log(privacyOfPlace);
-    let PlacesUrl ="";
-    let PlacesUrlPublic ="";
+    let PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
+    //
+    // let PlacesUrlPublic ="";
 
     // if(privacyOfPlace === "Public"){
     //     PlacesUrlPublic = basicUrl.concat("/public", "/Places", "/" + place.id + ".json");
@@ -41,7 +49,7 @@ export function savePlace(session, placeEntity) {
     //     writeData(session,PlacesUrlPublic,file);
     //
     // }else {
-        writeData(session,PlacesUrl,file);
+    writeData(session,PlacesUrl,file);
 
     //}
     return place;
@@ -94,7 +102,7 @@ export async function removePlace(session,placeId){
 
 export function modifyPlace(session, placeId, updatedPlaceEntity) {
     const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-    const placeUrlPublic = basicUrl.concat("/public", "/Places", "/" + placeId + ".json");
+    const placeUrlPublic = basicUrl.concat("/private", "/Places", "/" + placeId + ".json");
 
     const updatedPlace = JSON.parse(JSON.stringify(updatedPlaceEntity));
     updatedPlace["@context"] = "https://schema.org/";
@@ -112,7 +120,7 @@ export async function getPlacesByWebId(session, webId){
     } // Check if the webId is undefined
 
     let basicUrl = webId?.split("/").slice(0, 3).join("/");
-    let pointsUrl = basicUrl.concat("/public", "/Places/");
+    let pointsUrl = basicUrl.concat("/private", "/Places/");
 
     let places = [];
     let files = await findDataInContainer(session, pointsUrl);
@@ -218,35 +226,57 @@ export async function giveFriendPermissionPoint(webId,session, placeId, friendUr
 }
 
 //Funcion que da permiso sobre un punto a todos los amigos
-export async function giveAllFriendPermissionPoint(webId,session, placeId) {
+export async function giveAllFriendPermissionPoint(webId,session, placeID) {
 
-    let friendsURL = solid.getUrlAll(await getProfile(webId), FOAF.knows);
+    let myDataset = await solid.getSolidDataset(webId); // obtain the dataset from the URI
+    let theThing = await solid.getThing(myDataset, webId);
+    let friendsURL = solid.getUrlAll(theThing, FOAF.knows); //array de amigos
+    console.log(friendsURL);
+    try {
+        for(let i in friendsURL){
+            console.log(i);
+            let name =extractNameFromUrl(webId);
+            console.log("name corto :"+name)
+             const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+name +".inrupt.net/private/Places/"+placeID+".json", {
+            fetch: session.fetch
+            });
 
-    let url = urlPlaceUser(webId,placeId); //url del archivo a dar permisos
 
-    try { //obtener el archivo de control de acceso para la cuenta de usuario
-        let file = await solid.getFile(
-            url,
-            { fetch: session.fetch }
-        );
-
-        //recorremos el array de amigos para compartir el sitio con todos los amigos
-        for(let friend in friendsURL){ //para cada amigo
-            let resourceAcl = solid.createAcl(file); //se crea un objeto de control de acceso
-
+            let resourceAcl;
+            if (!hasResourceAcl(myDatasetWithAcl)) {
+                if (!hasAccessibleAcl(myDatasetWithAcl)) {
+                    console.log(
+                        "The current user does not have permission to change access rights to this Resource."
+                    );
+                }
+                if (!hasFallbackAcl(myDatasetWithAcl)) {
+                    console.log(
+                        "The current user does not have permission to see who currently has access to this Resource."
+                    );
+                }
+                resourceAcl = createAclFromFallbackAcl(myDatasetWithAcl);
+            } else {
+                resourceAcl = getResourceAcl(myDatasetWithAcl);
+            }
             const updatedAcl = solid.setAgentResourceAccess( //se establecen los permisos
                 resourceAcl,
-                friendsURL[friend],
-                { read: true, append: false, write: true, control: false }
+                friendsURL[i],
+                { read: true, append: true, write: false, control: false }
             );
 
-            await solid.saveAclFor(file, updatedAcl, { fetch: session.fetch }); //se guardan en cada amigo los cambios
-            console.log("Permisos al amigo :"+ friendsURL);
+            await saveAclFor(myDatasetWithAcl, updatedAcl, { fetch: session.fetch }); //se guardan en cada amigo los cambios
+            console.log("Permisos al amigo :"+ friendsURL[i]);
         }
 
     } catch (error) {
         console.log(error);
     }
+}
+
+export function extractNameFromUrl(url) {
+    let start = url.indexOf("//") + 2;
+    let end = url.indexOf(".", start);
+    return url.substring(start, end);
 }
 
 

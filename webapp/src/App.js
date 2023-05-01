@@ -163,14 +163,14 @@ const App = () => {
                             <Map defaultCoordinates={defaultCoordinates} places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
                                  setSelectedPoint={setSelectedPoint} selectedButton={selectedButton} selectedPlaceMyPlaces={selectedPlaceMyPlaces}
                                  placesLength={placesLength} selectedFilters={selectedFilters}
-                                 selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/>   {/* Map: OpenStreetMap working with Leaflet */}
+                                 selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/>   {/* MapBox: OpenStreetMap working with Leaflet */}
                         </Paper>
                     </Grid>
                 </Grid>
             </Box>
             <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
                 <Alert id='login-success' onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
-                    ¡Login to your account successfully!
+                    Logged in successfully!
                 </Alert>
             </Snackbar>
             {session.info.isLoggedIn ? null : <LoginWall/>}
