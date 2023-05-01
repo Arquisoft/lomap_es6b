@@ -43,7 +43,7 @@ const DetailsSidebar = (props) => {
                             <MyPlacesSidebar deletePlace={deletePlace} places={places} setPlaces={setPlaces}
                                              setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} session={session}
                                             showDeleteButton = {showDeleteButton} setSelectedPlaceComment={setSelectedPlaceComment}
-                                             setSelectedButton={setSelectedButton}/>
+                                             setSelectedButton={setSelectedButton} userWebId={userWebId}/>
                         </div>
                     </>
                 );

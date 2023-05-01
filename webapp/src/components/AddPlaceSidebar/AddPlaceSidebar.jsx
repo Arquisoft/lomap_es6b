@@ -3,7 +3,6 @@ import {Button, FormControl, MenuItem, Select, Alert, Snackbar} from "@mui/mater
 import TextField from "@mui/material/TextField";
 import useStyles from "./styles";
 import PlaceEntity from "../../entities/PlaceEntity";
-import {addPlaceMark} from '../../api/api';
 import { savePlace } from '../../solidapi/solidAdapter';
 import {v4 as uuidv4} from "uuid";
 
@@ -12,7 +11,7 @@ function AddPlaceSidebar (props)  {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
-    const [privacy, setPrivacy] =  useState("");
+    // const [privacy, setPrivacy] =  useState("");
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
     const placeCategories = [ //repetición de código, pero necesario para que placeCategories no se inicie como undefined :(
@@ -50,7 +49,7 @@ function AddPlaceSidebar (props)  {
         place.latitude = selectedPoint.lat;
         place.longitude = selectedPoint.lng;
         place.category = category;
-        place.privacy = privacy;
+        // place.privacy = privacy;
         place.textComments = [];
         place.imageComments = [];
         place.ratingComments = [];
@@ -65,21 +64,11 @@ function AddPlaceSidebar (props)  {
 
         //guarda el Place en los pods con todos los datos
         savePlace(session,place);
-        
-        //guarda en la base de datos la Placemark con los datos mínimos
-        const result = await addPlaceMark(place);//lat, long, webid, placeid
+
+
         setPlaces([...places, place]);
 
-        if(result){
-            console.log("Añadiste un lugar con éxito");
-            console.log("{userWebId}" + {userWebId});
-            //notificar el cambio al componente padre
-            //props.OnUserListChange();
-            handleSnackbarOpen(); //abrir el snackbar
-
-        } else {
-            console.log("Ha habido un error en el registro");
-        }
+        handleSnackbarOpen(); //abrir el snackbar
 
     }
 
@@ -87,14 +76,14 @@ function AddPlaceSidebar (props)  {
     const classes = useStyles();
 
     function isFormComplete(){
-        return name !== "" && description !== ""  && category !== "" && privacy !== "";
+        return name !== "" && description !== ""  && category !== "" ;
     }
 
     function clearForm(){
         setName("");
         setDescription("");
         setCategory("");
-        setPrivacy("");
+        // setPrivacy("");
     }
 
     function addPlaceAndClearForm(){
@@ -144,19 +133,15 @@ function AddPlaceSidebar (props)  {
                     )}
                 </Select>
 
-            </FormControl>
-            <FormControl className={classes.formControl}>
-                <Select
-                    id='select-privacy'
-                    data-testid = 'placePrivacy'
-                    title="Place Privacy"
-                    className = {classes.textField}
-                    value = {privacy}
-                    onChange={(e)=>setPrivacy(e.target.value)}>
-                    <MenuItem id='item-public' value="Public">Share place with my friends</MenuItem>
-                    <MenuItem id='item-private' value="Private">Store place privately</MenuItem>
 
-                </Select>
+                {/*<Select*/}
+                {/*    className = {classes.textField}*/}
+                {/*    value = {privacy}*/}
+                {/*    onChange={(e)=>setPrivacy(e.target.value)}>*/}
+                {/*    <MenuItem value="Public">Share place with my friends</MenuItem>*/}
+                {/*    <MenuItem value="Private">Store place privately</MenuItem>*/}
+
+                {/*</Select>*/}
             </FormControl>
             <FormControl className={classes.formControl}>
 
@@ -174,7 +159,7 @@ function AddPlaceSidebar (props)  {
             </FormControl>
             <Snackbar id='addplace-success' open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
                 <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
-                    ¡Place successfully added!
+                    Place added successfully!
                 </Alert>
             </Snackbar>
         </div>
