@@ -17,7 +17,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SecurityIcon from '@mui/icons-material/Security';
 import SyncLockIcon from '@mui/icons-material/SyncLock';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import {deleteAllPlaceMarks} from "../../api/api";
 import DeleteAllDataConfirmDialog from "../DeleteAllDataConfirmDialog/DeleteAllDataConfirmDialog";
 import {Alert, Snackbar} from "@mui/material";
 const SettingsSideBar = (props) => {
@@ -51,7 +50,6 @@ const SettingsSideBar = (props) => {
         setIsDarkMode(event.target.checked);
     };
     const handleDeleteAll = () => {
-        deleteAllPlaceMarks();
         setPlaces([]);
         handleClose();
         handleSnackbarOpen(); //abrimos el snackbar

@@ -7,7 +7,7 @@ export function savePlace(session, placeEntity) {
 
     if (session.info.webId == null) {
         return null;
-    } 
+    }
     let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");//https://username.inrupt.net
 
 
@@ -42,7 +42,7 @@ export function savePlace(session, placeEntity) {
     //     writeData(session,PlacesUrlPublic,file);
     //
     // }else {
-        writeData(session,PlacesUrl,file);
+    writeData(session,PlacesUrl,file);
 
     //}
     return place;

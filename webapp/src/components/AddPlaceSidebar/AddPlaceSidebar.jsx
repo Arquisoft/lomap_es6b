@@ -3,7 +3,6 @@ import {Button, FormControl, MenuItem, Select, Alert, Snackbar} from "@mui/mater
 import TextField from "@mui/material/TextField";
 import useStyles from "./styles";
 import PlaceEntity from "../../entities/PlaceEntity";
-import {addPlaceMark} from '../../api/api';
 import { savePlace } from '../../solidapi/solidAdapter';
 import {v4 as uuidv4} from "uuid";
 
@@ -15,6 +14,26 @@ function AddPlaceSidebar (props)  {
     // const [privacy, setPrivacy] =  useState("");
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
+    const placeCategories = [ //repetición de código, pero necesario para que placeCategories no se inicie como undefined :(
+        {title: 'Bar'},
+        {title: 'Restaurant'},
+        {title: 'Shop'},
+        {title: 'Supermarket'},
+        {title: 'Hotel'},
+        {title: 'Cinema'},
+        {title: 'Academic Institution'},
+        {title: 'Public Institution'},
+        {title: 'Sports Club'},
+        {title: 'Museum'},
+        {title: 'Park'},
+        {title: 'Landscape'},
+        {title: 'Monument'},
+        {title: 'Hospital'},
+        {title: 'Police Station'},
+        {title: 'Transport Center'},
+        {title: 'Entertainment'},
+        {title: 'Other'}
+    ];
     const handleSnackbarOpen = () => {
         setSnackbarOpen(true);
     };
@@ -45,21 +64,11 @@ function AddPlaceSidebar (props)  {
 
         //guarda el Place en los pods con todos los datos
         savePlace(session,place);
-        
-        //guarda en la base de datos la Placemark con los datos mínimos
-        const result = await addPlaceMark(place);//lat, long, webid, placeid
+
+
         setPlaces([...places, place]);
 
-        if(result){
-            console.log("Añadiste un lugar con éxito");
-            console.log("{userWebId}" + {userWebId});
-            //notificar el cambio al componente padre
-            //props.OnUserListChange();
-            handleSnackbarOpen(); //abrir el snackbar
-
-        } else {
-            console.log("Ha habido un error en el registro");
-        }
+        handleSnackbarOpen(); //abrir el snackbar
 
     }
 
@@ -89,31 +98,36 @@ function AddPlaceSidebar (props)  {
 
             <FormControl className={classes.formControl}>
                 <TextField
+                    id='input-name'
                     className = {classes.textField}
                     value={name}
-                    id="outlined-required"
                     label="Place Name"
                     required
-                    onChange={(e) => setName(e.target.value)}
-                />
+                    onChange={(e) => setName(e.target.value)}></TextField>
+            </FormControl>
+            <FormControl className={classes.formControl}>
                 <TextField
                     className = {classes.textField}
                     value={description}
-                    id="outlined-multiline-static"
+                    id='input-description'
                     label="Place Description"
                     multiline
                     rows={4}
                     required
-                    onChange={(e) => setDescription(e.target.value)}
-                />
+                    onChange={(e) => setDescription(e.target.value)}></TextField>
+            </FormControl>
+            <FormControl className={classes.formControl}>
 
                 <Select
-                    className = {classes.textField}
+                    title="Place Category"
+                    className={classes.textField}
                     value={category}
-                    onChange={(e)=>setCategory(e.target.value)}>
-                    <MenuItem value="Restaurants">Restaurants</MenuItem>
-                    <MenuItem value="Hotels">Hotels</MenuItem>
-                    <MenuItem value="Attractions">Attractions</MenuItem>
+                    onChange={(e) => setCategory(e.target.value)}
+                    id='select-categories'
+                >
+                    {placeCategories.map(category =>
+                        <MenuItem key={category.title} id={category.title} title={category.title} value={category.title} role="option">{category.title}</MenuItem>
+                    )}
                 </Select>
 
                 {/*<Select*/}
@@ -124,10 +138,21 @@ function AddPlaceSidebar (props)  {
                 {/*    <MenuItem value="Private">Store place privately</MenuItem>*/}
 
                 {/*</Select>*/}
-                <Button className = {classes.textField} type='submit' variant="contained" onClick={addPlaceAndClearForm} disabled={!isFormComplete()}>Add place</Button>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+
+            <Button className = {classes.textField}
+                    id='add-place-button'
+                        title={'Add Place Button'}
+                        type='submit'
+                        variant="contained"
+                        onClick={addPlaceAndClearForm}
+                        disabled={!isFormComplete()}>
+                    Add place
+                </Button>
 
             </FormControl>
-            <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
+            <Snackbar id='addplace-success' open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
                 <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
                     ¡Place successfully added!
                 </Alert>
