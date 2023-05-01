@@ -7,8 +7,6 @@
 async function writeData(session, url, file) {
     let result = true;
     try {
-        
-
         await overwriteFile(
             url,
             file,
@@ -67,7 +65,8 @@ async function deleteData(session, url) {
   return result;
   }
 
+async function updateData(url, webId, session) {
 
-
+}
 
 export { writeData, findDataInContainer , deleteData};

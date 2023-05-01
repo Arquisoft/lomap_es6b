@@ -90,7 +90,7 @@ const CommentsSidebar = (props) => {
     const showRatingComments = () => {
         console.log(place.ratingComments);
         console.log("PLACE:")
-        console.log(place)
+
         return place.ratingComments?.map((rating) => (
             <RatingCommentCard key={place.id} rating={rating}/>
         ));
@@ -100,7 +100,7 @@ const CommentsSidebar = (props) => {
         console.log(place.textComments)
         place.textComments.push({posterWebId: userWebId, text: commentValue});
         console.log(place.textComments)
-        savePlace(session, place);
+        savePlace(session, place, userWebId);
         handleCloseTextDialog();
         setCommentValue("");
     }
@@ -109,7 +109,7 @@ const CommentsSidebar = (props) => {
         console.log(place.imageComments)
         place.imageComments.push({posterWebId: userWebId, text: imageValue});
         console.log(place.imageComments)
-        savePlace(session, place);
+        savePlace(session, place,userWebId);
         handleCloseImageDialog();
         setImageValue("");
     }
@@ -117,7 +117,7 @@ const CommentsSidebar = (props) => {
         console.log(place.ratingComments)
         place.ratingComments.push({posterWebId: userWebId, value: ratingValue});
         console.log(place.ratingComments);
-        savePlace(session, place);
+        savePlace(session, place,userWebId);
         handleCloseRatingDialog();
         setRatingValue(-1);
     }
