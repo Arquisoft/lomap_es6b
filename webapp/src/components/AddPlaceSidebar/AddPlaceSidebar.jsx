@@ -11,7 +11,7 @@ function AddPlaceSidebar (props)  {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
-    const [privacy, setPrivacy] =  useState("");
+    // const [privacy, setPrivacy] =  useState("");
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
     const placeCategories = [ //repetición de código, pero necesario para que placeCategories no se inicie como undefined :(
@@ -49,7 +49,7 @@ function AddPlaceSidebar (props)  {
         place.latitude = selectedPoint.lat;
         place.longitude = selectedPoint.lng;
         place.category = category;
-        place.privacy = privacy;
+        // place.privacy = privacy;
         place.textComments = [];
         place.imageComments = [];
         place.ratingComments = [];
@@ -76,14 +76,14 @@ function AddPlaceSidebar (props)  {
     const classes = useStyles();
 
     function isFormComplete(){
-        return name !== "" && description !== ""  && category !== "" && privacy !== "";
+        return name !== "" && description !== ""  && category !== "" ;
     }
 
     function clearForm(){
         setName("");
         setDescription("");
         setCategory("");
-        setPrivacy("");
+        // setPrivacy("");
     }
 
     function addPlaceAndClearForm(){
@@ -130,18 +130,14 @@ function AddPlaceSidebar (props)  {
                     )}
                 </Select>
 
-            </FormControl>
-            <FormControl className={classes.formControl}>
-                <Select
-                    id='select-privacy'
-                    title="Place Privacy"
-                    className = {classes.textField}
-                    value = {privacy}
-                    onChange={(e)=>setPrivacy(e.target.value)}>
-                    <MenuItem id='item-public' value="Public">Share place with my friends</MenuItem>
-                    <MenuItem id='item-private' value="Private">Store place privately</MenuItem>
+                {/*<Select*/}
+                {/*    className = {classes.textField}*/}
+                {/*    value = {privacy}*/}
+                {/*    onChange={(e)=>setPrivacy(e.target.value)}>*/}
+                {/*    <MenuItem value="Public">Share place with my friends</MenuItem>*/}
+                {/*    <MenuItem value="Private">Store place privately</MenuItem>*/}
 
-                </Select>
+                {/*</Select>*/}
             </FormControl>
             <FormControl className={classes.formControl}>
 
@@ -158,7 +154,7 @@ function AddPlaceSidebar (props)  {
             </FormControl>
             <Snackbar id='addplace-success' open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
                 <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
-                    ¡Place successfully added!
+                    Place added successfully!
                 </Alert>
             </Snackbar>
         </div>

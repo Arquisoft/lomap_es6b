@@ -15,30 +15,30 @@ class GetUsersList extends Simulation {
     .acceptLanguageHeader("en-US,en;q=0.5")
     .userAgentHeader("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:95.0) Gecko/20100101 Firefox/95.0")
   
-  private val headers_0 = Map(
+  private val headers_0 = MapBox(
   		"Accept" -> "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
   		"Upgrade-Insecure-Requests" -> "1"
   )
   
-  private val headers_1 = Map("Accept" -> "image/avif,image/webp,*/*")
+  private val headers_1 = MapBox("Accept" -> "image/avif,image/webp,*/*")
   
-  private val headers_2 = Map(
+  private val headers_2 = MapBox(
   		"If-None-Match" -> """W/"21-Da2z2ryWGAvtwohXYJERIWJgKbU"""",
   		"Origin" -> "http://localhost:3000"
   )
   
-  private val headers_3 = Map(
+  private val headers_3 = MapBox(
   		"Access-Control-Request-Headers" -> "content-type",
   		"Access-Control-Request-Method" -> "POST",
   		"Origin" -> "http://localhost:3000"
   )
   
-  private val headers_4 = Map(
+  private val headers_4 = MapBox(
   		"Content-Type" -> "application/json",
   		"Origin" -> "http://localhost:3000"
   )
   
-  private val headers_5 = Map(
+  private val headers_5 = MapBox(
   		"If-None-Match" -> """W/"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w"""",
   		"Origin" -> "http://localhost:3000"
   )
