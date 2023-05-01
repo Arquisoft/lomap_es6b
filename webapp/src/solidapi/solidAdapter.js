@@ -261,7 +261,7 @@ export async function giveAllFriendPermissionPoint(webId,session, placeID) {
             const updatedAcl = solid.setAgentResourceAccess( //se establecen los permisos
                 resourceAcl,
                 friendsURL[i],
-                { read: true, append: false, write: false, control: false }
+                { read: true, append: true, write: false, control: false }
             );
 
             await saveAclFor(myDatasetWithAcl, updatedAcl, { fetch: session.fetch }); //se guardan en cada amigo los cambios
