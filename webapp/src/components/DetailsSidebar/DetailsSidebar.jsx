@@ -17,8 +17,9 @@ const DetailsSidebar = (props) => {
         placeCategories} = props;
     const [selectedFriend, setSelectedFriend] = useState([]);
     const [selectedPlaceComment, setSelectedPlaceComment] = useState([]);
-    const [showDeleteButton] =useState(true);
+    const [showDeleteButton] = useState(true);
     const selectedFriendUsername = selectedFriend.friendURL?.split("/")[2].split(".")[0]
+    const [showShareButton] = useState(true);
 
     useEffect(() => {
         let friendWebId = selectedFriend.friendURL;
@@ -43,7 +44,9 @@ const DetailsSidebar = (props) => {
                             <MyPlacesSidebar deletePlace={deletePlace} places={places} setPlaces={setPlaces}
                                              setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} session={session}
                                             showDeleteButton = {showDeleteButton} setSelectedPlaceComment={setSelectedPlaceComment}
-                                             setSelectedButton={setSelectedButton} userWebId={userWebId}/>
+                                             setSelectedButton={setSelectedButton} userWebId={userWebId}
+                                            showShareButton = {showShareButton}
+                            />
                         </div>
                     </>
                 );
@@ -96,7 +99,9 @@ const DetailsSidebar = (props) => {
                                              setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces}
                                              setShowDeleteButton = {false}
                                              setSelectedPlaceComment={setSelectedPlaceComment}
-                                             setSelectedButton={setSelectedButton}/>
+                                             setSelectedButton={setSelectedButton}
+                                             showShareButton = {false}
+                            />
                         </div>
                     </>
                 );

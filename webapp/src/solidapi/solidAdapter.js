@@ -171,42 +171,8 @@ export async function deleteFriendPod(userWebId, friendwebID) {
         await solid.removeUrl(myDataset, FOAF.knows, friendwebID);
         await solid.saveSolidDatasetAt(userWebId, myDataset);
     }
-
 }
-//Función que da permiso a un amigo sobre un sitio
-export async function giveFriendPermissionPoint(webId,session, placeId, friendUrl) {
 
-    let friendsURL = solid.getUrlAll(await getProfile(webId), FOAF.knows); //array de amigos del usuario
-
-    let url = urlPlaceUser(webId,placeId); //url del archivo a dar permisos
-
-
-    try { //obtener el archivo de control de acceso para la cuenta de usuario
-        let file = await solid.getFile(
-            url,
-            { fetch: session.fetch }
-        );
-
-        //recorremos el array de amigos para encontrar el amigo con el que queremos compartir el sitio
-        for(let friend in friendsURL) {
-            if(friend === friendUrl) {
-                let resourceAcl = solid.createAcl(file); //recurso de permisos
-
-                const updatedAcl = solid.setAgentResourceAccess( //se establecen los permisos
-                    resourceAcl,
-                    friendsURL[friend],
-                    { read: true, append: false, write: true, control: false }
-                );
-                await solid.saveAclFor(file, updatedAcl, { fetch: session.fetch }); //se guardan en el amigo los cambios
-                console.log("Permisos al amigo :"+ friendsURL);
-            }
-
-        }
-
-    } catch (error) {
-        console.log(error);
-    }
-}
 
 //Función que da permiso sobre un punto a todos los amigos
 export async function giveAllFriendPermissionPoint(webId,session, placeID) {
