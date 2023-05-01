@@ -99,7 +99,7 @@ const PlaceCard = (props) => {
                     action={
                         <>
                             {/*<Chip icon = {place.privacy === "Public" ? <Diversity3Icon/> : <PermIdentityIcon/>} label={place.privacy}  />*/}
-                            <IconButton aria-label="view" onClick={()=>{setSelectedPlaceComment(place); setSelectedButton('Comments');}}>
+                            <IconButton id={place.name+"-comments"} aria-label="view" onClick={()=>{setSelectedPlaceComment(place); setSelectedButton('Comments');}}>
                                 <ForumRoundedIcon style={{color: '#ffb941'}}/>
                             </IconButton>
                             {/*Menu compartir sitio con amigos*/}

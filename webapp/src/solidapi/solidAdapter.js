@@ -18,7 +18,7 @@ export function savePlace(session, placeEntity, userWebId) {
     let basicUrl;
 
     if(extractNameFromUrl(userWebId) === placeEntity.webId) { //si la persona que añade un comentario es la propietaria del sitio
-       basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");//https://username.inrupt.net
+        basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");//https://username.inrupt.net
     }else {
         basicUrl = "https://"+placeEntity.webId+".inrupt.net";//https://username.inrupt.net
     }
@@ -153,7 +153,7 @@ export async function getFriends(webId){
             friendURL:friendsURL[i],
             friendName:name,
             // profilePicture:VCARD.hasPhoto.iri.value,
-       }
+        }
 
         friends.push(friend);
     }
@@ -202,8 +202,8 @@ export async function giveAllFriendPermissionPoint(webId,session, placeID) {
         for(let i in friendsURL){
             console.log(i);
             giveFriendPermissionFolder(webId,session,name);
-             const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+name +".inrupt.net/private/Places/"+placeID+".json", {
-            fetch: session.fetch
+            const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+name +".inrupt.net/private/Places/"+placeID+".json", {
+                fetch: session.fetch
             });
 
             let resourceAcl;
@@ -295,5 +295,3 @@ export function urlPlaceUser(webId, placeId){
     url = url+"private/" + placeId +".json";
     return url;
 }
-
-

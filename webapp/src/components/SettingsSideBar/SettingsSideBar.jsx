@@ -126,7 +126,7 @@ const SettingsSideBar = (props) => {
                 <Divider />
                 <nav aria-label="settings forders 2">
                     <List>
-                        <ListItemButton variant="contained" endicon={<DeleteIcon/>} className={classes.deleteButton}
+                        <ListItemButton id='deletealldata-button' variant="contained" endicon={<DeleteIcon/>} className={classes.deleteButton}
                                         onClick={handleClickOpen}>
                             Delete all data
                         </ListItemButton>
