@@ -21,15 +21,6 @@ export function savePlace(session, placeEntity) {
     let privacyOfPlace = place.privacy;
     console.log(privacyOfPlace);
     let PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
-    //
-    // let PlacesUrlPublic ="";
-
-    // if(privacyOfPlace === "Public"){
-    //     PlacesUrlPublic = basicUrl.concat("/public", "/Places", "/" + place.id + ".json");
-    //     PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
-    // }else if(privacyOfPlace === "Private") {
-    //     PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
-    // }
 
 
     place = JSON.parse(JSON.stringify(place))
@@ -38,17 +29,9 @@ export function savePlace(session, placeEntity) {
     place["@type"] = "Place";
 
 
-
     let blob = new Blob([JSON.stringify(place)],{ type: "application/ld+json" });
     let file = new File([blob], place.id + ".jsonld", { type: blob.type });
 
-
-    //le paso el file creado con el blob
-    // if(privacyOfPlace === "Public") { //si es publico se guarda en la carpeta de contenido privado y en la de público
-    //     writeData(session,PlacesUrl,file);
-    //     writeData(session,PlacesUrlPublic,file);
-    //
-    // }else {
     writeData(session,PlacesUrl,file);
 
     //}
@@ -225,22 +208,22 @@ export async function giveFriendPermissionPoint(webId,session, placeId, friendUr
     }
 }
 
-//Funcion que da permiso sobre un punto a todos los amigos
+//Función que da permiso sobre un punto a todos los amigos
 export async function giveAllFriendPermissionPoint(webId,session, placeID) {
 
     let myDataset = await solid.getSolidDataset(webId); // obtain the dataset from the URI
     let theThing = await solid.getThing(myDataset, webId);
     let friendsURL = solid.getUrlAll(theThing, FOAF.knows); //array de amigos
     console.log(friendsURL);
+    let name =extractNameFromUrl(webId);
+    console.log("name corto :"+name)
     try {
         for(let i in friendsURL){
             console.log(i);
-            let name =extractNameFromUrl(webId);
-            console.log("name corto :"+name)
+            giveFriendPermissionFolder(webId,session,name);
              const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+name +".inrupt.net/private/Places/"+placeID+".json", {
             fetch: session.fetch
             });
-
 
             let resourceAcl;
             if (!hasResourceAcl(myDatasetWithAcl)) {
@@ -261,12 +244,50 @@ export async function giveAllFriendPermissionPoint(webId,session, placeID) {
             const updatedAcl = solid.setAgentResourceAccess( //se establecen los permisos
                 resourceAcl,
                 friendsURL[i],
-                { read: true, append: true, write: false, control: false }
+                { read: true, append: true , write: true, control: false }
             );
 
             await saveAclFor(myDatasetWithAcl, updatedAcl, { fetch: session.fetch }); //se guardan en cada amigo los cambios
             console.log("Permisos al amigo :"+ friendsURL[i]);
         }
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+//Función que otorga permisos a los amigos para la carpeta places, y asi poder monstrar los sitios que se compartieron.
+export async function giveFriendPermissionFolder(webId,session, friendUrl, userName) {
+    try {
+        console.log("permisos carpeta");
+        const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+userName +".inrupt.net/private/Places/.acl", {
+            fetch: session.fetch
+        });
+        let resourceAcl;
+        if (!hasResourceAcl(myDatasetWithAcl)) {
+            if (!hasAccessibleAcl(myDatasetWithAcl)) {
+                console.log(
+                    "The current user does not have permission to change access rights to this Resource."
+                );
+            }
+            if (!hasFallbackAcl(myDatasetWithAcl)) {
+                console.log(
+                    "The current user does not have permission to see who currently has access to this Resource."
+                );
+            }
+            resourceAcl = createAclFromFallbackAcl(myDatasetWithAcl);
+        } else {
+            resourceAcl = getResourceAcl(myDatasetWithAcl);
+        }
+        const updatedAcl = solid.setAgentResourceAccess( //se establecen los permisos
+            resourceAcl,
+            friendUrl,
+            { read: true, append: true, write: false, control: false }
+        );
+
+        await saveAclFor(myDatasetWithAcl, updatedAcl, { fetch: session.fetch }); //se guardan en cada amigo los cambios
+        console.log("Permisos al amigo carpeta:"+ friendUrl +"   de la carpeta Places.");
+        // }
 
     } catch (error) {
         console.log(error);

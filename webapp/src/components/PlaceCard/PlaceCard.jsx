@@ -74,8 +74,6 @@ const PlaceCard = (props) => {
         setSnackbarOpenShare(false);
     };
 
-
-
     const handleDeletePlace = () => {
         console.log(place.id);
 
@@ -93,8 +91,6 @@ const PlaceCard = (props) => {
         giveAllFriendPermissionPoint(userWebId, session,place.id);
         handleSnackbarOpenShare();
     };
-
-
 
     return (
         <div>
