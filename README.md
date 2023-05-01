@@ -18,31 +18,45 @@
 <img src="https://miro.medium.com/max/365/1*Jr3NFSKTfQWRUyjblBSKeg.png" height="100">
 </p>
 
-## How to deploy locally :)
+## 🚀 How to deploy locally
 
-In this version we deploy the app locally without docker. In order to solve the problem that you will get for trying to run our project with mongo, follow these steps:
+In this version we deploy the app locally without docker.
 
 *We will assume that you already have our project downloaded in your PC.*
 
-1) Go into our `restapi` folder.
-2) You will see a file called `.env_sample` with this content
-   ```bash
-   DATABASE_URL = mongodb+srv://username:password@lomapes6b.qrix8pk.mongodb.net/test
-3) You will have to create in your repository your own file called `.env`, with the same content showed above, but updated with your MongoDb access data. If you don´t have access yet, contact us.
+1) Open your terminal and go into the folder where you have downloaded the project.
+2) Go into the `webapp` folder.
+```shell
+cd webapp
+```
+3) Install the dependencies with `--force` to avoid errors.
+```shell
+npm install --force
+```
+4) Finally, run the app with:
+```shell
+npm start
+```
+_If the application doesn't open automatically, you can open it in your browser in [http://localhost:3000](http://localhost:3000)._
 
-4) Now, open one terminal, compile and run `restapi`. If everything went well, you will read *database connected*.
-   ```shell
-   cd restapi
-   npm install
-   npm start
-   ```
-5) Now the same with `webapp`. Don´t mind if you see some errors after install. These doesn´t affect the execution and will be removed in future versions.****
-   ```shell
-   cd webapp
-   npm install
-   npm start
-   ```
-
-
-
-If everthing went well, you should be able to access the application in [http://localhost:3000](http://localhost:3000).
+## 🧪 How to run the tests 
+### ⚙️ Unit tests
+1) Go to the `webapp` folder.
+```shell
+cd webapp
+```
+2) Run the tests with:
+```shell
+npm test -- --coverage --watchAll=false
+```
+### 🖥️ E2E tests
+**Important: The app must be running in order to run the E2E tests!**
+1) Go to the `e2e` folder.
+```shell
+cd webapp/e2e
+```
+2) Run the tests with:
+```shell
+npx jest . 
+```
+_Optionally, you can run the tests with the `--runInBand` flag to run the tests sequentially._
