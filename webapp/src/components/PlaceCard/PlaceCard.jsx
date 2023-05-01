@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Card,
     CardContent,
@@ -12,15 +12,35 @@ import {
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import TravelExploreRoundedIcon from '@mui/icons-material/TravelExploreRounded';
 import DeletePlaceConfirmDialog from "../DeletePlaceConfirmDialog/DeletePlaceConfirmDialog";
-import { removePlace } from '../../solidapi/solidAdapter';
-import Diversity3Icon from '@mui/icons-material/Diversity3';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import {
+    giveAllFriendPermissionPoint,
+    removePlace,
+    giveFriendPermissionPoint,
+    getFriends
+} from '../../solidapi/solidAdapter';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ShareIcon from '@mui/icons-material/Share';
+import SharePlacesDialog from "../SharePlacesDialog/SharePlacesDialog";
+
 const PlaceCard = (props) => {
-    const {place, setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton, setSelectedPlaceComment, setSelectedButton } = props;
+    const {place, setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton, setSelectedPlaceComment, setSelectedButton,
+            userWebId} = props;
     const [open, setOpen] = React.useState(false);
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorElNested, setAnchorElNested] = React.useState(null);
+    const [openShareFriend, setOpenShareFriend] = React.useState(false);
 
+    const [friends, setFriends] = React.useState([]);
+
+    useEffect(() => {
+        getFriends(userWebId).then((friends) => {
+            setFriends(friends);
+            console.log("hola");
+        });
+    }, []);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -39,19 +59,46 @@ const PlaceCard = (props) => {
         setSnackbarOpen(false);
     };
 
+    const handleClickShareButton = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleCloseShareButton = () => {
+        setAnchorEl(null);
+    };
+
+    const handleShareOneFriendButton = () => {
+        //setAnchorElNested(event.currentTarget);
+        setOpenShareFriend(true);
+    };
+
+    const  handleCloseShareOneFriendButton = () => {
+       // setAnchorElNested(null);
+        setOpenShareFriend(false);
+    };
+
 
     const handleDeletePlace = () => {
         console.log(place.id);
-        
+
         console.log("El id que buscará en el pod es: " + place.id) //correcto, asi lo tenemos guardado en los pods por ahora
-        //no se si los guiones que separan en el log, y en la web de los pods no aparecen, afectan
+        //no sé si los guiones que separan en el log, y en la web de los pods no aparecen, afectan
         removePlace(session,place.id)// delete from the pods
 
         deletePlace(place.id); //deleting in the frontend
-        handleClose();//cerrar la pestaña de dialogo
+        handleClose();//cerrar la pestaña de diálogo
         handleSnackbarOpen(); //abrir el snackbar
     }
 
+    const handleSharePlaceWithAllFriends = () => {
+        console.log("Boton compartir con todos mis amigos");
+        giveAllFriendPermissionPoint(session.id, session, place._id);
+    };
+
+    const handleSharePlaceWithFriend = (event, index) => {
+        console.log("Boton compartir con un amigo");
+        giveFriendPermissionPoint(friends[index].id);
+    }
 
     return (
         <div>
@@ -60,10 +107,51 @@ const PlaceCard = (props) => {
                     component='div' style={{paddingBottom: '10px'}}
                     action={
                         <>
-                            <Chip icon = {place.privacy === "Public" ? <Diversity3Icon/> : <PermIdentityIcon/>} label={place.privacy}  />
+                            {/*<Chip icon = {place.privacy === "Public" ? <Diversity3Icon/> : <PermIdentityIcon/>} label={place.privacy}  />*/}
                             <IconButton aria-label="view" onClick={()=>{setSelectedPlaceComment(place); setSelectedButton('Comments');}}>
                                 <ForumRoundedIcon style={{color: '#ffb941'}}/>
                             </IconButton>
+                            {/*Menu compartir sitio con amigos*/}
+                            <IconButton
+                                aria-label="share"
+                                onClick={handleClickShareButton}
+                                startIcon={<ShareIcon/> }>
+                                <ShareIcon style={{color: '#573105'}} />
+                            </IconButton>
+                            <Menu
+                                anchorEl={anchorEl}
+                                open={Boolean(anchorEl)}
+                                onClose={handleCloseShareButton}
+
+                            >
+                                <MenuItem onClick={handleCloseShareButton}>Share with all my friends</MenuItem>
+                                <MenuItem onClick={handleShareOneFriendButton}>Share with a friend of choice</MenuItem>
+                                <MenuItem onClick={handleCloseShareButton}>Option 3</MenuItem>
+                            </Menu>
+{/*                            <Menu*/}
+{/*                                id="nested-menu"*/}
+{/*                                anchorEl={anchorElNested}*/}
+{/*                                keepMounted*/}
+{/*                                open={Boolean(anchorElNested)}*/}
+{/*                                onClose={handleCloseShareOneFriendButton}*/}
+{/*                                */}
+{/*                                anchorOrigin={{*/}
+{/*                                    vertical: 'top',*/}
+{/*                                    horizontal: 'right',*/}
+{/*                                }}*/}
+{/*                                transformOrigin={{*/}
+{/*                                    vertical: 'top',*/}
+{/*                                    horizontal: 'left',*/}
+{/*                                }}*/}
+{/*                            >*/}
+{/*                                */}
+{/*/                                /!*{friends.map((friend, index) => (*!/*/}
+{/*                                /!*    <MenuItem key={index} onClick={(event) => handleShareOneFriendButton(event, index)}>*!/*/}
+{/*                                /!*        {friend}*!/*/}
+{/*                                /!*    </MenuItem>*!/*/}
+{/*                                /!*))}*!/*/}
+{/*                            </Menu>*/}
+
                             <IconButton aria-label="view" onClick={()=>setSelectedPlaceMyPlaces({lat: place.latitude, lng: place.longitude})}>
                                 <TravelExploreRoundedIcon style={{color: '#6986e8'}}/>
                             </IconButton>
@@ -94,6 +182,8 @@ const PlaceCard = (props) => {
             </Snackbar>
 
             <DeletePlaceConfirmDialog open={open} handleClose={handleClose} handleDeletePlace={handleDeletePlace}/>
+            <SharePlacesDialog openShareFriend={openShareFriend}  handleCloseShareOneFriendButton={handleCloseShareOneFriendButton}
+                               handleSharePlaceWithFriend={handleSharePlaceWithFriend} friends={friends}/>
         </div>
     );
 };

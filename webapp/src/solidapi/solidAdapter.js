@@ -95,7 +95,7 @@ export async function removePlace(session,placeId){
 
 export function modifyPlace(session, placeId, updatedPlaceEntity) {
     const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-    const placeUrlPublic = basicUrl.concat("/public", "/Places", "/" + placeId + ".json");
+    const placeUrlPublic = basicUrl.concat("/private", "/Places", "/" + placeId + ".json");
 
     const updatedPlace = JSON.parse(JSON.stringify(updatedPlaceEntity));
     updatedPlace["@context"] = "https://schema.org/";
@@ -113,7 +113,7 @@ export async function getPlacesByWebId(session, webId){
     } // Check if the webId is undefined
 
     let basicUrl = webId?.split("/").slice(0, 3).join("/");
-    let pointsUrl = basicUrl.concat("/public", "/Places/");
+    let pointsUrl = basicUrl.concat("/private", "/Places/");
 
     let places = [];
     let files = await findDataInContainer(session, pointsUrl);

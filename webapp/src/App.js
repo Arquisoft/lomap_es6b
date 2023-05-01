@@ -163,7 +163,7 @@ const App = () => {
                             <Map defaultCoordinates={defaultCoordinates} places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
                                  setSelectedPoint={setSelectedPoint} selectedButton={selectedButton} selectedPlaceMyPlaces={selectedPlaceMyPlaces}
                                  placesLength={placesLength} selectedFilters={selectedFilters}
-                                 selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/>   {/* Map: OpenStreetMap working with Leaflet */}
+                                 selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/>   {/* MapBox: OpenStreetMap working with Leaflet */}
                         </Paper>
                     </Grid>
                 </Grid>

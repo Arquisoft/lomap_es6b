@@ -13,7 +13,7 @@ image:UmlDiagram.png["Example UML Diagram"]
 [options="header"]
 |===
 | Concept         | Description
-| Map    | It's the main part of the interface, we obtain it through OpenStreetMap API. The map is where the user can mark selected places an watch places marked by their friends.
+| MapBox    | It's the main part of the interface, we obtain it through OpenStreetMap API. The map is where the user can mark selected places an watch places marked by their friends.
 | User     | We only will save the ID of the users and the list of IDs of their friends in the site.
 | Friend    | A friend is an user that has been added as friend by another user.
 | Mark     | A mark identifies a location on the map. Marks are created by the users and once is created they can add rating, pictures, description ... We won't save any of that in our database. All that information will be stored in the user's pod.
