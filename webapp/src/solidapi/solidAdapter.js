@@ -16,7 +16,8 @@ export function savePlace(session, placeEntity, userWebId) {
         return null;
     }
     let basicUrl;
-    if(userWebId === placeEntity.webId) { //si la persona que añade un comentario es la propietaria del sitio
+
+    if(extractNameFromUrl(userWebId) === placeEntity.webId) { //si la persona que añade un comentario es la propietaria del sitio
        basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");//https://username.inrupt.net
     }else {
         basicUrl = "https://"+placeEntity.webId+".inrupt.net";//https://username.inrupt.net
