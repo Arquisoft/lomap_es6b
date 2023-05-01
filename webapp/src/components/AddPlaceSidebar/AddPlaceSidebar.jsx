@@ -154,7 +154,7 @@ function AddPlaceSidebar (props)  {
             </FormControl>
             <Snackbar id='addplace-success' open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
                 <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
-                    ¡Place successfully added!
+                    Place added successfully!
                 </Alert>
             </Snackbar>
         </div>

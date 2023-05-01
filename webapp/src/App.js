@@ -170,7 +170,7 @@ const App = () => {
             </Box>
             <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
                 <Alert id='login-success' onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
-                    ¡Login to your account successfully!
+                    Logged in successfully!
                 </Alert>
             </Snackbar>
             {session.info.isLoggedIn ? null : <LoginWall/>}
