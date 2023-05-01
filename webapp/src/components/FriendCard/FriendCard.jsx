@@ -11,7 +11,7 @@ import { deleteFriendPod } from '../../solidapi/solidAdapter';
 
 const FriendCard = (props) => {
     const classes = useStyles();
-    const {friend, setSelectedFriend, setSelectedButton, userWebId} = props;
+    const {friend, setSelectedFriend, setSelectedButton, userWebId, session} = props;
     const [open, setOpen] = React.useState(false);
 
     const friendUrl = friend.friendURL;
@@ -27,7 +27,7 @@ const FriendCard = (props) => {
 
     const handleDeleteFriend = () => {
         console.log("DELETING FRIEND...");
-        deleteFriendPod(userWebId, "https://uo282249.inrupt.net/profile/card#me"); //deleting in the frontend
+        deleteFriendPod(userWebId,session, friend.friendURL);
     }
 
     return (

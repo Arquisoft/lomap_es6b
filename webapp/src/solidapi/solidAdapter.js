@@ -72,13 +72,6 @@ export async function removePlace(session,placeId){
         const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
         const placeUrl = basicUrl.concat("/private", "/Places", "/" + placeToDelete.id + ".json");
 
-        // if (placeToDelete.privacy === "Public") {
-        //     deleteData(session, placeUrl);
-        //     const placeUrlPublic = basicUrl.concat("/public", "/Places", "/" + placeToDelete.id + ".json");
-        //     deleteData(session, placeUrlPublic);
-        // }else {
-        //     deleteData(session, placeUrl);
-        // }
         deleteData(session, placeUrl);
     }
 }
@@ -152,24 +145,31 @@ export async function getFriends(webId){
     return friends;
 }
 
-export async function deleteFriendPod(userWebId, friendwebID) {
-    //Obtenemos la lista de amigos
-    const friends = await getFriends(userWebId);
+//Función que borra un amigo de solid
+export async function deleteFriendPod(userWebId, session,friendWebId) {
+    let profile = userWebId.split("#")[0];
+    let dataSet = await solid.getSolidDataset(profile);
 
-    //Buscamos el amigo que queremos borrar
-    const friendToDelete = friends.find(friend => friend.friendURL === friendwebID);
+    let dataSetThing = solid.getThing(dataSet, userWebId);
 
-    // Si el amigo existe, lo eliminamos
-    if (friendToDelete) {
-        const updatedFriends = friends.filter(friend => friend.friendURL !== friendwebID);
+    try {
+        let friendName = solid.getStringNoLocale(await getProfile(userWebId), FOAF.name);
+        let existsFriend = solid.getUrlAll(dataSetThing, FOAF.knows)
 
-        // Actualizamos el documento de amigos
-        const myDataset = await solid.getSolidDataset(userWebId); //obtenemos el dataset de la URI
-        const theThing = await solid.getThing(myDataset, userWebId);
-        const friendsList = solid.getUrlAll(theThing, FOAF.knows);
-        let updatedList = friendsList.filter(friend => friend !== friendwebID);
-        await solid.removeUrl(myDataset, FOAF.knows, friendwebID);
-        await solid.saveSolidDatasetAt(userWebId, myDataset);
+        if (!existsFriend.some((url) => url === friendWebId)){
+            console.log("Este usuario no es amigo");
+        }else if(typeof friendName === 'undefined'){
+            console.log("Este usuario no existe");
+        }else{
+            let newFriend = solid.buildThing(dataSetThing)
+                .removeUrl(FOAF.knows, friendWebId)
+                .build();
+            dataSet = solid.setThing(dataSet, newFriend);
+            dataSet = await solid.saveSolidDatasetAt(userWebId, dataSet, {fetch: session.fetch})
+            console.log(friendName+" borrado de amigos");
+        }
+    } catch (error){
+        console.log(error);
     }
 }
 
