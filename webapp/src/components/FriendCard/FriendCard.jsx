@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardHeader, IconButton, Typography} from "@mui/material";
+import {Alert, Card, CardHeader, IconButton, Snackbar, Typography} from "@mui/material";
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import MapIcon from '@mui/icons-material/Map';
 import Avatar from "@mui/material/Avatar";
@@ -13,6 +13,7 @@ const FriendCard = (props) => {
     const classes = useStyles();
     const {friend, setSelectedFriend, setSelectedButton, userWebId, session} = props;
     const [open, setOpen] = React.useState(false);
+    const [openSnackBar,setOpenSnackBar] = React.useState(false);
 
     const friendUrl = friend.friendURL;
     const parts = friendUrl.split("/");
@@ -25,9 +26,19 @@ const FriendCard = (props) => {
         setOpen(false);
     };
 
+    const handleSnackBarOpen = () => {
+        setOpenSnackBar(true);
+    }
+
+    const handleSnackBarClose = () => {
+        setOpenSnackBar(false);
+    }
+
     const handleDeleteFriend = () => {
         console.log("DELETING FRIEND...");
         deleteFriendPod(userWebId,session, friend.friendURL);
+        handleClose();
+        handleSnackBarOpen();
     }
 
     return (
@@ -60,6 +71,11 @@ const FriendCard = (props) => {
                     />
                 </Card>
                 <DeleteFriendConfirmDialog open={open} handleClose={handleClose} handleDeleteFriend={handleDeleteFriend}/>
+                <Snackbar id='deleteFriend-success' open={openSnackBar} autoHideDuration={3000} onClose={handleSnackBarClose}>
+                    <Alert onClose={handleSnackBarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
+                        Friend deleted successfully!
+                    </Alert>
+                </Snackbar>
             </CombinedDataProvider>
         </div>
     );
