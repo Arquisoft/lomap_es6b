@@ -453,7 +453,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_technical_constraints">2.1. Technical constraints</a></li>
 <li><a href="#_organizational_constraints">2.2. Organizational constraints</a></li>
-<li><a href="#_political_constraints">2.3. Political constraints</a></li>
+<li><a href="#_conventions">2.3. Conventions</a></li>
 </ul>
 </li>
 <li><a href="#section-system-scope-and-context">3. System Scope and Context</a>
@@ -474,7 +474,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_whitebox_overall_system">5.1. Whitebox Overall System</a></li>
 <li><a href="#_level_2">5.2. Level 2</a></li>
-<li><a href="#_level_3">5.3. Level 3</a></li>
 </ul>
 </li>
 <li><a href="#section-runtime-view">6. Runtime View</a>
@@ -568,7 +567,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sect2">
 <h3 id="_requirements_overview">1.1. Requirements Overview</h3>
 <div class="paragraph">
-<p>The application runs online. It also makes use of Solid Pods to not keep the information centralized, in order to preserve user&#8217;s privacity. In this way, it decentralizes most of the user’s data. Users will be shown a map where they can add locations, review scores, comments, etc to create their own personalized maps. Each user will also be able to fully manage the information they provide to the application.</p>
+<p>The application runs online. It also makes use of Solid Pods to not keep the information centralized, in order to preserve user&#8217;s privacy. In this way, it decentralizes most of the user’s data. Users will be shown a map where they can add locations, review scores, comments, etc to create their own personalized maps. Each user will also be able to fully manage the information they provide to the application.</p>
 </div>
 <div class="paragraph">
 <p>The full list of requirements of the application can be found in <a href="https://arquisoft.github.io/course2223/labAssignmentDescription.html">the assignment page</a>.</p>
@@ -579,55 +578,29 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="paragraph">
 <p>The requirements to be met are the following:</p>
 </div>
-<div class="sect3">
-<h4 id="_availability">1.2.1. Availability:</h4>
 <div class="ulist">
 <ul>
 <li>
-<p>The system must have the capacity so the access to the data is totally reliable and consistent for users in order to make their operations with the system.</p>
+<p><strong>Availability</strong> :
+The system must have the capacity so the access to the data is totally reliable and consistent for users in order to make their operations with the system.</p>
 </li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_decentralization">1.2.2. Decentralization:</h4>
-<div class="ulist">
-<ul>
 <li>
-<p>All the information used by the system must be provided by the users, or had given the system the permissions in order to obtain that information.</p>
+<p><strong>Decentralization</strong> :
+All the information used by the system must be provided by the users, or had given the system the permissions in order to obtain that information.</p>
 </li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_testability">1.2.3. Testability:</h4>
-<div class="ulist">
-<ul>
 <li>
-<p>The system must be testable in order to make a robust, secure and bug free system.</p>
+<p><strong>Testability</strong> :
+The system must be testable in order to make a robust, secure and bug free system.</p>
 </li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_secure">1.2.4. Secure:</h4>
-<div class="ulist">
-<ul>
 <li>
-<p>The system will carry out checks on potentially dangerous decisions for the user, such as to provide personal data to the system to make more personal the interaction with the system. We will also ensure that the requests and responses between client and the API are not compromised.</p>
+<p><strong>Secure</strong> :
+The system will carry out checks on potentially dangerous decisions for the user, such as to provide personal data to the system to make more personal the interaction with the system. We will also ensure that the requests and responses between client and the API are not compromised.</p>
 </li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_accessibilityusability">1.2.5. Accessibility/Usability:</h4>
-<div class="ulist">
-<ul>
 <li>
-<p>The system must be easy to use for beginners or people without previous technical knowledge. Likewise, the system should provide the necessary help to the user to be able to navigate through the program without any doubt, in addition to having to be accessible to all people. In order to do that, we decided to follow a minimalist rounded style.</p>
+<p><strong>Accessibility/Usability</strong> :
+The system must be easy to use for beginners or people without previous technical knowledge. Likewise, the system should provide the necessary help to the user to be able to navigate through the program without any doubt, in addition to having to be accessible to all people. In order to do that, we decided to follow a minimalist rounded style.</p>
 </li>
 </ul>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -654,7 +627,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Teachers</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em><a href="https://arquisoft.github.io/course2223.html" class="bare">https://arquisoft.github.io/course2223.html</a></em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The teachers of the subject, who will control the process of this project and help us when we need.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The teachers of the subject, who will support us as required.</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Developers</em></p></td>
@@ -725,10 +698,10 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The team</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We are a group of four and  we should get along with each other, to not hinder the work.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We are a group of three and  we should get along with each other, to not hinder the work.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Due dates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deadlines</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">We will try to finish our own issues with one or two margin days, to be able to solve the problems that can come out.</p></td>
 </tr>
 <tr>
@@ -739,7 +712,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </table>
 </div>
 <div class="sect2">
-<h3 id="_political_constraints">2.3. Political constraints</h3>
+<h3 id="_conventions">2.3. Conventions</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -856,61 +829,57 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Database</strong>: MongoDb</p>
+<p><strong>Frameworks</strong>:
+Some of us use <em>IntelliJ</em> and others <em>Visual Studio Code</em> to develop. And <em>Jest</em> for testing.</p>
+</li>
+<li>
+<p><strong>Version control</strong>: <em>GitHub</em>. One branch per person.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>We have decided to work with this non-relational database mostly because it works well with Node.js. Its ease of use and the fact we have used this type of database in other subjects makes it the best option for us.</p>
+<p>We will work with both <strong>master</strong> and <strong>dev</strong> branches and then each team member will have its own branch. From our point of view, this is the best way for organizing our code updates minimizing collisions as much as possible.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Branching strategy</strong>: One branch per person.</p>
+<p><strong>Languages</strong>:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>We will work with both <strong>master</strong> and <strong>dev</strong> branches and then each team member will have its own branch. From our point of view, this is the best way for organizing our code updates minimizing collisions as much as possible. We also decided to use this because some team members have already taken part of projects using the same strategy and have had good experiences.</p>
+<p><em>Javascript</em>: As we decided to work with Node.js and React.js, the language we will use is Javascript.</p>
+</li>
+<li>
+<p><em>JSX</em>: Syntax extension to Javascript.</p>
+</li>
+<li>
+<p><em>YAML</em>: Data serialization language that used for writinf the GitHub workflow script.</p>
+</li>
+<li>
+<p><em>Gatling</em>: For load testing.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Coding language</strong>: Javascript</p>
+<p><strong>External APIs</strong>: <em>OpenStreet Maps</em> API. Mainly because it&#8217;s completely free, not like Google Maps, which was our first option. However, it´s a very used API too.</p>
+</li>
+<li>
+<p><strong>Backend technology</strong>: <em>Node.js</em>. Javascript runtime environment</p>
 <div class="ulist">
 <ul>
 <li>
-<p>As we decided to work with Node.js and React.js, the language we will use is Javascript.</p>
+<p>We decided to work with Node because it is a well-known backend technology and also one of the best ways to implement SOLID Pods. The example project used it so we were motivated to try it out.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Map API</strong>: OpenStreet Maps API</p>
+<p><strong>Frontend technology</strong>: <em>React.js</em>. Frontend library.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>We decided to use OpenStreet Maps mainly because it&#8217;s completely free, not like Google Maps, which was our first option. However, it´s a very used API too.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Backend technology</strong>: Node.js</p>
-<div class="ulist">
-<ul>
-<li>
-<p>We decided to work with Node because it is a well-known backend technology and also one of the best ways to implement SOLID Pods.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Frontend technology</strong>: React.js</p>
-<div class="ulist">
-<ul>
-<li>
-<p>We do not have previous experience with frontend frameworks so its popularity and ease of learning was what made us to choose this technology.</p>
+<p>As mentioned above, the example written in React made us the choice easier. We do not have previous experience with frontend frameworks so its popularity and ease of learning was what made us to choose this technology.</p>
 </li>
 </ul>
 </div>
@@ -926,25 +895,37 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 <div class="sect2">
 <h3 id="_decisions_on_how_to_achieve_key_quality_goals">4.3. Decisions on how to achieve key quality goals</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Availability</strong> will be achieved by making sure that all the interactions the users make with our application are totally reliable and consistent. We will ensure that the system will do what it is supposed to.</p>
-</li>
-<li>
-<p><strong>Decentralization</strong> will be achieved by using SOLID Pods. By using them, almost all data will be stored in each user&#8217;s Pod achieving a fully decentralized system for all the important information.</p>
-</li>
-<li>
-<p>We will also work on <strong>testability</strong> by making most of the functions testable. This will let us create unit tests for these functions, and thus we will minimize the number of bugs.</p>
-</li>
-<li>
-<p><strong>Security</strong> will be achieved with decentralization and by doing a strict control of permissions. This means users will only be able to access the data they are supposed to.</p>
-</li>
-<li>
-<p><strong>Accessibility/Usability</strong> will be reached by making a user-friendly and easy to use interface. This means we will work on features like color contrast, keyboard accessibility, etc.</p>
-</li>
-</ul>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Quality goal</th>
+<th class="tableblock halign-left valign-top">How to achieve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Availability</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Making sure that all the interactions the users make with our application are totally reliable and consistent. We will ensure that the system will do what it is supposed to.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Testability</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Making most of the functions testeable. This will let us create unit tests for these functions, and thus we will minimize the number of bugs.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Principle of data Minimisation</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensuring that data are used only for their specific purpose, limiting the retention period and their accessibility to what is necessary.
+With decentralization and by doing a strict control of permissions. This means users will only be able to access the data they are supposed to.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Accessibility/Usability</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Making a user-friendly and easy to use interface. This means we will work on features like color contrast, keyboard accessibility, etc</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_relevant_organizational_decisions">4.4. Relevant organizational decisions</h3>
@@ -955,13 +936,19 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="ulist">
 <ul>
 <li>
-<p>We have created a Whatsapp group for short questions or messages.</p>
+<p>We use <em>Teams</em> for our online meetings.</p>
 </li>
 <li>
-<p>We also use Discord for making meetings if we need to.</p>
+<p>We also have a <em>Discord</em> team if we need it.</p>
 </li>
 <li>
-<p>It is important to mention that even, although we use these channels, all decisions are always documented on the GitHub repository.</p>
+<p>We left the task distribution written with <em>GitHub Issues</em>.</p>
+</li>
+<li>
+<p>We have created a <em>Whatsapp</em> group for short questions or messages.</p>
+</li>
+<li>
+<p>It is important to mention that even, although we use these channels, all decisions are always documented on the <em>GitHub Wiki</em>.</p>
 </li>
 </ul>
 </div>
@@ -981,7 +968,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="ulist">
 <ul>
 <li>
-<p>The project will be done in English and the communication between the team members will be in Spanish (our first language).</p>
+<p>The project will be done in English and the communication between the team members will be in Spanish (our mother tongue).</p>
 </li>
 </ul>
 </div>
@@ -999,7 +986,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <h3 id="_whitebox_overall_system">5.1. Whitebox Overall System</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/level1.png" alt="level1" width="418" height="263">
+<img src="./images/level1.png" alt="level1" width="418" height="341">
 </div>
 </div>
 <div class="dlist">
@@ -1036,10 +1023,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <td class="tableblock halign-left valign-top"><p class="tableblock">It is the API that allows the user to visualize the places on a map and also allows the autocompleting function.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Database</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">It is the database that stores small information about the places to improve the app performance.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pod</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">It is the personal data store of the user. It is used to store the places and the all the information about them.</p></td>
 </tr>
@@ -1050,53 +1033,14 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <h3 id="_level_2">5.2. Level 2</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/level2.png" alt="level2" width="435" height="364">
+<img src="./images/level2.png" alt="level2" width="1041" height="690">
 </div>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
-<p>Inside LoMap, the system is separated by the Frontend and the Backend.</p>
-</dd>
-<dt class="hdlist1">Contained Building Blocks</dt>
-</dl>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Block name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Frontend</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">It is the part of the application that the user interacts with, and that uses the map API.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Backend</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">It is the part of the application that manages the data and the communication with the database.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_level_3">5.3. Level 3</h3>
-<div class="imageblock">
-<div class="content">
-<img src="./images/level3.png" alt="level3" width="992" height="872">
-</div>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Motivation</dt>
-<dd>
-<p>Inside LoMap, the system is separated by the Frontend and the Backend.</p>
+<p>Inside LoMap, the Frontend is connected with the Solidapi to manage PODs.</p>
 </dd>
 <dt class="hdlist1">Contained Building Blocks</dt>
 </dl>
@@ -1134,16 +1078,8 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lets the user manage his profile information.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>FrontendAPI</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">It is the API that allows the Frontend to communicate with the Backend.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>RESTAPI</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">It is the API that allows the Backend to communicate with the Database.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Solid</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">It is the API that allows the Backend to communicate with the Pod.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SolidApi</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is the API that allows the Frontend to communicate with the Pod.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1279,7 +1215,7 @@ In the production phase, the user experience should be maximized with a good int
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Map</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MapBox</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">It&#8217;s the main part of the interface, we obtain it through OpenStreetMap API. The map is where the user can mark selected places an watch places marked by their friends.</p></td>
 </tr>
 <tr>
@@ -1691,7 +1627,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-04-20 12:59:53 +0200
+Last updated 2023-04-24 21:45:12 +0200
 </div>
 </div>
 </body>
