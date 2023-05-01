@@ -90,7 +90,7 @@ const CommentsSidebar = (props) => {
     const showRatingComments = () => {
         console.log(place.ratingComments);
         console.log("PLACE:")
-        console.log(place)
+
         return place.ratingComments?.map((rating) => (
             <RatingCommentCard key={place.id} rating={rating}/>
         ));
@@ -100,7 +100,7 @@ const CommentsSidebar = (props) => {
         console.log(place.textComments)
         place.textComments.push({posterWebId: userWebId, text: commentValue});
         console.log(place.textComments)
-        savePlace(session, place);
+        savePlace(session, place, userWebId);
         handleCloseTextDialog();
         setCommentValue("");
     }
