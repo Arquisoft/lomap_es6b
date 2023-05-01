@@ -12,7 +12,6 @@ import {
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import TravelExploreRoundedIcon from '@mui/icons-material/TravelExploreRounded';
 import DeletePlaceConfirmDialog from "../DeletePlaceConfirmDialog/DeletePlaceConfirmDialog";
-import {deletePlaceMarkByID} from "../../api/api";
 import { removePlace } from '../../solidapi/solidAdapter';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
@@ -47,7 +46,6 @@ const PlaceCard = (props) => {
         console.log("El id que buscará en el pod es: " + place.id) //correcto, asi lo tenemos guardado en los pods por ahora
         //no se si los guiones que separan en el log, y en la web de los pods no aparecen, afectan
         removePlace(session,place.id)// delete from the pods
-        deletePlaceMarkByID(place._id); //deleting in the database
 
         deletePlace(place.id); //deleting in the frontend
         handleClose();//cerrar la pestaña de dialogo
