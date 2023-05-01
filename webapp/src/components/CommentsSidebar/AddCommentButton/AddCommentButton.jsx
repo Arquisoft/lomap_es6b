@@ -42,8 +42,8 @@ const SplitButton = (props) => {
     return (
         <React.Fragment>
             <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-                <Button  onClick={()=>handleClickOpen(options[selectedIndex])} data-testid="AddCommentBotton">{options[selectedIndex]} </Button>
-                <Button data-testid="botonMenuComment"
+                <Button  id="add-commentbt" onClick={()=>handleClickOpen(options[selectedIndex])} data-testid="AddCommentBotton">{options[selectedIndex]} </Button>
+                <Button id="open-add-commentbt" data-testid="botonMenuComment"
                     size="small"
                     aria-controls={open ? 'split-button-menu' : undefined}
                     aria-expanded={open ? 'true' : undefined}
@@ -77,6 +77,7 @@ const SplitButton = (props) => {
                                     {options.map((option, index) => (
                                         <MenuItem
                                             key={option}
+                                            id={option}
                                             selected={index === selectedIndex}
                                             onClick={(event) => handleMenuItemClick(event, index)}
                                         >
