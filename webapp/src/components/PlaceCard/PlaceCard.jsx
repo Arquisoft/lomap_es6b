@@ -92,7 +92,7 @@ const PlaceCard = (props) => {
 
     const handleSharePlaceWithAllFriends = () => {
         console.log("Boton compartir con todos mis amigos");
-        giveAllFriendPermissionPoint(session.id, session, place._id);
+        giveAllFriendPermissionPoint(session.id, session);
     };
 
     const handleSharePlaceWithFriend = (event, index) => {
@@ -124,7 +124,7 @@ const PlaceCard = (props) => {
                                 onClose={handleCloseShareButton}
 
                             >
-                                <MenuItem onClick={handleCloseShareButton}>Share with all my friends</MenuItem>
+                                <MenuItem onClick={handleSharePlaceWithAllFriends}>Share with all my friends</MenuItem>
                                 <MenuItem onClick={handleShareOneFriendButton}>Share with a friend of choice</MenuItem>
                                 <MenuItem onClick={handleCloseShareButton}>Option 3</MenuItem>
                             </Menu>
