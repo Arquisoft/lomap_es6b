@@ -63,7 +63,6 @@ export async function getPlaces(session){
 }
 
 export async function removePlace(session,placeId){
-    //por hacer
     // Obtenemos la lista de lugares existentes
     const places = await getPlaces(session);
 
@@ -74,6 +73,18 @@ export async function removePlace(session,placeId){
     if (placeToDelete) {
         const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
         const placeUrl = basicUrl.concat("/private", "/Places", "/" + placeToDelete.id + ".json");
+
+        deleteData(session, placeUrl);
+    }
+}
+
+export async function deleteAllPlaces(session) {
+    const places = await getPlaces(session);
+
+    for(const place in places) {
+        console.log("Borrado: " + places[place].name);
+        const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
+        const placeUrl = basicUrl.concat("/private", "/Places", "/" + places[place].id + ".json");
 
         deleteData(session, placeUrl);
     }

@@ -19,10 +19,11 @@ import SyncLockIcon from '@mui/icons-material/SyncLock';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import DeleteAllDataConfirmDialog from "../DeleteAllDataConfirmDialog/DeleteAllDataConfirmDialog";
 import {Alert, Snackbar} from "@mui/material";
+import {deleteAllPlaces} from "../../solidapi/solidAdapter";
 const SettingsSideBar = (props) => {
     const classes = useStyles();
 
-    const {setPlaces} = props;
+    const {setPlaces,session} = props;
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [open, setOpen] = React.useState(false);
 
@@ -53,6 +54,7 @@ const SettingsSideBar = (props) => {
         setPlaces([]);
         handleClose();
         handleSnackbarOpen(); //abrimos el snackbar
+        deleteAllPlaces(session);
     };
 
 
@@ -134,7 +136,7 @@ const SettingsSideBar = (props) => {
             <DeleteAllDataConfirmDialog open={open} handleClose={handleClose} handleDeleteAll={handleDeleteAll}/>
             <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose} data-testid='snack'>
                 <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
-                    ¡all data removed successfully!
+                    All data removed successfully!
                 </Alert>
             </Snackbar>
         </div>

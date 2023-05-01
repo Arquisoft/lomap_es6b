@@ -115,7 +115,7 @@ const DetailsSidebar = (props) => {
                             Customize your experience or delete all your data.
                         </Typography>
                         <div style={{ overflow: "auto", height: "70vh" }}>
-                            <SettingsSideBar setPlaces={setPlaces}  />
+                            <SettingsSideBar setPlaces={setPlaces}  session={session}/>
                         </div>
                     </>
                 );
