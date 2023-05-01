@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import useStyles from "./styles";
 import PlaceCard from "../PlaceCard/PlaceCard";
+import {CircularProgress} from "@mui/material";
 
 const MyPlacesSidebar = (props) => {
     const {setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton, setSelectedPlaceComment,
         setSelectedButton,userWebId, showShareButton} = props;
     const classes = useStyles();
+    const [isLoading, setIsLoading] = useState(false);
 
    
     const showPlaces = () => {
@@ -16,13 +18,19 @@ const MyPlacesSidebar = (props) => {
                        setSelectedPlaceComment={setSelectedPlaceComment} setSelectedButton={setSelectedButton}
                         userWebId={userWebId} showShareButton={showShareButton}/>
         ))
-            
+        setIsLoading(false)
+
     }
 
 
   return (
+
       <div style={{paddingBottom: "20px"}}>
-          {showPlaces()}
+          {isLoading ? (
+              <CircularProgress color={"inherit"} />
+          ) : (
+              showPlaces()
+          )}
       </div>
   );
 };
