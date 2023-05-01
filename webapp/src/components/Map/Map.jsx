@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import { MapContainer, Marker, Popup, TileLayer, useMapEvent} from "react-leaflet";
+import {MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent} from "react-leaflet";
 import useStyles from './styles';
 import 'leaflet/dist/leaflet.css';
 import {Typography} from "@mui/material";
@@ -80,7 +80,7 @@ const Map = (props) => {
     }
 
     const showPlaces = () => {
-        if(selectedFilters?.length === 0){
+        if(selectedFilters.length === 0){
             return showingPlaces?.map((place) => (
                 <Marker key={place.id} position={{lat: place.latitude, lng: place.longitude}} icon={blueIcon}>
                     <Popup>
@@ -110,13 +110,14 @@ const Map = (props) => {
 
     // Attach handleMapMove to a map move event
     return (
+
         <MapContainer
             id='map-id'
             className={classes.mapContainer}
-          ref={mapRef}
-          center={defaultCoordinates}
-          zoom={13}
-          scrollWheelZoom={true}
+            ref={mapRef}
+            center={defaultCoordinates}
+            zoom={13}
+            scrollWheelZoom={true}
         >
 
             <TileLayer
@@ -129,9 +130,19 @@ const Map = (props) => {
 
             {showAddPlaceMarker()}
 
+            {/*{places?.map((place) => (
+                <Marker key={place.id} position={{lat: place.latitude, lng: place.longitude}} icon={blueIcon}>
+                    <Popup>
+                        <div><Typography variant="subtitle1">{place.name} | {place.category}</Typography></div>
+                        <div><Typography variant="subtitle3">{place.description}</Typography></div>
+                    </Popup>
+                </Marker>
+            ))}*/}
+
             {showPlaces()}
 
-      </MapContainer>
+        </MapContainer>
+
     );
 };
 const HandleMapClick = ({ onClick }) => {
@@ -144,4 +155,3 @@ const HandleMapClick = ({ onClick }) => {
 };
 
 export default Map;
-
