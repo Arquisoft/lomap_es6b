@@ -9,18 +9,19 @@
 Actor User
 Component LoMap
 Component Pod
+Component PodProvider
+
 Component MapBox as "MapBox API"
-Component Database
 
 User -right-> LoMap: interacts with
 
 User .right.> Pod: owns
 
-LoMap <-right-> Pod: transfers data
+LoMap <-right-> Pod: manages
 
 LoMap --> MapBox: uses
 
-LoMap <--> Database: transfers data
+PodProvider --> Pod: provides
 
 ----
 
@@ -41,58 +42,17 @@ Contained Building Blocks::
 |*Map API*
 |It is the API that allows the user to visualize the places on a map and also allows the autocompleting function.
 
-|*Database*
-|It is the database that stores small information about the places to improve the app performance.
 
 |*Pod*
 |It is the personal data store of the user. It is used to store the places and the all the information about them.
 
 |===
 
+
 === Level 2
 [plantuml, "level2", png]
 ----
-Actor User
-Component LoMap {
-    Component Frontend
-    Component Backend
 
-}
-Component Pod
-Component MapBox as "MapBox API"
-Component Database
-
-User -right-> Frontend: interacts with
-
-User .right.> Pod: owns
-
-Backend <-right-> Pod: transfers data
-
-Frontend --> MapBox: uses
-
-Backend <--> Database: transfers data
-
-Frontend <--> Backend: communicates
-----
-Motivation::
-Inside LoMap, the system is separated by the Frontend and the Backend.
-
-Contained Building Blocks::
-[options="header",cols="1,3"]
-|===
-|Block name| Description
-
-|*Frontend*
-|It is the part of the application that the user interacts with, and that uses the map API.
-
-|*Backend*
-|It is the part of the application that manages the data and the communication with the database.
-
-|===
-
-=== Level 3
-[plantuml, "level3", png]
-----
 Actor User
 Component LoMap {
     Component Frontend{
@@ -103,29 +63,25 @@ Component LoMap {
         Component Settings
         Component Profile
     }
-        Component FrontendAPI
-    }
-    Component Backend{
-        Component RESTAPI
-        Component Solid
+        Component Solidapi
     }
 
 }
+Component Inrupt
 Component Pod
 Component MapBox as "OpenStreetMap API"
-Component Database
 
 User --> Frontend: interacts with
+Inrupt--> Pod: provides
+
 User ..> Pod: owns
-Solid <--> Pod: manages
-RESTAPI <--> Database: manages
-Frontend --> MapBox: uses
-FrontendAPI <--> Backend: communicates
-Views <--> FrontendAPI: communicates
+Solidapi <--> Pod: manages
+Frontend--> MapBox: uses
+Views <--> Solidapi: communicates
 
 ----
 Motivation::
-Inside LoMap, the system is separated by the Frontend and the Backend.
+Inside LoMap, the Frontend is connected with the Solidapi to manage PODs.
 
 Contained Building Blocks::
 [options="header",cols="1,3"]
@@ -147,14 +103,8 @@ Contained Building Blocks::
 |*Profile*
 |Lets the user manage his profile information.
 
-|*FrontendAPI*
-|It is the API that allows the Frontend to communicate with the Backend.
-
-|*RESTAPI*
-|It is the API that allows the Backend to communicate with the Database.
-
-|*Solid*
-|It is the API that allows the Backend to communicate with the Pod.
+|*SolidApi*
+|It is the API that allows the Frontend to communicate with the Pod.
 
 
 |===
