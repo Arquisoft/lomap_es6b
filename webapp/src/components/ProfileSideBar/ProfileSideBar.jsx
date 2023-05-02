@@ -24,6 +24,7 @@ const ProfileSideBar = (props) => {
     };
 
     const handleLogout = () => {
+        if (props.handleLogoutMock) props.handleLogoutMock(); //TESTING
         session.logout();
         handleSnackbarOpen();
     }
