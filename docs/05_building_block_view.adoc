@@ -11,7 +11,7 @@ Component LoMap
 Component Pod
 Component PodProvider
 
-Component MapBox as "MapBox API"
+Component Leaflet 
 
 User -right-> LoMap: interacts with
 
@@ -19,7 +19,7 @@ User .right.> Pod: owns
 
 LoMap <-right-> Pod: manages
 
-LoMap --> MapBox: uses
+LoMap --> Leaflet: uses
 
 PodProvider --> Pod: provides
 
@@ -69,14 +69,14 @@ Component LoMap {
 }
 Component Inrupt
 Component Pod
-Component MapBox as "OpenStreetMap API"
+Component Leaflet as "OpenStreetMaps API"
 
 User --> Frontend: interacts with
 Inrupt--> Pod: provides
 
 User ..> Pod: owns
 Solidapi <--> Pod: manages
-Frontend--> MapBox: uses
+Frontend--> Leaflet: uses
 Views <--> Solidapi: communicates
 
 ----

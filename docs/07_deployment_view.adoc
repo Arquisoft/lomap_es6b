@@ -13,20 +13,10 @@ For development and testing the execution environment we are working on each stu
 
 Quality and/or Performance Features::
 
-We have chosen MongoDb to maximize the performance with Node.js.
+We have chosen work just with Front to simplify the structure.
 In the production phase, the user experience should be maximized with a good internet connection, but this is something we cannot control.
 
-[options="header",cols="1,3"]
-|===
-|Node/Artifact| Description
 
-|*restapi*
-|Listens on port 5000
-
-|*webapp*
-|Listens on port 3000
-
-|===
 
 
 
