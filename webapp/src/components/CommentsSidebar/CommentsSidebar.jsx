@@ -69,6 +69,7 @@ const CommentsSidebar = (props) => {
     };
 
     const showTextComments = () => {
+        if (props.showTextCommentsMock) props.showTextCommentsMock(); //TESTING
         return place?.textComments?.map((comment) => (
             <TextCommentCard key={place.id} comment={comment}/>
         ));
@@ -126,14 +127,10 @@ const CommentsSidebar = (props) => {
     }
 
     const handleCommentTypeChange = (value) => {
+        if (props.showRatingCommentsMock) props.showRatingCommentsMock(); //TESTING
         setSelectedCommentType(value);
     }
 
-    const options = [
-        { value: 'text', label: 'Text comments'  },
-        { value: 'rating', label: 'Ratings' },
-        { value: 'image', label: 'Images' },
-      ];
       
     return (
         <>
@@ -153,7 +150,7 @@ const CommentsSidebar = (props) => {
                     data-testid= "Type of comments to show"
                 >
                     <MenuItem onClick={()=>handleCommentTypeChange("text")} value={"text"}>Text comments</MenuItem>
-                    <MenuItem id='rating-option' onClick={()=>handleCommentTypeChange("rating")} value={"rating"}>Ratings</MenuItem>
+                    <MenuItem id='rating-option' data-testid='rating-item' onClick={()=>handleCommentTypeChange("rating")} value={"rating"}>Ratings</MenuItem>
                     <MenuItem id='images-option' onClick={()=>handleCommentTypeChange("image")} value={"image"}>Images</MenuItem>
                 </Select>
             </FormControl>
