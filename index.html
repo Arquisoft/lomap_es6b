@@ -478,9 +478,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#section-runtime-view">6. Runtime View</a>
 <ul class="sectlevel2">
-<li><a href="#_adding_a_new_place">6.1. Adding a new place</a></li>
-<li><a href="#_viewing_a_place">6.2. Viewing a place</a></li>
-<li><a href="#_logging_into_the_application">6.3. Logging into the application</a></li>
+<li><a href="#_logging_into_the_application">6.1. Logging into the application</a></li>
+<li><a href="#_adding_a_new_place">6.2. Adding a new place</a></li>
+<li><a href="#_viewing_a_place">6.3. Viewing a place</a></li>
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a>
@@ -493,8 +493,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_domain_model">8.1. Domain model</a></li>
 <li><a href="#_domain_concepts">8.2. Domain concepts</a></li>
-<li><a href="#_security">8.3. Security</a></li>
-<li><a href="#_user_experience">8.4. User experience</a></li>
 </ul>
 </li>
 <li><a href="#section-design-decisions">9. Design Decisions</a>
@@ -507,6 +505,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_ad_06_postman">9.6. AD-06: Postman</a></li>
 <li><a href="#_ad_07_format_specificaction_for_pods_json">9.7. AD-07: Format Specificaction for PODs: JSON</a></li>
 <li><a href="#_ad_08_format_specificaction_for_pods_json_ld">9.8. AD-08: Format Specificaction for PODs: JSON-LD</a></li>
+<li><a href="#_ad_09_no_longer_use_the_database">9.9. AD-09: No longer use the database</a></li>
 </ul>
 </li>
 <li><a href="#section-quality-scenarios">10. Quality Requirements</a>
@@ -748,8 +747,10 @@ The system must be easy to use for beginners or people without previous technica
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_business_context">3.1. Business Context</h3>
-<div class="paragraph">
-<p><span class="image"><img src="./images/businessContextDiagram.png" alt="Business context diagram"></span></p>
+<div class="imageblock">
+<div class="content">
+<img src="./images/BusinessContext.png" alt="BusinessContext" width="226" height="340">
+</div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -769,11 +770,7 @@ The system must be easy to use for beginners or people without previous technica
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Solid PODS</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Solid PODS have information about user’s addresses. We must store the shared information in a personal Pod according to the SOLID principles. The data is stored in a decentralized way.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Database</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The database is used to store only the places' ID and coordinates just for the purpose of optimizing the app&#8217;s performance.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solid PODS have information about user’s addresses. They can also let acces to specific users to share their places.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>OpenStreetMap API</strong></p></td>
@@ -784,6 +781,11 @@ The system must be easy to use for beginners or people without previous technica
 </div>
 <div class="sect2">
 <h3 id="_technical_context">3.2. Technical Context</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/BusinessContext.png" alt="BusinessContext" width="613" height="402">
+</div>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1091,35 +1093,35 @@ With decentralization and by doing a strict control of permissions. This means u
 <h2 id="section-runtime-view">6. Runtime View</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_adding_a_new_place">6.1. Adding a new place</h3>
-<div class="paragraph">
-<p>The user will be able to add any selected place in the map and add any information about it. The user will be able to add a place by clicking on the map and then clicking on the Add button. The place will be added to his Pod.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="./images/AddPlaces.png" alt="AddPlaces" width="521" height="493">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_viewing_a_place">6.2. Viewing a place</h3>
-<div class="paragraph">
-<p>The user will be able to view all his places in the map and in a sidebar with all the information about the place.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="./images/ViewPlaces.png" alt="ViewPlaces" width="691" height="516">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_logging_into_the_application">6.3. Logging into the application</h3>
+<h3 id="_logging_into_the_application">6.1. Logging into the application</h3>
 <div class="paragraph">
 <p>The user will be able to view all his places in the map and in a sidebar with all the information about the place.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="./images/Login.png" alt="Login" width="635" height="517">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adding_a_new_place">6.2. Adding a new place</h3>
+<div class="paragraph">
+<p>The user will be able to add any selected place in the map and add any information about it. The user will be able to add a place by clicking on the map and then clicking on the Add button. The place will be added to his Pod.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/AddPlaces.png" alt="AddPlaces" width="552" height="675">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_viewing_a_place">6.3. Viewing a place</h3>
+<div class="paragraph">
+<p>The user will be able to view all his places in the map and in a sidebar with all the information about the place.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/ViewPlaces.png" alt="ViewPlaces" width="702" height="728">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1142,33 +1144,11 @@ With decentralization and by doing a strict control of permissions. This means u
 </dd>
 <dt class="hdlist1">Quality and/or Performance Features</dt>
 <dd>
-<p>We have chosen MongoDb to maximize the performance with Node.js.
+<p>We have chosen work just with Front to simplify the structure.
 In the production phase, the user experience should be maximized with a good internet connection, but this is something we cannot control.</p>
 </dd>
 </dl>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Node/Artifact</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>restapi</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Listens on port 5000</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>webapp</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Listens on port 3000</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect2">
 <h3 id="_infrastructure_level_2">7.2. Infrastructure Level 2</h3>
@@ -1196,8 +1176,10 @@ In the production phase, the user experience should be maximized with a good int
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_domain_model">8.1. Domain model</h3>
-<div class="paragraph">
-<p><span class="image"><img src="./images/UmlDiagram.png" alt="Example UML Diagram"></span></p>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Domain%20model.png" alt="Domain model" width="203" height="508">
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1215,7 +1197,7 @@ In the production phase, the user experience should be maximized with a good int
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MapBox</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Map</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">It&#8217;s the main part of the interface, we obtain it through OpenStreetMap API. The map is where the user can mark selected places an watch places marked by their friends.</p></td>
 </tr>
 <tr>
@@ -1223,39 +1205,11 @@ In the production phase, the user experience should be maximized with a good int
 <td class="tableblock halign-left valign-top"><p class="tableblock">We only will save the ID of the users and the list of IDs of their friends in the site.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Friend</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A friend is an user that has been added as friend by another user.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A mark identifies a location on the map. Marks are created by the users and once is created they can add rating, pictures, description &#8230;&#8203; We won&#8217;t save any of that in our database. All that information will be stored in the user&#8217;s pod.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pod</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">It&#8217;s an external store provided by SOLID Project where will be saved the information of the users or the places.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Placemark</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A Placemark identifies a location on the map. Placemarks are created by the users and once is created they can add rating, pictures, description &#8230;&#8203; We won&#8217;t save any of that in our database. All that information will be stored in the user&#8217;s pod.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="sect2">
-<h3 id="_security">8.3. Security</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Privacy:</strong> The information stored in the application is decentralised in pods. This ensures that the privacy of the users is protected.
-Part of the information can be stored in a centralised way in the database but always respecting the privacy of the users..</p>
-</li>
-<li>
-<p><strong>Access control:</strong> The system must have appropriate access controls in place to ensure that only authorized users can access and modify personal and shared data.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_user_experience">8.4. User experience</h3>
-<div class="paragraph">
-<p>Our intention is to make an intuitive site where the user can see all the important modules just entering. The map will be placed occupying a significant part of the screen. Users will be able to see the different locations of their saved sites displayed on the map. In addition, the user will be able to observe additional information on the left side of the screen or by hovering the mouse over the location.</p>
-</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1325,7 +1279,7 @@ Part of the information can be stored in a centralised way in the database but a
 <div class="ulist">
 <ul>
 <li>
-<p>Status: Accepted</p>
+<p>Status: Rejected</p>
 </li>
 <li>
 <p>Context: At first we thought using MariaDB as it is explained above. However, the fact that we will work with Node.js and that it doesn´t work well with relational databases, warned us.</p>
@@ -1411,6 +1365,26 @@ Part of the information can be stored in a centralised way in the database but a
 </li>
 <li>
 <p>Consequences: We have to update our code in solidapi to follow the JSON-LS format, but this won´t be a big trouble.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ad_09_no_longer_use_the_database">9.9. AD-09: No longer use the database</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Status: Accepted</p>
+</li>
+<li>
+<p>Context: First we started with just the database until we learned how to manage pods.
+When we put the pods in action in our project, we no longer needed the database, because everything was loaded from the POD according to our web interface</p>
+</li>
+<li>
+<p>Decision: Work without database.</p>
+</li>
+<li>
+<p>Consequences: We must quit the connection with the database in our project.</p>
 </li>
 </ul>
 </div>
