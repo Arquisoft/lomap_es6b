@@ -36,7 +36,6 @@ const PlaceCard = (props) => {
     useEffect(() => {
         getFriends(userWebId).then((friends) => {
             setFriends(friends);
-            console.log("hola");
         });
     }, []);
 

@@ -24,28 +24,29 @@
 |Due to the workload between different subjects and the problems of time compatibility. 
 |It is necessary to have a good organisation and distribution of time between the members of the team. 
 
+|Medium
+|SOLID server availability
+|The project is based on the SOLID platform and is therefore essential for its proper functioning. We are susceptible to bugs and changes within the technology.
+Unfortunately we cannot control or alter Solid’s development.
+|We have no other option but to rely on SOLID, so we give the user different POD providers to choose from.
 |===
 
 === Technical debts
 
-[%header, cols=3]
+[%header, cols=2]
 |===
 
-|Relevance
 |Technical debts
 |Considerations
 
-|High
-|Solid API
-|Because this is the first time we work with SOLID principles, we have no prior knowledge. This affects the project development process. 
+|Slow data transfer
+|The use of SOLID to store and share all the information we work with in the project. This results in longer waiting times than we would like.
 
-|Medium
-|React and JavaScript 
-|Some team members do not know JavaScript. Also, none of them are familiar with the React library. This can cause difficulties at the beginning of the project that will disappear as time goes by.
+|Some funcional features
+|Due to lack of time we did not have time to implement some features we would like to. We had to prioritise the important functionality of the project.
 
-|Medium
-|Node.js
-|None of the team has any knowledge of this platform, so there is an initial effort to learn how to use it.
-
+|Some usability and features
+|We wanted to implement the application in a way that it would be usable by all users and also that it would be adaptable and responsive to different devices, such as mobile, computer or tablet.
+But due to lack of time, we did not complete it.
 |===
 
