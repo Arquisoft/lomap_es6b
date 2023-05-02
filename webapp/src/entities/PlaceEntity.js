@@ -8,7 +8,6 @@ export default class PlaceEntity {
         this.longitude = longitude;
         this.webId = webId;
         this.textComments = textComments;
-        this.privacy = privacy;
         this.imageComments = imageComments;
         this.ratingComments = ratingComments;
     }
