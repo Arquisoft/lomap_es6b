@@ -33,6 +33,7 @@ const SettingsSideBar = (props) => {
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
     const handleSnackbarOpen = () => {
+        if (props.handleSnackbarOpenMock) props.handleSnackbarOpenMock(); //TESTING
         setSnackbarOpen(true);
     };
 
@@ -40,16 +41,6 @@ const SettingsSideBar = (props) => {
         setSnackbarOpen(false);
     };
 
-    const handleClickAppearance = () => {
-        setOpenAppearance(!openAppearance);
-    };
-
-    const handleClickPrivacy = () => {
-        setOpenPrivacy(!openPrivacy);
-    };
-    const handleDarkMode = (event) => {
-        setIsDarkMode(event.target.checked);
-    };
     const handleDeleteAll = () => {
         setPlaces([]);
         handleClose();
@@ -59,8 +50,11 @@ const SettingsSideBar = (props) => {
 
 
     const handleClickOpen = () => {
+        if (props.handleClickOpenMock) props.handleClickOpenMock(); //TESTING
+
         setOpen(true);
     };
+
 
     const handleClose = () => {
         setOpen(false);
@@ -70,63 +64,9 @@ const SettingsSideBar = (props) => {
     return (
         <div>
             <Box>
-                <nav aria-label="settings folders 1">
-                    <List>
-                        <ListItemButton onClick = {handleClickAppearance}>
-                            <ListItemIcon>
-                                <AutoAwesomeIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Appearance" />
-                            {openAppearance ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-                        <Collapse in={!openAppearance} timeout="auto" unmountOnExit >
-                            <List component="div" sx = {{paddingLeft: '30px'}}>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <Brightness4Icon />
-                                    </ListItemIcon>
-                                    <ListItemText id="switch-dark-mode" primary="Dark-mode" />
-                                    <Switch
-                                        //edge="end"
-                                        onChange={handleDarkMode}
-                                        checked={isDarkMode}
-                                        inputProps={{
-                                            'aria-labelledby': 'switch-dark-mode',
-                                        }}
-                                    />
-                                </ListItem>
-                            </List>
-                        </Collapse>
-
-                        <ListItemButton onClick={handleClickPrivacy}>
-                            <ListItemIcon>
-                                <LockIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Privacy" />
-                            {openPrivacy ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-                        <Collapse in={!openPrivacy} timeout="auto" unmountOnExit >
-                            <List component="div" sx={{ paddingLeft: '30px'}}>
-                                <ListItemButton >
-                                    <ListItemIcon>
-                                        <SecurityIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Privacy Setting 1" />
-                                </ListItemButton>
-                                <ListItemButton >
-                                    <ListItemIcon>
-                                        <SyncLockIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Privacy Setting 2" />
-                                </ListItemButton>
-                            </List>
-                        </Collapse>
-                    </List>
-                </nav>
-                <Divider />
                 <nav aria-label="settings forders 2">
                     <List>
-                        <ListItemButton id='deletealldata-button' variant="contained" endicon={<DeleteIcon/>} className={classes.deleteButton}
+                        <ListItemButton id='deletealldata-button' data-testid='deletealldata-button' variant="contained" endicon={<DeleteIcon/>} className={classes.deleteButton}
                                         onClick={handleClickOpen}>
                             Delete all data
                         </ListItemButton>

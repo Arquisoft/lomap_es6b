@@ -23,7 +23,7 @@ const DeleteAllDataConfirmDialog = (props) => {
                     <Button autoFocus onClick={handleClose}>
                         Cancel
                     </Button>
-                    <Button id='confirm-deletealldata' style={{color:'red'}} onClick={handleDeleteAll}>Delete All Data</Button>
+                    <Button id='confirm-deletealldata' data-testid='confirm-deletealldata' style={{color:'red'}} onClick={handleDeleteAll}>Delete All Data</Button>
                 </DialogActions>
             </Dialog>
         </div>
