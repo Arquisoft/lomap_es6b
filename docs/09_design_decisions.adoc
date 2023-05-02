@@ -25,7 +25,7 @@
 
 
 === AD-04: Definitive Database server: MongoDb
-* Status: Accepted
+* Status: Rejected
 * Context: At first we thought using MariaDB as it is explained above. However, the fact that we will work with Node.js and that it doesn´t work well with relational databases, warned us.
 * Decision: As we haven´t started to implement yet, we decided to change to a non relational database to take less risk. Some of us had worked with it before and its easy to learn.
 * Consequences: We will use MongoDb as a database.
@@ -54,3 +54,10 @@
 * Context: One of the requirements of this assignment is that there must exists interoperability between the data stored by the different applications. In https://github.com/Arquisoft/lomapSpec/issues/6[this issue] from the LomacSpec repository there was a discussion about which could be the best option.
 * Decision: Despite not reaching an agreement, we have chosen to follow the JSON-LS format. It´s a point in between JSON and RDF.
 * Consequences: We have to update our code in solidapi to follow the JSON-LS format, but this won´t be a big trouble.
+
+=== AD-09: No longer use the database
+* Status: Accepted
+* Context: First we started with just the database until we learned how to manage pods. 
+When we put the pods in action in our project, we no longer needed the database, because everything was loaded from the POD according to our web interface
+* Decision: Work without database. 
+* Consequences: We must quit the connection with the database in our project.

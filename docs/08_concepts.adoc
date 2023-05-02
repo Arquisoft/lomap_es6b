@@ -3,21 +3,43 @@
 
 
 === Domain model
+[plantuml,"Domain model",png]
+----
+Class User{
+ String WebID
+}
 
-image:UmlDiagram.png["Example UML Diagram"]
+Class Map{
+ String ID
+}
 
+Class Placemark{
+ String ID
+ String category
+ String name
+ String description
+ double latitue
+ double longitude
+ String webID
+ String privacy
+ [] textComments
+ [] imageComments 
+ [] ratingComments
+}
 
+User --* User : friend
+User -- Map
+Map --* Placemark
 
+----
 === Domain concepts
 
 [options="header"]
 |===
 | Concept         | Description
-| MapBox    | It's the main part of the interface, we obtain it through OpenStreetMap API. The map is where the user can mark selected places an watch places marked by their friends.
+| Map   | It's the main part of the interface, we obtain it through OpenStreetMap API. The map is where the user can mark selected places an watch places marked by their friends.
 | User     | We only will save the ID of the users and the list of IDs of their friends in the site.
-| Friend    | A friend is an user that has been added as friend by another user.
 | Placemark     | A Placemark identifies a location on the map. Placemarks are created by the users and once is created they can add rating, pictures, description ... We won't save any of that in our database. All that information will be stored in the user's pod.
-| Pod     | It's an external store provided by SOLID Project where will be saved the information of the users or the places.
 |===
 
 
