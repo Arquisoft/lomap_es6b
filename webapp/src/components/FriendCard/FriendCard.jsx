@@ -44,7 +44,7 @@ const FriendCard = (props) => {
     return (
         <div>
             <CombinedDataProvider datasetUrl={friendUrl} thingUrl={friendUrl}>
-                <Card style={{margin: '25px', marginTop:'0px'}}>
+                <Card data-testid={friend.friendURL} style={{margin: '25px', marginTop:'0px'}}>
                     <CardHeader
                         component='div' style={{paddingBottom: '10px'}}
                         avatar={

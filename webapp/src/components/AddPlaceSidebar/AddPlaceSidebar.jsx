@@ -54,7 +54,6 @@ function AddPlaceSidebar (props)  {
         place.latitude = selectedPoint.lat;
         place.longitude = selectedPoint.lng;
         place.category = category;
-        // place.privacy = privacy;
         place.textComments = [];
         place.imageComments = [];
         place.ratingComments = [];
