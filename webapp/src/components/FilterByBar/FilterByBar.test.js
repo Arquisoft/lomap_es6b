@@ -30,4 +30,16 @@ test('calls setSelectedFilters when an option is selected', async () => {
    // Buscar elementos dentro del cuadro de diálogo
    const option =  within(popper).getByText('Category 1');
    expect(option).toBeInTheDocument();
+
+   const category2 = within(popper).getByText('Category 2');
+   expect(category2).toBeInTheDocument();
+
+
+   fireEvent.click(option);
+   expect(setSelectedFilters).toHaveBeenCalledWith(['Category 1']);
+   expect(setSelectedFilters).toBeCalledTimes(1);
+   
+
+ 
+
 });
