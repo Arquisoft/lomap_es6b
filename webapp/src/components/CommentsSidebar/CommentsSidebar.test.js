@@ -50,8 +50,11 @@ describe('CommentsSidebar', () => {
   });
 
 
-  test('writes a comment', () => {
-    render(<CommentsSidebar session={session} userWebId={userWebId} place={place} />);
+  test('start to write a comment but close', () => {
+
+    const handleAddTextCommentMock = jest.fn();
+
+    render(<CommentsSidebar session={session} userWebId={userWebId} place={place} handleAddTextCommentMock />);
     const botonAdd = screen.getByTestId('addCommentButton');
     expect(botonAdd).toBeInTheDocument();
     fireEvent.click(botonAdd);
@@ -67,11 +70,59 @@ describe('CommentsSidebar', () => {
     expect(escribeAqui.value).toBe("hola mundo");
 
 
-    //busca el boton para añadir el comentario
+    //busca el boton para cancela
+    const cancelaMensaje = screen.getByTestId('cancelaMensaje');
+    expect(cancelaMensaje).toBeInTheDocument();
+
+    //clico en el boton cancelar
+    fireEvent.click(cancelaMensaje);
+    expect(handleAddTextCommentMock).not.toHaveBeenCalled();
+
+  });
+
+
+
+  test('start to write a comment but close', () => {
+
+    const handleAddTextCommentMock = jest.fn();
+
+    render(<CommentsSidebar session={session} userWebId={userWebId} place={place} handleAddTextCommentMock />);
+    const botonAdd = screen.getByTestId('addCommentButton');
+    expect(botonAdd).toBeInTheDocument();
+    fireEvent.click(botonAdd);
+    //titulo que aparece en la ventana de dialogo que hemos abeirto
+    expect(screen.getByTestId('tituloDialogo')).toBeInTheDocument();
+
+    //busca el textArea
+    const zonaPaEscribir = screen.getByTestId("escribeComentario");
+
+    //escribe en el area un comentario
+   const escribeAqui = zonaPaEscribir.querySelector("textarea");
+    fireEvent.change(escribeAqui, { target: { value: "hola mundo" } });//innerText
+    expect(escribeAqui.value).toBe("hola mundo");
+
+
+    //busca el boton para addMensaje
     const addMensaje = screen.getByTestId('addMensaje');
     expect(addMensaje).toBeInTheDocument();
 
 
   });
   
+
+
+  test('shows rating comments when button is clicked', () => {
+    render(<CommentsSidebar session={session} userWebId={userWebId} place={place} />);
+    const botonShowing = screen.getByTestId('botonShowing');
+    expect(botonShowing).toBeInTheDocument();
+    fireEvent.click(botonShowing);
+    
+
+    const element = document.getElementById('showing-comments');
+fireEvent.click(element);
+expect(screen.getByText('Text comments')).toBeInTheDocument();
+//expect(screen.getByText('Ratings')).toBeInTheDocument();
+
+
+  });
 });

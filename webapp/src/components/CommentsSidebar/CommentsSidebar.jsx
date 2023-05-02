@@ -89,6 +89,11 @@ const CommentsSidebar = (props) => {
 
     const handleAddTextComment = () => {
         if (props.handleAddTextCommentMock) props.handleAddTextCommentMock(); //TESTING
+        console.log("webId");
+        console.log(userWebId);
+        console.log("comment");
+        console.log(commentValue);
+        console.log(place);
         place.textComments.push({posterWebId: userWebId, text: commentValue});
         savePlace(session, place, userWebId);
         handleCloseTextDialog();
@@ -147,7 +152,7 @@ const CommentsSidebar = (props) => {
                     id="showing-comments"
                     value={selectedCommentType}
                     label="Type of comments to show"
-                    data-testid= "Type of comments to show"
+                    data-testid= "botonShowing"
                 >
                     <MenuItem onClick={()=>handleCommentTypeChange("text")} value={"text"}>Text comments</MenuItem>
                     <MenuItem id='rating-option' data-testid='rating-item' onClick={()=>handleCommentTypeChange("rating")} value={"rating"}>Ratings</MenuItem>
@@ -174,7 +179,7 @@ const CommentsSidebar = (props) => {
                 />
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleCloseTextDialog}>Cancel</Button>
+                <Button data-testid='cancelaMensaje' onClick={handleCloseTextDialog}>Cancel</Button>
                 <Button data-testid='addMensaje' id='confirm-add-comment' onClick={handleAddTextComment}>Add</Button>
             </DialogActions>
         </Dialog>
@@ -216,7 +221,7 @@ const CommentsSidebar = (props) => {
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleCloseRatingDialog}>Cancel</Button>
-                <Button id="confirm-add-review" onClick={handleAddRatingComment}>Add</Button>
+                <Button data-testid='ratingCommentsButton' id="confirm-add-review" onClick={handleAddRatingComment}>Add</Button>
             </DialogActions>
         </Dialog>
 
