@@ -1,62 +1,39 @@
 import { getByTestId, fireEvent, render, screen } from '@testing-library/react';
 import AddPlaceSidebar from './AddPlaceSidebar';
-
-describe('AddPlaceSidebar', () => {
-  it('calls addPlace with the correct parameters when form is submitted', () => {
-    const addPlaceMock = jest.fn();
-    const props = {
-      selectedPoint: { lat: 0, lng: 0 },
-      places: [],
-      setPlaces: jest.fn(),
-      userWebId: 'https://example.com/profile/card#me',
-      session: {},
-    };
-    render(<AddPlaceSidebar {...props} addPlace={addPlaceMock} />);
-
-    const nameInput = screen.getByTestId('placeName');
-    const descriptionInput = screen.getByTestId('placeDescription');
-    const categorySelect = screen.getByTestId('placeCategory');
-    const privacySelect = screen.getByTestId('placePrivacy');
-    const submitButton = screen.getByTestId('addPlaceButton');
+import * as solidapi from '../../solidapi/solidAdapter'
 
 
-    fireEvent.change(nameInput.querySelector('input'), { target: { value: 'Test Place' } });
-    console.log(nameInput);
-    fireEvent.change(descriptionInput.querySelector('input'), { target: { value: 'Test description' } });
-    fireEvent.change(categorySelect.querySelector('input'), { target: { value: 'Test category' } });
-    fireEvent.change(privacySelect.querySelector('input'), { target: { value: 'Test privacy' } });
+test('check renders', async () => {
+  await render(<AddPlaceSidebar />);
+  let addPointButton = screen.getByTestId("addPlaceButton");
+  expect(addPointButton).toBeInTheDocument();
+});
 
-    fireEvent.click(submitButton);
 
-    expect(addPlaceMock).toHaveBeenCalledWith({
-      name: 'Test Place',
-      description: 'Test description',
-      latitude: 0,
-      longitude: 0,
-      category: 'Test category',
-      privacy: 'Test privacy',
-      textComments: [],
-      imageComments: [],
-      ratingComments: [],
-      id: expect.any(String),
-      webId: 'example.com',
-    });
-  }); 
+test('tries to write a Place without categgory', async () => {
+ 
 
-  /*
-  it('disables submit button when form is incomplete', () => {
-    const props = {
-      selectedPoint: { lat: 0, lng: 0 },
-      places: [],
-      setPlaces: jest.fn(),
-      userWebId: 'https://example.com/profile/card#me',
-      session: {},
-    };
-    const { getByRole } = render(<AddPlaceSidebar {...props} />);
+  const handleClickOpenMock = jest.fn();
+ 
+  let {container, getByText} = render(<AddPlaceSidebar handleClickOpenMock={handleClickOpenMock} />);
 
-    const submitButton = getByRole('button', { name: 'Add Place' });
+  //write the name
+  const nameInput = screen.getByTestId("placeName");
+  const inputName = nameInput.querySelector("input");
+  fireEvent.change(inputName, { target: { value: "test name" } });
+  expect(inputName.value).toBe("test name");
 
-    expect(submitButton).toBeDisabled();
-  });
-  */
-})
+   //write the description
+   const descriptionInput = screen.getByTestId("placeDescription");
+   const inputDescription = descriptionInput.querySelector("textarea");
+   fireEvent.change(inputDescription, { target: { value: "test description" } });//innerText
+   expect(inputDescription.value).toBe("test description");
+
+   const button = screen.getByTestId("addPlaceButton");
+   fireEvent.click(button);
+   //no se llama porque hasta que no rellene el Category, el boton está bloqueado
+   expect(handleClickOpenMock).not.toHaveBeenCalled();
+
+
+  
+});

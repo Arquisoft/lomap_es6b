@@ -1,50 +1,6 @@
 [[section-runtime-view]]
 == Runtime View
 
-=== Adding a new place
-The user will be able to add any selected place in the map and add any information about it. The user will be able to add a place by clicking on the map and then clicking on the Add button. The place will be added to his Pod.
-[plantuml,"AddPlaces",png]
-----
-title Adding a new place
-Actor User
-Participant LoMap
-Database Pod
-skinparam responseMessageBelowArrow true
-...
-User -> LoMap: Clicks on the Add Places button
-LoMap -> User: Opens the Add Place view
-User -> LoMap: Introduces the place information.
-User -> LoMap: Clicks on a point of the map.
-User -> LoMap: Clicks on the Add button.
-LoMap -> Pod: Sends the place information to the Pod.
-LoMap <-- Pod: Confirms the place has been added.
-User <- LoMap: Sends a confirmation message.
-----
-
-=== Viewing a place
-The user will be able to view all his places in the map and in a sidebar with all the information about the place.
-[plantuml,"ViewPlaces",png]
-----
-title Viewing a place
-Actor User
-Participant LoMap
-Database Pod
-skinparam responseMessageBelowArrow true
-...
-User -> LoMap: Clicks on the My Places button
-LoMap -> Pod: Sends a request to get all the places of the user.
-LoMap <-- Pod: Sends the places of the user.
-LoMap -> User: Shows the My Places view
-
-...the user visualizes the places placed in a map and also in a sidebar...
-
-...the user can't find his place in the map...
-
-User -> LoMap: Clicks on the view button of his place in the sidebar.
-User <- LoMap: Moves the map to the requested place's coordinates.
-
-----
-
 === Logging into the application
 The user will be able to view all his places in the map and in a sidebar with all the information about the place.
 [plantuml,"Login",png]
@@ -67,5 +23,69 @@ LoMap -> Pod: Validates the user's credentials.
 LoMap <-- Pod: Returns validation and the user's information.
 LoMap -> User: Shows the main view and a welcome message.
 
+
+----
+
+
+=== Adding a new place
+The user will be able to add any selected place in the map and add any information about it. The user will be able to add a place by clicking on the map and then clicking on the Add button. The place will be added to his Pod.
+[plantuml,"AddPlaces",png]
+----
+title Adding a new place
+Actor User
+Participant LoMap
+Participant Inrupt
+Database Pod
+skinparam responseMessageBelowArrow true
+...
+User -> LoMap: Loggin
+LoMap -> Inrupt: Requests user's pod
+Inrupt-> Pod: Requests user's pod
+Pod -> Inrupt: provides user's pod
+Inrupt-> LoMap: provides user's pod
+LoMap -> User: Returns his session 
+User -> LoMap: Clicks on the Add Places button
+LoMap -> User: Opens the Add Place view
+User -> LoMap: Introduces the place information.
+User -> LoMap: Clicks on a point of the map.
+User -> LoMap: Clicks on the Add button.
+LoMap -> Pod: Sends the place information to the Pod.
+LoMap <-- Pod: Confirms the place has been added.
+User <- LoMap: Sends a confirmation message.
+----
+
+=== Viewing a place
+The user will be able to view all his places in the map and in a sidebar with all the information about the place.
+[plantuml,"ViewPlaces",png]
+----
+title Viewing a place
+Actor User
+Participant LoMap
+Participant MapsAPI as "Maps API"
+Participant Inrupt
+Database Pod
+skinparam responseMessageBelowArrow true
+...
+User -> LoMap: Loggin
+LoMap -> MapsAPI : requests map
+MapsAPI -> LoMap : returns map
+LoMap -> Inrupt: Requests user's pod
+Inrupt-> Pod: Requests user's pod
+Pod -> Inrupt: provides user's pod
+Inrupt-> LoMap: provides user's pod
+
+User -> LoMap: Clicks on the My Places button
+
+
+LoMap -> Pod: Sends a request to get all the places of the user.
+LoMap <-- Pod: Sends the places of the user.
+LoMap -> User: Shows the My Places view
+
+...the user visualizes the places placed in a map and also in a sidebar...
+
+...the user can't find his place in the map...
+
+User -> LoMap: Clicks on the view button of his place in the sidebar.
+User <- LoMap: Moves the map to the requested place's coordinates.
 
 ----
