@@ -28,9 +28,9 @@
 |Explanation
 
 |The team 
-|We are a group of four and  we should get along with each other, to not hinder the work.
+|We are a group of three and  we should get along with each other, to not hinder the work.
 
-|Due dates 
+|Deadlines 
 |We will try to finish our own issues with one or two margin days, to be able to solve the problems that can come out. 
 
 |Meetings
@@ -38,7 +38,7 @@
 
 |===
 
-=== Political constraints 
+=== Conventions 
 
 [%header, cols=2]
 |===

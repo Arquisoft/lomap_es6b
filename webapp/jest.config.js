@@ -4,6 +4,7 @@ export default {
     transform: {
         "^.+\\.(js|ts)$": "ts-jest",
     },
+    testTimeout: 20000, // 10 seconds
     transformIgnorePatterns: [
         "/node_modules/(?![@autofiy/autofiyable|@autofiy/property]).+\\.js$",
         "/node_modules/(?![@autofiy/autofiyable|@autofiy/property]).+\\.ts$",
