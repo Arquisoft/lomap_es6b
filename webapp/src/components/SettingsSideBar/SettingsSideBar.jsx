@@ -55,6 +55,7 @@ const SettingsSideBar = (props) => {
         setOpen(true);
     };
 
+
     const handleClose = () => {
         setOpen(false);
     };
