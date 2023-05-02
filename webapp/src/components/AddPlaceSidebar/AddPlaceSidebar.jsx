@@ -68,7 +68,7 @@ function AddPlaceSidebar (props)  {
         console.log( webId);
 
         //guarda el Place en los pods con todos los datos
-        savePlace(session,place);
+        savePlace(session,place,userWebId);
 
 
         setPlaces([...places, place]);

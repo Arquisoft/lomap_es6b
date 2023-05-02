@@ -9,27 +9,22 @@ import {
     hasResourceAcl, saveAclFor
 } from "@inrupt/solid-client";
 
-export function savePlace(session, placeEntity) {
+export function savePlace(session, placeEntity, userWebId) {
     let place = placeEntity;
 
     if (session.info.webId == null) {
         return null;
     }
-    let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");//https://username.inrupt.net
+    let basicUrl;
+
+    if(extractNameFromUrl(userWebId) === placeEntity.webId) { //si la persona que añade un comentario es la propietaria del sitio
+        basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");//https://username.inrupt.net
+    }else {
+        basicUrl = "https://"+placeEntity.webId+".inrupt.net";//https://username.inrupt.net
+    }
 
 
-    let privacyOfPlace = place.privacy;
-    console.log(privacyOfPlace);
     let PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
-    //
-    // let PlacesUrlPublic ="";
-
-    // if(privacyOfPlace === "Public"){
-    //     PlacesUrlPublic = basicUrl.concat("/public", "/Places", "/" + place.id + ".json");
-    //     PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
-    // }else if(privacyOfPlace === "Private") {
-    //     PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
-    // }
 
 
     place = JSON.parse(JSON.stringify(place))
@@ -38,17 +33,9 @@ export function savePlace(session, placeEntity) {
     place["@type"] = "Place";
 
 
-
     let blob = new Blob([JSON.stringify(place)],{ type: "application/ld+json" });
     let file = new File([blob], place.id + ".jsonld", { type: blob.type });
 
-
-    //le paso el file creado con el blob
-    // if(privacyOfPlace === "Public") { //si es publico se guarda en la carpeta de contenido privado y en la de público
-    //     writeData(session,PlacesUrl,file);
-    //     writeData(session,PlacesUrlPublic,file);
-    //
-    // }else {
     writeData(session,PlacesUrl,file);
 
     //}
@@ -77,7 +64,6 @@ export async function getPlaces(session){
 }
 
 export async function removePlace(session,placeId){
-    //por hacer
     // Obtenemos la lista de lugares existentes
     const places = await getPlaces(session);
 
@@ -89,13 +75,18 @@ export async function removePlace(session,placeId){
         const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
         const placeUrl = basicUrl.concat("/private", "/Places", "/" + placeToDelete.id + ".json");
 
-        // if (placeToDelete.privacy === "Public") {
-        //     deleteData(session, placeUrl);
-        //     const placeUrlPublic = basicUrl.concat("/public", "/Places", "/" + placeToDelete.id + ".json");
-        //     deleteData(session, placeUrlPublic);
-        // }else {
-        //     deleteData(session, placeUrl);
-        // }
+        deleteData(session, placeUrl);
+    }
+}
+
+export async function deleteAllPlaces(session) {
+    const places = await getPlaces(session);
+
+    for(const place in places) {
+        console.log("Borrado: " + places[place].name);
+        const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
+        const placeUrl = basicUrl.concat("/private", "/Places", "/" + places[place].id + ".json");
+
         deleteData(session, placeUrl);
     }
 }
@@ -162,85 +153,58 @@ export async function getFriends(webId){
             friendURL:friendsURL[i],
             friendName:name,
             // profilePicture:VCARD.hasPhoto.iri.value,
-       }
+        }
 
         friends.push(friend);
     }
     return friends;
 }
 
-export async function deleteFriendPod(userWebId, friendwebID) {
-    //Obtenemos la lista de amigos
-    const friends = await getFriends(userWebId);
+//Función que borra un amigo de solid
+export async function deleteFriendPod(userWebId, session,friendWebId) {
+    let profile = userWebId.split("#")[0];
+    let dataSet = await solid.getSolidDataset(profile);
 
-    //Buscamos el amigo que queremos borrar
-    const friendToDelete = friends.find(friend => friend.friendURL === friendwebID);
+    let dataSetThing = solid.getThing(dataSet, userWebId);
 
-    // Si el amigo existe, lo eliminamos
-    if (friendToDelete) {
-        const updatedFriends = friends.filter(friend => friend.friendURL !== friendwebID);
+    try {
+        let friendName = solid.getStringNoLocale(await getProfile(userWebId), FOAF.name);
+        let existsFriend = solid.getUrlAll(dataSetThing, FOAF.knows)
 
-        // Actualizamos el documento de amigos
-        const myDataset = await solid.getSolidDataset(userWebId); //obtenemos el dataset de la URI
-        const theThing = await solid.getThing(myDataset, userWebId);
-        const friendsList = solid.getUrlAll(theThing, FOAF.knows);
-        let updatedList = friendsList.filter(friend => friend !== friendwebID);
-        await solid.removeUrl(myDataset, FOAF.knows, friendwebID);
-        await solid.saveSolidDatasetAt(userWebId, myDataset);
-    }
-
-}
-//Función que da permiso a un amigo sobre un sitio
-export async function giveFriendPermissionPoint(webId,session, placeId, friendUrl) {
-
-    let friendsURL = solid.getUrlAll(await getProfile(webId), FOAF.knows); //array de amigos del usuario
-
-    let url = urlPlaceUser(webId,placeId); //url del archivo a dar permisos
-
-
-    try { //obtener el archivo de control de acceso para la cuenta de usuario
-        let file = await solid.getFile(
-            url,
-            { fetch: session.fetch }
-        );
-
-        //recorremos el array de amigos para encontrar el amigo con el que queremos compartir el sitio
-        for(let friend in friendsURL) {
-            if(friend === friendUrl) {
-                let resourceAcl = solid.createAcl(file); //recurso de permisos
-
-                const updatedAcl = solid.setAgentResourceAccess( //se establecen los permisos
-                    resourceAcl,
-                    friendsURL[friend],
-                    { read: true, append: false, write: true, control: false }
-                );
-                await solid.saveAclFor(file, updatedAcl, { fetch: session.fetch }); //se guardan en el amigo los cambios
-                console.log("Permisos al amigo :"+ friendsURL);
-            }
-
+        if (!existsFriend.some((url) => url === friendWebId)){
+            console.log("Este usuario no es amigo");
+        }else if(typeof friendName === 'undefined'){
+            console.log("Este usuario no existe");
+        }else{
+            let newFriend = solid.buildThing(dataSetThing)
+                .removeUrl(FOAF.knows, friendWebId)
+                .build();
+            dataSet = solid.setThing(dataSet, newFriend);
+            dataSet = await solid.saveSolidDatasetAt(userWebId, dataSet, {fetch: session.fetch})
+            console.log(friendName+" borrado de amigos");
         }
-
-    } catch (error) {
+    } catch (error){
         console.log(error);
     }
 }
 
-//Funcion que da permiso sobre un punto a todos los amigos
+
+//Función que da permiso sobre un punto a todos los amigos
 export async function giveAllFriendPermissionPoint(webId,session, placeID) {
 
     let myDataset = await solid.getSolidDataset(webId); // obtain the dataset from the URI
     let theThing = await solid.getThing(myDataset, webId);
     let friendsURL = solid.getUrlAll(theThing, FOAF.knows); //array de amigos
     console.log(friendsURL);
+    let name =extractNameFromUrl(webId);
+    console.log("name corto :"+name)
     try {
         for(let i in friendsURL){
             console.log(i);
-            let name =extractNameFromUrl(webId);
-            console.log("name corto :"+name)
-             const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+name +".inrupt.net/private/Places/"+placeID+".json", {
-            fetch: session.fetch
+            giveFriendPermissionFolder(webId,session,name);
+            const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+name +".inrupt.net/private/Places/"+placeID+".json", {
+                fetch: session.fetch
             });
-
 
             let resourceAcl;
             if (!hasResourceAcl(myDatasetWithAcl)) {
@@ -261,12 +225,50 @@ export async function giveAllFriendPermissionPoint(webId,session, placeID) {
             const updatedAcl = solid.setAgentResourceAccess( //se establecen los permisos
                 resourceAcl,
                 friendsURL[i],
-                { read: true, append: true, write: false, control: false }
+                { read: true, append: true , write: true, control: false }
             );
 
             await saveAclFor(myDatasetWithAcl, updatedAcl, { fetch: session.fetch }); //se guardan en cada amigo los cambios
             console.log("Permisos al amigo :"+ friendsURL[i]);
         }
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+//Función que otorga permisos a los amigos para la carpeta places, y asi poder monstrar los sitios que se compartieron.
+export async function giveFriendPermissionFolder(webId,session, friendUrl, userName) {
+    try {
+        console.log("permisos carpeta");
+        const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+userName +".inrupt.net/private/Places/.acl", {
+            fetch: session.fetch
+        });
+        let resourceAcl;
+        if (!hasResourceAcl(myDatasetWithAcl)) {
+            if (!hasAccessibleAcl(myDatasetWithAcl)) {
+                console.log(
+                    "The current user does not have permission to change access rights to this Resource."
+                );
+            }
+            if (!hasFallbackAcl(myDatasetWithAcl)) {
+                console.log(
+                    "The current user does not have permission to see who currently has access to this Resource."
+                );
+            }
+            resourceAcl = createAclFromFallbackAcl(myDatasetWithAcl);
+        } else {
+            resourceAcl = getResourceAcl(myDatasetWithAcl);
+        }
+        const updatedAcl = solid.setAgentResourceAccess( //se establecen los permisos
+            resourceAcl,
+            friendUrl,
+            { read: true, append: true, write: false, control: false }
+        );
+
+        await saveAclFor(myDatasetWithAcl, updatedAcl, { fetch: session.fetch }); //se guardan en cada amigo los cambios
+        console.log("Permisos al amigo carpeta:"+ friendUrl +"   de la carpeta Places.");
+        // }
 
     } catch (error) {
         console.log(error);
@@ -293,5 +295,3 @@ export function urlPlaceUser(webId, placeId){
     url = url+"private/" + placeId +".json";
     return url;
 }
-
-

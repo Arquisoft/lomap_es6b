@@ -56,7 +56,6 @@ const App = () => {
 
 
 
-
     useEffect(() => {
 
         // Register the login and logout event listeners

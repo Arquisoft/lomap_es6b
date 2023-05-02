@@ -1,5 +1,4 @@
 import { getByTestId, fireEvent, render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import AddPlaceSidebar from './AddPlaceSidebar';
 import * as solidapi from '../../solidapi/solidAdapter'
 

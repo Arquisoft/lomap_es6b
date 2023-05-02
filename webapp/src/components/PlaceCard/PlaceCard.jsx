@@ -15,7 +15,6 @@ import DeletePlaceConfirmDialog from "../DeletePlaceConfirmDialog/DeletePlaceCon
 import {
     giveAllFriendPermissionPoint,
     removePlace,
-    giveFriendPermissionPoint,
     getFriends
 } from '../../solidapi/solidAdapter';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
@@ -25,7 +24,7 @@ import ShareIcon from '@mui/icons-material/Share';
 
 const PlaceCard = (props) => {
     const {place, setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton, setSelectedPlaceComment, setSelectedButton,
-            userWebId} = props;
+            userWebId, showShareButton} = props;
     const [open, setOpen] = React.useState(false);
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
     const [snackbarOpenShare, setSnackbarOpenShare] = React.useState(false);
@@ -74,8 +73,6 @@ const PlaceCard = (props) => {
         setSnackbarOpenShare(false);
     };
 
-
-
     const handleDeletePlace = () => {
         console.log(place.id);
 
@@ -94,8 +91,6 @@ const PlaceCard = (props) => {
         handleSnackbarOpenShare();
     };
 
-
-
     return (
         <div>
             <Card style={{margin: '25px', marginTop:'0px'}}>
@@ -104,16 +99,19 @@ const PlaceCard = (props) => {
                     action={
                         <>
                             {/*<Chip icon = {place.privacy === "Public" ? <Diversity3Icon/> : <PermIdentityIcon/>} label={place.privacy}  />*/}
-                            <IconButton aria-label="view" onClick={()=>{setSelectedPlaceComment(place); setSelectedButton('Comments');}}>
+                            <IconButton id={place.name+"-comments"} aria-label="view" onClick={()=>{setSelectedPlaceComment(place); setSelectedButton('Comments');}}>
                                 <ForumRoundedIcon style={{color: '#ffb941'}}/>
                             </IconButton>
                             {/*Menu compartir sitio con amigos*/}
-                            <IconButton
-                                aria-label="share"
-                                onClick={handleClickShareButton}
-                                startIcon={<ShareIcon/> }>
-                                <ShareIcon style={{color: '#573105'}} />
-                            </IconButton>
+                            {showShareButton ? (
+                                <IconButton
+                                    aria-label="share"
+                                    onClick={handleClickShareButton}
+                                    startIcon={<ShareIcon/> }>
+                                    <ShareIcon style={{color: '#573105'}} />
+                                </IconButton>
+                            ): null }
+
                             <Menu
                                 anchorEl={anchorEl}
                                 open={Boolean(anchorEl)}
@@ -123,30 +121,6 @@ const PlaceCard = (props) => {
                                 <MenuItem onClick={handleSharePlaceWithAllFriends}>Share with my friends</MenuItem>
 
                             </Menu>
-{/*                            <Menu*/}
-{/*                                id="nested-menu"*/}
-{/*                                anchorEl={anchorElNested}*/}
-{/*                                keepMounted*/}
-{/*                                open={Boolean(anchorElNested)}*/}
-{/*                                onClose={handleCloseShareOneFriendButton}*/}
-{/*                                */}
-{/*                                anchorOrigin={{*/}
-{/*                                    vertical: 'top',*/}
-{/*                                    horizontal: 'right',*/}
-{/*                                }}*/}
-{/*                                transformOrigin={{*/}
-{/*                                    vertical: 'top',*/}
-{/*                                    horizontal: 'left',*/}
-{/*                                }}*/}
-{/*                            >*/}
-{/*                                */}
-{/*/                                /!*{friends.map((friend, index) => (*!/*/}
-{/*                                /!*    <MenuItem key={index} onClick={(event) => handleShareOneFriendButton(event, index)}>*!/*/}
-{/*                                /!*        {friend}*!/*/}
-{/*                                /!*    </MenuItem>*!/*/}
-{/*                                /!*))}*!/*/}
-{/*                            </Menu>*/}
-
                             <IconButton aria-label="view" onClick={()=>setSelectedPlaceMyPlaces({lat: place.latitude, lng: place.longitude})}>
                                 <TravelExploreRoundedIcon style={{color: '#6986e8'}}/>
                             </IconButton>
