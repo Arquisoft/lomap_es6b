@@ -24,6 +24,7 @@ const ProfileSideBar = (props) => {
     };
 
     const handleLogout = () => {
+        if (props.handleLogoutMock) props.handleLogoutMock(); //TESTING
         session.logout();
         handleSnackbarOpen();
     }
@@ -53,7 +54,7 @@ const ProfileSideBar = (props) => {
                                 </ListItem>
 
                                 <ListItem>
-                                    <TextField editable={false} className={classes.text}
+                                    <TextField editable={"false"} className={classes.text}
                                                id="webId"
                                                value={userWebId}
                                                InputLabelProps={{ shrink: true }}

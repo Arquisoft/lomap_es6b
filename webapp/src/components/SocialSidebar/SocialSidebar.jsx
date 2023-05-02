@@ -14,8 +14,9 @@ const SocialSidebar = (props) => {
     }, []);
 
     const showFriends = () => {
+        if (props.showFriendsMock) props.showFriendsMock(); //TESTING
         return friends?.map((friend) => (
-            <FriendCard key={friend.friendURL} friend={friend} setSelectedButton={setSelectedButton} setSelectedFriend={setSelectedFriend}
+            <FriendCard  key={friend.friendURL} friend={friend} setSelectedButton={setSelectedButton} setSelectedFriend={setSelectedFriend}
             deleteFriend = {deleteFriend} userWebId={userWebId} session={session}/>
         ));
     };

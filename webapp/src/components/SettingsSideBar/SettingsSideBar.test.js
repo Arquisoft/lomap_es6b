@@ -10,7 +10,7 @@ describe('SettingsSideBar', () => {
     const handleSnackbarOpenMock = jest.fn();
     const handleSnackbarCloseMock = jest.fn();
     const setPlacesMock = jest.fn();
-    const sessionMock = {info: {webId: 'https://example.com/profile/card#me'}};
+    const sessionMock = {info: {webId: 'https://uo282249.inrupt.net/profile/card#me'}};
     render(
         <SettingsSideBar setPlaces={setPlacesMock} session={sessionMock} handleClickOpenMock={handleClickOpenMock} handleSnackbarOpenMock={handleSnackbarOpenMock}
                          handleSnackbarCloseMock={handleSnackbarCloseMock}/>
