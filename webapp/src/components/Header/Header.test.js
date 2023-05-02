@@ -9,10 +9,10 @@ describe('Header', () => {
   it('calls handleLogout when the log out button is clicked', async () => {
     const placeMock = new PlaceEntity();
     const placeCategoriesMock = [
-          { title: 'Bar' },
-          { title: 'Restaurant' },
-          { title: 'Shop' }
-        ];
+      { title: 'Bar' },
+      { title: 'Restaurant' },
+      { title: 'Shop' }
+    ];
     render(
         <Header setSelectedPlaceAutocomplete={placeMock} setSelectedFilters={[]} placeCategories={[placeCategoriesMock]}/>
     );
