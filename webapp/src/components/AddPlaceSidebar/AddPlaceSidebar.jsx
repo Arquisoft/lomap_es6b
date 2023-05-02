@@ -99,6 +99,7 @@ function AddPlaceSidebar (props)  {
             <FormControl className={classes.formControl}>
                 <TextField
                     id='input-name'
+                    data-testid='placeName'
                     className = {classes.textField}
                     value={name}
                     label="Place Name"
@@ -110,6 +111,7 @@ function AddPlaceSidebar (props)  {
                     className = {classes.textField}
                     value={description}
                     id='input-description'
+                    data-testid = 'placeDescription'
                     label="Place Description"
                     multiline
                     rows={4}
@@ -124,11 +126,13 @@ function AddPlaceSidebar (props)  {
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     id='select-categories'
+                    data-testid = 'placeCategory'
                 >
                     {placeCategories.map(category =>
                         <MenuItem key={category.title} id={category.title} title={category.title} value={category.title} role="option">{category.title}</MenuItem>
                     )}
                 </Select>
+
 
                 {/*<Select*/}
                 {/*    className = {classes.textField}*/}
@@ -143,6 +147,7 @@ function AddPlaceSidebar (props)  {
 
             <Button className = {classes.textField}
                     id='add-place-button'
+                    data-testid = 'addPlaceButton'
                         title={'Add Place Button'}
                         type='submit'
                         variant="contained"
