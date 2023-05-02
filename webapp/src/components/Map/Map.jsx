@@ -8,7 +8,7 @@ import L from 'leaflet';
 const Map = (props) => {
     const classes = useStyles(); //for styling
     const {selectedPlaceAutocomplete, places, selectedPoint, setSelectedPoint, selectedButton, selectedPlaceMyPlaces,
-        placesLength, selectedFilters, selectedFriendPlaces, setSelectedFriendPlaces, defaultCoordinates} = props;
+        placesLength, selectedFilters, selectedFriendPlaces, defaultCoordinates} = props;
     const mapRef = useRef();
     const [showingPlaces, setShowingPlaces] = useState(places);
 
@@ -146,7 +146,7 @@ const Map = (props) => {
     );
 };
 const HandleMapClick = ({ onClick }) => {
-    const map = useMapEvent('click', (e) => {
+    useMapEvent('click', (e) => {
         onClick(e);
 
     });
