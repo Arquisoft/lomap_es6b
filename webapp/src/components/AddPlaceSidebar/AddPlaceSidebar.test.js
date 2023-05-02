@@ -41,7 +41,7 @@ describe('AddPlaceSidebar', () => {
       id: expect.any(String),
       webId: 'example.com',
     });
-  });
+  }); 
 
   /*
   it('disables submit button when form is incomplete', () => {
