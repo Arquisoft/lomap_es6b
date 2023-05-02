@@ -137,6 +137,7 @@ export async function getFriendsImage(webId) {
 }
 
 export async function getFriends(webId){
+    console.log(webId);
     let myDataset = await solid.getSolidDataset(webId); // obtain the dataset from the URI
     let theThing = await solid.getThing(myDataset, webId);
     let friendsURL = solid.getUrlAll(theThing, FOAF.knows);
