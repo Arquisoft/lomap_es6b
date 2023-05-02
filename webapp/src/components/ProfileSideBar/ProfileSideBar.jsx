@@ -54,7 +54,7 @@ const ProfileSideBar = (props) => {
                                 </ListItem>
 
                                 <ListItem>
-                                    <TextField editable={false} className={classes.text}
+                                    <TextField editable={"false"} className={classes.text}
                                                id="webId"
                                                value={userWebId}
                                                InputLabelProps={{ shrink: true }}
