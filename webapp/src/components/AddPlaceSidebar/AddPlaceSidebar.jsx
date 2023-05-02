@@ -130,12 +130,14 @@ function AddPlaceSidebar (props)  {
             <FormControl className={classes.formControl}>
 
                 <Select
+                    //native={true}//POR DEFECTO ESTÁ A FALSE, E IMPIDE MOSTRAR OPCIONES EN LOS TEST
                     title="Place Category"
                     className={classes.textField}
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     id='select-categories'
                     data-testid = 'placeCategory'
+                    name='botonCategoria'
                 >
                     {placeCategories.map(category =>
                         <MenuItem key={category.title} id={category.title} title={category.title} value={category.title} role="option">{category.title}</MenuItem>

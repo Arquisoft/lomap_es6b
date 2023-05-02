@@ -16,6 +16,7 @@ const FilterByBar = (props) => {
         {/* The way to implement it is to use the Autocomplete component from MUI, and a TextField inside it */}
         <Autocomplete
             multiple
+            data-testid='autocompleteFilter'
             id="size-small-outlined-multi"  //Predefined MUI properties
             size="medium"
             options={placeCategories}   //Loading the options for the filter
@@ -23,7 +24,8 @@ const FilterByBar = (props) => {
             getOptionLabel={(option) => option.title}
             renderInput={(params) => (  // Rendering the TextField inside the Autocomplete
                 <TextField {...params}
-                    placeholder="🐧 Filter by..."/>
+                data-testid='filtroTest'    
+                placeholder="🐧 Filter by..."/>
             )}
             sx = {{     // Adding CSS to the TextField
                 '& .MuiOutlinedInput-root': {   // The way to change specific CSS of this MUI component
