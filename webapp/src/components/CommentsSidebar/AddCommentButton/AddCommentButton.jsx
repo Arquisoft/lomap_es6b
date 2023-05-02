@@ -18,16 +18,15 @@ const SplitButton = (props) => {
     const anchorRef = React.useRef(null);
     const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-    const handleClick = () => {
-        console.info(`You clicked ${options[selectedIndex]}`);
-    };
 
     const handleMenuItemClick = (event, index) => {
+        if (props.handleMenuItemClickMock) props.handleMenuItemClickMock(); //TESTING
         setSelectedIndex(index);
         setOpen(false);
     };
 
     const handleToggle = () => {
+        if (props.handleToggleMock) props.handleToggleMock(); //TESTING
         setOpen((prevOpen) => !prevOpen);
     };
 
@@ -35,14 +34,13 @@ const SplitButton = (props) => {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
         }
-
         setOpen(false);
     };
 
     return (
         <React.Fragment>
             <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-                <Button  id="add-commentbt" onClick={()=>handleClickOpen(options[selectedIndex])} data-testid="AddCommentBotton">{options[selectedIndex]} </Button>
+                <Button  id="add-commentbt" data-testid = "addCommentButton" onClick={()=>handleClickOpen(options[selectedIndex])} >{options[selectedIndex]} </Button>
                 <Button id="open-add-commentbt" data-testid="botonMenuComment"
                     size="small"
                     aria-controls={open ? 'split-button-menu' : undefined}
@@ -78,6 +76,7 @@ const SplitButton = (props) => {
                                         <MenuItem
                                             key={option}
                                             id={option}
+                                            data-testid={option}
                                             selected={index === selectedIndex}
                                             onClick={(event) => handleMenuItemClick(event, index)}
                                         >
