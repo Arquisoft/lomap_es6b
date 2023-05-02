@@ -11,6 +11,7 @@ const Sidebar = (props) => {
         setSelectedPoint,setSelectedPlaceMyPlaces,deletePlace, setPlacesLength, userWebId, session,
         selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend, placeCategories} = props;
     const handleSelectedButtonChange = (selectedButton) => {
+        if (props.handleSelectedButtonChangeMock) props.handleSelectedButtonChangeMock(); //TESTING
         setSelectedButton(selectedButton);
     };
 
@@ -19,11 +20,11 @@ const Sidebar = (props) => {
             {/* In this case, grids do not have assigned any size, this is because the IconsSidebar has a fixed width
           and the detailsSidebar takes the remaining space. (see styles.js) */}
             <Grid container className={classes.mainContainer}>
-                <Grid item className={classes.iconsSidebarContainer}>
-                    <IconsSidebar handleSelectedButtonChange={handleSelectedButtonChange} data-testid="icons-sidebar"/>
+                <Grid item data-testid="icons-sidebar" className={classes.iconsSidebarContainer}>
+                    <IconsSidebar  handleSelectedButtonChange={handleSelectedButtonChange} />
                 </Grid>
-                <Grid item className={classes.detailsSidebarContainer}>
-                    <DetailsSidebar data-testid="details-sidebar" places = {places} setPlaces = {setPlaces} selectedButton={selectedButton}
+                <Grid item data-testid="details-sidebar" className={classes.detailsSidebarContainer}>
+                    <DetailsSidebar  places = {places} setPlaces = {setPlaces} selectedButton={selectedButton}
                                     selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
                                     setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}
                                     setPlacesLength={setPlacesLength} userWebId={userWebId}
