@@ -43,6 +43,11 @@ function AddPlaceSidebar (props)  {
     };
 
     const addPlace =  async(req) => {
+        //////TESTING////////////
+        if(props.handleClickOpenMock){
+            props.handleClickOpenMock();
+        }
+        //////////////////
         const place = new PlaceEntity();
         place.name = name;
         place.description = description;
@@ -87,6 +92,11 @@ function AddPlaceSidebar (props)  {
     }
 
     function addPlaceAndClearForm(){
+        //////TESTING////////////
+        if(props.handleClickOpenMock){
+            props.handleClickOpenMock();
+        }
+        //////////////////
         if(selectedPoint.lat != null && selectedPoint.lng != null){
             addPlace();
             clearForm();
@@ -132,17 +142,8 @@ function AddPlaceSidebar (props)  {
                         <MenuItem key={category.title} id={category.title} title={category.title} value={category.title} role="option">{category.title}</MenuItem>
                     )}
                 </Select>
-
-
-                {/*<Select*/}
-                {/*    className = {classes.textField}*/}
-                {/*    value = {privacy}*/}
-                {/*    onChange={(e)=>setPrivacy(e.target.value)}>*/}
-                {/*    <MenuItem value="Public">Share place with my friends</MenuItem>*/}
-                {/*    <MenuItem value="Private">Store place privately</MenuItem>*/}
-
-                {/*</Select>*/}
             </FormControl>
+
             <FormControl className={classes.formControl}>
 
             <Button className = {classes.textField}
