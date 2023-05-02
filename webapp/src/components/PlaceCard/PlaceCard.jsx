@@ -34,10 +34,12 @@ const PlaceCard = (props) => {
     const [friends, setFriends] = React.useState([]);
 
     useEffect(() => {
-        getFriends(userWebId).then((friends) => {
-            setFriends(friends);
-            console.log("hola");
-        });
+        if(userWebId){
+            getFriends(userWebId).then((friends) => {
+                setFriends(friends);
+                console.log("hola");
+            });
+        }
     }, []);
 
     const handleClickOpen = () => {

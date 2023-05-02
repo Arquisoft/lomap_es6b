@@ -17,7 +17,6 @@ const MyPlacesSidebar = (props) => {
                        setSelectedPlaceComment={setSelectedPlaceComment} setSelectedButton={setSelectedButton}
                         userWebId={userWebId} showShareButton={showShareButton}/>
         ))
-        setIsLoading(false)
 
     }
 
@@ -26,7 +25,7 @@ const MyPlacesSidebar = (props) => {
 
       <div style={{paddingBottom: "20px"}}>
           {isLoading ? (
-              <CircularProgress color={"inherit"} />
+              <CircularProgress data-testid='progressSidebar' color={"inherit"} />
           ) : (
               showPlaces()
           )}
