@@ -20,10 +20,10 @@ const DeleteFriendConfirmDialog = (props) => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
+                    <Button data-testid={"cancel-delete"} autoFocus onClick={handleClose}>
                         Cancel
                     </Button>
-                    <Button style={{color:'red'}} onClick={handleDeleteFriend}>Delete Friend</Button>
+                    <Button data-testid={"confirm-delete"} style={{color:'red'}} onClick={handleDeleteFriend}>Delete Friend</Button>
                 </DialogActions>
             </Dialog>
         </div>
