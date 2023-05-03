@@ -53,6 +53,8 @@ jobs:
           node-version: 18
       - run: npm --prefix webapp install --force
       - run: PUBLIC_URL=https://uo282249.github.io/lomap_es6b/ npm --prefix webapp run build
+        env:
+          CI: ""
       - name: Deploy
         uses: cpina/github-action-push-to-another-repository@create-branch-if-needed-arg
         env:
