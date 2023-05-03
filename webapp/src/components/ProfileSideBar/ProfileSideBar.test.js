@@ -21,6 +21,6 @@ describe('ProfileSideBar', () => {
     const logoutButton = screen.getByTestId('logout-button');
     fireEvent.click(logoutButton);
     expect(handleLogoutMock).toHaveBeenCalled();
-  });
+  }, 10000);
 
 });

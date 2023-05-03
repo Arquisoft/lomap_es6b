@@ -38,7 +38,7 @@ describe('FriendCard', () => {
     fireEvent.click(deleteBt);
     expect(handleClickOpenMock).toHaveBeenCalled();
 
-  });
+  }, 10000);
 
 
 

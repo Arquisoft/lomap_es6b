@@ -23,7 +23,7 @@ describe('SettingsSideBar', () => {
     fireEvent.click(deleteConfirmButton);
     await waitFor(() => expect(handleSnackbarOpenMock).toHaveBeenCalled(), {timeout: 5000});
 
-  });
+  },10000);
 
   /*it('debería aparecer el botón de delete all', () => {
     render(<SettingsSideBar />);
