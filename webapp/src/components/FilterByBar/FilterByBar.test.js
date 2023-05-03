@@ -38,8 +38,28 @@ test('calls setSelectedFilters when an option is selected', async () => {
    fireEvent.click(option);
    expect(setSelectedFilters).toHaveBeenCalledWith(['Category 1']);
    expect(setSelectedFilters).toBeCalledTimes(1);
-   
-
- 
-
+  
 });
+
+
+
+test('does not call setSelectedFilters when no option is selected', () => {
+  const setSelectedFilters = jest.fn();
+  render(<FilterByBar setSelectedFilters={setSelectedFilters} placeCategories={placeCategories} />);
+  const filterByBar = screen.getByTestId('autocompleteFilter');
+
+    // Encontrar el botón de despliegue
+  const button = within(filterByBar).getByRole('button', { name: /Open/i });
+  fireEvent.click(button);
+  
+  // Esperar a que aparezca el cuadro de diálogo
+  screen.getByRole('listbox', { hidden: true });
+
+
+  expect(setSelectedFilters).not.toHaveBeenCalled();
+});
+
+
+
+  
+
