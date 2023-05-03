@@ -119,7 +119,7 @@ const PlaceCard = (props) => {
                                 onClose={handleCloseShareButton}
 
                             >
-                                <MenuItem onClick={async () => await handleSharePlaceWithAllFriends}>Share with my friends</MenuItem>
+                                <MenuItem onClick={async () => {await handleSharePlaceWithAllFriends();}}>Share with my friends</MenuItem>
 
                             </Menu>
                             <IconButton aria-label="view" onClick={()=>setSelectedPlaceMyPlaces({lat: place.latitude, lng: place.longitude})}>
@@ -132,6 +132,7 @@ const PlaceCard = (props) => {
                             ) : null}
                         </>
                     }
+
                     title={<Typography variant="h5" style={{fontWeight: "bold"}}>{place.name}</Typography>}
 
                     subheader={<Typography variant="h6" color="textSecondary">{place.category}</Typography>}
