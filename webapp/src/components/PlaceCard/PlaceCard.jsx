@@ -91,6 +91,7 @@ const PlaceCard = (props) => {
         handleSnackbarOpenShare();
     };
 
+
     return (
         <div>
             <Card style={{margin: '25px', marginTop:'0px'}}>
@@ -118,7 +119,7 @@ const PlaceCard = (props) => {
                                 onClose={handleCloseShareButton}
 
                             >
-                                <MenuItem onClick={async () => handleSharePlaceWithAllFriends}>Share with my friends</MenuItem>
+                                <MenuItem onClick={async () => await handleSharePlaceWithAllFriends}>Share with my friends</MenuItem>
 
                             </Menu>
                             <IconButton aria-label="view" onClick={()=>setSelectedPlaceMyPlaces({lat: place.latitude, lng: place.longitude})}>
