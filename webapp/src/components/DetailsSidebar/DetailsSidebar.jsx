@@ -21,10 +21,10 @@ const DetailsSidebar = (props) => {
     const selectedFriendUsername = selectedFriend.friendURL?.split("/")[2].split(".")[0]
     const [showShareButton] = useState(true);
 
-    useEffect(() => {
+    useEffect(async () => {
         let friendWebId = selectedFriend.friendURL;
-        if(session && friendWebId){
-            getPlacesByWebId(session, friendWebId).then((places) => {
+        if (session && friendWebId) {
+            await getPlacesByWebId(session, friendWebId).then((places) => {
                 setSelectedFriendPlaces(places);
             });
         }

@@ -41,11 +41,11 @@ const SettingsSideBar = (props) => {
         setSnackbarOpen(false);
     };
 
-    const handleDeleteAll = () => {
+    const handleDeleteAll = async () => {
         setPlaces([]);
         handleClose();
         handleSnackbarOpen(); //abrimos el snackbar
-        deleteAllPlaces(session);
+        await deleteAllPlaces(session);
     };
 
 

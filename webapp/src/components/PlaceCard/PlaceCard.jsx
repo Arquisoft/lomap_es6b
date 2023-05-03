@@ -33,9 +33,9 @@ const PlaceCard = (props) => {
 
     const [friends, setFriends] = React.useState([]);
 
-    useEffect(() => {
-        if(userWebId){
-            getFriends(userWebId).then((friends) => {
+    useEffect(async () => {
+        if (userWebId) {
+            await getFriends(userWebId).then((friends) => {
                 setFriends(friends);
                 console.log("hola");
             });
@@ -75,21 +75,19 @@ const PlaceCard = (props) => {
         setSnackbarOpenShare(false);
     };
 
-    const handleDeletePlace = () => {
+    const handleDeletePlace = async () => {
         console.log(place.id);
-
-        console.log("El id que buscará en el pod es: " + place.id) //correcto, asi lo tenemos guardado en los pods por ahora
         //no sé si los guiones que separan en el log, y en la web de los pods no aparecen, afectan
-        removePlace(session,place.id)// delete from the pods
+        await removePlace(session, place.id)// delete from the pods
 
         deletePlace(place.id); //deleting in the frontend
         handleClose();//cerrar la pestaña de diálogo
         handleSnackbarOpen(); //abrir el snackbar
     }
 
-    const handleSharePlaceWithAllFriends = () => {
+    const handleSharePlaceWithAllFriends = async () => {
         console.log("Boton compartir con todos mis amigos");
-        giveAllFriendPermissionPoint(userWebId, session,place.id);
+        await giveAllFriendPermissionPoint(userWebId, session, place.id);
         handleSnackbarOpenShare();
     };
 

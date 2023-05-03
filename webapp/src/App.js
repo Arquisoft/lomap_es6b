@@ -2,7 +2,7 @@
 import './App.css';
 import {Alert, Box, Grid, Paper, Snackbar} from "@mui/material";
 import Header from "./components/Header/Header";
-import Map from "./components/Map/Map";
+import MapComponent from "./components/MapComponent/MapComponent";
 import Sidebar from "./components/Sidebar/Sidebar";
 import React, {useState, useEffect} from 'react';
 import LoginWall from "./components/LoginWall/LoginWall";
@@ -159,10 +159,10 @@ const App = () => {
                     <Grid item
                           md={7} > {/* 7 of 12 columns for the map */}
                         <Paper className='MainMap' style={{borderRadius: '20px' }}> {/* "sx" is for adding specific styles to a MUI component */}
-                            <Map defaultCoordinates={defaultCoordinates} places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
-                                 setSelectedPoint={setSelectedPoint} selectedButton={selectedButton} selectedPlaceMyPlaces={selectedPlaceMyPlaces}
-                                 placesLength={placesLength} selectedFilters={selectedFilters}
-                                 selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/>   {/* MapBox: OpenStreetMap working with Leaflet */}
+                            <MapComponent defaultCoordinates={defaultCoordinates} places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
+                                          setSelectedPoint={setSelectedPoint} selectedButton={selectedButton} selectedPlaceMyPlaces={selectedPlaceMyPlaces}
+                                          placesLength={placesLength} selectedFilters={selectedFilters}
+                                          selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/>   {/* MapBox: OpenStreetMap working with Leaflet */}
                         </Paper>
                     </Grid>
                 </Grid>
