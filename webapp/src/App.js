@@ -11,6 +11,7 @@ import { useSession } from "@inrupt/solid-ui-react/dist";
 
 import { getPlaces } from './solidapi/solidAdapter';
 
+import '@mui/styles';
 
 
 const App = () => {
