@@ -1,12 +1,31 @@
 import React, {useState} from 'react';
 import {Button, FormControl, MenuItem, Select, Alert, Snackbar} from "@mui/material";
 import TextField from "@mui/material/TextField";
-import useStyles from "./styles";
 import PlaceEntity from "../../entities/PlaceEntity";
 import { savePlace } from '../../solidapi/solidAdapter';
 import {v4 as uuidv4} from "uuid";
 
 function AddPlaceSidebar (props)  {
+    const classes = {
+        formControl: {
+            width: '100%',
+            height: '100%',
+        },
+        textField: {
+            margin: '25px',
+            marginBottom: '5px',
+            marginTop: '5px',
+            variant:"outlined",
+        },
+        title: {
+            margin: '25px',
+            color: '#313439',
+            fontFamily: 'Inter, sans-serif',
+            fontWeight: 'bold',
+            fontSize: '2rem',
+        },
+
+    };
     const { selectedPoint, places, setPlaces,userWebId, session} = props;
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -77,8 +96,6 @@ function AddPlaceSidebar (props)  {
     }
 
 
-    const classes = useStyles();
-
     function isFormComplete(){
         return name !== "" && description !== ""  && category !== "" ;
     }
@@ -105,19 +122,19 @@ function AddPlaceSidebar (props)  {
     return (
         <div>
 
-            <FormControl className={classes.formControl}>
+            <FormControl style={classes.formControl}>
                 <TextField
                     id='input-name'
                     data-testid='placeName'
-                    className = {classes.textField}
+                    style = {classes.textField}
                     value={name}
                     label="Place Name"
                     required
                     onChange={(e) => setName(e.target.value)}></TextField>
             </FormControl>
-            <FormControl className={classes.formControl}>
+            <FormControl style={classes.formControl}>
                 <TextField
-                    className = {classes.textField}
+                    style = {classes.textField}
                     value={description}
                     id='input-description'
                     data-testid = 'placeDescription'
@@ -127,12 +144,12 @@ function AddPlaceSidebar (props)  {
                     required
                     onChange={(e) => setDescription(e.target.value)}></TextField>
             </FormControl>
-            <FormControl className={classes.formControl}>
+            <FormControl style={classes.formControl}>
 
                 <Select
                     //native={true}//POR DEFECTO ESTÁ A FALSE, E IMPIDE MOSTRAR OPCIONES EN LOS TEST
                     title="Place Category"
-                    className={classes.textField}
+                    style={classes.textField}
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     id='select-categories'
@@ -145,9 +162,9 @@ function AddPlaceSidebar (props)  {
                 </Select>
             </FormControl>
 
-            <FormControl className={classes.formControl}>
+            <FormControl style={classes.formControl}>
 
-            <Button className = {classes.textField}
+            <Button style = {classes.textField}
                     id='add-place-button'
                     data-testid = 'addPlaceButton'
                         title={'Add Place Button'}

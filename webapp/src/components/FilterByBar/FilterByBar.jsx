@@ -1,9 +1,12 @@
 import React from 'react';
 import {Autocomplete, TextField } from "@mui/material";
-import useStyles from "./styles"; //it is important to import from styles.js
 
 const FilterByBar = (props) => {
-    const classes = useStyles();    // "classes" is an object that contains all the CSS classes from styles.js
+    const classes = {
+        mainConstraints: {
+            width: '100%',
+        },
+    };  // "classes" is an object that contains all the CSS classes from styles.js
     const {setSelectedFilters, placeCategories} = props; // "filters" is an array that contains the filters that are currently selected
 
     const handleOptionSelect = (event, value) => {
@@ -12,7 +15,7 @@ const FilterByBar = (props) => {
     };
 
     return (
-    <div className={classes.mainConstraints}>
+    <div style={classes.mainConstraints}>
         {/* The way to implement it is to use the Autocomplete component from MUI, and a TextField inside it */}
         <Autocomplete
             multiple

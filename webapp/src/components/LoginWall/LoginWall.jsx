@@ -8,7 +8,8 @@ import { LoginButton } from "@inrupt/solid-ui-react";
 const LoginWall = (props) => {
     const classes = useStyles();
     const [idp] = useState("https://inrupt.net");
-    const [currentUrl] = useState("https://uo282249.github.io/lomap_es6b/");
+    // const [currentUrl] = useState("https://uo282249.github.io/lomap_es6b/");
+    const [currentUrl] = useState("http://localhost:3000/");
 
     
   return (
