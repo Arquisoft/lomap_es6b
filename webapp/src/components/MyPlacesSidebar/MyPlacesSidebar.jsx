@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
-import useStyles from "./styles";
 import PlaceCard from "../PlaceCard/PlaceCard";
 import {CircularProgress} from "@mui/material";
 
 const MyPlacesSidebar = (props) => {
     const {setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton, setSelectedPlaceComment,
         setSelectedButton,userWebId, showShareButton} = props;
-    const classes = useStyles();
     const [isLoading, setIsLoading] = useState(false);
 
    

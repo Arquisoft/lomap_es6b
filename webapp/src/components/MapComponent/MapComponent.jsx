@@ -1,12 +1,17 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent} from "react-leaflet";
-import useStyles from './styles';
 import 'leaflet/dist/leaflet.css';
 import {Typography} from "@mui/material";
 import L from 'leaflet';
 
 const MapComponent = (props) => {
-    const classes = useStyles(); //for styling
+    const classes = {
+        mapContainer: {
+            height: '100%',
+            width: '100%',
+            zIndex: '1',
+        },
+    }; //for styling
     const {selectedPlaceAutocomplete, places, selectedPoint, setSelectedPoint, selectedButton, selectedPlaceMyPlaces,
         placesLength, selectedFilters, selectedFriendPlaces, defaultCoordinates} = props;
     const mapRef = useRef();
@@ -113,7 +118,7 @@ const MapComponent = (props) => {
 
         <MapContainer
             id='map-id'
-            className={classes.mapContainer}
+            style={classes.mapContainer}
             ref={mapRef}
             center={defaultCoordinates}
             zoom={13}
