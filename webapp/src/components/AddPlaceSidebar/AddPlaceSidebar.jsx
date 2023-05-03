@@ -107,15 +107,21 @@ function AddPlaceSidebar (props)  {
         // setPrivacy("");
     }
 
-    async function addPlaceAndClearForm() {
+    function addPlaceAndClearForm() {
         //////TESTING////////////
         if (props.handleClickOpenMock) {
             props.handleClickOpenMock();
         }
         //////////////////
         if (selectedPoint.lat != null && selectedPoint.lng != null) {
-            await addPlace();
-            clearForm();
+            addPlace().then(() => {
+                console.log("Sharing place with all friends completed successfully.");
+                clearForm();
+            })
+                .catch((error) => {
+                    console.error("An error occurred while sharing place with all friends:", error);
+                });
+
         }
     }
 
