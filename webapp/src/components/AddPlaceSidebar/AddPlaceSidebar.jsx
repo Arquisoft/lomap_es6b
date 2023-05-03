@@ -153,7 +153,7 @@ function AddPlaceSidebar (props)  {
                         title={'Add Place Button'}
                         type='submit'
                         variant="contained"
-                        onClick={async () => await addPlaceAndClearForm}
+                        onClick={addPlaceAndClearForm}
                         disabled={!isFormComplete()}>
                     Add place
                 </Button>
