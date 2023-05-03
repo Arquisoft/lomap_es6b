@@ -87,15 +87,14 @@ const PlaceCard = (props) => {
 
     const handleSharePlaceWithAllFriends = async () => {
         console.log("Boton compartir con todos mis amigos");
-        await giveAllFriendPermissionPoint(userWebId, session, place.id);
+        await giveAllFriendPermissionPoint(userWebId, session, place.id).then(() => {
+            console.log("Sharing place with all friends completed successfully.");
+        })
+            .catch((error) => {
+                console.error("An error occurred while sharing place with all friends:", error);
+            });
         handleSnackbarOpenShare();
     };
-
-    const handleSharePlaceWithAllFriendsWrap = () => {
-        handleSharePlaceWithAllFriends().then(()=> {
-            return;
-        } );
-    }
 
 
     return (
@@ -125,7 +124,7 @@ const PlaceCard = (props) => {
                                 onClose={handleCloseShareButton}
 
                             >
-                                <MenuItem onClick={handleSharePlaceWithAllFriendsWrap}>Share with my friends</MenuItem>
+                                <MenuItem onClick={handleSharePlaceWithAllFriends}>Share with my friends</MenuItem>
 
                             </Menu>
                             <IconButton aria-label="view" onClick={()=>setSelectedPlaceMyPlaces({lat: place.latitude, lng: place.longitude})}>
