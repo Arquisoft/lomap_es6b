@@ -12,22 +12,15 @@ describe('ProfileSideBar', () => {
     render(
         <ProfileSideBar userWebId={userWebIdMock} session={sessionMock} handleLogoutMock={handleLogoutMock}/>
     );
+    // await waitFor(() => {
+    //   expect(screen.getByTestId('logout-button')).toBeInTheDocument();
+    // }, { timeout: 10000 });
     await waitFor(() => {
-      expect(screen.getByTestId('logout-button')).toBeInTheDocument();
+      expect(screen.getByTestId("logout-button")).toBeInTheDocument();
     }, { timeout: 10000 });
-
     const logoutButton = screen.getByTestId('logout-button');
-
     fireEvent.click(logoutButton);
     expect(handleLogoutMock).toHaveBeenCalled();
-
   });
-
-  /*it('debería aparecer el botón de delete all', () => {
-    render(<SettingsSideBar />);
-    const deleteButton = screen.getByTestId('deletealldata-button');
-    expect(deleteButton).toBeInTheDocument();
-
-  });*/
 
 });
