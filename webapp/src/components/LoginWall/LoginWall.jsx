@@ -47,9 +47,9 @@ const LoginWall = (props) => {
         }
     };
     const [idp] = useState("https://inrupt.net");
-    const [currentUrl] = useState("https://uo282249.github.io/lomap_es6b/");
+    //const [currentUrl] = useState("https://uo282249.github.io/lomap_es6b/");
     //const [currentUrl] = useState("http://localhost:3000/");
-
+    const [currentUrl] = useState(window.location.href);
     
   return (
     <div>
