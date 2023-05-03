@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import {Typography} from "@mui/material";
 import L from 'leaflet';
 
-const Map = (props) => {
+const MapComponent = (props) => {
     const classes = useStyles(); //for styling
     const {selectedPlaceAutocomplete, places, selectedPoint, setSelectedPoint, selectedButton, selectedPlaceMyPlaces,
         placesLength, selectedFilters, selectedFriendPlaces, defaultCoordinates} = props;
@@ -154,4 +154,4 @@ const HandleMapClick = ({ onClick }) => {
     return null;
 };
 
-export default Map;
+export default MapComponent;

@@ -35,8 +35,8 @@ const FriendCard = (props) => {
         setOpenSnackBar(false);
     }
 
-    const handleDeleteFriend = () => {
-        deleteFriendPod(userWebId,session, friend.friendURL);
+    const handleDeleteFriend = async () => {
+        await deleteFriendPod(userWebId, session, friend.friendURL);
         handleClose();
         handleSnackBarOpen();
     }

@@ -5,9 +5,9 @@ import FriendCard from "../FriendCard/FriendCard";
 const SocialSidebar = (props) => {
     const {userWebId, setSelectedFriend,setSelectedButton, deleteFriend,session} = props;
     const [friends, setFriends] = useState([]);
-    useEffect(() => {
-        if(userWebId){
-            getFriends(userWebId).then((friends) => {
+    useEffect(async () => {
+        if (userWebId) {
+            await getFriends(userWebId).then((friends) => {
                 setFriends(friends);
             });
         }

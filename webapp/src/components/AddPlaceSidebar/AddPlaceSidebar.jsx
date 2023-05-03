@@ -90,14 +90,14 @@ function AddPlaceSidebar (props)  {
         // setPrivacy("");
     }
 
-    function addPlaceAndClearForm(){
+    async function addPlaceAndClearForm() {
         //////TESTING////////////
-        if(props.handleClickOpenMock){
+        if (props.handleClickOpenMock) {
             props.handleClickOpenMock();
         }
         //////////////////
-        if(selectedPoint.lat != null && selectedPoint.lng != null){
-            addPlace();
+        if (selectedPoint.lat != null && selectedPoint.lng != null) {
+            await addPlace();
             clearForm();
         }
     }
