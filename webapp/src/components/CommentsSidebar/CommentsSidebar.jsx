@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import useStyles from "./styles";
 import {savePlace} from "../../solidapi/solidAdapter";
 import {
     Button,
@@ -20,9 +19,16 @@ import ImageCommentCard from "../CommentCards/ImageCommentCard/ImageCommentCard"
 import RatingCommentCard from "../CommentCards/RatingCommentCard/RatingCommentCard";
 
 const CommentsSidebar = (props) => {
-    const classes = useStyles();
+    const classes = {
+        button: {
+            margin: '25px',
+            marginBottom: '25px',
+            marginTop: '5px',
+            variant:"outlined",
+            width: '100%',
+        },
+    };
 
-    // const classes = useStyles();
     const {session, userWebId,  place} = props;
     const [openTextDialog, setOpenTextDialog] = React.useState(false);
     const [commentValue, setCommentValue] = useState('');
@@ -141,7 +147,7 @@ const CommentsSidebar = (props) => {
         <>
         <div style={{ height: '100%', marginLeft: '25px', marginRight: '25px', marginBottom: '5px', textAlign: 'center', display:'flex', flexDirection: 'column', gap: '25px'}}>
             <div>
-                <AddCommentButton  handleClickOpen={handleClickOpen} className={classes.button} style={{width: '100%'} }
+                <AddCommentButton  handleClickOpen={handleClickOpen} style={classes.button}
                  />
             </div>
             <FormControl fullWidth>

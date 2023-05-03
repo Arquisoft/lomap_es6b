@@ -1,4 +1,3 @@
-
 import './App.css';
 import {Alert, Box, Grid, Paper, Snackbar} from "@mui/material";
 import Header from "./components/Header/Header";
@@ -8,9 +7,7 @@ import React, {useState, useEffect} from 'react';
 import LoginWall from "./components/LoginWall/LoginWall";
 import { SessionProvider} from "@inrupt/solid-ui-react";
 import { useSession } from "@inrupt/solid-ui-react/dist";
-
 import { getPlaces } from './solidapi/solidAdapter';
-
 
 
 const App = () => {
