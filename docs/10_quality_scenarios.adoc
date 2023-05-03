@@ -2,7 +2,7 @@
 == Quality Requirements
 
 === Quality Tree
-image::qualityTree2.png["Ejemplo de diagrama"]
+image::QualityTree.png["Quality tree"]
 
 === Quality Scenarios
 [options="header"]
