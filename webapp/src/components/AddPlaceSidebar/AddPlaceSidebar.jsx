@@ -90,15 +90,17 @@ function AddPlaceSidebar (props)  {
         // setPrivacy("");
     }
 
-    async function addPlaceAndClearForm() {
+    function addPlaceAndClearForm() {
         //////TESTING////////////
         if (props.handleClickOpenMock) {
             props.handleClickOpenMock();
         }
         //////////////////
         if (selectedPoint.lat != null && selectedPoint.lng != null) {
-            await addPlace();
-            clearForm();
+            addPlace().then(
+                () => clearForm()
+            );
+
         }
     }
 
