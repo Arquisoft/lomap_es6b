@@ -132,7 +132,6 @@ const PlaceCard = (props) => {
                             ) : null}
                         </>
                     }
-
                     title={<Typography variant="h5" style={{fontWeight: "bold"}}>{place.name}</Typography>}
 
                     subheader={<Typography variant="h6" color="textSecondary">{place.category}</Typography>}
