@@ -1,0 +1,10 @@
+{
+  "simulation": "AddPlace25Users",
+  "simulationId": "addplace25users-20230503194025882",
+  "start": 1683142826298,
+  "description": "",
+  "scenarios": ["AddPlace25Users"],
+  "assertions": [
+
+  ]
+}
