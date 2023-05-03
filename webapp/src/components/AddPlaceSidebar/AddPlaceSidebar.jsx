@@ -1,12 +1,31 @@
 import React, {useState} from 'react';
 import {Button, FormControl, MenuItem, Select, Alert, Snackbar} from "@mui/material";
 import TextField from "@mui/material/TextField";
-import useStyles from "./styles";
 import PlaceEntity from "../../entities/PlaceEntity";
 import { savePlace } from '../../solidapi/solidAdapter';
 import {v4 as uuidv4} from "uuid";
 
 function AddPlaceSidebar (props)  {
+    const classes = {
+        formControl: {
+            width: '100%',
+            height: '100%',
+        },
+        textField: {
+            margin: '25px',
+            marginBottom: '5px',
+            marginTop: '5px',
+            variant:"outlined",
+        },
+        title: {
+            margin: '25px',
+            color: '#313439',
+            fontFamily: 'Inter, sans-serif',
+            fontWeight: 'bold',
+            fontSize: '2rem',
+        },
+
+    };
     const { selectedPoint, places, setPlaces,userWebId, session} = props;
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -43,13 +62,17 @@ function AddPlaceSidebar (props)  {
     };
 
     const addPlace =  async(req) => {
+        //////TESTING////////////
+        if(props.handleClickOpenMock){
+            props.handleClickOpenMock();
+        }
+        //////////////////
         const place = new PlaceEntity();
         place.name = name;
         place.description = description;
         place.latitude = selectedPoint.lat;
         place.longitude = selectedPoint.lng;
         place.category = category;
-        // place.privacy = privacy;
         place.textComments = [];
         place.imageComments = [];
         place.ratingComments = [];
@@ -73,8 +96,6 @@ function AddPlaceSidebar (props)  {
     }
 
 
-    const classes = useStyles();
-
     function isFormComplete(){
         return name !== "" && description !== ""  && category !== "" ;
     }
@@ -86,9 +107,14 @@ function AddPlaceSidebar (props)  {
         // setPrivacy("");
     }
 
-    function addPlaceAndClearForm(){
-        if(selectedPoint.lat != null && selectedPoint.lng != null){
-            addPlace();
+    async function addPlaceAndClearForm() {
+        //////TESTING////////////
+        if (props.handleClickOpenMock) {
+            props.handleClickOpenMock();
+        }
+        //////////////////
+        if (selectedPoint.lat != null && selectedPoint.lng != null) {
+            await addPlace();
             clearForm();
         }
     }
@@ -96,53 +122,51 @@ function AddPlaceSidebar (props)  {
     return (
         <div>
 
-            <FormControl className={classes.formControl}>
+            <FormControl style={classes.formControl}>
                 <TextField
                     id='input-name'
-                    className = {classes.textField}
+                    data-testid='placeName'
+                    style = {classes.textField}
                     value={name}
                     label="Place Name"
                     required
                     onChange={(e) => setName(e.target.value)}></TextField>
             </FormControl>
-            <FormControl className={classes.formControl}>
+            <FormControl style={classes.formControl}>
                 <TextField
-                    className = {classes.textField}
+                    style = {classes.textField}
                     value={description}
                     id='input-description'
+                    data-testid = 'placeDescription'
                     label="Place Description"
                     multiline
                     rows={4}
                     required
                     onChange={(e) => setDescription(e.target.value)}></TextField>
             </FormControl>
-            <FormControl className={classes.formControl}>
+            <FormControl style={classes.formControl}>
 
                 <Select
+                    //native={true}//POR DEFECTO ESTÁ A FALSE, E IMPIDE MOSTRAR OPCIONES EN LOS TEST
                     title="Place Category"
-                    className={classes.textField}
+                    style={classes.textField}
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     id='select-categories'
+                    data-testid = 'placeCategory'
+                    name='botonCategoria'
                 >
                     {placeCategories.map(category =>
                         <MenuItem key={category.title} id={category.title} title={category.title} value={category.title} role="option">{category.title}</MenuItem>
                     )}
                 </Select>
-
-                {/*<Select*/}
-                {/*    className = {classes.textField}*/}
-                {/*    value = {privacy}*/}
-                {/*    onChange={(e)=>setPrivacy(e.target.value)}>*/}
-                {/*    <MenuItem value="Public">Share place with my friends</MenuItem>*/}
-                {/*    <MenuItem value="Private">Store place privately</MenuItem>*/}
-
-                {/*</Select>*/}
             </FormControl>
-            <FormControl className={classes.formControl}>
 
-            <Button className = {classes.textField}
+            <FormControl style={classes.formControl}>
+
+            <Button style = {classes.textField}
                     id='add-place-button'
+                    data-testid = 'addPlaceButton'
                         title={'Add Place Button'}
                         type='submit'
                         variant="contained"

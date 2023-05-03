@@ -19,6 +19,7 @@ const FriendCard = (props) => {
     const parts = friendUrl.split("/");
     const part = parts[2].split(".")[0];
     const handleClickOpen = () => {
+        if (props.handleClickOpenMock) props.handleClickOpenMock();
         setOpen(true);
     };
 
@@ -34,9 +35,8 @@ const FriendCard = (props) => {
         setOpenSnackBar(false);
     }
 
-    const handleDeleteFriend = () => {
-        console.log("DELETING FRIEND...");
-        deleteFriendPod(userWebId,session, friend.friendURL);
+    const handleDeleteFriend = async () => {
+        await deleteFriendPod(userWebId, session, friend.friendURL);
         handleClose();
         handleSnackBarOpen();
     }
@@ -44,7 +44,7 @@ const FriendCard = (props) => {
     return (
         <div>
             <CombinedDataProvider datasetUrl={friendUrl} thingUrl={friendUrl}>
-                <Card style={{margin: '25px', marginTop:'0px'}}>
+                <Card data-testid={friend.friendURL} style={{margin: '25px', marginTop:'0px'}}>
                     <CardHeader
                         component='div' style={{paddingBottom: '10px'}}
                         avatar={
@@ -58,10 +58,10 @@ const FriendCard = (props) => {
                         }
                         action={
                             <>
-                                <IconButton aria-label="view" onClick={() => {setSelectedFriend(friend); setSelectedButton('Friend');}}>
+                                <IconButton data-testid="map-button" aria-label="view" onClick={() => {setSelectedFriend(friend); setSelectedButton('Friend');}}>
                                     <MapIcon style={{color: '#6986e8'}} />
                                 </IconButton>
-                                <IconButton aria-label="menu" onClick={handleClickOpen}>
+                                <IconButton data-testid="delete-friend" aria-label="menu" onClick={handleClickOpen}>
                                     <DeleteRoundedIcon style={{color: '#dc6868'}} />
                                 </IconButton>
                             </>

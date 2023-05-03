@@ -1,20 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import useStyles from "./styles";
 import PlaceCard from "../PlaceCard/PlaceCard";
 import {CircularProgress} from "@mui/material";
 
 const MyPlacesSidebar = (props) => {
-    const {
-        setSelectedPlaceMyPlaces,
-        deletePlace,
-        session,
-        showDeleteButton,
-        setSelectedPlaceComment,
-        setSelectedButton,
-        userWebId,
-        showShareButton,
-    } = props;
-    const classes = useStyles();
+    const {setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton, setSelectedPlaceComment,
+        setSelectedButton,userWebId, showShareButton} = props;
     const [isLoading, setIsLoading] = useState(false);
 
     // useEffect(() => {
@@ -24,22 +15,15 @@ const MyPlacesSidebar = (props) => {
     // }, []);
 
     const showPlaces = () => {
-        return props.places?.map((place) => (
-            console.log("key " + place._id),
-                <PlaceCard
-                    key={place._id}
-                    place={place}
-                    setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces}
-                    deletePlace={deletePlace}
-                    session={session}
-                    showDeleteButton={showDeleteButton}
-                    setSelectedPlaceComment={setSelectedPlaceComment}
-                    setSelectedButton={setSelectedButton}
-                    userWebId={userWebId}
-                    showShareButton={showShareButton}
-                />
-        ));
-    };
+        return props.places?.map((place)=> (
+            <PlaceCard  key={place._id} place={place} setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces}
+            deletePlace={deletePlace} session={session} showDeleteButton = {showDeleteButton}
+                       setSelectedPlaceComment={setSelectedPlaceComment} setSelectedButton={setSelectedButton}
+                        userWebId={userWebId} showShareButton={showShareButton}/>
+        ))
+
+    }
+
 
     return (
         <div style={{ paddingBottom: "20px" }}>

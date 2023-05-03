@@ -1,5 +1,4 @@
 import React from 'react';
-import useStyles from "./styles";
 import Avatar from '@mui/material/Avatar';
 import TextField from '@mui/material/TextField';
 import List from '@mui/material/List';
@@ -15,7 +14,45 @@ import {
 import { VCARD } from "@inrupt/lit-generated-vocab-common";
 
 const ProfileSideBar = (props) => {
-    const classes = useStyles();
+    const classes = {
+        avatarImage: {
+            width: "150px",
+            height: "150px",
+            margin: 'auto',
+            marginBottom:'10px',
+        },
+        cardProfile: {
+            margin: 'auto',
+            paddingTop:'10px',
+            width: 390,
+            backgroundColor: "#f3f2f2",
+            borderRadius:'15px',
+        },
+        text: {
+            display:'flex',
+            flexGrow: '1',
+            width:'100%'
+
+        },
+        logoutButton: {
+            color : "#faf5f3",
+            fontSize: "20px",
+            justifyContent: "center",
+            backgroundColor: "#ea6563",
+            borderRadius: "6px",
+            margin: '35%',
+            marginBottom: '5px',
+            marginTop: '10px',
+
+            '&:hover': {
+                backgroundColor: "#da5a57",
+            }
+        },
+        div1: {
+            paddingBottom:'10px',
+        }
+
+    };
     const {userWebId, session} = props;
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
@@ -24,6 +61,7 @@ const ProfileSideBar = (props) => {
     };
 
     const handleLogout = () => {
+        if (props.handleLogoutMock) props.handleLogoutMock(); //TESTING
         session.logout();
         handleSnackbarOpen();
     }
@@ -35,15 +73,15 @@ const ProfileSideBar = (props) => {
     return (
         <div>
             <CombinedDataProvider datasetUrl={userWebId} thingUrl={userWebId}>
-                <div className={classes.div1}>
-                    <Avatar className={classes.avatarImage}
+                <div style={classes.div1}>
+                    <Avatar style={classes.avatarImage}
                             alt="User image profile">
                         <Image property={VCARD.hasPhoto.iri.value} style={{maxHeight: '150px'}}/>
                     </Avatar>
 
                 </div>
                 <div >
-                    <Card className={classes.cardProfile}>
+                    <Card style={classes.cardProfile}>
                         <CardContent>
                             <List>
                                 <ListItem>
@@ -53,7 +91,7 @@ const ProfileSideBar = (props) => {
                                 </ListItem>
 
                                 <ListItem>
-                                    <TextField editable={false} className={classes.text}
+                                    <TextField editable={"false"} style={classes.text}
                                                id="webId"
                                                value={userWebId}
                                                InputLabelProps={{ shrink: true }}
@@ -63,7 +101,7 @@ const ProfileSideBar = (props) => {
                             </List>
                         </CardContent>
                     </Card>
-                    <Button variant="contained" data-testid="logout-button" onClick={handleLogout} className={classes.logoutButton} >
+                    <Button variant="contained" data-testid="logout-button" onClick={handleLogout} style={classes.logoutButton} >
                         Log Out
                     </Button>
                     <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose} data-testid="snack">

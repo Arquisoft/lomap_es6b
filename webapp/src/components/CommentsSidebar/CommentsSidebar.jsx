@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import useStyles from "./styles";
 import {savePlace} from "../../solidapi/solidAdapter";
 import {
     Button,
@@ -20,9 +19,16 @@ import ImageCommentCard from "../CommentCards/ImageCommentCard/ImageCommentCard"
 import RatingCommentCard from "../CommentCards/RatingCommentCard/RatingCommentCard";
 
 const CommentsSidebar = (props) => {
-    const classes = useStyles();
+    const classes = {
+        button: {
+            margin: '25px',
+            marginBottom: '25px',
+            marginTop: '5px',
+            variant:"outlined",
+            width: '100%',
+        },
+    };
 
-    // const classes = useStyles();
     const {session, userWebId,  place} = props;
     const [openTextDialog, setOpenTextDialog] = React.useState(false);
     const [commentValue, setCommentValue] = useState('');
@@ -32,7 +38,6 @@ const CommentsSidebar = (props) => {
     const [openImageDialog, setOpenImageDialog] = React.useState(false);
     const [openRatingDialog, setOpenRatingDialog] = React.useState(false);
     const handleClickOpen = (value) => {
-        console.log(value);
         if(value === "Add a text comment"){
             handleClickOpenTextDialog();
         }
@@ -70,36 +75,32 @@ const CommentsSidebar = (props) => {
     };
 
     const showTextComments = () => {
-        console.log(place?.textComments);
-        console.log("PLACE:")
-        console.log(place)
+        if (props.showTextCommentsMock) props.showTextCommentsMock(); //TESTING
         return place?.textComments?.map((comment) => (
             <TextCommentCard key={place.id} comment={comment}/>
         ));
     };
 
     const showImageComments = () => {
-        console.log(place.imageComments);
-        console.log("PLACE:")
-        console.log(place)
         return place.imageComments?.map((image) => (
             <ImageCommentCard key={place.id} image={image}/>
         ));
     };
 
     const showRatingComments = () => {
-        console.log(place.ratingComments);
-        console.log("PLACE:")
-
         return place.ratingComments?.map((rating) => (
             <RatingCommentCard key={place.id} rating={rating}/>
         ));
     };
 
     const handleAddTextComment = () => {
-        console.log(place.textComments)
+        if (props.handleAddTextCommentMock) props.handleAddTextCommentMock(); //TESTING
+        console.log("webId");
+        console.log(userWebId);
+        console.log("comment");
+        console.log(commentValue);
+        console.log(place);
         place.textComments.push({posterWebId: userWebId, text: commentValue});
-        console.log(place.textComments)
         savePlace(session, place, userWebId);
         handleCloseTextDialog();
         setCommentValue("");
@@ -137,47 +138,44 @@ const CommentsSidebar = (props) => {
     }
 
     const handleCommentTypeChange = (value) => {
+        if (props.showRatingCommentsMock) props.showRatingCommentsMock(); //TESTING
         setSelectedCommentType(value);
     }
 
-    const options = [
-        { value: 'text', label: 'Text comments'  },
-        { value: 'rating', label: 'Ratings' },
-        { value: 'image', label: 'Images' },
-      ];
       
     return (
         <>
         <div style={{ height: '100%', marginLeft: '25px', marginRight: '25px', marginBottom: '5px', textAlign: 'center', display:'flex', flexDirection: 'column', gap: '25px'}}>
             <div>
-                <AddCommentButton handleClickOpen={handleClickOpen} className={classes.button} style={{width: '100%'} }
-                data-testid = "addCommentButton" />
+                <AddCommentButton  handleClickOpen={handleClickOpen} style={classes.button}
+                 />
             </div>
             <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label" data-testid= "commentSidebarLabelShowing" >Showing</InputLabel>
                 <Select
 
                     labelId="demo-simple-select-label"
-                    id="demo-simple-select"
+                    id="showing-comments"
                     value={selectedCommentType}
                     label="Type of comments to show"
-                    data-testid= "Type of comments to show"
+                    data-testid= "botonShowing"
                 >
                     <MenuItem onClick={()=>handleCommentTypeChange("text")} value={"text"}>Text comments</MenuItem>
-                    <MenuItem onClick={()=>handleCommentTypeChange("rating")} value={"rating"}>Ratings</MenuItem>
-                    <MenuItem onClick={()=>handleCommentTypeChange("image")} value={"image"}>Images</MenuItem>
+                    <MenuItem id='rating-option' data-testid='rating-item' onClick={()=>handleCommentTypeChange("rating")} value={"rating"}>Ratings</MenuItem>
+                    <MenuItem id='images-option' onClick={()=>handleCommentTypeChange("image")} value={"image"}>Images</MenuItem>
                 </Select>
             </FormControl>
         </div>
         <Dialog  open={openTextDialog} onClose={handleCloseTextDialog}>
-            <DialogTitle style={{marginBottom: '-10px'}}>Add a text comment</DialogTitle>
+            <DialogTitle data-testid='tituloDialogo' style={{marginBottom: '-10px'}}>Add a text comment</DialogTitle>
             <DialogContent >
                 <DialogContentText style={{marginBottom: '12px'}}>
                     It will be posted on the place page.
                 </DialogContentText>
                 <TextField style={{minWidth: '450px'}}
                     autoFocus
-                    id="outlined-multiline-static"
+                    data-testid='escribeComentario'
+                    id="input-comments"
                     label="Write your comment here"
                     multiline
                     rows={3}
@@ -187,8 +185,8 @@ const CommentsSidebar = (props) => {
                 />
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleCloseTextDialog}>Cancel</Button>
-                <Button onClick={handleAddTextComment}>Add</Button>
+                <Button data-testid='cancelaMensaje' onClick={handleCloseTextDialog}>Cancel</Button>
+                <Button data-testid='addMensaje' id='confirm-add-comment' onClick={handleAddTextComment}>Add</Button>
             </DialogActions>
         </Dialog>
 
@@ -200,7 +198,7 @@ const CommentsSidebar = (props) => {
                 </DialogContentText>
                 <TextField style={{minWidth: '450px'}}
                            autoFocus
-                           id="outlined-multiline-static"
+                           id="image-textfield"
                            label="Paste your image URL here"
                            fullWidth
                            value={imageValue} // bind TextField value to commentValue state
@@ -209,7 +207,7 @@ const CommentsSidebar = (props) => {
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleCloseImageDialog}>Cancel</Button>
-                <Button onClick={handleAddImageComment}>Add</Button>
+                <Button id="confirm-image-dialog" onClick={handleAddImageComment}>Add</Button>
             </DialogActions>
         </Dialog>
 
@@ -219,14 +217,6 @@ const CommentsSidebar = (props) => {
                 <DialogContentText style={{marginBottom: '12px'}}>
                     It will be posted on the place page.
                 </DialogContentText>
-                {/*<TextField style={{minWidth: '450px'}}*/}
-                {/*           autoFocus*/}
-                {/*           id="outlined-multiline-static"*/}
-                {/*           label="Paste your rating URL here"*/}
-                {/*           fullWidth*/}
-                {/*           value={ratingValue} // bind TextField value to ratingValue state*/}
-                {/*           onChange={(e) => setRatingValue(e.target.value)}*/}
-                {/*/>*/}
                 <Rating
                     name="simple-controlled"
                     value={ratingValue}
@@ -237,7 +227,7 @@ const CommentsSidebar = (props) => {
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleCloseRatingDialog}>Cancel</Button>
-                <Button onClick={handleAddRatingComment}>Add</Button>
+                <Button data-testid='ratingCommentsButton' id="confirm-add-review" onClick={handleAddRatingComment}>Add</Button>
             </DialogActions>
         </Dialog>
 

@@ -1,38 +1,40 @@
 import React, {useState} from 'react';
-import useStyles from "./styles";
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
-import LockIcon from '@mui/icons-material/Lock';
-import Collapse from '@mui/material/Collapse';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import Switch from '@mui/material/Switch';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
 import DeleteIcon from '@mui/icons-material/Delete';
-import SecurityIcon from '@mui/icons-material/Security';
-import SyncLockIcon from '@mui/icons-material/SyncLock';
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import DeleteAllDataConfirmDialog from "../DeleteAllDataConfirmDialog/DeleteAllDataConfirmDialog";
 import {Alert, Snackbar} from "@mui/material";
 import {deleteAllPlaces} from "../../solidapi/solidAdapter";
 const SettingsSideBar = (props) => {
-    const classes = useStyles();
+    const classes = {
+        deleteButton : {
+            display: 'flex',
+            color : "#faf5f3",
+            fontSize: "20px",
+            justifyContent: "center",
+            backgroundColor: "#b95756",
+            borderRadius: "6px",
+            margin: '25px',
+            marginBottom: '5px',
+            marginTop: '5px',
+
+            '&:hover': {
+                backgroundColor: "#983c3a",
+            }
+        },
+
+
+
+    };
 
     const {setPlaces,session} = props;
-    const [isDarkMode, setIsDarkMode] = useState(false);
     const [open, setOpen] = React.useState(false);
-
-    const [openAppearance, setOpenAppearance] = React.useState(false);
-    const [openPrivacy, setOpenPrivacy] = React.useState(false);
 
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
     const handleSnackbarOpen = () => {
+        if (props.handleSnackbarOpenMock) props.handleSnackbarOpenMock(); //TESTING
         setSnackbarOpen(true);
     };
 
@@ -40,27 +42,21 @@ const SettingsSideBar = (props) => {
         setSnackbarOpen(false);
     };
 
-    const handleClickAppearance = () => {
-        setOpenAppearance(!openAppearance);
-    };
-
-    const handleClickPrivacy = () => {
-        setOpenPrivacy(!openPrivacy);
-    };
-    const handleDarkMode = (event) => {
-        setIsDarkMode(event.target.checked);
-    };
-    const handleDeleteAll = () => {
+    const handleDeleteAll = async () => {
         setPlaces([]);
         handleClose();
-        handleSnackbarOpen(); //abrimos el snackbar
-        deleteAllPlaces(session);
+        await deleteAllPlaces(session).then(() => {
+            handleSnackbarOpen(); //abrimos el snackbar
+        });
     };
 
 
     const handleClickOpen = () => {
+        if (props.handleClickOpenMock) props.handleClickOpenMock(); //TESTING
+
         setOpen(true);
     };
+
 
     const handleClose = () => {
         setOpen(false);
@@ -70,63 +66,9 @@ const SettingsSideBar = (props) => {
     return (
         <div>
             <Box>
-                <nav aria-label="settings folders 1">
-                    <List>
-                        <ListItemButton onClick = {handleClickAppearance}>
-                            <ListItemIcon>
-                                <AutoAwesomeIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Appearance" />
-                            {openAppearance ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-                        <Collapse in={!openAppearance} timeout="auto" unmountOnExit >
-                            <List component="div" sx = {{paddingLeft: '30px'}}>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <Brightness4Icon />
-                                    </ListItemIcon>
-                                    <ListItemText id="switch-dark-mode" primary="Dark-mode" />
-                                    <Switch
-                                        //edge="end"
-                                        onChange={handleDarkMode}
-                                        checked={isDarkMode}
-                                        inputProps={{
-                                            'aria-labelledby': 'switch-dark-mode',
-                                        }}
-                                    />
-                                </ListItem>
-                            </List>
-                        </Collapse>
-
-                        <ListItemButton onClick={handleClickPrivacy}>
-                            <ListItemIcon>
-                                <LockIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Privacy" />
-                            {openPrivacy ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-                        <Collapse in={!openPrivacy} timeout="auto" unmountOnExit >
-                            <List component="div" sx={{ paddingLeft: '30px'}}>
-                                <ListItemButton >
-                                    <ListItemIcon>
-                                        <SecurityIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Privacy Setting 1" />
-                                </ListItemButton>
-                                <ListItemButton >
-                                    <ListItemIcon>
-                                        <SyncLockIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Privacy Setting 2" />
-                                </ListItemButton>
-                            </List>
-                        </Collapse>
-                    </List>
-                </nav>
-                <Divider />
                 <nav aria-label="settings forders 2">
                     <List>
-                        <ListItemButton variant="contained" endicon={<DeleteIcon/>} className={classes.deleteButton}
+                        <ListItemButton id='deletealldata-button' data-testid='deletealldata-button' variant="contained" endicon={<DeleteIcon/>} style={classes.deleteButton}
                                         onClick={handleClickOpen}>
                             Delete all data
                         </ListItemButton>

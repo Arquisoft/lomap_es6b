@@ -33,10 +33,12 @@ const PlaceCard = (props) => {
 
     const [friends, setFriends] = React.useState([]);
 
-    useEffect(() => {
-        getFriends(userWebId).then((friends) => {
-            setFriends(friends);
-        });
+    useEffect(async () => {
+        if (userWebId) {
+            await getFriends(userWebId).then((friends) => {
+                setFriends(friends);
+            });
+        }
     }, []);
 
     const handleClickOpen = () => {
@@ -72,12 +74,10 @@ const PlaceCard = (props) => {
         setSnackbarOpenShare(false);
     };
 
-    const handleDeletePlace = () => {
+    const handleDeletePlace = async () => {
         console.log(place.id);
-
-        console.log("El id que buscará en el pod es: " + place.id) //correcto, asi lo tenemos guardado en los pods por ahora
         //no sé si los guiones que separan en el log, y en la web de los pods no aparecen, afectan
-        removePlace(session,place.id)// delete from the pods
+        await removePlace(session, place.id)// delete from the pods
 
         deletePlace(place.id); //deleting in the frontend
         handleClose();//cerrar la pestaña de diálogo
@@ -86,8 +86,13 @@ const PlaceCard = (props) => {
 
     const handleSharePlaceWithAllFriends = () => {
         console.log("Boton compartir con todos mis amigos");
-        giveAllFriendPermissionPoint(userWebId, session,place.id);
-        handleSnackbarOpenShare();
+        giveAllFriendPermissionPoint(userWebId, session, place.id).then(() => {
+            console.log("Sharing place with all friends completed successfully.");
+            handleSnackbarOpenShare();
+        })
+            .catch((error) => {
+                console.error("An error occurred while sharing place with all friends:", error);
+            });
     };
 
     return (
@@ -98,7 +103,7 @@ const PlaceCard = (props) => {
                     action={
                         <>
                             {/*<Chip icon = {place.privacy === "Public" ? <Diversity3Icon/> : <PermIdentityIcon/>} label={place.privacy}  />*/}
-                            <IconButton aria-label="view" onClick={()=>{setSelectedPlaceComment(place); setSelectedButton('Comments');}}>
+                            <IconButton id={place.name+"-comments"} aria-label="view" onClick={()=>{setSelectedPlaceComment(place); setSelectedButton('Comments');}}>
                                 <ForumRoundedIcon style={{color: '#ffb941'}}/>
                             </IconButton>
                             {/*Menu compartir sitio con amigos*/}
