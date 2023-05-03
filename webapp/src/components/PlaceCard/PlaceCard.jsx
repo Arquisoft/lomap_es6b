@@ -118,7 +118,7 @@ const PlaceCard = (props) => {
                                 onClose={handleCloseShareButton}
 
                             >
-                                <MenuItem onClick={handleSharePlaceWithAllFriends}>Share with my friends</MenuItem>
+                                <MenuItem onClick={async () => handleSharePlaceWithAllFriends}>Share with my friends</MenuItem>
 
                             </Menu>
                             <IconButton aria-label="view" onClick={()=>setSelectedPlaceMyPlaces({lat: place.latitude, lng: place.longitude})}>

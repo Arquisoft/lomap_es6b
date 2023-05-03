@@ -90,17 +90,15 @@ function AddPlaceSidebar (props)  {
         // setPrivacy("");
     }
 
-    function addPlaceAndClearForm() {
+    async function addPlaceAndClearForm() {
         //////TESTING////////////
         if (props.handleClickOpenMock) {
             props.handleClickOpenMock();
         }
         //////////////////
         if (selectedPoint.lat != null && selectedPoint.lng != null) {
-            addPlace().then(
-                () => clearForm()
-            );
-
+            await addPlace();
+            clearForm();
         }
     }
 
@@ -155,7 +153,7 @@ function AddPlaceSidebar (props)  {
                         title={'Add Place Button'}
                         type='submit'
                         variant="contained"
-                        onClick={addPlaceAndClearForm}
+                        onClick={async () => addPlaceAndClearForm}
                         disabled={!isFormComplete()}>
                     Add place
                 </Button>
