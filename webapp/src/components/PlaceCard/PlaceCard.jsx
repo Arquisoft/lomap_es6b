@@ -37,7 +37,6 @@ const PlaceCard = (props) => {
         if (userWebId) {
             await getFriends(userWebId).then((friends) => {
                 setFriends(friends);
-                console.log("hola");
             });
         }
     }, []);
@@ -95,7 +94,6 @@ const PlaceCard = (props) => {
                 console.error("An error occurred while sharing place with all friends:", error);
             });
     };
-
 
     return (
         <div>
