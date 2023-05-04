@@ -34,7 +34,7 @@ const Sidebar = (props) => {
 
     const {places, setPlaces, selectedButton, setSelectedButton, selectedPoint,
         setSelectedPoint,setSelectedPlaceMyPlaces,deletePlace, setPlacesLength, userWebId, session,
-        selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend, placeCategories} = props;
+        selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend, placeCategories,isLoading, setIsLoading} = props;
     const handleSelectedButtonChange = (selectedButton) => {
         if (props.handleSelectedButtonChangeMock) props.handleSelectedButtonChangeMock(); //TESTING
         setSelectedButton(selectedButton);
@@ -55,7 +55,8 @@ const Sidebar = (props) => {
                                     setPlacesLength={setPlacesLength} userWebId={userWebId}
                                     session={session} setSelectedButton={setSelectedButton}
                                     selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}
-                                    deleteFriend={deleteFriend} placeCategories={placeCategories}/>
+                                    deleteFriend={deleteFriend} placeCategories={placeCategories} isLoading={isLoading}
+                                     setIsLoading={setIsLoading}/>
                 </Grid>
             </Grid>
         </ div>

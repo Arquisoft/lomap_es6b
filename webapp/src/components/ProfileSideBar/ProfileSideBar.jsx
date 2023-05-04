@@ -40,8 +40,6 @@ const ProfileSideBar = (props) => {
             justifyContent: "center",
             backgroundColor: "#ea6563",
             borderRadius: "6px",
-            margin: '35%',
-            marginBottom: '5px',
             marginTop: '10px',
 
             '&:hover': {
@@ -101,12 +99,15 @@ const ProfileSideBar = (props) => {
                             </List>
                         </CardContent>
                     </Card>
-                    <Button variant="contained" data-testid="logout-button" onClick={handleLogout} style={classes.logoutButton} >
-                        Log Out
-                    </Button>
+                    <div style={{textAlign: 'center'}}>
+                        <Button variant="contained" data-testid="logout-button" onClick={handleLogout} style={classes.logoutButton} >
+                            Log Out
+                        </Button>
+                    </div>
+
                     <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose} data-testid="snack">
                         <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
-                            ¡Log out successfully!
+                            Logged out successfully!
                         </Alert>
                     </Snackbar>
                 </div>

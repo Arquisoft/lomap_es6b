@@ -30,6 +30,8 @@ const App = () => {
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
     const [defaultCoordinates, setDefaultCoordinates] = useState({lat: 50.8504500, lng: 4.3487800})
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const placeCategories = [
         { title: 'Bar' },
         { title: 'Restaurant' },
@@ -93,8 +95,15 @@ const App = () => {
             //const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
             //setPlaces(await getPlaceMarksByUser(webId));
 
+            setIsLoading(true);
             //sacando los lugares de los pods
-           setPlaces(await getPlaces(session));
+            await getPlaces(session).then(
+                (result) => {
+                    setPlaces(result);
+                    setIsLoading(false);
+                }
+            );
+
 
         }
 
@@ -150,7 +159,8 @@ const App = () => {
                                  setSelectedButton={setSelectedButton} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
                                  setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}  setPlacesLength={setPlacesLength}
                                  userWebId={userWebId} session={session} selectedFriendPlaces={selectedFriendPlaces}
-                                 setSelectedFriendPlaces={setSelectedFriendPlaces} placeCategories={placeCategories}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
+                                 setSelectedFriendPlaces={setSelectedFriendPlaces} placeCategories={placeCategories} isLoading={isLoading}
+                                 setIsLoading={setIsLoading}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
                     </Grid>
 
                     <Grid item

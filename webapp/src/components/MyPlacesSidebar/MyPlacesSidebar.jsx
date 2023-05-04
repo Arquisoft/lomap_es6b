@@ -1,16 +1,11 @@
 import React, {useState} from 'react';
 import PlaceCard from "../PlaceCard/PlaceCard";
+import {CircularProgress} from "@mui/material";
 
 const MyPlacesSidebar = (props) => {
     const {setSelectedPlaceMyPlaces, deletePlace, session, showDeleteButton, setSelectedPlaceComment,
-        setSelectedButton,userWebId, showShareButton} = props;
-    const [isLoading, setIsLoading] = useState(false);
+        setSelectedButton,userWebId, showShareButton, isLoading} = props;
 
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setIsLoading(false);
-    //     }, 2000); // 2000 milisegundos = 2 segundos
-    // }, []);
 
     const showPlaces = () => {
         return props.places?.map((place)=> (
@@ -25,11 +20,10 @@ const MyPlacesSidebar = (props) => {
 
     return (
         <div style={{ paddingBottom: "20px" }}>
-            {/*{isLoading ? (*/}
-            {/*    <CircularProgress color={"inherit"} />*/}
-            {/*) : (*/}
+            <div style={{textAlign: "center"}}>
+                {isLoading ? <CircularProgress color={"inherit"} /> : null}
+            </div>
             {showPlaces()}
-            {/*)}*/}
         </div>
     );
 };
