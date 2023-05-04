@@ -5,7 +5,6 @@ import {
     CardHeader,
     IconButton,
     Typography,
-    Chip,
     Alert,
     Snackbar
 } from "@mui/material";
@@ -31,72 +30,40 @@ const PlaceCard = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
 
-    const [setFriends] = React.useState([]);
+    const [friends, setFriends] = React.useState([]);
 
     useEffect(async () => {
-        if (userWebId) {
-            await getFriends(userWebId).then((friends) => {
-                setFriends(friends);
-            });
-        }
+        if (userWebId) await getFriends(userWebId).then((friends) => {setFriends(friends);});
     }, []);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+    const handleClickOpen = () => {setOpen(true);};
 
-    const handleClose = () => {
-        setOpen(false);
-        handleSnackbarOpen();
-    };
+    const handleClose = () => {setOpen(false); handleSnackbarOpen();};
 
-    const handleSnackbarOpen = () => {
-        setSnackbarOpen(true);
-    };
 
-    const handleSnackbarClose = () => {
-        setSnackbarOpen(false);
-    };
 
-    const handleClickShareButton = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    const handleSnackbarOpen = () => {setSnackbarOpen(true);};
 
-    const handleCloseShareButton = () => {
-        setAnchorEl(null);
-    };
+    const handleSnackbarClose = () => {setSnackbarOpen(false);};
 
-    const handleSnackbarOpenShare = () => {
-        setSnackbarOpenShare(true);
-    };
+    const handleClickShareButton = (event) => {setAnchorEl(event.currentTarget);};
 
-    const handleSnackbarCloseShare = () => {
-        setSnackbarOpenShare(false);
-    };
+    const handleCloseShareButton = () => {setAnchorEl(null);};
+
+    const handleSnackbarOpenShare = () => {setSnackbarOpenShare(true);};
+
+    const handleSnackbarCloseShare = () => {setSnackbarOpenShare(false);};
+
 
     const handleDeletePlace = async () => {
-        console.log(place.id);
-        //no sé si los guiones que separan en el log, y en la web de los pods no aparecen, afectan
         await removePlace(session, place.id)// delete from the pods
-
         deletePlace(place.id); //deleting in the frontend
         handleClose();//cerrar la pestaña de diálogo
         handleSnackbarOpen(); //abrir el snackbar
-
     }
 
     const handleSharePlaceWithAllFriends = () => {
-        console.log("Boton compartir con todos mis amigos");
-        giveAllFriendPermissionPoint(userWebId, session, place.id).then(() => {
-            console.log("Sharing place with all friends completed successfully.");
-            handleSnackbarOpenShare();
-        })
-            .catch((error) => {
-                console.error("An error occurred while sharing place with all friends:", error);
-            })
-            .finally(() => {
-                handleCloseShareButton();
-            });
+        giveAllFriendPermissionPoint(userWebId, session, place.id).then(() => {handleSnackbarOpenShare();}).catch((error) => {console.error(error);}).finally(() => {handleCloseShareButton();});;
     };
 
     return (
@@ -159,7 +126,6 @@ const PlaceCard = (props) => {
             </Snackbar>
 
             <DeletePlaceConfirmDialog open={open} handleClose={handleClose} handleDeletePlace={handleDeletePlace}/>
-
             <Snackbar open={snackbarOpenShare} autoHideDuration={3000} onClose={handleSnackbarCloseShare}>
                 <Alert onClose={handleSnackbarCloseShare} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
                     Place successfully shared!

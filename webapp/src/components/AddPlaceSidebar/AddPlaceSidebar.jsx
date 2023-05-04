@@ -30,7 +30,6 @@ function AddPlaceSidebar (props)  {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
-    // const [privacy, setPrivacy] =  useState("");
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
     const placeCategories = [ //repetición de código, pero necesario para que placeCategories no se inicie como undefined :(
@@ -62,72 +61,32 @@ function AddPlaceSidebar (props)  {
     };
 
     const addPlace =  async(req) => {
-        //////TESTING////////////
-        if(props.handleClickOpenMock){
-            props.handleClickOpenMock();
-        }
-        //////////////////
-        const place = new PlaceEntity();
-        place.name = name;
-        place.description = description;
-        place.latitude = selectedPoint.lat;
-        place.longitude = selectedPoint.lng;
-        place.category = category;
-        place.textComments = [];
-        place.imageComments = [];
-        place.ratingComments = [];
+        if(props.handleClickOpenMock) props.handleClickOpenMock(); //TESTING
         const { v4: uuidv4 } = require('uuid');
-        place.id = uuidv4();//actualmente se guarda en los pods, con un id aleatorio
-
-        //Con una webId como esta "https://aliciafp15.inrupt.net/profile/card#me";
         const parts = userWebId.split('.'); // Dividimos la cadena en partes utilizando el punto como separador
         const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
-        place.webId = webId;//acotamos para guardar solo el nombre de usuario
-        console.log( webId);
-
-        //guarda el Place en los pods con todos los datos
-        savePlace(session,place,userWebId);
-
-
+        const place = {id: uuidv4(), webId: webId, name: name, description: description, latitude: selectedPoint.lat, longitude: selectedPoint.lng, category: category, textComments: [], imageComments: [], ratingComments: []};
+        savePlace(session,place,userWebId);        //guarda el Place en los pods con todos los datos
         setPlaces([...places, place]);
-
         handleSnackbarOpen(); //abrir el snackbar
-
     }
-
 
     function isFormComplete(){
         return name !== "" && description !== ""  && category !== "" ;
     }
 
     function clearForm(){
-        setName("");
-        setDescription("");
-        setCategory("");
-        // setPrivacy("");
+        setName(""); setDescription(""); setCategory("");
     }
 
     function addPlaceAndClearForm() {
-        //////TESTING////////////
-        if (props.handleClickOpenMock) {
-            props.handleClickOpenMock();
-        }
-        //////////////////
-        if (selectedPoint.lat != null && selectedPoint.lng != null) {
-            addPlace().then(() => {
-                console.log("Created place successfully.");
-                clearForm();
-            })
-                .catch((error) => {
-                    console.error("An error occurred while creating place:", error);
-                });
-
-        }
+        if (props.handleClickOpenMock) props.handleClickOpenMock(); //TESTING
+        if (selectedPoint.lat != null && selectedPoint.lng != null)
+            addPlace().then(() => {clearForm();}).catch((error) => {console.error("An error occurred while creating place:", error);});
     }
 
     return (
         <div>
-
             <FormControl style={classes.formControl}>
                 <TextField
                     id='input-name'
