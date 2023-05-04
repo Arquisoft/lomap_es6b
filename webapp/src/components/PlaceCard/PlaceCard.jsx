@@ -37,7 +37,6 @@ const PlaceCard = (props) => {
         if (userWebId) {
             await getFriends(userWebId).then((friends) => {
                 setFriends(friends);
-                console.log("hola");
             });
         }
     }, []);
@@ -85,10 +84,15 @@ const PlaceCard = (props) => {
         handleSnackbarOpen(); //abrir el snackbar
     }
 
-    const handleSharePlaceWithAllFriends = async () => {
+    const handleSharePlaceWithAllFriends = () => {
         console.log("Boton compartir con todos mis amigos");
-        await giveAllFriendPermissionPoint(userWebId, session, place.id);
-        handleSnackbarOpenShare();
+        giveAllFriendPermissionPoint(userWebId, session, place.id).then(() => {
+            console.log("Sharing place with all friends completed successfully.");
+            handleSnackbarOpenShare();
+        })
+            .catch((error) => {
+                console.error("An error occurred while sharing place with all friends:", error);
+            });
     };
 
     return (
