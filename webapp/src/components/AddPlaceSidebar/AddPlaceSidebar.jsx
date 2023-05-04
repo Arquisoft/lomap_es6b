@@ -1,19 +1,55 @@
 import React, {useState} from 'react';
-import {Button, FormControl, MenuItem, Select, Alert, SnackBar, Snackbar} from "@mui/material";
+import {Button, FormControl, MenuItem, Select, Alert, Snackbar} from "@mui/material";
 import TextField from "@mui/material/TextField";
-import useStyles from "./styles";
-import PlaceEntity from "../../entities/PlaceEntity";
-import {addPlaceMark} from '../../api/api';
 import { savePlace } from '../../solidapi/solidAdapter';
 
 function AddPlaceSidebar (props)  {
+    const classes = {
+        formControl: {
+            width: '100%',
+            height: '100%',
+        },
+        textField: {
+            margin: '25px',
+            marginBottom: '5px',
+            marginTop: '5px',
+            variant:"outlined",
+        },
+        title: {
+            margin: '25px',
+            color: '#313439',
+            fontFamily: 'Inter, sans-serif',
+            fontWeight: 'bold',
+            fontSize: '2rem',
+        },
+
+    };
     const { selectedPoint, places, setPlaces,userWebId, session} = props;
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
-    const [privacy, setPrivacy] =  useState("");
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
+    const placeCategories = [ //repetición de código, pero necesario para que placeCategories no se inicie como undefined :(
+        {title: 'Bar'},
+        {title: 'Restaurant'},
+        {title: 'Shop'},
+        {title: 'Supermarket'},
+        {title: 'Hotel'},
+        {title: 'Cinema'},
+        {title: 'Academic Institution'},
+        {title: 'Public Institution'},
+        {title: 'Sports Club'},
+        {title: 'Museum'},
+        {title: 'Park'},
+        {title: 'Landscape'},
+        {title: 'Monument'},
+        {title: 'Hospital'},
+        {title: 'Police Station'},
+        {title: 'Transport Center'},
+        {title: 'Entertainment'},
+        {title: 'Other'}
+    ];
     const handleSnackbarOpen = () => {
         setSnackbarOpen(true);
     };
@@ -23,107 +59,89 @@ function AddPlaceSidebar (props)  {
     };
 
     const addPlace =  async(req) => {
-        const place = new PlaceEntity();
-        place.name = name;
-        place.description = description;
-        place.latitude = selectedPoint.lat;
-        place.longitude = selectedPoint.lng;
-        place.category = category;
-        place.privacy = privacy;
-
-        //Con una webId como esta "https://aliciafp15.inrupt.net/profile/card#me";
+        if(props.handleClickOpenMock) props.handleClickOpenMock(); //TESTING
+        const { v4: uuidv4 } = require('uuid');
         const parts = userWebId.split('.'); // Dividimos la cadena en partes utilizando el punto como separador
         const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
-        place.webId = webId;//acotamos para guardar solo el nombre de usuario
-        console.log( webId);
-
-        //guarda el Place en los pods con todos los datos
-        savePlace(session,place);
-        
-        //guarda en la base de datos la Placemark con los datos mínimos
-        const result = await addPlaceMark(place);//lat, long, webid, placeid
+        const place = {id: uuidv4(), webId: webId, name: name, description: description, latitude: selectedPoint.lat, longitude: selectedPoint.lng, category: category, textComments: [], imageComments: [], ratingComments: []};
+        savePlace(session,place,userWebId);        //guarda el Place en los pods con todos los datos
         setPlaces([...places, place]);
-
-        if(result){
-            console.log("Añadiste un lugar con éxito");
-            console.log("{userWebId}" + {userWebId});
-            //notificar el cambio al componente padre
-            //props.OnUserListChange();
-            handleSnackbarOpen(); //abrir el snackbar
-
-        } else {
-            console.log("Ha habido un error en el registro");
-        }
-
+        handleSnackbarOpen(); //abrir el snackbar
     }
 
-
-    const classes = useStyles();
-
     function isFormComplete(){
-        return name !== "" && description !== ""  && category !== "" && privacy !== "";
+        return name !== "" && description !== ""  && category !== "" ;
     }
 
     function clearForm(){
-        setName("");
-        setDescription("");
-        setCategory("");
-        setPrivacy("");
+        setName(""); setDescription(""); setCategory("");
     }
 
-    function addPlaceAndClearForm(){
-        if(selectedPoint.lat != null && selectedPoint.lng != null){
-            addPlace();
-            clearForm();
-        }
+    function addPlaceAndClearForm() {
+        if (props.handleClickOpenMock) props.handleClickOpenMock(); //TESTING
+        if (selectedPoint.lat != null && selectedPoint.lng != null)
+            addPlace().then(() => {clearForm();}).catch((error) => {console.error("An error occurred while creating place:", error);});
     }
 
     return (
         <div>
-
-            <FormControl className={classes.formControl}>
+            <FormControl style={classes.formControl}>
                 <TextField
-                    className = {classes.textField}
+                    id='input-name'
+                    data-testid='placeName'
+                    style = {classes.textField}
                     value={name}
-                    id="outlined-required"
                     label="Place Name"
                     required
-                    onChange={(e) => setName(e.target.value)}
-                />
+                    onChange={(e) => setName(e.target.value)}></TextField>
+            </FormControl>
+            <FormControl style={classes.formControl}>
                 <TextField
-                    className = {classes.textField}
+                    style = {classes.textField}
                     value={description}
-                    id="outlined-multiline-static"
+                    id='input-description'
+                    data-testid = 'placeDescription'
                     label="Place Description"
                     multiline
                     rows={4}
                     required
-                    onChange={(e) => setDescription(e.target.value)}
-                />
+                    onChange={(e) => setDescription(e.target.value)}></TextField>
+            </FormControl>
+            <FormControl style={classes.formControl}>
 
                 <Select
-                    className = {classes.textField}
+                    //native={true}//POR DEFECTO ESTÁ A FALSE, E IMPIDE MOSTRAR OPCIONES EN LOS TEST
+                    title="Place Category"
+                    style={classes.textField}
                     value={category}
-                    onChange={(e)=>setCategory(e.target.value)}>
-                    <MenuItem value="Restaurants">Restaurants</MenuItem>
-                    <MenuItem value="Hotels">Hotels</MenuItem>
-                    <MenuItem value="Attractions">Attractions</MenuItem>
+                    onChange={(e) => setCategory(e.target.value)}
+                    id='select-categories'
+                    data-testid = 'placeCategory'
+                    name='botonCategoria'
+                >
+                    {placeCategories.map(category =>
+                        <MenuItem key={category.title} id={category.title} title={category.title} value={category.title} role="option">{category.title}</MenuItem>
+                    )}
                 </Select>
+            </FormControl>
 
-                <Select
-                    className = {classes.textField}
-                    value = {privacy}
-                    onChange={(e)=>setPrivacy(e.target.value)}>
-                    <MenuItem value="Public">Share place with my friends</MenuItem>
-                    <MenuItem value="Private">Store place privately</MenuItem>
+            <FormControl style={classes.formControl}>
 
-                </Select>
-                <Button className = {classes.textField} type='submit' variant="contained" onClick={addPlaceAndClearForm} disabled={!isFormComplete()}>Add place</Button>
+            <Button style = {classes.textField}
+                    id='add-place-button'
+                    data-testid = 'addPlaceButton'
+                        title={'Add Place Button'}
+                        type='submit'
+                        variant="contained"
+                        onClick={addPlaceAndClearForm}
+                        disabled={!isFormComplete()}>
+                    Add place
+                </Button>
 
             </FormControl>
-            <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
+            <Snackbar id='addplace-success' open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
                 <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
-                    ¡Place successfully added!
+                    Place added successfully!
                 </Alert>
             </Snackbar>
         </div>

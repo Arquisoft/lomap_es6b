@@ -3,31 +3,43 @@
 
 
 === Domain model
+[plantuml,"Domain model",png]
+----
+Class User{
+ String WebID
+}
 
-image:UmlDiagram.png["Example UML Diagram"]
+Class Map{
+ String ID
+}
 
+Class Placemark{
+ String ID
+ String category
+ String name
+ String description
+ double latitue
+ double longitude
+ String webID
+ String privacy
+ [] textComments
+ [] imageComments 
+ [] ratingComments
+}
 
+User --* User : friend
+User -- Map
+Map --* Placemark
 
+----
 === Domain concepts
 
 [options="header"]
 |===
 | Concept         | Description
-| Map    | It's the main part of the interface, we obtain it through OpenStreetMap API. The map is where the user can mark selected places an watch places marked by their friends.
+| Map   | It's the main part of the interface, we obtain it through OpenStreetMap API. The map is where the user can mark selected places an watch places marked by their friends.
 | User     | We only will save the ID of the users and the list of IDs of their friends in the site.
-| Friend    | A friend is an user that has been added as friend by another user.
-| Mark     | A mark identifies a location on the map. Marks are created by the users and once is created they can add rating, pictures, description ... We won't save any of that in our database. All that information will be stored in the user's pod.
-| Pod     | It's an external store provided by SOLID Project where will be saved the information of the users or the places.
+| Placemark     | A Placemark identifies a location on the map. Placemarks are created by the users and once is created they can add rating, pictures, description ... We won't save any of that in our database. All that information will be stored in the user's pod.
 |===
 
 
-=== Security
-
-* *Privacy:* The information stored in the application is decentralised in pods. This ensures that the privacy of the users is protected.
-Part of the information can be stored in a centralised way in the database but always respecting the privacy of the users..
-
-* *Access control:* The system must have appropriate access controls in place to ensure that only authorized users can access and modify personal and shared data.
-
-=== User experience
-
-Our intention is to make an intuitive site where the user can see all the important modules just entering. The map will be placed occupying a significant part of the screen. Users will be able to see the different locations of their saved sites displayed on the map. In addition, the user will be able to observe additional information on the left side of the screen or by hovering the mouse over the location.

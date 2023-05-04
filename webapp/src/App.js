@@ -1,20 +1,16 @@
-
 import './App.css';
 import {Alert, Box, Grid, Paper, Snackbar} from "@mui/material";
 import Header from "./components/Header/Header";
-import Map from "./components/Map/Map";
+import MapComponent from "./components/MapComponent/MapComponent";
 import Sidebar from "./components/Sidebar/Sidebar";
 import React, {useState, useEffect} from 'react';
-import  {getPlaceMarksByUser} from './api/api';
 import LoginWall from "./components/LoginWall/LoginWall";
 import { SessionProvider} from "@inrupt/solid-ui-react";
 import { useSession } from "@inrupt/solid-ui-react/dist";
-
 import { getPlaces } from './solidapi/solidAdapter';
 
 
-
-function App() {
+const App = () => {
 
     //uso esto para el control del logeo
     const {session} = useSession();
@@ -24,7 +20,7 @@ function App() {
     const [places, setPlaces] = useState([]);
 
 
-    const [selectedPoint, setSelectedPoint] = useState(null);
+    const [selectedPoint, setSelectedPoint] = useState({lat: 50.8504500, lng: 4.3487800});
     const [selectedPlaceAutocomplete, setSelectedPlaceAutocomplete] = useState(null);
     const [selectedButton, setSelectedButton] = useState("MyPlaces");
     const [selectedPlaceMyPlaces, setSelectedPlaceMyPlaces] = useState(null);
@@ -32,6 +28,31 @@ function App() {
     const [selectedFilters, setSelectedFilters] = useState([]);
     const [selectedFriendPlaces, setSelectedFriendPlaces] = useState([]);
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+    const [defaultCoordinates, setDefaultCoordinates] = useState({lat: 50.8504500, lng: 4.3487800})
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const placeCategories = [
+        { title: 'Bar' },
+        { title: 'Restaurant' },
+        { title: 'Shop' },
+        { title: 'Supermarket' },
+        { title: 'Hotel' },
+        { title: 'Cinema' },
+        { title: 'Academic Institution' },
+        { title: 'Public Institution' },
+        { title: 'Sports Club' },
+        { title: 'Museum' },
+        { title: 'Park' },
+        { title: 'Landscape' },
+        { title: 'Monument' },
+        { title: 'Hospital' },
+        { title: 'Police Station' },
+        { title: 'Transport Center' },
+        { title: 'Entertainment' },
+        { title: 'Other' }
+    ];
+
 
 
     useEffect(() => {
@@ -40,7 +61,22 @@ function App() {
         session.onLogin(() => {
             setUserWebId(session.info.webId);
             handleSnackbarOpen();
-        }); 
+            /* GEOLOCATION */
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    setDefaultCoordinates({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    });
+                    console.log(position.coords.latitude)
+                    console.log(position.coords.longitude)
+                }, (error) => {
+                    console.log(error);
+                });
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
+        });
 
         session.onLogout(() => {
             setUserWebId(null);
@@ -48,7 +84,7 @@ function App() {
         });
     }, [session],);
 
-    
+
 
     useEffect(() => {
         const refreshMyPlacesList = async () => {
@@ -59,8 +95,15 @@ function App() {
             //const webId = parts[0].split('//')[1]; // Obtenemos la segunda parte después de '//'
             //setPlaces(await getPlaceMarksByUser(webId));
 
-            //sacando los lugares de los pods 
-           setPlaces(await getPlaces(session));
+            setIsLoading(true);
+            //sacando los lugares de los pods
+            await getPlaces(session).then(
+                (result) => {
+                    setPlaces(result);
+                    setIsLoading(false);
+                }
+            );
+
 
         }
 
@@ -98,10 +141,12 @@ function App() {
     };
 
     return (
+        <div>
         <SessionProvider sessionId="log-in-example">
 
             <Box className='MainBox' >   {/* Important: it is always necessary to put all the elements inside one parent element*/}
-                <Header setSelectedPlaceAutocomplete={setSelectedPlaceAutocomplete} setSelectedFilters={setSelectedFilters}/> {/* Header: Logo, SearchPlacesBar, FilterByBar */}
+                <Header setSelectedPlaceAutocomplete={setSelectedPlaceAutocomplete} setSelectedFilters={setSelectedFilters}
+                        placeCategories={placeCategories}/> {/* Header: Logo, SearchPlacesBar, FilterByBar */}
 
                 <Grid className='MainGrid' container spacing={3}>{/* 3 spaces between the grids */}
                     {/* "container" means that it is a grid with more grids inside */}
@@ -114,28 +159,29 @@ function App() {
                                  setSelectedButton={setSelectedButton} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}
                                  setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} deletePlace={deletePlace}  setPlacesLength={setPlacesLength}
                                  userWebId={userWebId} session={session} selectedFriendPlaces={selectedFriendPlaces}
-                                 setSelectedFriendPlaces={setSelectedFriendPlaces}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
+                                 setSelectedFriendPlaces={setSelectedFriendPlaces} placeCategories={placeCategories} isLoading={isLoading}
+                                 setIsLoading={setIsLoading}/> {/* Sidebar: IconsSidebar, AddPlaceSidebar */}
                     </Grid>
 
                     <Grid item
                           md={7} > {/* 7 of 12 columns for the map */}
                         <Paper className='MainMap' style={{borderRadius: '20px' }}> {/* "sx" is for adding specific styles to a MUI component */}
-                            <Map places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
-                                 setSelectedPoint={setSelectedPoint} selectedButton={selectedButton} selectedPlaceMyPlaces={selectedPlaceMyPlaces}
-                                 placesLength={placesLength} selectedFilters={selectedFilters}
-                                 selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/>   {/* Map: OpenStreetMap working with Leaflet */}
+                            <MapComponent defaultCoordinates={defaultCoordinates} places={places} selectedPlaceAutocomplete={selectedPlaceAutocomplete} selectedPoint = {selectedPoint}
+                                          setSelectedPoint={setSelectedPoint} selectedButton={selectedButton} selectedPlaceMyPlaces={selectedPlaceMyPlaces}
+                                          placesLength={placesLength} selectedFilters={selectedFilters}
+                                          selectedFriendPlaces={selectedFriendPlaces} setSelectedFriendPlaces={setSelectedFriendPlaces}/>   {/* MapBox: OpenStreetMap working with Leaflet */}
                         </Paper>
                     </Grid>
                 </Grid>
             </Box>
             <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
-                <Alert onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
-                    ¡Login to your account successfully!
+                <Alert id='login-success' onClose={handleSnackbarClose} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
+                    Logged in successfully!
                 </Alert>
             </Snackbar>
             {session.info.isLoggedIn ? null : <LoginWall/>}
         </SessionProvider>
-
+        </div>
     );
 }
 

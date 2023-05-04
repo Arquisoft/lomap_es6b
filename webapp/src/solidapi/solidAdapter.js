@@ -1,38 +1,30 @@
-﻿import PlaceEntity from "../entities/PlaceEntity";
-
-import { writeData, findDataInContainer, deleteData} from "./solidapi";
+﻿import { writeData, findDataInContainer, deleteData} from "./solidapi";
 import * as solid from "@inrupt/solid-client";
 import {FOAF, VCARD} from "@inrupt/lit-generated-vocab-common";
 import {
-    getSolidDataset,
-    saveSolidDatasetAt,
-    removeUrlFromThing,
-    getThing,
-    getUrlAll,
-    setThing, getNamedNode
-} from '@inrupt/solid-client';
+    createAclFromFallbackAcl,
+    getResourceAcl, getSolidDatasetWithAcl,
+    hasAccessibleAcl,
+    hasFallbackAcl,
+    hasResourceAcl, saveAclFor
+} from "@inrupt/solid-client";
 
-export function savePlace(session, placeEntity) {
+export function savePlace(session, placeEntity, userWebId) {
     let place = placeEntity;
-    const { v4: uuidv4 } = require('uuid');
-    place.id = uuidv4();//actualmente se guarda en los pods, con un id aleatorio
+
     if (session.info.webId == null) {
         return null;
-    } 
-    let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");//https://username.inrupt.net
-
-
-    let privacyOfPlace = place.privacy;
-    console.log(privacyOfPlace);
-    let PlacesUrl ="";
-    let PlacesUrlPublic ="";
-
-    if(privacyOfPlace === "Public"){
-        PlacesUrlPublic = basicUrl.concat("/public", "/Places", "/" + place.id + ".json");
-        PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
-    }else if(privacyOfPlace === "Private") {
-        PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
     }
+    let basicUrl;
+
+    if(extractNameFromUrl(userWebId) === placeEntity.webId) { //si la persona que añade un comentario es la propietaria del sitio
+        basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");//https://username.inrupt.net
+    }else {
+        basicUrl = "https://"+placeEntity.webId+".inrupt.net";//https://username.inrupt.net
+    }
+
+
+    let PlacesUrl = basicUrl.concat("/private", "/lomap_es6b", "/" + place.id + ".json");
 
 
     place = JSON.parse(JSON.stringify(place))
@@ -41,20 +33,12 @@ export function savePlace(session, placeEntity) {
     place["@type"] = "Place";
 
 
-
     let blob = new Blob([JSON.stringify(place)],{ type: "application/ld+json" });
     let file = new File([blob], place.id + ".jsonld", { type: blob.type });
 
+    writeData(session,PlacesUrl,file);
 
-    //le paso el file creado con el blob
-    if(privacyOfPlace === "Public") { //si es publico se guarda en la carpeta de contenido privado y en la de público
-        writeData(session,PlacesUrl,file);
-        writeData(session,PlacesUrlPublic,file);
-
-    }else {
-        writeData(session,PlacesUrl,file);
-
-    }
+    //}
     return place;
 }
 
@@ -64,7 +48,7 @@ export async function getPlaces(session){
     } // Check if the webId is undefined
 
     let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-    let pointsUrl = basicUrl.concat("/private", "/Places/");
+    let pointsUrl = basicUrl.concat("/private", "/lomap_es6b/");
 
     let places = [];
     let files = await findDataInContainer(session, pointsUrl);
@@ -80,7 +64,6 @@ export async function getPlaces(session){
 }
 
 export async function removePlace(session,placeId){
-    //por hacer
     // Obtenemos la lista de lugares existentes
     const places = await getPlaces(session);
 
@@ -90,25 +73,45 @@ export async function removePlace(session,placeId){
     // Si el lugar existe, eliminamos su archivo
     if (placeToDelete) {
         const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-        const placeUrl = basicUrl.concat("/private", "/Places", "/" + placeToDelete.id + ".json");
+        const placeUrl = basicUrl.concat("/private", "/lomap_es6b", "/" + placeToDelete.id + ".json");
 
-        if (placeToDelete.privacy === "Public") {
-            deleteData(session, placeUrl);
-            const placeUrlPublic = basicUrl.concat("/public", "/Places", "/" + placeToDelete.id + ".json");
-            deleteData(session, placeUrlPublic);
-        }else {
-            deleteData(session, placeUrl);
-        }
+        deleteData(session, placeUrl);
     }
 }
-    
+
+export async function deleteAllPlaces(session) {
+    const places = await getPlaces(session);
+
+    for(const place in places) {
+        console.log("Borrado: " + places[place].name);
+        const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
+        const placeUrl = basicUrl.concat("/private", "/lomap_es6b", "/" + places[place].id + ".json");
+
+        deleteData(session, placeUrl);
+    }
+}
+
+export function modifyPlace(session, placeId, updatedPlaceEntity) {
+    const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
+    const placeUrlPublic = basicUrl.concat("/private", "/lomap_es6b", "/" + placeId + ".json");
+
+    const updatedPlace = JSON.parse(JSON.stringify(updatedPlaceEntity));
+    updatedPlace["@context"] = "https://schema.org/";
+    updatedPlace["@type"] = "Place";
+
+    const blob = new Blob([JSON.stringify(updatedPlace)],{ type: "application/ld+json" });
+    const file = new File([blob], placeId + ".jsonld", { type: blob.type });
+
+    return writeData(session, placeUrlPublic, file);
+}
+
 export async function getPlacesByWebId(session, webId){
     if (webId == null) {
         return null;
     } // Check if the webId is undefined
 
     let basicUrl = webId?.split("/").slice(0, 3).join("/");
-    let pointsUrl = basicUrl.concat("/public", "/Places/");
+    let pointsUrl = basicUrl.concat("/private", "/lomap_es6b/");
 
     let places = [];
     let files = await findDataInContainer(session, pointsUrl);
@@ -134,6 +137,7 @@ export async function getFriendsImage(webId) {
 }
 
 export async function getFriends(webId){
+    console.log(webId);
     let myDataset = await solid.getSolidDataset(webId); // obtain the dataset from the URI
     let theThing = await solid.getThing(myDataset, webId);
     let friendsURL = solid.getUrlAll(theThing, FOAF.knows);
@@ -144,43 +148,151 @@ export async function getFriends(webId){
         myDataset = await solid.getSolidDataset(friendsURL[i]); // obtain the dataset from the URI
         theThing = await solid.getThing(myDataset, friendsURL[i]);
 
-        //
         let name = solid.getStringNoLocale(theThing, FOAF.name);
-        // let hasPhoto = theThing.get(getNamedNode(VCARD.hasPhoto));
-        // let profilePicture = hasPhoto ? solid.getUrl(hasPhoto) : null;
 
         let friend = {
             friendURL:friendsURL[i],
             friendName:name,
-            profilePicture:VCARD.hasPhoto.iri.value,
-            //profilePicture: profilePicture,
-            //profilePicture: getFriendsImage(friendsURL[i]),
+            // profilePicture:VCARD.hasPhoto.iri.value,
         }
-        //console.log(friend.profilePicture);
+
         friends.push(friend);
     }
     return friends;
 }
 
-export async function deleteFriendPod(userWebId, friendwebID) {
-    //Obtenemos la lista de amigos
-    const friends = await getFriends(userWebId);
+//Función que borra un amigo de solid
+export async function deleteFriendPod(userWebId, session,friendWebId) {
+    let profile = userWebId.split("#")[0];
+    let dataSet = await solid.getSolidDataset(profile);
 
-    //Buscamos el amigo que queremos borrar
-    const friendToDelete = friends.find(friend => friend.friendURL === friendwebID);
+    let dataSetThing = solid.getThing(dataSet, userWebId);
 
-    // Si el amigo existe, lo eliminamos
-    if (friendToDelete) {
-        const updatedFriends = friends.filter(friend => friend.friendURL !== friendwebID);
+    try {
+        let friendName = solid.getStringNoLocale(await getProfile(userWebId), FOAF.name);
+        let existsFriend = solid.getUrlAll(dataSetThing, FOAF.knows)
 
-        // Actualizamos el documento de amigos
-        const myDataset = await solid.getSolidDataset(userWebId); //obtenemos el dataset de la URI
-        const theThing = await solid.getThing(myDataset, userWebId);
-        const friendsList = solid.getUrlAll(theThing, FOAF.knows);
-        let updatedList = friendsList.filter(friend => friend !== friendwebID);
-        await solid.removeUrl(myDataset, FOAF.knows, friendwebID);
-        await solid.saveSolidDatasetAt(userWebId, myDataset);
+        if (!existsFriend.some((url) => url === friendWebId)){
+            console.log("Este usuario no es amigo");
+        }else if(typeof friendName === 'undefined'){
+            console.log("Este usuario no existe");
+        }else{
+            let newFriend = solid.buildThing(dataSetThing)
+                .removeUrl(FOAF.knows, friendWebId)
+                .build();
+            dataSet = solid.setThing(dataSet, newFriend);
+            dataSet = await solid.saveSolidDatasetAt(userWebId, dataSet, {fetch: session.fetch})
+            console.log(friendName+" borrado de amigos");
+        }
+    } catch (error){
+        console.log(error);
     }
 }
 
 
+//Función que da permiso sobre un punto a todos los amigos
+export async function giveAllFriendPermissionPoint(webId,session, placeID) {
+
+    let myDataset = await solid.getSolidDataset(webId); // obtain the dataset from the URI
+    let theThing = await solid.getThing(myDataset, webId);
+    let friendsURL = solid.getUrlAll(theThing, FOAF.knows); //array de amigos
+    console.log(friendsURL);
+    let name =extractNameFromUrl(webId);
+    console.log("name corto :"+name)
+    try {
+        for(let i in friendsURL){
+            console.log(i);
+            giveFriendPermissionFolder(webId,session,friendsURL[i]);
+            const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+name +".inrupt.net/private/lomap_es6b/"+placeID+".json", {
+                fetch: session.fetch
+            });
+
+            let resourceAcl;
+            if (!hasResourceAcl(myDatasetWithAcl)) {
+                if (!hasAccessibleAcl(myDatasetWithAcl)) {
+                    console.log(
+                        "The current user does not have permission to change access rights to this Resource."
+                    );
+                }
+                if (!hasFallbackAcl(myDatasetWithAcl)) {
+                    console.log(
+                        "The current user does not have permission to see who currently has access to this Resource."
+                    );
+                }
+                resourceAcl = createAclFromFallbackAcl(myDatasetWithAcl);
+            } else {
+                resourceAcl = getResourceAcl(myDatasetWithAcl);
+            }
+            const updatedAcl = solid.setAgentResourceAccess( //se establecen los permisos
+                resourceAcl,
+                friendsURL[i],
+                { read: true, append: true , write: true, control: false }
+            );
+
+            await saveAclFor(myDatasetWithAcl, updatedAcl, { fetch: session.fetch }); //se guardan en cada amigo los cambios
+            console.log("Permisos al amigo :"+ friendsURL[i]);
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+//Función que otorga permisos a los amigos para la carpeta places, y asi poder monstrar los sitios que se compartieron.
+export async function giveFriendPermissionFolder(webId,session,friendURL) {
+    let name =extractNameFromUrl(webId);
+    try {
+        const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+name +".inrupt.net/private/lomap_es6b/", {
+            fetch: session.fetch
+        });
+
+        let resourceAcl;
+        if (!hasResourceAcl(myDatasetWithAcl)) {
+            if (!hasAccessibleAcl(myDatasetWithAcl)) {
+                console.log(
+                    "The current user does not have permission to change access rights to this Resource."
+                );
+            }
+            if (!hasFallbackAcl(myDatasetWithAcl)) {
+                console.log(
+                    "The current user does not have permission to see who currently has access to this Resource."
+                );
+            }
+            resourceAcl = createAclFromFallbackAcl(myDatasetWithAcl);
+        } else {
+            resourceAcl = getResourceAcl(myDatasetWithAcl);
+        }
+        const updatedAcl = solid.setAgentResourceAccess( //se establecen los permisos
+            resourceAcl,
+            friendURL,
+            { read: true, append: true , write: true, control: false }
+        );
+
+        await saveAclFor(myDatasetWithAcl, updatedAcl, { fetch: session.fetch }); //se guardan en cada amigo los cambios
+        console.log("Permisos al amigo :"+ friendURL);
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export function extractNameFromUrl(url) {
+    let start = url.indexOf("//") + 2;
+    let end = url.indexOf(".", start);
+    return url.substring(start, end);
+}
+
+
+
+export async function getProfile(webId){
+    let profileDocumentURI = webId.split("#")[0]; // we remove the right hand side of the # for consistency
+    let myDataset = await solid.getSolidDataset(profileDocumentURI); // obtain the dataset from the URI
+    return solid.getThing(myDataset, webId); // we obtain the thing we are looking for from the dataset
+}
+
+//Devuelve la url para poder acceder al json.ld
+export function urlPlaceUser(webId, placeId){
+    let url = webId.replace("profile/card#me","");
+    url = url+"private/" + placeId +".json";
+    return url;
+}

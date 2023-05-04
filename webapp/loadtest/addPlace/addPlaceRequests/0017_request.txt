@@ -1,0 +1,1 @@
+{"id":"f560d4b5-846e-496a-96a7-c9c739529039","category":"Public Institution","name":"sitio","description":"gatling","latitude":50.85045,"longitude":4.34878,"webId":"adrianamanuelalicia","textComments":[],"imageComments":[],"ratingComments":[],"@context":"https://schema.org/","@type":"Place"}
