@@ -12,9 +12,6 @@ describe('ProfileSideBar', () => {
     render(
         <ProfileSideBar userWebId={userWebIdMock} session={sessionMock} handleLogoutMock={handleLogoutMock}/>
     );
-    // await waitFor(() => {
-    //   expect(screen.getByTestId('logout-button')).toBeInTheDocument();
-    // }, { timeout: 10000 });
     await waitFor(() => {
       expect(screen.getByTestId("logout-button")).toBeInTheDocument();
     }, { timeout: 10000 });

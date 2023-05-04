@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, prettyDOM , waitFor, fireEvent, within} from '@testing-library/react';
+import { render, screen, fireEvent, within} from '@testing-library/react';
 import FilterByBar from './FilterByBar';
 
 const placeCategories = [
