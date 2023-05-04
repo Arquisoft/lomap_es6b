@@ -41,10 +41,7 @@ const DetailsSidebar = (props) => {
         let friendWebId = selectedFriend.friendURL;
         if (session && friendWebId) {
             setIsLoading(true);
-            await getPlacesByWebId(session, friendWebId).then((places) => {
-                setSelectedFriendPlaces(places);
-                setIsLoading(false);
-            });
+            await getPlacesByWebId(session, friendWebId).then((places) => {setSelectedFriendPlaces(places); setIsLoading(false);});
         }
     }, [selectedFriend]);
     const handleSelectedButton = (buttonName) => {

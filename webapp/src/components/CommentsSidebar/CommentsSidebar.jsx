@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {savePlace} from "../../solidapi/solidAdapter";
 import {
     Button,
@@ -38,16 +38,9 @@ const CommentsSidebar = (props) => {
     const [openImageDialog, setOpenImageDialog] = React.useState(false);
     const [openRatingDialog, setOpenRatingDialog] = React.useState(false);
     const handleClickOpen = (value) => {
-        if(value === "Add a text comment"){
-            handleClickOpenTextDialog();
-        }
-        if(value === "Add an image"){
-            handleClickOpenImageDialog();
-        }
-        if(value === "Add a rating"){
-            handleClickOpenRatingDialog();
-        }
-
+        if(value === "Add a text comment") handleClickOpenTextDialog();
+        if(value === "Add an image") handleClickOpenImageDialog();
+        if(value === "Add a rating") handleClickOpenRatingDialog();
     };
 
     const handleClickOpenTextDialog = () => {
@@ -76,30 +69,19 @@ const CommentsSidebar = (props) => {
 
     const showTextComments = () => {
         if (props.showTextCommentsMock) props.showTextCommentsMock(); //TESTING
-        return place?.textComments?.map((comment) => (
-            <TextCommentCard key={place.id} comment={comment}/>
-        ));
+        return place?.textComments?.map((comment) => (<TextCommentCard key={place.id} comment={comment}/>));
     };
 
     const showImageComments = () => {
-        return place.imageComments?.map((image) => (
-            <ImageCommentCard key={place.id} image={image}/>
-        ));
+        return place.imageComments?.map((image) => (<ImageCommentCard key={place.id} image={image}/>));
     };
 
     const showRatingComments = () => {
-        return place.ratingComments?.map((rating) => (
-            <RatingCommentCard key={place.id} rating={rating}/>
-        ));
+        return place.ratingComments?.map((rating) => (<RatingCommentCard key={place.id} rating={rating}/>));
     };
 
     const handleAddTextComment = () => {
         if (props.handleAddTextCommentMock) props.handleAddTextCommentMock(); //TESTING
-        console.log("webId");
-        console.log(userWebId);
-        console.log("comment");
-        console.log(commentValue);
-        console.log(place);
         place.textComments.push({posterWebId: userWebId, text: commentValue});
         savePlace(session, place, userWebId);
         handleCloseTextDialog();
@@ -107,17 +89,13 @@ const CommentsSidebar = (props) => {
     }
 
     const handleAddImageComment = () => {
-        console.log(place.imageComments)
         place.imageComments.push({posterWebId: userWebId, text: imageValue});
-        console.log(place.imageComments)
         savePlace(session, place,userWebId);
         handleCloseImageDialog();
         setImageValue("");
     }
     const handleAddRatingComment = () => {
-        console.log(place.ratingComments)
         place.ratingComments.push({posterWebId: userWebId, value: ratingValue});
-        console.log(place.ratingComments);
         savePlace(session, place,userWebId);
         handleCloseRatingDialog();
         setRatingValue(-1);
@@ -125,15 +103,9 @@ const CommentsSidebar = (props) => {
 
 
     const showData = () => {
-        if(selectedCommentType === "text"){
-            return showTextComments();
-        }
-        else if(selectedCommentType === "image"){
-            return showImageComments();
-        }
-        else if(selectedCommentType === "rating"){
-            return showRatingComments();
-        }
+        if(selectedCommentType === "text") return showTextComments();
+        else if(selectedCommentType === "image") return showImageComments();
+        else if(selectedCommentType === "rating") return showRatingComments();
         else return null;
     }
 

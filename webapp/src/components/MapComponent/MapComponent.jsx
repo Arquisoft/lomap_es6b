@@ -48,18 +48,21 @@ const MapComponent = (props) => {
 
     const showPlaces = () => {
         if(selectedFilters.length === 0){
-            return showingPlaces?.map((place) => (<Marker key={place.id} position={{lat: place.latitude, lng: place.longitude}} icon={blueIcon}><Popup><div>
-                <Typography variant="subtitle1">{place.name} | {place.category}</Typography></div><div><Typography variant="subtitle3">{place.description}</Typography></div></Popup></Marker>));}
+            return showingPlaces?.map((place) => (<Marker key={place.id} position={{lat: place.latitude, lng: place.longitude}} icon={blueIcon}>
+                <Popup><div><Typography variant="subtitle1">{place.name} | {place.category}</Typography></div>
+                    <div><Typography variant="subtitle3">{place.description}</Typography></div></Popup></Marker>));}
         else{
             let filteredPlaces = showingPlaces?.filter((place) => {return selectedFilters.includes(place.category);});
-            return filteredPlaces?.map((place) => (<Marker key={place.id} position={{lat: place.latitude, lng: place.longitude}} icon={blueIcon}><Popup>
-                    <div><Typography variant="subtitle1">{place.name} | {place.category}</Typography></div><div><Typography variant="subtitle3">{place.description}</Typography></div></Popup></Marker>))
+            return filteredPlaces?.map((place) => (<Marker key={place.id} position={{lat: place.latitude, lng: place.longitude}} icon={blueIcon}>
+                <Popup><div><Typography variant="subtitle1">{place.name} | {place.category}</Typography></div>
+                    <div><Typography variant="subtitle3">{place.description}</Typography></div></Popup></Marker>))
     }}
 
     return (
         <MapContainer id='map-id' style={classes.mapContainer} ref={mapRef} center={defaultCoordinates} zoom={13} scrollWheelZoom={true}>
             <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-            <HandleMapClick onClick={(event) => {setSelectedPoint({lat: event.latlng.lat, lng: event.latlng.lng})}} /> {showAddPlaceMarker()} {showPlaces()} </MapContainer>
+            <HandleMapClick onClick={(event) => {setSelectedPoint({lat: event.latlng.lat, lng: event.latlng.lng})}} />
+            {showAddPlaceMarker()} {showPlaces()} </MapContainer>
     );
 };
 
