@@ -1,11 +1,11 @@
 import React from 'react';
-import {fireEvent, render, screen, waitFor} from '@testing-library/react';
+import {fireEvent, render, screen} from '@testing-library/react';
 import AddCommentButton from "./AddCommentButton";
 
 
 
 describe('AddCommentButton', () => {
-  it('calls handleLogout when the log out button is clicked', async () => {
+  it('calls handleToggle, handleMenuItemClick, handleClose and handleClickOpen when adding a comment', async () => {
     const handleToggleMock = jest.fn();
     const handleMenuItemClickMock = jest.fn();
     const handleCloseMock = jest.fn();

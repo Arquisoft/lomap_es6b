@@ -6,26 +6,21 @@ import DeleteFriendConfirmDialog from "../DeleteFriendConfirmDialog/DeleteFriend
 
 
 describe('FriendCard', () => {
-  it('calls handleLogout when the log out button is clicked', async () => {
-    const setSelectedFriendMock = jest.fn();
-    const setSelectedButtonMock = jest.fn();
-    const handleClickOpenMock = jest.fn();
-    const handleCloseMock = jest.fn();
+  const setSelectedFriendMock = jest.fn();
+  const setSelectedButtonMock = jest.fn();
+  const handleClickOpenMock = jest.fn();
 
-    const sessionMock = {info: {webId: 'https://uo282249.inrupt.net/profile/card#me'}};
-    const friendMock = {friendURL: 'https://uo283840.inrupt.net/profile/card#me'};
-    const userWebIdMock = 'https://uo282249.inrupt.net/profile/card#me';
+  const sessionMock = {info: {webId: 'https://uo282249.inrupt.net/profile/card#me'}};
+  const friendMock = {friendURL: 'https://uo283840.inrupt.net/profile/card#me'};
+  const userWebIdMock = 'https://uo282249.inrupt.net/profile/card#me';
+
+  it('calls setSelectedFriend, setSelectedButton and handleClickOpen when map and friend buttons are clicked', async () => {
     render(
         <FriendCard setSelectedFriend={setSelectedFriendMock} setSelectedButton={setSelectedButtonMock}
                     userWebId={userWebIdMock} friend={friendMock} session={sessionMock}
                     handleClickOpenMock={handleClickOpenMock}
         />
     );
-/*    await waitFor(() => {
-      expect(screen.getByTestId("botonMenuComment")).toBeInTheDocument();
-    }, { timeout: 10000 });*/
-
-
     await waitFor(() => {
         expect(screen.getByTestId("map-button")).toBeInTheDocument();
     }, { timeout: 10000 });

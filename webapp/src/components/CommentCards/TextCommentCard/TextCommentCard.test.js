@@ -5,7 +5,7 @@ import TextCommentCard from "./TextCommentCard";
 
 
 describe('TextCommentCard', () => {
-  it('calls handleLogout when the log out button is clicked', async () => {
+  it('renders the TextCommentCard correctly', async () => {
     const commentMock = {
       posterWebId: 'https://uo282249.inrupt.net/profile/card#me',
       text: '3',

@@ -5,7 +5,7 @@ import LoginWall from './LoginWall';
 
 describe('LoginWall', () => {
 
-  it('deberia aparecer el boton de login', () => {
+  it('debería aparecer el botón de login', () => {
     render(<LoginWall />);
     const loginButton = screen.getByTestId('loginButton');
     expect(loginButton).toBeInTheDocument();
