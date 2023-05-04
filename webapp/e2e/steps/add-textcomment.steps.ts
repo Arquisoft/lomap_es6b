@@ -107,7 +107,7 @@ defineFeature(feature, test => {
   })
 
   afterAll(async ()=>{
-    //DELETING ALL CREATED PLACES
+    /*//DELETING ALL CREATED PLACES
     await page.waitForSelector('#settings-icon').then(
         () => expect(page).toClick('#settings-icon')
     )
@@ -121,7 +121,7 @@ defineFeature(feature, test => {
       const text = document.body.innerText;
       return text.includes('All data removed successfully!\n');
     });
-
+*/
     browser.close()
   })
 
