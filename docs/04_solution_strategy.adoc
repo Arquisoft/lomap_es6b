@@ -3,10 +3,12 @@
 == Solution Strategy
 
 === Technology decisions
-We have made the following technology decisions: 
+We have made the following technology decisions:
 
+  * *IDEs*:
+  ** Some of us use _IntelliJ_ and others _Visual Studio Code_ to develop.
   * *Frameworks*:
-  Some of us use _IntelliJ_ and others _Visual Studio Code_ to develop. And _Jest_ for testing.
+   _React_ for the frontend and _Jest_ for testing.
 
   * *Version control*: _GitHub_. One branch per person.
   ** We will work with both *master* and *dev* branches and then each team member will have its own branch. From our point of view, this is the best way for organizing our code updates minimizing collisions as much as possible.
@@ -14,14 +16,15 @@ We have made the following technology decisions:
   * *Languages*: 
   ** _Javascript_: As we decided to work with Node.js and React.js, the language we will use is Javascript.
   ** _JSX_: Syntax extension to Javascript.
-  ** _YAML_: Data serialization language that used for writinf the GitHub workflow script.
-  ** _Gatling_: For load testing.
+  ** _YAML_: Data serialization language that used for writing the GitHub workflow script.
+  ** _Java_: For Gatling load testing.
+  ** _Cucumber_: For E2E testing.
   
 
-  * *External APIs*: _OpenStreet Maps_ API. Mainly because it's completely free, not like Google Maps, which was our first option. However, it´s a very used API too.
+  * *External APIs*: _OpenStreetMap_ API. Mainly because it's completely free, not like Google Maps, which was our first option. However, it´s a very used API too.
 
-  * *Backend technology*: _Node.js_. Javascript runtime environment
-  ** We decided to work with Node because it is a well-known backend technology and also one of the best ways to implement SOLID Pods. The example project used it so we were motivated to try it out. 
+  * *Backend technology*: _Node.js_. Javascript runtime environment.
+  ** We decided to work with Node because it is a well-known backend technology and also one of the best ways to implement SOLID Pods. The example project used it, so we were motivated to try it out.
 
   * *Frontend technology*: _React.js_. Frontend library.
   ** As mentioned above, the example written in React made us the choice easier. We do not have previous experience with frontend frameworks so its popularity and ease of learning was what made us to choose this technology.
@@ -41,7 +44,7 @@ Our system will follow an MVC architecture. In this way, the visual part will cl
 |Making sure that all the interactions the users make with our application are totally reliable and consistent. We will ensure that the system will do what it is supposed to.
 
 |*Testability*
-|Making most of the functions testeable. This will let us create unit tests for these functions, and thus we will minimize the number of bugs.
+|Making most of the functions testable. This will let us create unit tests for these functions, and thus we will minimize the number of bugs.
 
 |*Principle of data Minimisation*
 | Ensuring that data are used only for their specific purpose, limiting the retention period and their accessibility to what is necessary.
