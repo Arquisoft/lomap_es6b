@@ -5,7 +5,7 @@ import RatingCommentCard from "./RatingCommentCard";
 
 
 describe('RatingCommentCard', () => {
-  it('calls handleLogout when the log out button is clicked', async () => {
+  it('renders the RatingCommentCard correctly', async () => {
     const ratingMock = {
       posterWebId: 'https://uo282249.inrupt.net/profile/card#me',
       value: 3,

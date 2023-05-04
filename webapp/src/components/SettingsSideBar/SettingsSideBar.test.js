@@ -5,7 +5,7 @@ import SettingsSideBar from "./SettingsSideBar";
 
 
 describe('SettingsSideBar', () => {
-  it('calls handleClickOpen when the delete all data button is clicked', async () => {
+  it('calls handleClickOpen and handleSnackbarOpen when the delete all data button is clicked', async () => {
     const handleClickOpenMock = jest.fn();
     const handleSnackbarOpenMock = jest.fn();
     const handleSnackbarCloseMock = jest.fn();
@@ -25,11 +25,5 @@ describe('SettingsSideBar', () => {
 
   },10000);
 
-  /*it('debería aparecer el botón de delete all', () => {
-    render(<SettingsSideBar />);
-    const deleteButton = screen.getByTestId('deletealldata-button');
-    expect(deleteButton).toBeInTheDocument();
-
-  });*/
 
 });

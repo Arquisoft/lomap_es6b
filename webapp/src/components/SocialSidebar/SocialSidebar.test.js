@@ -5,7 +5,7 @@ import SocialSidebar from "./SocialSidebar";
 
 
 describe('SocialSidebar', () => {
-  it('calls handleClickOpen when the delete all data button is clicked', async () => {
+  it('calls showFriends when opening SocialSidebar', async () => {
     const showFriendsMock = jest.fn();
     const userWebIdMock = 'https://uo282249.inrupt.net/profile/card#me';
     render(

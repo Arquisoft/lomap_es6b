@@ -5,7 +5,7 @@ import IconsSidebar from "./IconsSidebar";
 
 
 describe('IconsSidebar', () => {
-    it('calls handleLogout when the log out button is clicked',  () => {
+    it('calls handleSelectedButtonChangeMock when clicking on MyPlaces button',  () => {
         const handleSelectedButtonChangeMock = jest.fn();
         render(
             <IconsSidebar handleSelectedButtonChange={handleSelectedButtonChangeMock}/>
@@ -18,7 +18,7 @@ describe('IconsSidebar', () => {
 
 
     });
-    it('calls handleLogout when the log out button is clicked',  () => {
+    it('calls handleSelectedButtonChangeMock when clicking on AddPlace button',  () => {
         const handleSelectedButtonChangeMock = jest.fn();
         render(
             <IconsSidebar handleSelectedButtonChange={handleSelectedButtonChangeMock}/>
@@ -29,7 +29,7 @@ describe('IconsSidebar', () => {
         fireEvent.click(myPlaces);
         expect(handleSelectedButtonChangeMock).toHaveBeenCalledWith('AddPlace');
     });
-    it('calls handleLogout when the log out button is clicked',  () => {
+    it('calls handleSelectedButtonChangeMock when clicking on Social button',  () => {
         const handleSelectedButtonChangeMock = jest.fn();
         render(
             <IconsSidebar handleSelectedButtonChange={handleSelectedButtonChangeMock}/>
@@ -40,7 +40,7 @@ describe('IconsSidebar', () => {
         fireEvent.click(myPlaces);
         expect(handleSelectedButtonChangeMock).toHaveBeenCalledWith('Social');
     });
-    it('calls handleLogout when the log out button is clicked',  () => {
+    it('calls handleSelectedButtonChangeMock when clicking on Settings button',  () => {
         const handleSelectedButtonChangeMock = jest.fn();
         render(
             <IconsSidebar handleSelectedButtonChange={handleSelectedButtonChangeMock}/>
@@ -51,7 +51,7 @@ describe('IconsSidebar', () => {
         fireEvent.click(myPlaces);
         expect(handleSelectedButtonChangeMock).toHaveBeenCalledWith('Settings');
     });
-    it('calls handleLogout when the log out button is clicked',  () => {
+    it('calls handleSelectedButtonChangeMock when clicking on Profile button',  () => {
         const handleSelectedButtonChangeMock = jest.fn();
         render(
             <IconsSidebar handleSelectedButtonChange={handleSelectedButtonChangeMock}/>

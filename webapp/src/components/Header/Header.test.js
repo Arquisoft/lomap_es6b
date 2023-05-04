@@ -6,13 +6,14 @@ import PlaceEntity from "../../entities/PlaceEntity";
 
 
 describe('Header', () => {
-  it('calls handleLogout when the log out button is clicked', async () => {
-    const placeMock = new PlaceEntity();
-    const placeCategoriesMock = [
-      { title: 'Bar' },
-      { title: 'Restaurant' },
-      { title: 'Shop' }
-    ];
+  const placeMock = new PlaceEntity();
+  const placeCategoriesMock = [
+    { title: 'Bar' },
+    { title: 'Restaurant' },
+    { title: 'Shop' }
+  ];
+
+  it('renders the Header correctly', async () => {
     render(
         <Header setSelectedPlaceAutocomplete={placeMock} setSelectedFilters={[]} placeCategories={[placeCategoriesMock]}/>
     );
