@@ -26,14 +26,14 @@ LoMap <--> Pod: manages
 |Users interact with system by adding new places and being able to see the list of places that they have added.
 
 |*Solid PODS*
-|Solid PODS have information about user’s addresses. They can also let acces to specific users to share their places.
+|Solid PODS have information about user’s addresses. They can also let access to specific users to share their places.
 
 |*OpenStreetMap API*
 |The OpenStreetMap API is used to show a map with the places that the user has added. It is also used to let the user select in a map the place he wants to add. Lastly, it is also used for the autocomplete feature.
 |===
 
 === Technical Context
-[plantuml, "BusinessContext", png]
+[plantuml, "TechnicalContext", png]
 ----
 Actor User
 Component LoMap{

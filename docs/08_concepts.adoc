@@ -37,7 +37,7 @@ Map --* Placemark
 [options="header"]
 |===
 | Concept         | Description
-| Map   | It's the main part of the interface, we obtain it through OpenStreetMap API. The map is where the user can mark selected places an watch places marked by their friends.
+| Map   | It's the main part of the interface, we obtain it through OpenStreetMap API. The map is where the user can mark selected places a watch places marked by their friends.
 | User     | We only will save the ID of the users and the list of IDs of their friends in the site.
 | Placemark     | A Placemark identifies a location on the map. Placemarks are created by the users and once is created they can add rating, pictures, description ... We won't save any of that in our database. All that information will be stored in the user's pod.
 |===
