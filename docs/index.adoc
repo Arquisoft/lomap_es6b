@@ -3,7 +3,7 @@
 //
 // ====================================
 
-= image:LogoASW.png[arc42] LOMAP ES6B
+= image:lomap_logo.png[arc42] LOMAP ES6B
 // toc-title definition MUST follow document title without blank line!
 :toc: left
 :toc-title: Table of Contents
