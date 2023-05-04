@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {
     Card,
     CardContent,
     CardHeader,
     IconButton,
     Typography,
-    Chip,
     Alert,
     Snackbar
 } from "@mui/material";
@@ -34,65 +33,34 @@ const PlaceCard = (props) => {
     const [friends, setFriends] = React.useState([]);
 
     useEffect(async () => {
-        if (userWebId) {
-            await getFriends(userWebId).then((friends) => {
-                setFriends(friends);
-            });
-        }
+        if (userWebId) await getFriends(userWebId).then((friends) => {setFriends(friends);});
     }, []);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+    const handleClickOpen = () => {setOpen(true);};
 
-    const handleClose = () => {
-        setOpen(false);
+    const handleClose = () => {setOpen(false);};
 
-    };
+    const handleSnackbarOpen = () => {setSnackbarOpen(true);};
 
-    const handleSnackbarOpen = () => {
-        setSnackbarOpen(true);
-    };
+    const handleSnackbarClose = () => {setSnackbarOpen(false);};
 
-    const handleSnackbarClose = () => {
-        setSnackbarOpen(false);
-    };
+    const handleClickShareButton = (event) => {setAnchorEl(event.currentTarget);};
 
-    const handleClickShareButton = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    const handleCloseShareButton = () => {setAnchorEl(null);};
 
-    const handleCloseShareButton = () => {
-        setAnchorEl(null);
-    };
+    const handleSnackbarOpenShare = () => {setSnackbarOpenShare(true);};
 
-    const handleSnackbarOpenShare = () => {
-        setSnackbarOpenShare(true);
-    };
-
-    const handleSnackbarCloseShare = () => {
-        setSnackbarOpenShare(false);
-    };
+    const handleSnackbarCloseShare = () => {setSnackbarOpenShare(false);};
 
     const handleDeletePlace = async () => {
-        console.log(place.id);
-        //no sé si los guiones que separan en el log, y en la web de los pods no aparecen, afectan
         await removePlace(session, place.id)// delete from the pods
-
         deletePlace(place.id); //deleting in the frontend
         handleClose();//cerrar la pestaña de diálogo
         handleSnackbarOpen(); //abrir el snackbar
     }
 
     const handleSharePlaceWithAllFriends = () => {
-        console.log("Boton compartir con todos mis amigos");
-        giveAllFriendPermissionPoint(userWebId, session, place.id).then(() => {
-            console.log("Sharing place with all friends completed successfully.");
-            handleSnackbarOpenShare();
-        })
-            .catch((error) => {
-                console.error("An error occurred while sharing place with all friends:", error);
-            });
+        giveAllFriendPermissionPoint(userWebId, session, place.id).then(() => {handleSnackbarOpenShare();}).catch((error) => {console.error(error);});
     };
 
     return (
