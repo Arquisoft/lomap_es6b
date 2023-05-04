@@ -1,11 +1,9 @@
 import React from 'react';
-import {Card, CardContent, CardHeader, IconButton, Menu, MenuItem, Typography} from "@mui/material";
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import MapIcon from '@mui/icons-material/Map';
+import {Card, CardHeader, Typography} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import {CombinedDataProvider, Image, Text} from "@inrupt/solid-ui-react";
 import {VCARD} from "@inrupt/lit-generated-vocab-common";
-import {useStyles} from "tss-react/mui";
+
 
 const TextCommentCard = (props) => {
     const { comment} = props;

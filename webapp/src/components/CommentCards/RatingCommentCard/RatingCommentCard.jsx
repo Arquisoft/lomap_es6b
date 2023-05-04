@@ -1,9 +1,8 @@
 import React from 'react';
-import {Card, CardContent, CardHeader, IconButton, Menu, MenuItem, Rating, Typography} from "@mui/material";
+import {Card, CardHeader, Rating, Typography} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import {CombinedDataProvider, Image, Text} from "@inrupt/solid-ui-react";
 import {VCARD} from "@inrupt/lit-generated-vocab-common";
-import {useStyles} from "tss-react/mui";
 
 const RatingCommentCard = (props) => {
     const {rating} = props;

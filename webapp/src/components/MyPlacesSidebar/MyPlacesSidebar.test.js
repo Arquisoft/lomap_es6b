@@ -45,33 +45,5 @@ describe('MyPlacesSidebar', () => {
       expect(screen.getByText(place.name)).toBeInTheDocument();
     });
   });
-/*
-  it('shows a loading message when isLoading is true', () => {
-    const props = { ...mockProps, isLoading: true };
-    render(<MyPlacesSidebar {...props} />);
-    expect(screen.getByTestId('progressSidebar')).toBeInTheDocument();
-  });
 
-  it('passes the correct props to each PlaceCard', () => {
-    render(<MyPlacesSidebar {...mockProps} />);
-    mockProps.places.forEach((place) => {
-      const placeCard = screen.getByText(place.name).closest('div');
-      expect(placeCard).toHaveAttribute('key', place._id);
-      expect(placeCard).toHaveAttribute('place', JSON.stringify(place));
-      expect(placeCard).toHaveAttribute('setSelectedPlaceMyPlaces', mockProps.setSelectedPlaceMyPlaces.toString());
-      expect(placeCard).toHaveAttribute('deletePlace', mockProps.deletePlace.toString());
-      expect(placeCard).toHaveAttribute('session', JSON.stringify(mockProps.session));
-      expect(placeCard).toHaveAttribute('showDeleteButton', 'true');
-      expect(placeCard).toHaveAttribute('setSelectedPlaceComment', mockProps.setSelectedPlaceComment.toString());
-      expect(placeCard).toHaveAttribute('setSelectedButton', mockProps.setSelectedButton.toString());
-      expect(placeCard).toHaveAttribute('userWebId', mockProps.userWebId);
-      expect(placeCard).toHaveAttribute('showShareButton', 'true');
-    });
-  });
-
-
-  */
-  
-  
-  
 });

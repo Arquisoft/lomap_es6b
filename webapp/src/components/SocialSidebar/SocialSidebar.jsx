@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getFriends, giveFriendsPermissions} from "../../solidapi/solidAdapter";
+import {getFriends} from "../../solidapi/solidAdapter";
 import FriendCard from "../FriendCard/FriendCard";
 import {CircularProgress} from "@mui/material";
 
