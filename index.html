@@ -438,7 +438,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1><span class="image"><img src="./images/LogoASW.png" alt="arc42"></span> LOMAP ES6B</h1>
+<h1><span class="image"><img src="./images/lomap_logo.png" alt="arc42"></span> LOMAP ES6B</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -1134,13 +1134,14 @@ With decentralization and by doing a strict control of permissions. This means u
 <div class="sect2">
 <h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
 <div class="paragraph">
-<p><span class="image"><img src="./images/DeploymentView_dev.png" alt="Deployment view diagram"></span></p>
+<p><span class="image"><img src="./images/production.png" alt="Deployment view diagram"></span></p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
-<p>For development and testing the execution environment we are working on each student’s machine. But when we´ll reach the production phase, we must deploy it in a Dockerized environment.</p>
+<p>For the production phase it will be deployed with GitHub Pages.
+Above is the Deployment view of  the production stage.</p>
 </dd>
 <dt class="hdlist1">Quality and/or Performance Features</dt>
 <dd>
@@ -1153,17 +1154,18 @@ In the production phase, the user experience should be maximized with a good int
 <div class="sect2">
 <h3 id="_infrastructure_level_2">7.2. Infrastructure Level 2</h3>
 <div class="paragraph">
-<p><span class="image"><img src="./images/7_DeploymentView_p2.png" alt="Docker Deployment view diagram"></span></p>
+<p><span class="image"><img src="./images/desarrollo.png" alt="Development view diagram"></span></p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
-<p>Above we are explaining the Dockerized environment of the production phase.</p>
+<p>For development and testing the execution environment will be on each student’s machine. But for the production phase it will be deployed with GitHub Pages .
+Above is the development/testing environment.</p>
 </dd>
 <dt class="hdlist1">Quality and/or Performance Features</dt>
 <dd>
-<p>We are going to use a cloud platform, Amazon Web Service, to deploy our software. To launch it, we will use Docker environment. This one will manage the frontend, backend and database to build and run the application.</p>
+<p>All hosted on the developer&#8217;s pc.</p>
 </dd>
 </dl>
 </div>
@@ -1399,7 +1401,7 @@ When we put the pods in action in our project, we no longer needed the database,
 <h3 id="_quality_tree">10.1. Quality Tree</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/qualityTree2.png" alt="Ejemplo de diagrama">
+<img src="./images/QualityTree.png" alt="Quality tree">
 </div>
 </div>
 </div>
@@ -1479,6 +1481,13 @@ When we put the pods in action in our project, we no longer needed the database,
 <td class="tableblock halign-left valign-top"><p class="tableblock">Due to the workload between different subjects and the problems of time compatibility.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">It is necessary to have a good organisation and distribution of time between the members of the team.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID server availability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The project is based on the SOLID platform and is therefore essential for its proper functioning. We are susceptible to bugs and changes within the technology.
+Unfortunately we cannot control or alter Solid’s development.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We have no other option but to rely on SOLID, so we give the user different POD providers to choose from.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1486,32 +1495,28 @@ When we put the pods in action in our project, we no longer needed the database,
 <h3 id="_technical_debts">11.2. Technical debts</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Relevance</th>
 <th class="tableblock halign-left valign-top">Technical debts</th>
 <th class="tableblock halign-left valign-top">Considerations</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Solid API</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Because this is the first time we work with SOLID principles, we have no prior knowledge. This affects the project development process.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Slow data transfer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The use of SOLID to store and share all the information we work with in the project. This results in longer waiting times than we would like.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">React and JavaScript</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Some team members do not know JavaScript. Also, none of them are familiar with the React library. This can cause difficulties at the beginning of the project that will disappear as time goes by.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Some funcional features</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Due to lack of time we did not have time to implement some features we would like to. We had to prioritise the important functionality of the project.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Node.js</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">None of the team has any knowledge of this platform, so there is an initial effort to learn how to use it.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Some usability and features</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We wanted to implement the application in a way that it would be usable by all users and also that it would be adaptable and responsive to different devices, such as mobile, computer or tablet.
+But due to lack of time, we did not complete it.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1601,7 +1606,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-04-24 21:45:12 +0200
+Last updated 2023-05-04 21:39:42 +0200
 </div>
 </div>
 </body>
