@@ -21,14 +21,16 @@ const LoginWall = (props) => {
         },
         loginCard: { // add parent class
             minWidth: '30vw',
-            minHeight: '30vh',
-            borderRadius: '16px',
+            minHeight: '15vh',
+            borderRadius: '10px',
             display: 'flex',
             flexDirection: 'column',
             padding: '32px',
             margin: '16px',
             justifyContent: 'center',
             alignItems: 'center',
+            textAlign: 'center',
+            gap: '26px',
         },
 
         title: {
@@ -40,10 +42,12 @@ const LoginWall = (props) => {
             minHeight: '50px',
             width: '300px',
             marginTop: '24px !important',
+
         },
         logoIcon: {
             width: 'auto',
             height: '80px',
+
         }
     };
     const [idp] = useState("https://inrupt.net");
@@ -56,15 +60,22 @@ const LoginWall = (props) => {
         <div style={classes.blurredBg} >
             <Card style={classes.loginCard}>
                 <Logo style={classes.logoIcon}/>
-                <Typography variant="h4" style={classes.title}>You have to login with your Solid POD in order to use LoMap.</Typography>
-                <LoginButton
+                <div >
+                    <LoginButton
+                        style={classes.loginButton}
+                        oidcIssuer={idp}
+                        redirectUrl={currentUrl}
+                        options={{ mode:'no-cors'}}
+                    >
+                        <Button data-testid='loginButton' id='login-button' variant="contained" style={classes.loginButton}>Login with inrupt.net</Button>
+                    </LoginButton>
+                    <div style={{paddingTop:'10px'}}>
+                        <Typography variant="subtitle" style={classes.title}>You will be redirected to the Inrupt login page.</Typography>
 
-                    oidcIssuer={idp}
-                  redirectUrl={currentUrl}
-                  options={{ mode:'no-cors'}}
-                >
-                  <Button data-testid='loginButton' id='login-button' variant="contained" style={classes.loginButton}>Login</Button>
-                </LoginButton>
+                    </div>
+                </div>
+
+
             </Card>
         </div>
     </div>

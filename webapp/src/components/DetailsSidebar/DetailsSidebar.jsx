@@ -30,7 +30,7 @@ const DetailsSidebar = (props) => {
     let setContent = useState("");
     const {places, setPlaces, selectedPoint, setSelectedPoint, setSelectedButton, selectedButton,setSelectedPlaceMyPlaces,
         deletePlace, setPlacesLength,userWebId, session, selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend,
-        placeCategories} = props;
+        placeCategories, isLoading, setIsLoading} = props;
     const [selectedFriend, setSelectedFriend] = useState([]);
     const [selectedPlaceComment, setSelectedPlaceComment] = useState([]);
     const [showDeleteButton] = useState(true);
@@ -40,8 +40,10 @@ const DetailsSidebar = (props) => {
     useEffect(async () => {
         let friendWebId = selectedFriend.friendURL;
         if (session && friendWebId) {
+            setIsLoading(true);
             await getPlacesByWebId(session, friendWebId).then((places) => {
                 setSelectedFriendPlaces(places);
+                setIsLoading(false);
             });
         }
     }, [selectedFriend]);
@@ -61,7 +63,7 @@ const DetailsSidebar = (props) => {
                                              setSelectedPlaceMyPlaces={setSelectedPlaceMyPlaces} session={session}
                                             showDeleteButton = {showDeleteButton} setSelectedPlaceComment={setSelectedPlaceComment}
                                              setSelectedButton={setSelectedButton} userWebId={userWebId}
-                                            showShareButton = {showShareButton}
+                                            showShareButton = {showShareButton} isLoading={isLoading}
                             />
                         </div>
                     </>
@@ -116,7 +118,7 @@ const DetailsSidebar = (props) => {
                                              setShowDeleteButton = {false}
                                              setSelectedPlaceComment={setSelectedPlaceComment}
                                              setSelectedButton={setSelectedButton}
-                                             showShareButton = {false}
+                                             showShareButton = {false} isLoading={isLoading}
                             />
                         </div>
                     </>
