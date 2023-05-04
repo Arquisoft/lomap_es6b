@@ -2,8 +2,6 @@ import React from 'react';
 import {fireEvent, render, screen} from '@testing-library/react';
 import AddCommentButton from "./AddCommentButton";
 
-
-
 describe('AddCommentButton', () => {
   it('calls handleToggle, handleMenuItemClick, handleClose and handleClickOpen when adding a comment', async () => {
     const handleToggleMock = jest.fn();
