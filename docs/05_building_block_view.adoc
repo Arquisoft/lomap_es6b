@@ -3,7 +3,7 @@
 
 == Building Block View
 
-=== Whitebox Overall System
+=== White-box Overall System
 [plantuml, "level1", png]
 ----
 Actor User
@@ -81,7 +81,7 @@ Views <--> Solidapi: communicates
 
 ----
 Motivation::
-Inside LoMap, the Frontend is connected with the Solidapi to manage PODs.
+Inside LoMap, the Frontend is connected with the SolidAPI to manage PODs.
 
 Contained Building Blocks::
 [options="header",cols="1,3"]

@@ -7,10 +7,10 @@
 |Risk
 |Problem description
 |Consideration
-|Masures to be taken
+|Measures to be taken
 
 |High
-|Huge proyect
+|Huge project
 |We are under pressure to have the project completed to what is needed by the deadline.
 |It is therefore necessary to have good communication and a good working dynamic among the members of the team.
 
