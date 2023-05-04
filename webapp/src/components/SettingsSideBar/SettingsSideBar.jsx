@@ -23,9 +23,6 @@ const SettingsSideBar = (props) => {
                 backgroundColor: "#983c3a",
             }
         },
-
-
-
     };
 
     const {setPlaces,session} = props;
@@ -65,6 +62,7 @@ const SettingsSideBar = (props) => {
 
     return (
         <div>
+
             <Box>
                 <nav aria-label="settings forders 2">
                     <List>
