@@ -472,7 +472,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#section-building-block-view">5. Building Block View</a>
 <ul class="sectlevel2">
-<li><a href="#_whitebox_overall_system">5.1. Whitebox Overall System</a></li>
+<li><a href="#_white_box_overall_system">5.1. White-box Overall System</a></li>
 <li><a href="#_level_2">5.2. Level 2</a></li>
 </ul>
 </li>
@@ -503,8 +503,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_ad_04_definitive_database_server_mongodb">9.4. AD-04: Definitive Database server: MongoDb</a></li>
 <li><a href="#_ad_05_definitive_api_maps_openstreet_maps">9.5. AD-05: Definitive API Maps: OpenStreet Maps</a></li>
 <li><a href="#_ad_06_postman">9.6. AD-06: Postman</a></li>
-<li><a href="#_ad_07_format_specificaction_for_pods_json">9.7. AD-07: Format Specificaction for PODs: JSON</a></li>
-<li><a href="#_ad_08_format_specificaction_for_pods_json_ld">9.8. AD-08: Format Specificaction for PODs: JSON-LD</a></li>
+<li><a href="#_ad_07_format_specification_for_pods_json">9.7. AD-07: Format Specification for PODs: JSON</a></li>
+<li><a href="#_ad_08_format_specification_for_pods_json_ld">9.8. AD-08: Format Specification for PODs: JSON-LD</a></li>
 <li><a href="#_ad_09_no_longer_use_the_database">9.9. AD-09: No longer use the database</a></li>
 </ul>
 </li>
@@ -566,7 +566,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sect2">
 <h3 id="_requirements_overview">1.1. Requirements Overview</h3>
 <div class="paragraph">
-<p>The application runs online. It also makes use of Solid Pods to not keep the information centralized, in order to preserve user&#8217;s privacy. In this way, it decentralizes most of the user’s data. Users will be shown a map where they can add locations, review scores, comments, etc to create their own personalized maps. Each user will also be able to fully manage the information they provide to the application.</p>
+<p>The application runs online. It also makes use of Solid Pods to not keep the information centralized, in order to preserve user&#8217;s privacy. In this way, it decentralizes most of the user’s data. Users will be shown a map where they can add locations, review scores, comments, etc. to create their own personalized maps. Each user will also be able to fully manage the information they provide to the application.</p>
 </div>
 <div class="paragraph">
 <p>The full list of requirements of the application can be found in <a href="https://arquisoft.github.io/course2223/labAssignmentDescription.html">the assignment page</a>.</p>
@@ -631,7 +631,7 @@ The system must be easy to use for beginners or people without previous technica
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Developers</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em><a href="https://github.com/Arquisoft/lomap_es6b" class="bare">https://github.com/Arquisoft/lomap_es6b</a></em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The students of this team that are going to develope the project. They also will manage all the architecture</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The students of this team that are going to develop the project. They also will manage all the architecture</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Final users</em></p></td>
@@ -697,7 +697,7 @@ The system must be easy to use for beginners or people without previous technica
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The team</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We are a group of three and  we should get along with each other, to not hinder the work.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We are a group of three, and we should get along with each other, to not hinder the work.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Deadlines</p></td>
@@ -770,7 +770,7 @@ The system must be easy to use for beginners or people without previous technica
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Solid PODS</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Solid PODS have information about user’s addresses. They can also let acces to specific users to share their places.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solid PODS have information about user’s addresses. They can also let access to specific users to share their places.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>OpenStreetMap API</strong></p></td>
@@ -783,7 +783,7 @@ The system must be easy to use for beginners or people without previous technica
 <h3 id="_technical_context">3.2. Technical Context</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/BusinessContext.png" alt="BusinessContext" width="613" height="402">
+<img src="./images/TechnicalContext.png" alt="TechnicalContext" width="613" height="402">
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -831,8 +831,18 @@ The system must be easy to use for beginners or people without previous technica
 <div class="ulist">
 <ul>
 <li>
+<p><strong>IDEs</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Some of us use <em>IntelliJ</em> and others <em>Visual Studio Code</em> to develop.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p><strong>Frameworks</strong>:
-Some of us use <em>IntelliJ</em> and others <em>Visual Studio Code</em> to develop. And <em>Jest</em> for testing.</p>
+<em>React</em> for the frontend and <em>Jest</em> for testing.</p>
 </li>
 <li>
 <p><strong>Version control</strong>: <em>GitHub</em>. One branch per person.</p>
@@ -855,23 +865,26 @@ Some of us use <em>IntelliJ</em> and others <em>Visual Studio Code</em> to devel
 <p><em>JSX</em>: Syntax extension to Javascript.</p>
 </li>
 <li>
-<p><em>YAML</em>: Data serialization language that used for writinf the GitHub workflow script.</p>
+<p><em>YAML</em>: Data serialization language that used for writing the GitHub workflow script.</p>
 </li>
 <li>
-<p><em>Gatling</em>: For load testing.</p>
+<p><em>Java</em>: For Gatling load testing.</p>
+</li>
+<li>
+<p><em>Cucumber</em>: For E2E testing.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>External APIs</strong>: <em>OpenStreet Maps</em> API. Mainly because it&#8217;s completely free, not like Google Maps, which was our first option. However, it´s a very used API too.</p>
+<p><strong>External APIs</strong>: <em>OpenStreetMap</em> API. Mainly because it&#8217;s completely free, not like Google Maps, which was our first option. However, it´s a very used API too.</p>
 </li>
 <li>
-<p><strong>Backend technology</strong>: <em>Node.js</em>. Javascript runtime environment</p>
+<p><strong>Backend technology</strong>: <em>Node.js</em>. Javascript runtime environment.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>We decided to work with Node because it is a well-known backend technology and also one of the best ways to implement SOLID Pods. The example project used it so we were motivated to try it out.</p>
+<p>We decided to work with Node because it is a well-known backend technology and also one of the best ways to implement SOLID Pods. The example project used it, so we were motivated to try it out.</p>
 </li>
 </ul>
 </div>
@@ -915,7 +928,7 @@ Some of us use <em>IntelliJ</em> and others <em>Visual Studio Code</em> to devel
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Testability</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Making most of the functions testeable. This will let us create unit tests for these functions, and thus we will minimize the number of bugs.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Making most of the functions testable. This will let us create unit tests for these functions, and thus we will minimize the number of bugs.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Principle of data Minimisation</strong></p></td>
@@ -985,7 +998,7 @@ With decentralization and by doing a strict control of permissions. This means u
 <h2 id="section-building-block-view">5. Building Block View</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_whitebox_overall_system">5.1. Whitebox Overall System</h3>
+<h3 id="_white_box_overall_system">5.1. White-box Overall System</h3>
 <div class="imageblock">
 <div class="content">
 <img src="./images/level1.png" alt="level1" width="418" height="341">
@@ -1042,7 +1055,7 @@ With decentralization and by doing a strict control of permissions. This means u
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
-<p>Inside LoMap, the Frontend is connected with the Solidapi to manage PODs.</p>
+<p>Inside LoMap, the Frontend is connected with the SolidAPI to manage PODs.</p>
 </dd>
 <dt class="hdlist1">Contained Building Blocks</dt>
 </dl>
@@ -1134,13 +1147,14 @@ With decentralization and by doing a strict control of permissions. This means u
 <div class="sect2">
 <h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
 <div class="paragraph">
-<p><span class="image"><img src="./images/DeploymentView_dev.png" alt="Deployment view diagram"></span></p>
+<p><span class="image"><img src="./images/production.png" alt="Deployment view diagram"></span></p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
-<p>For development and testing the execution environment we are working on each student’s machine. But when we´ll reach the production phase, we must deploy it in a Dockerized environment.</p>
+<p>For the production phase it will be deployed with GitHub Pages.
+Above is the Deployment view of  the production stage.</p>
 </dd>
 <dt class="hdlist1">Quality and/or Performance Features</dt>
 <dd>
@@ -1153,17 +1167,18 @@ In the production phase, the user experience should be maximized with a good int
 <div class="sect2">
 <h3 id="_infrastructure_level_2">7.2. Infrastructure Level 2</h3>
 <div class="paragraph">
-<p><span class="image"><img src="./images/7_DeploymentView_p2.png" alt="Docker Deployment view diagram"></span></p>
+<p><span class="image"><img src="./images/desarrollo.png" alt="Development view diagram"></span></p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
-<p>Above we are explaining the Dockerized environment of the production phase.</p>
+<p>For development and testing the execution environment will be on each student’s machine. But for the production phase it will be deployed with GitHub Pages .
+Above is the development/testing environment.</p>
 </dd>
 <dt class="hdlist1">Quality and/or Performance Features</dt>
 <dd>
-<p>We are going to use a cloud platform, Amazon Web Service, to deploy our software. To launch it, we will use Docker environment. This one will manage the frontend, backend and database to build and run the application.</p>
+<p>All hosted on the developer&#8217;s pc.</p>
 </dd>
 </dl>
 </div>
@@ -1198,7 +1213,7 @@ In the production phase, the user experience should be maximized with a good int
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Map</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">It&#8217;s the main part of the interface, we obtain it through OpenStreetMap API. The map is where the user can mark selected places an watch places marked by their friends.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It&#8217;s the main part of the interface, we obtain it through OpenStreetMap API. The map is where the user can mark selected places a watch places marked by their friends.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td>
@@ -1228,10 +1243,10 @@ In the production phase, the user experience should be maximized with a good int
 <p>Context: We had to choose the Front-End technology to use in our web development.</p>
 </li>
 <li>
-<p>Decision: We decided for React due to its huge community to solve our posible future problems. The other option was Angular or Vue, but the minimalism style of React made us selected it to make are work clearer. Vue is like the best of both worlds but the fact that its not supported by a big company, it has less support and popularity, takes us back.</p>
+<p>Decision: We decided for React due to its huge community to solve our posible future problems. The other option was Angular or Vue, but the minimalism style of React made us selected it to make are work clearer. Vue is like the best of both worlds but the fact that it&#8217;s not supported by a big company, it has less support and popularity, takes us back.</p>
 </li>
 <li>
-<p>Consequences: In this way we will take our first steps in React, hoping to solve our probleams easily.</p>
+<p>Consequences: In this way we will take our first steps in React, hoping to solve our problems easily.</p>
 </li>
 </ul>
 </div>
@@ -1247,7 +1262,7 @@ In the production phase, the user experience should be maximized with a good int
 <p>Context: We had to choose the Back-End technology to use in our web development.</p>
 </li>
 <li>
-<p>Decision: As we selected JavaScript as our language code, we have guided our decision to Node.js. Its one of the most used network apps so it gave us trust. For example, the last time I read one statics about back-end technology, Node.js had 49% of popularity. In this decision we didn´t have much doubt</p>
+<p>Decision: As we selected JavaScript as our language code, we have guided our decision to Node.js. Its one of the most used network apps, so it gave us trust. For example, the last time I read one statics about back-end technology, Node.js had 49% of popularity. In this decision we didn´t have much doubt</p>
 </li>
 <li>
 <p>Consequences: From now, we will start learning to work with Node.js. None of us has worked with Node earlier, so we wish we had few problems.</p>
@@ -1266,7 +1281,7 @@ In the production phase, the user experience should be maximized with a good int
 <p>Context: We started thinking about which database server use in our project. Most of our data will be stored in PODs following the SOLID principles, so the database has lower priority.</p>
 </li>
 <li>
-<p>Decision: We had to choose between a relational or non relational database. The most of us had worked before with HSQLDeveloper so this could have been an option, but didn´t win the spot. We selected, may change later, to try using MariaDb to experiment with a different database. A disadvantage that we read is that Node.js, the backend technology selected, works worst with relational databases.</p>
+<p>Decision: We had to choose between a relational or non-relational database. The most of us had worked before with HSQLDeveloper so this could have been an option, but didn´t win the spot. We selected, may change later, to try using MariaDb to experiment with a different database. A disadvantage that we read is that Node.js, the backend technology selected, works worst with relational databases.</p>
 </li>
 <li>
 <p>Consequences: For now, we will try to work with MariaDb but this may change in the future.</p>
@@ -1285,7 +1300,7 @@ In the production phase, the user experience should be maximized with a good int
 <p>Context: At first we thought using MariaDB as it is explained above. However, the fact that we will work with Node.js and that it doesn´t work well with relational databases, warned us.</p>
 </li>
 <li>
-<p>Decision: As we haven´t started to implement yet, we decided to change to a non relational database to take less risk. Some of us had worked with it before and its easy to learn.</p>
+<p>Decision: As we haven´t started to implement yet, we decided to change to a non-relational database to take less risk. Some of us had worked with it before, and it&#8217;s easy to learn.</p>
 </li>
 <li>
 <p>Consequences: We will use MongoDb as a database.</p>
@@ -1301,7 +1316,7 @@ In the production phase, the user experience should be maximized with a good int
 <p>Status: Accepted</p>
 </li>
 <li>
-<p>Context: At first we thought using Googple Maps because we are used to it. Some of us had worked with it before in aother subject. But when we searched more, we have seen that Google Maps API has a monthly limit of free requests.</p>
+<p>Context: At first we thought using Google Maps because we are used to it. Some of us had worked with it before in another subject. But when we searched more, we have seen that Google Maps API has a monthly limit of free requests.</p>
 </li>
 <li>
 <p>Decision: The range of decision is not very big, so we read about OpenStreet Maps and, as it is completely free and also popular, changed our decision.</p>
@@ -1317,7 +1332,7 @@ In the production phase, the user experience should be maximized with a good int
 <div class="ulist">
 <ul>
 <li>
-<p>Status: Accepted</p>
+<p>Status: Rejected</p>
 </li>
 <li>
 <p>Context: We had trouble to start working at te backend. Mainly because it´s new for us and abstract. So to make it easier, we looked for a platform to let us see what we are doing.</p>
@@ -1332,7 +1347,7 @@ In the production phase, the user experience should be maximized with a good int
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ad_07_format_specificaction_for_pods_json">9.7. AD-07: Format Specificaction for PODs: JSON</h3>
+<h3 id="_ad_07_format_specification_for_pods_json">9.7. AD-07: Format Specification for PODs: JSON</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1351,20 +1366,20 @@ In the production phase, the user experience should be maximized with a good int
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ad_08_format_specificaction_for_pods_json_ld">9.8. AD-08: Format Specificaction for PODs: JSON-LD</h3>
+<h3 id="_ad_08_format_specification_for_pods_json_ld">9.8. AD-08: Format Specification for PODs: JSON-LD</h3>
 <div class="ulist">
 <ul>
 <li>
 <p>Status: Accepted</p>
 </li>
 <li>
-<p>Context: One of the requirements of this assignment is that there must exists interoperability between the data stored by the different applications. In <a href="https://github.com/Arquisoft/lomapSpec/issues/6">this issue</a> from the LomacSpec repository there was a discussion about which could be the best option.</p>
+<p>Context: One of the requirements of this assignment is that there must exist interoperability between the data stored by the different applications. In <a href="https://github.com/Arquisoft/lomapSpec/issues/6">this issue</a> from the LomapSpec repository there was a discussion about which could be the best option.</p>
 </li>
 <li>
 <p>Decision: Despite not reaching an agreement, we have chosen to follow the JSON-LS format. It´s a point in between JSON and RDF.</p>
 </li>
 <li>
-<p>Consequences: We have to update our code in solidapi to follow the JSON-LS format, but this won´t be a big trouble.</p>
+<p>Consequences: We have to update our code in SolidAPI to follow the JSON-LS format, but this won´t be a big trouble.</p>
 </li>
 </ul>
 </div>
@@ -1457,13 +1472,13 @@ When we put the pods in action in our project, we no longer needed the database,
 <th class="tableblock halign-left valign-top">Risk</th>
 <th class="tableblock halign-left valign-top">Problem description</th>
 <th class="tableblock halign-left valign-top">Consideration</th>
-<th class="tableblock halign-left valign-top">Masures to be taken</th>
+<th class="tableblock halign-left valign-top">Measures to be taken</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Huge proyect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Huge project</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">We are under pressure to have the project completed to what is needed by the deadline.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">It is therefore necessary to have good communication and a good working dynamic among the members of the team.</p></td>
 </tr>
