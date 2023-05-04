@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {savePlace} from "../../solidapi/solidAdapter";
 import {
+    Alert,
     Button,
     FormControl,
     InputLabel,
     MenuItem, Rating,
-    Select
+    Select, Snackbar
 } from "@mui/material";
 import AddCommentButton from "./AddCommentButton/AddCommentButton";
 import TextCommentCard from "../CommentCards/TextCommentCard/TextCommentCard";
@@ -37,12 +38,33 @@ const CommentsSidebar = (props) => {
     const [selectedCommentType, setSelectedCommentType] = useState('text');
     const [openImageDialog, setOpenImageDialog] = React.useState(false);
     const [openRatingDialog, setOpenRatingDialog] = React.useState(false);
+    const [snackbarOpenCT, setSnackbarOpenCT] = useState(false);
+    const [snackbarOpenI, setSnackbarOpenI] = useState(false);
+    const [snackbarOpenR, setSnackbarOpenR] = useState(false);
+
     const handleClickOpen = (value) => {
         if(value === "Add a text comment") handleClickOpenTextDialog();
         if(value === "Add an image") handleClickOpenImageDialog();
         if(value === "Add a rating") handleClickOpenRatingDialog();
     };
-
+    const handleSnackbarOpenCT =() => {
+        setSnackbarOpenCT(true);
+    }
+    const handleSnackbarCloseCT =() => {
+        setSnackbarOpenCT(false);
+    }
+    const handleSnackbarOpenI =() => {
+        setSnackbarOpenI(true);
+    }
+    const handleSnackbarCloseI =() => {
+        setSnackbarOpenI(false);
+    }
+    const handleSnackbarOpenR =() => {
+        setSnackbarOpenR(true);
+    }
+    const handleSnackbarCloseR =() => {
+        setSnackbarOpenR(false);
+    }
     const handleClickOpenTextDialog = () => {
         setOpenTextDialog(true);
     };
@@ -86,6 +108,7 @@ const CommentsSidebar = (props) => {
         savePlace(session, place, userWebId);
         handleCloseTextDialog();
         setCommentValue("");
+        handleSnackbarOpenCT();
     }
 
     const handleAddImageComment = () => {
@@ -93,12 +116,14 @@ const CommentsSidebar = (props) => {
         savePlace(session, place,userWebId);
         handleCloseImageDialog();
         setImageValue("");
+        handleSnackbarOpenI();
     }
     const handleAddRatingComment = () => {
         place.ratingComments.push({posterWebId: userWebId, value: ratingValue});
         savePlace(session, place,userWebId);
         handleCloseRatingDialog();
         setRatingValue(-1);
+        handleSnackbarOpenR();
     }
 
 
@@ -204,6 +229,16 @@ const CommentsSidebar = (props) => {
         </Dialog>
 
         {showData()}
+            <Snackbar open={snackbarOpenCT} autoHideDuration={3000} onClose={handleSnackbarCloseCT}>
+                <Alert onClose={handleSnackbarCloseCT} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
+                    Comment successfully added!
+                </Alert>
+            </Snackbar>
+            <Snackbar open={snackbarOpenR} autoHideDuration={3000} onClose={handleSnackbarCloseR}>
+                <Alert onClose={handleSnackbarCloseR} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
+                    Rating successfully added!
+                </Alert>
+            </Snackbar>
         </>
     );
 
