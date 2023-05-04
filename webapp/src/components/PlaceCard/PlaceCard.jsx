@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {
     Card,
     CardContent,
@@ -30,7 +30,7 @@ const PlaceCard = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
 
-    const [friends, setFriends] = React.useState([]);
+    const [setFriends] = React.useState([]);
 
     useEffect(async () => {
         if (userWebId) await getFriends(userWebId).then((friends) => {setFriends(friends);});

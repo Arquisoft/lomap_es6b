@@ -8,7 +8,6 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
-import CommentsSidebar from "../CommentsSidebar";
 
 const options = ['Add a text comment', 'Add an image', 'Add a rating'];
 
@@ -31,7 +30,7 @@ const SplitButton = (props) => {
     };
 
     const handleClose = (event) => {
-        if (anchorRef.current && anchorRef.current.contains(event.target)) {
+        if (anchorRef.current?.contains(event.target)) {
             return;
         }
         setOpen(false);

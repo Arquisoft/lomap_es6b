@@ -234,6 +234,11 @@ const CommentsSidebar = (props) => {
                     Comment successfully added!
                 </Alert>
             </Snackbar>
+            <Snackbar open={snackbarOpenI} autoHideDuration={3000} onClose={handleSnackbarCloseI}>
+                <Alert onClose={handleSnackbarCloseI} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
+                    Image successfully added!
+                </Alert>
+            </Snackbar>
             <Snackbar open={snackbarOpenR} autoHideDuration={3000} onClose={handleSnackbarCloseR}>
                 <Alert onClose={handleSnackbarCloseR} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
                     Rating successfully added!

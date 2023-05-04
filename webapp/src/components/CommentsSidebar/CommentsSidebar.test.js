@@ -84,7 +84,7 @@ describe('CommentsSidebar', () => {
 
   test('start to write a comment but close', () => {
 
-    const handleAddTextCommentMock = jest.fn();
+    jest.fn();
 
     render(<CommentsSidebar session={session} userWebId={userWebId} place={place} handleAddTextCommentMock />);
     const botonAdd = screen.getByTestId('addCommentButton');
@@ -96,7 +96,7 @@ describe('CommentsSidebar', () => {
     //busca el textArea
     const zonaPaEscribir = screen.getByTestId("escribeComentario");
 
-    //escribe en el area un comentario
+    //escribe en el área un comentario
    const escribeAqui = zonaPaEscribir.querySelector("textarea");
     fireEvent.change(escribeAqui, { target: { value: "hola mundo" } });//innerText
     expect(escribeAqui.value).toBe("hola mundo");
@@ -121,7 +121,6 @@ describe('CommentsSidebar', () => {
     const element = document.getElementById('showing-comments');
 fireEvent.click(element);
 expect(screen.getByText('Text comments')).toBeInTheDocument();
-//expect(screen.getByText('Ratings')).toBeInTheDocument();
 
 
   });

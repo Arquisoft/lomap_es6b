@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import {Button, FormControl, MenuItem, Select, Alert, Snackbar} from "@mui/material";
 import TextField from "@mui/material/TextField";
-import PlaceEntity from "../../entities/PlaceEntity";
 import { savePlace } from '../../solidapi/solidAdapter';
-import {v4 as uuidv4} from "uuid";
 
 function AddPlaceSidebar (props)  {
     const classes = {

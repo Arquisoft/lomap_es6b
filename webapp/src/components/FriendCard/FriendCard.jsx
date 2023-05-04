@@ -5,12 +5,10 @@ import MapIcon from '@mui/icons-material/Map';
 import Avatar from "@mui/material/Avatar";
 import {CombinedDataProvider, Image} from "@inrupt/solid-ui-react";
 import {VCARD} from "@inrupt/lit-generated-vocab-common";
-import {useStyles} from "tss-react/mui";
 import DeleteFriendConfirmDialog from "../DeleteFriendConfirmDialog/DeleteFriendConfirmDialog";
 import { deleteFriendPod } from '../../solidapi/solidAdapter';
 
 const FriendCard = (props) => {
-    const classes = useStyles();
     const {friend, setSelectedFriend, setSelectedButton, userWebId, session} = props;
     const [open, setOpen] = React.useState(false);
     const [openSnackBar,setOpenSnackBar] = React.useState(false);

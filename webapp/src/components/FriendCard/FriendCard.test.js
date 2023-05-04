@@ -1,9 +1,6 @@
 import React from 'react';
 import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import FriendCard from "./FriendCard";
-import DeleteFriendConfirmDialog from "../DeleteFriendConfirmDialog/DeleteFriendConfirmDialog";
-
-
 
 describe('FriendCard', () => {
   const setSelectedFriendMock = jest.fn();

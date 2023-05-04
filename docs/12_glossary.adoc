@@ -12,7 +12,4 @@
 | React     | It's an open source JavaScript library that helps building efficient interfaces.
 | API     | Software that helps two or more computer programs to comunicate to each other.
 | OpenStreetMap API     | OpenStreetMap has an editing API for fetching and saving raw geodata from/to the OpenStreetMap database.
-| Docker     | A set of platform as a service products that use OS-level virtualization to deliver software in containers.
-| MongoDB   | Open source document-oriented NoSQL database.
-| Express.js    | Free and open source back-end framework for developing web applications and APIs with Node.js
 |===
