@@ -31,7 +31,7 @@ const PlaceCard = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
 
-    const [friends, setFriends] = React.useState([]);
+    const [setFriends] = React.useState([]);
 
     useEffect(async () => {
         if (userWebId) {
@@ -47,7 +47,7 @@ const PlaceCard = (props) => {
 
     const handleClose = () => {
         setOpen(false);
-
+        handleSnackbarOpen();
     };
 
     const handleSnackbarOpen = () => {
@@ -82,6 +82,7 @@ const PlaceCard = (props) => {
         deletePlace(place.id); //deleting in the frontend
         handleClose();//cerrar la pestaña de diálogo
         handleSnackbarOpen(); //abrir el snackbar
+
     }
 
     const handleSharePlaceWithAllFriends = () => {
@@ -92,6 +93,9 @@ const PlaceCard = (props) => {
         })
             .catch((error) => {
                 console.error("An error occurred while sharing place with all friends:", error);
+            })
+            .finally(() => {
+                handleCloseShareButton();
             });
     };
 
@@ -155,6 +159,7 @@ const PlaceCard = (props) => {
             </Snackbar>
 
             <DeletePlaceConfirmDialog open={open} handleClose={handleClose} handleDeletePlace={handleDeletePlace}/>
+
             <Snackbar open={snackbarOpenShare} autoHideDuration={3000} onClose={handleSnackbarCloseShare}>
                 <Alert onClose={handleSnackbarCloseShare} severity="success" sx={{ backgroundColor: '#4caf50', color: '#fff', width: '100%' }}>
                     Place successfully shared!
