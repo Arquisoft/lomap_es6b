@@ -115,11 +115,11 @@ function AddPlaceSidebar (props)  {
         //////////////////
         if (selectedPoint.lat != null && selectedPoint.lng != null) {
             addPlace().then(() => {
-                console.log("Sharing place with all friends completed successfully.");
+                console.log("Created place successfully.");
                 clearForm();
             })
                 .catch((error) => {
-                    console.error("An error occurred while sharing place with all friends:", error);
+                    console.error("An error occurred while creating place:", error);
                 });
 
         }
