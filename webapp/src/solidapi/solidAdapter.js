@@ -24,7 +24,7 @@ export function savePlace(session, placeEntity, userWebId) {
     }
 
 
-    let PlacesUrl = basicUrl.concat("/private", "/Places", "/" + place.id + ".json");
+    let PlacesUrl = basicUrl.concat("/private", "/lomap_es6b", "/" + place.id + ".json");
 
 
     place = JSON.parse(JSON.stringify(place))
@@ -48,7 +48,7 @@ export async function getPlaces(session){
     } // Check if the webId is undefined
 
     let basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-    let pointsUrl = basicUrl.concat("/private", "/Places/");
+    let pointsUrl = basicUrl.concat("/private", "/lomap_es6b/");
 
     let places = [];
     let files = await findDataInContainer(session, pointsUrl);
@@ -73,7 +73,7 @@ export async function removePlace(session,placeId){
     // Si el lugar existe, eliminamos su archivo
     if (placeToDelete) {
         const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-        const placeUrl = basicUrl.concat("/private", "/Places", "/" + placeToDelete.id + ".json");
+        const placeUrl = basicUrl.concat("/private", "/lomap_es6b", "/" + placeToDelete.id + ".json");
 
         deleteData(session, placeUrl);
     }
@@ -85,7 +85,7 @@ export async function deleteAllPlaces(session) {
     for(const place in places) {
         console.log("Borrado: " + places[place].name);
         const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-        const placeUrl = basicUrl.concat("/private", "/Places", "/" + places[place].id + ".json");
+        const placeUrl = basicUrl.concat("/private", "/lomap_es6b", "/" + places[place].id + ".json");
 
         deleteData(session, placeUrl);
     }
@@ -93,7 +93,7 @@ export async function deleteAllPlaces(session) {
 
 export function modifyPlace(session, placeId, updatedPlaceEntity) {
     const basicUrl = session.info.webId?.split("/").slice(0, 3).join("/");
-    const placeUrlPublic = basicUrl.concat("/private", "/Places", "/" + placeId + ".json");
+    const placeUrlPublic = basicUrl.concat("/private", "/lomap_es6b", "/" + placeId + ".json");
 
     const updatedPlace = JSON.parse(JSON.stringify(updatedPlaceEntity));
     updatedPlace["@context"] = "https://schema.org/";
@@ -111,7 +111,7 @@ export async function getPlacesByWebId(session, webId){
     } // Check if the webId is undefined
 
     let basicUrl = webId?.split("/").slice(0, 3).join("/");
-    let pointsUrl = basicUrl.concat("/private", "/Places/");
+    let pointsUrl = basicUrl.concat("/private", "/lomap_es6b/");
 
     let places = [];
     let files = await findDataInContainer(session, pointsUrl);
@@ -203,7 +203,7 @@ export async function giveAllFriendPermissionPoint(webId,session, placeID) {
         for(let i in friendsURL){
             console.log(i);
             giveFriendPermissionFolder(webId,session,name);
-            const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+name +".inrupt.net/private/Places/"+placeID+".json", {
+            const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+name +".inrupt.net/private/lomap_es6b/"+placeID+".json", {
                 fetch: session.fetch
             });
 
@@ -242,7 +242,7 @@ export async function giveAllFriendPermissionPoint(webId,session, placeID) {
 export async function giveFriendPermissionFolder(webId,session, friendUrl, userName) {
     try {
         console.log("permisos carpeta");
-        const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+userName +".inrupt.net/private/Places/.acl", {
+        const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+userName +".inrupt.net/private/lomap_es6b/.acl", {
             fetch: session.fetch
         });
         let resourceAcl;
