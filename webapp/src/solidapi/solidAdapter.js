@@ -202,7 +202,7 @@ export async function giveAllFriendPermissionPoint(webId,session, placeID) {
     try {
         for(let i in friendsURL){
             console.log(i);
-            giveFriendPermissionFolder(webId,session,name);
+            giveFriendPermissionFolder(webId,session,friendsURL[i]);
             const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+name +".inrupt.net/private/lomap_es6b/"+placeID+".json", {
                 fetch: session.fetch
             });
@@ -239,12 +239,13 @@ export async function giveAllFriendPermissionPoint(webId,session, placeID) {
 }
 
 //Función que otorga permisos a los amigos para la carpeta places, y asi poder monstrar los sitios que se compartieron.
-export async function giveFriendPermissionFolder(webId,session, friendUrl, userName) {
+export async function giveFriendPermissionFolder(webId,session,friendURL) {
+    let name =extractNameFromUrl(webId);
     try {
-        console.log("permisos carpeta");
-        const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+userName +".inrupt.net/private/lomap_es6b/.acl", {
+        const myDatasetWithAcl = await getSolidDatasetWithAcl( "https://"+name +".inrupt.net/private/lomap_es6b/", {
             fetch: session.fetch
         });
+
         let resourceAcl;
         if (!hasResourceAcl(myDatasetWithAcl)) {
             if (!hasAccessibleAcl(myDatasetWithAcl)) {
@@ -263,13 +264,12 @@ export async function giveFriendPermissionFolder(webId,session, friendUrl, userN
         }
         const updatedAcl = solid.setAgentResourceAccess( //se establecen los permisos
             resourceAcl,
-            friendUrl,
-            { read: true, append: true, write: false, control: false }
+            friendURL,
+            { read: true, append: true , write: true, control: false }
         );
 
         await saveAclFor(myDatasetWithAcl, updatedAcl, { fetch: session.fetch }); //se guardan en cada amigo los cambios
-        console.log("Permisos al amigo carpeta:"+ friendUrl +"   de la carpeta Places.");
-        // }
+        console.log("Permisos al amigo :"+ friendURL);
 
     } catch (error) {
         console.log(error);
