@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Card,
     CardContent,
@@ -38,7 +38,9 @@ const PlaceCard = (props) => {
 
     const handleClickOpen = () => {setOpen(true);};
 
-    const handleClose = () => {setOpen(false);};
+    const handleClose = () => {setOpen(false); handleSnackbarOpen();};
+
+
 
     const handleSnackbarOpen = () => {setSnackbarOpen(true);};
 
@@ -52,6 +54,7 @@ const PlaceCard = (props) => {
 
     const handleSnackbarCloseShare = () => {setSnackbarOpenShare(false);};
 
+
     const handleDeletePlace = async () => {
         await removePlace(session, place.id)// delete from the pods
         deletePlace(place.id); //deleting in the frontend
@@ -60,7 +63,7 @@ const PlaceCard = (props) => {
     }
 
     const handleSharePlaceWithAllFriends = () => {
-        giveAllFriendPermissionPoint(userWebId, session, place.id).then(() => {handleSnackbarOpenShare();}).catch((error) => {console.error(error);});
+        giveAllFriendPermissionPoint(userWebId, session, place.id).then(() => {handleSnackbarOpenShare();}).catch((error) => {console.error(error);}).finally(() => {handleCloseShareButton();});;
     };
 
     return (

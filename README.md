@@ -1,23 +1,25 @@
 # LoMap ES6B
 
--Manuel López Zürcher
-
--Adriana Arias Coya
-
--Alicia Fernández Pushkina
-
-
-
+![](lomap_logo.png)
 
 [![CI for LOMAP_ES6B](https://github.com/Arquisoft/lomap_es6b/actions/workflows/lomap_es6b.yml/badge.svg)](https://github.com/Arquisoft/lomap_es6b/actions/workflows/lomap_es6b.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_lomap_es6b&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arquisoft_lomap_es6b)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_lomap_es6b&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Arquisoft_lomap_es6b)
 
-<p float="left">
-<img src="https://blog.wildix.com/wp-content/uploads/2020/06/react-logo.jpg" height="100">
-<img src="https://miro.medium.com/max/365/1*Jr3NFSKTfQWRUyjblBSKeg.png" height="100">
-</p>
+## 💻 Project developers
 
+[![Adriana](https://img.shields.io/badge/UO283840-Adriana%20Arias-hotpink)](https://github.com/uo283840)
+[![Alicia](https://img.shields.io/badge/UO275727-Alicia%20Fernández-purple)](https://github.com/aliciafp15)
+[![Manuel](https://img.shields.io/badge/UO282249-Manuel%20López-blue)](https://github.com/uo282249)
+
+---
+## Technologies used
+![React](https://img.shields.io/badge/REACT-%20-yellow) 
+![NodeJS](https://img.shields.io/badge/NODE.JS-%20-green)
+![SOLID](https://img.shields.io/badge/SOLID-%20-purple)
+![MATERIAL-UI](https://img.shields.io/badge/MATERIAL--UI-%20-blue)
+![GITHUB-PAGES](https://img.shields.io/badge/GH--PAGES-%20-red)
+---
 ## 🚀 How to deploy locally
 
 In this version we deploy the app locally without docker.
