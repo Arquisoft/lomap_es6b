@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PlaceCard from "../PlaceCard/PlaceCard";
 import {CircularProgress} from "@mui/material";
 

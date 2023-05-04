@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, Card, Typography} from "@mui/material";
 import { ReactComponent as Logo } from '../../full_logo_new.svg';
-import { useState } from 'react';
 import { LoginButton } from "@inrupt/solid-ui-react";
 
 const LoginWall = (props) => {

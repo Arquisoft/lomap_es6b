@@ -1,5 +1,5 @@
 import React from 'react';
-import {fireEvent, render, screen, waitFor} from '@testing-library/react';
+import {render} from '@testing-library/react';
 import Header from "./Header";
 import PlaceEntity from "../../entities/PlaceEntity";
 

@@ -27,7 +27,6 @@ const DetailsSidebar = (props) => {
         },
 
     };
-    let setContent = useState("");
     const {places, setPlaces, selectedPoint, setSelectedPoint, setSelectedButton, selectedButton,setSelectedPlaceMyPlaces,
         deletePlace, setPlacesLength,userWebId, session, selectedFriendPlaces, setSelectedFriendPlaces, deleteFriend,
         placeCategories, isLoading, setIsLoading} = props;
@@ -163,7 +162,6 @@ const DetailsSidebar = (props) => {
                     </>
                 );
             default:
-                setContent="";
                 break;
         }
     }
