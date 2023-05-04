@@ -29,28 +29,51 @@ const PlaceCard = (props) => {
     const [snackbarOpenShare, setSnackbarOpenShare] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-
     const [friends, setFriends] = React.useState([]);
 
     useEffect(async () => {
         if (userWebId) await getFriends(userWebId).then((friends) => {setFriends(friends);});
     }, []);
 
-    const handleClickOpen = () => {setOpen(true);};
+    const handleClickOpen = () =>
+    {
+        setOpen(true);
+    };
 
-    const handleClose = () => {setOpen(false);};
+    const handleClose = () =>
+    {
+        setOpen(false);
+    };
 
-    const handleSnackbarOpen = () => {setSnackbarOpen(true);};
+    const handleSnackbarOpen = () =>
+    {
+        setSnackbarOpen(true);
+    };
 
-    const handleSnackbarClose = () => {setSnackbarOpen(false);};
+    const handleSnackbarClose = () =>
+    {
+        setSnackbarOpen(false);
+    };
 
-    const handleClickShareButton = (event) => {setAnchorEl(event.currentTarget);};
+    const handleClickShareButton = (event) =>
+    {
+        setAnchorEl(event.currentTarget);
+    };
 
-    const handleCloseShareButton = () => {setAnchorEl(null);};
+    const handleCloseShareButton = () =>
+    {
+        setAnchorEl(null);
+    };
 
-    const handleSnackbarOpenShare = () => {setSnackbarOpenShare(true);};
+    const handleSnackbarOpenShare = () =>
+    {
+        setSnackbarOpenShare(true);
+    };
 
-    const handleSnackbarCloseShare = () => {setSnackbarOpenShare(false);};
+    const handleSnackbarCloseShare = () =>
+    {
+        setSnackbarOpenShare(false);
+    };
 
     const handleDeletePlace = async () => {
         await removePlace(session, place.id)// delete from the pods
