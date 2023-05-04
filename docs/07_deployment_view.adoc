@@ -3,30 +3,24 @@
 
 == Deployment View
 
-
 === Infrastructure Level 1
-image:DeploymentView_dev.png["Deployment view diagram"]
+image:production.png["Deployment view diagram"]
 
 Motivation::
-
-For development and testing the execution environment we are working on each student’s machine. But when we´ll reach the production phase, we must deploy it in a Dockerized environment.
+For the production phase it will be deployed with GitHub Pages.
+Above is the Deployment view of  the production stage.
 
 Quality and/or Performance Features::
-
 We have chosen work just with Front to simplify the structure.
 In the production phase, the user experience should be maximized with a good internet connection, but this is something we cannot control.
 
 
-
-
-
 === Infrastructure Level 2
-image:7_DeploymentView_p2.png["Docker Deployment view diagram"]
+image:desarrollo.png["Development view diagram"]
 
 Motivation::
-Above we are explaining the Dockerized environment of the production phase.
+For development and testing the execution environment will be on each student’s machine. But for the production phase it will be deployed with GitHub Pages . 
+Above is the development/testing environment.
+
 Quality and/or Performance Features::
-We are going to use a cloud platform, Amazon Web Service, to deploy our software. To launch it, we will use Docker environment. This one will manage the frontend, backend and database to build and run the application.
-
-
-
+All hosted on the developer's pc.
